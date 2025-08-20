@@ -3,12 +3,20 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
-  description: "Yet Another Hyprland Configuration",
+  description: "Yet another Hyprland Configuration",
+
+  markdown: {
+    theme: {
+      light: "catppuccin-latte", // light mode
+      dark: "catppuccin-mocha", // darkest mode
+    },
+  },
+
   themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
     search: {
       provider: "local",
     },
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
       { text: "Examples", link: "/markdown-examples" },
@@ -25,7 +33,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/ahmad9059/HyprFlux.git" },
+      { icon: "github", link: "https://github.com/vuejs/vitepress" },
     ],
   },
 });

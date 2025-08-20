@@ -1,0 +1,28 @@
+.VPFeature {
+  /* width: 200px; */
+}
+
+.image-src {
+  min-width: 500px;
+  margin-top: 20px;
+  margin-left: 60px;
+  /* overflow: hidden; */
+  border-radius: 10px;
+}
+
+/* .VPImage { */
+/*   border-radius: 30px; */
+/* } */
+/* .image-container { */
+/*   transform: translate(-100px, -100px); */
+/*   border-radius: 30px; */
+/* } */
+
+/* .image { */
+/*   border-radius: 30px; */
+/* } */
+
+.image-bg {
+  margin-top: 20px;
+  margin-left: 50px;
+}

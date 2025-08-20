@@ -4,12 +4,15 @@ layout: home
 
 hero:
   name: "HyprFlux"
+  image:
+    src: /logo.gif
+    alt: HyprFlux-Img
   text: "Yet Another Hyprland Configuration"
   tagline: Minimal, productive, elegant, and fast.
   actions:
     - theme: brand
       text: Showcase
-      link: /markdown-examples
+      link: /showcase.md
     - theme: alt
       text: Quickstart
       link: /api-examples
@@ -18,10 +21,16 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 🛠️
+    title: Minimalist
+    details: Focused only on the essential tools, without unnecessary bloat.
+  - icon: ⏱️
+    title: Productive
+    details: Every component is crafted with productivity and workflow in mind.
+  - icon: 🌈
+    title: Elegant
+    details: Beautiful and eye-catching theme that feels modern and appealing.
+  - icon: 🚀
+    title: Fast
+    details: Lightweight configuration with a minimal number of packages for blazing speed.
 ---
