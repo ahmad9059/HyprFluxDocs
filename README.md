@@ -1,3 +1,1 @@
 # HyprFluxDocs
-# HyprFluxDocs
-# HyprFluxDocs
