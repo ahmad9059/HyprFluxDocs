@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "HyprFlux"
   image:
-    src: /logo.png
+    src: /logo.gif
     alt: HyprFlux-Img
   text: "Yet Another Hyprland Configuration"
   tagline: Minimal, productive, elegant, and fast.
