@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
-  description: "Yet another Hyprland Configuration",
+  description: "Yet Another Hyprland Configuration",
   themeConfig: {
     search: {
       provider: "local",
@@ -25,7 +25,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/ahmad9059/HyprFlux.git" },
     ],
   },
 });
