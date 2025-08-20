@@ -5,6 +5,9 @@ export default defineConfig({
   title: "HyprFlux",
   description: "Yet another Hyprland Configuration",
   themeConfig: {
+    search: {
+      provider: "local",
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
