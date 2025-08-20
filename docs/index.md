@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "HyprFlux"
   text: "Yet Another Hyprland Configuration"
-  tagline: Minimalist, productive, beautifully designed, and lightweight.
+  tagline: Minimal, productive, elegant, and fast.
   actions:
     - theme: brand
       text: Showcase
