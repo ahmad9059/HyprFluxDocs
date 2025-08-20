@@ -5,13 +5,16 @@ layout: home
 hero:
   name: "HyprFlux"
   text: "Yet Another Hyprland Configuration"
-  tagline: My great project tagline
+  tagline: Minimalist, productive, beautifully designed, and lightweight.
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: Showcase
       link: /markdown-examples
     - theme: alt
-      text: API Examples
+      text: Quickstart
+      link: /api-examples
+    - theme: alt
+      text: GitHub
       link: /api-examples
 
 features:
