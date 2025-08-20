@@ -1,0 +1,47 @@
+# Node modules
+node_modules/
+
+# Build output / cache
+dist/
+.vite-temp/
+.vitepress/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Optional: JetBrains IDEs
+*.iml
+out/
+
+# Optional: macOS files
+.DS_Store
+
+# Optional: Linux swap files
+*.swp
+
+# Git hooks (if you want to ignore local hooks)
+.git/hooks/
