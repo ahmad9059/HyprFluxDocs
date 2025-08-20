@@ -7,8 +7,8 @@ export default defineConfig({
 
   markdown: {
     theme: {
-      light: "catppuccin-latte", // light mode
-      dark: "catppuccin-mocha", // darkest mode
+      light: "catppuccin-latte",
+      dark: "catppuccin-mocha",
     },
   },
 
