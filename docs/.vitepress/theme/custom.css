@@ -9,15 +9,18 @@
   /* margin-left: 60px; */
   /* border-radius: 40px; */
 }
+
 img video {
   border-radius: 14px; /* adjust value as you like */
   overflow: hidden;
+  margin: 10px;
 }
 
 /* Apply rounded corners to images and videos inside docs */
 .vp-doc img,
 .vp-doc video {
   border-radius: 12px;
+  margin-top: 10px;
   overflow: hidden;
 }
 @media (min-width: 768px) {
