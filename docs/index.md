@@ -5,10 +5,10 @@ layout: home
 hero:
   name: "HyprFlux"
   image:
-    src: /logo.gif
+    src: /fav.png
     alt: HyprFlux-Img
-  text: "Yet Another Hyprland Configuration"
-  tagline: Minimal, productive, elegant, and fast.
+  text: "Elegance That Moves at Light Speed ⚡"
+  tagline: Minimal · Productive · Elegant · Fast
   actions:
     - theme: brand
       text: Showcase
@@ -18,7 +18,7 @@ hero:
       link: /api-examples
     - theme: alt
       text: GitHub
-      link: /api-examples
+      link: https://www.github.com/ahmad9059
 
 features:
   - icon: 🛠️

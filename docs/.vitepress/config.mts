@@ -1,19 +1,31 @@
 import { defineConfig } from "vitepress";
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from "vitepress-plugin-group-icons";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
   description: "Yet another Hyprland Configuration",
-
   markdown: {
     theme: {
       light: "catppuccin-latte",
       dark: "catppuccin-mocha",
     },
+    config(md) {
+      md.use(groupIconMdPlugin, {
+        titleBar: { includeSnippet: true },
+      });
+    },
+  },
+  vite: {
+    plugins: [groupIconVitePlugin()],
   },
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: "favicon.ico",
     search: {
       provider: "local",
     },
