@@ -58,6 +58,44 @@ This is a details block.
 :::
 ```
 
+::: info
+This is fucking test message
+:::
+
+```js [theme/file.js]
+  return movie.length > 0 ? (
+    <div className=" w-screen h-screen">
+      <div className=" px-[5%] w-full flex items-center justify-between ">
+        <h1 className=" text-2xl font-semibold text-zinc-400 ">
+          <i
+            onClick={() => navigate(-1)}
+            className="hover:text-secondary cursor-pointer ri-arrow-left-line"
+          ></i>{" "}
+          Movie{" "}
+          <small className="text-sm ml-2 text-zinc-600 ">({category})</small>
+        </h1>
+        <div className="flex items-center w-[80%] ">
+          <Topnav />
+          <Dropdown
+            title="Category"
+            options={["popular", "top_rated", "upcoming", "now_playing"]}
+            func={(e) => setCategory(e.target.value)}
+          />
+          <div className="w-[2%]"></div>
+        </div>
+      </div>
+      <InfiniteScroll
+        loader={"Loading..."}
+        dataLength={movie.length}
+        hasMore={hasMore}
+        next={getMovie}
+      >
+        <Cards data={movie} title="movie" />
+      </InfiniteScroll>
+    </div>
+  )
+```
+
 **Output**
 
 ::: info

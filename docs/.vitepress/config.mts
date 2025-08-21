@@ -7,7 +7,7 @@ import {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
-  description: "Yet another Hyprland Configuration",
+  description: "Elegance That Moves at Light Speed ⚡",
   markdown: {
     theme: {
       light: "catppuccin-latte",
@@ -31,7 +31,7 @@ export default defineConfig({
     },
     nav: [
       { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "Docs", link: "/markdown-examples" },
     ],
 
     sidebar: [
@@ -45,7 +45,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/ahmad9059/HyprFlux.git" },
     ],
     footer: {
       message: "Released under the MIT License.",
