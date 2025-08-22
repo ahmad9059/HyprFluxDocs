@@ -1,4 +1,4 @@
-# HyprFlux Keybindings
+## HyprFlux Keybindings
 
 ### 1. Core Apps & Tools
 
