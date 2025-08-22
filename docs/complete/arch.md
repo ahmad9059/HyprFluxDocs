@@ -43,13 +43,13 @@ Wired connections work automatically - no configuration needed.
 
 Use the `iwctl` utility for WiFi setup:
 
-```bash
+```bash [bash]
 iwctl
 ```
 
 From the `[iwd]#` prompt, list available devices and connect:
 
-```bash
+```bash [bash]
 [iwd]# device list
 [iwd]# station wlan0 scan
 [iwd]# station wlan0 get-networks
@@ -60,7 +60,7 @@ Enter your WiFi password when prompted, then exit with `Ctrl+D`.
 
 ### Verify Connection
 
-```bash
+```bash [bash]
 ping -c 3 archlinux.org
 ```
 
@@ -68,7 +68,7 @@ ping -c 3 archlinux.org
 
 ### View Available Disks
 
-```bash
+```bash [bash]
 lsblk
 ```
 
@@ -76,7 +76,7 @@ lsblk
 
 Use `cfdisk` to create partitions:
 
-```bash
+```bash [bash]
 cfdisk /dev/sdX  # Replace X with your disk letter
 ```
 
@@ -92,7 +92,7 @@ Create these three partitions:
 
 Replace `/dev/sdX#` with your actual partition paths:
 
-```bash
+```bash [bash]
 # Format root partition
 mkfs.ext4 /dev/sdX3
 
@@ -105,7 +105,7 @@ mkswap /dev/sdX2
 
 ### Mount Partitions
 
-```bash
+```bash [bash]
 # Create mount point and mount root
 mkdir /mnt/archinstall
 mount /dev/sdX3 /mnt/archinstall
@@ -120,7 +120,7 @@ swapon /dev/sdX2
 
 ## Step 5: Update System and Launch Installer
 
-```bash
+```bash [bash]
 # Update package database and install latest archinstall
 pacman -Sy archinstall archlinux-keyring
 
@@ -206,13 +206,13 @@ The `archinstall` script will present a menu. Configure each option:
 1. When installation completes, remove the USB drive
 2. Reboot the system:
 
-   ```bash
+   ```bash [bash]
    reboot
    ```
 
 3. Log in with your user account
 4. Update the system:
-   ```bash
+   ```bash [bash]
    sudo pacman -Syu
    ```
 

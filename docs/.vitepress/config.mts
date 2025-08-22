@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
+  localIconLoader,
 } from "vitepress-plugin-group-icons";
 
 // https://vitepress.dev/reference/site-config
@@ -20,9 +21,15 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [groupIconVitePlugin()],
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          // key here must match [bash] in your markdown
+          bash: localIconLoader(import.meta.url, "../assets/bash.svg"),
+        },
+      }),
+    ],
   },
-
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "favicon.ico",
@@ -53,7 +60,7 @@ export default defineConfig({
             text: "ArchLinux Installation",
             link: "/complete/arch.md",
           },
-          { text: "HyprFlux Install", link: "#" },
+          { text: "HyprFlux Install", link: "/complete/hpyrflux.md" },
         ],
       },
       {
