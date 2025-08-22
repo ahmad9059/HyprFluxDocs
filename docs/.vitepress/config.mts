@@ -49,7 +49,6 @@ export default defineConfig({
           { text: "Showcase", link: "/general/showcase.md" },
           { text: "Quick Start", link: "/general/getting-started.md" },
           { text: "Installation", link: "/general/installation.md" },
-          { text: "KeyBindings", link: "/general/keybindings.md" },
         ],
       },
       {
