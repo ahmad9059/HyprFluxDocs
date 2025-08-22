@@ -25,7 +25,7 @@ export default defineConfig({
       groupIconVitePlugin({
         customIcon: {
           // key here must match [bash] in your markdown
-          bash: localIconLoader(import.meta.url, "../assets/bash.svg"),
+          sh: localIconLoader(import.meta.url, "../assets/bash.svg"),
         },
       }),
     ],
