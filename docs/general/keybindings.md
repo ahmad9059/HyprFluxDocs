@@ -1,3 +1,81 @@
+| Keybinding       | Action/Command                                              | Description                         |                                                             |                               |
+| ---------------- | ----------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------- | ----------------------------- |
+| `SUPER + D`      | \`pkill rofi                                                |                                     | true && rofi -show drun -modi drun,filebrowser,run,window\` | App Launcher (Rofi main menu) |
+| `SUPER + B`      | `xdg-open "https://"`                                       | Default browser (or Firefox if set) |                                                             |                               |
+| `SUPER + Return` | `exec $term`                                                | Open terminal (default)             |                                                             |                               |
+| `SUPER + F`      | `exec $files`                                               | Open file manager                   |                                                             |                               |
+| `SUPER + K`      | `exec kitty`                                                | Launch Kitty terminal               |                                                             |                               |
+| `SUPER + B`      | `exec firefox`                                              | Launch Firefox                      |                                                             |                               |
+| `SUPER + R`      | `exec foliate`                                              | Open Foliate (eBook reader)         |                                                             |                               |
+| `SUPER + V`      | `exec $scriptsDir/ClipManager.sh`                           | Clipboard Manager                   |                                                             |                               |
+| `SUPER + C`      | `exec code --ozone-platform=x11`                            | Launch VS Code                      |                                                             |                               |
+| `SUPER + O`      | `exec obsidian --ozone-platform=x11`                        | Launch Obsidian                     |                                                             |                               |
+| `SUPER + S`      | `exec spotify-launcher`                                     | Open Spotify                        |                                                             |                               |
+| `SUPER + I`      | `exec vesktop`                                              | Launch Vesktop (Discord)            |                                                             |                               |
+| `SUPER + T`      | \`exec (64gram-desktop                                      | telegram-desktop)\`                 | Open Telegram                                               |                               |
+| `SUPER + M`      | `exec fdm`                                                  | Free Download Manager               |                                                             |                               |
+| `SUPER + E`      | `kitty --title tmuxifier -e tmuxifier load-session web-dev` | Start tmuxifier web-dev session     |                                                             |                               |
+| `SUPER + W`      | `exec wasistlos`                                            | Open WhatsApp-Linux                 |                                                             |                               |
+
+---
+
+### Features & Extras
+
+| Keybinding               | Action/Command                                                | Description                      |
+| ------------------------ | ------------------------------------------------------------- | -------------------------------- |
+| `SUPER + SHIFT + H`      | `exec $scriptsDir/KeyHints.sh`                                | Help / cheat sheet               |
+| `SUPER + SHIFT + R`      | `exec $scriptsDir/Refresh.sh`                                 | Refresh waybar, swaync, rofi     |
+| `SUPER + SHIFT + O`      | `exec $scriptsDir/ChangeBlur.sh`                              | Toggle blur settings             |
+| `SUPER + SHIFT + G`      | `exec $UserScripts/MountGdrive.sh`                            | Mount Google Drive               |
+| `SUPER + SHIFT + T`      | `exec $UserScripts/Toggle-tuned.sh`                           | Toggle tuned animations          |
+| `SUPER + SHIFT + D`      | `exec $UserScripts/SyncDotfiles.sh`                           | Sync dotfiles                    |
+| `SUPER + SHIFT + B`      | `exec $UserScripts/SyncBlog.sh`                               | Sync blog                        |
+| `SUPER + SHIFT + C`      | `exec $UserScripts/RcloneSync.sh`                             | Sync documents with Google Drive |
+| `SUPER + SHIFT + L`      | `exec $scriptsDir/ChangeLayout.sh`                            | Toggle Master or Dwindle Layout  |
+| `SUPER + SHIFT + P`      | `exec hyprpicker -a / –autocopy`                              | Color picker                     |
+| `SUPER + SHIFT + V`      | `exec systemd-run --user --scope $scriptsDir/parrotOS-KVM.sh` | Start ParrotOS KVM               |
+| `SUPER + SHIFT + F`      | `fullscreen`                                                  | Toggle fullscreen                |
+| `SUPER + SHIFT + Return` | `exec $scriptsDir/Dropterminal.sh $term`                      | Dropdown terminal                |
+| `SUPER + CTRL + F`       | `fullscreen 1`                                                | Fake fullscreen                  |
+| `SUPER + SPACE`          | `togglefloating`                                              | Toggle float mode                |
+| `SUPER + ALT + SPACE`    | `exec hyprctl dispatch workspaceopt allfloat`                 | Toggle all-float mode            |
+| `SUPER + ALT + E`        | `exec $scriptsDir/RofiEmoji.sh`                               | Emoji menu                       |
+
+---
+
+### Desktop Zoom / Magnifier
+
+| Keybinding                        | Action/Command                                | Description |
+| --------------------------------- | --------------------------------------------- | ----------- |
+| `SUPER + ALT + Mouse Scroll Down` | `hyprctl keyword cursor:zoom_factor factor*2` | Zoom in     |
+| `SUPER + ALT + Mouse Scroll Up`   | `hyprctl keyword cursor:zoom_factor factor/2` | Zoom out    |
+
+---
+
+### Waybar
+
+| Keybinding               | Action/Command                     | Description             |
+| ------------------------ | ---------------------------------- | ----------------------- |
+| `SUPER + CTRL + ALT + B` | `pkill -SIGUSR1 waybar`            | Toggle hide/show Waybar |
+| `SUPER + CTRL + B`       | `exec $scriptsDir/WaybarStyles.sh` | Waybar styles menu      |
+| `SUPER + ALT + B`        | `exec $scriptsDir/WaybarLayout.sh` | Waybar layout menu      |
+
+---
+
+### More Extras (UserScripts)
+
+| Keybinding                     | Action/Command                              | Description                     |
+| ------------------------------ | ------------------------------------------- | ------------------------------- |
+| `SUPER + SHIFT + M`            | `exec $UserScripts/RofiBeats.sh`            | Online music (Rofi)             |
+| `SUPER + SHIFT + W`            | `exec $UserScripts/WallpaperSelect.sh`      | Select wallpaper                |
+| `SUPER + SHIFT + W` (2nd bind) | `exec $UserScripts/WallpaperEffects.sh`     | Wallpaper effects (Imagemagick) |
+| `CTRL + ALT + W`               | `exec $UserScripts/WallpaperRandom.sh`      | Random wallpapers               |
+| `SUPER + CTRL + O`             | `exec hyprctl setprop active opaque toggle` | Toggle window opacity           |
+| `SUPER + SHIFT + K`            | `exec $scriptsDir/KeyBinds.sh`              | Search keybinds via Rofi        |
+| `SUPER + SHIFT + A`            | `exec $scriptsDir/Animations.sh`            | Hyprland animations menu        |
+| `SUPER + SHIFT + Z`            | `exec $UserScripts/ZshChangeTheme.sh`       | Change oh-my-zsh theme          |
+| `SUPER + CTRL + C`             | `exec $UserScripts/RofiCalc.sh`             | Calculator (qalculate)          |
+
 | Keybinding                     | Action                                    | Description                                      |
 | ------------------------------ | ----------------------------------------- | ------------------------------------------------ |
 | `CTRL + ALT + Delete`          | `exec hyprctl dispatch exit 0`            | Exit Hyprland                                    |
@@ -63,60 +141,3 @@
 | `XF86AudioNext`                | `exec $scriptsDir/MediaCtrl.sh --nxt`     | Next media track                                 |
 | `XF86AudioPrev`                | `exec $scriptsDir/MediaCtrl.sh --prv`     | Previous media track                             |
 | `XF86AudioStop`                | `exec $scriptsDir/MediaCtrl.sh --stop`    | Stop media                                       |
-
-Perfect, you pasted your **User Keybinds** config.
-Let’s make a clean **hits/cheatsheet table** out of it (like the one we did for system binds). This will give you a quick lookup reference for all your personal shortcuts.
-
----
-
-## User KeyBindings (Cheat Sheet)
-
-| Keybinding                        | Action/Command                                                | Description                         |                                                             |                               |
-| --------------------------------- | ------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------- | ----------------------------- |
-| `SUPER + D`                       | \`pkill rofi                                                  |                                     | true && rofi -show drun -modi drun,filebrowser,run,window\` | App Launcher (Rofi main menu) |
-| `SUPER + B`                       | `xdg-open "https://"`                                         | Default browser (or Firefox if set) |                                                             |                               |
-| `SUPER + Return`                  | `exec $term`                                                  | Open terminal (default)             |                                                             |                               |
-| `SUPER + F`                       | `exec $files`                                                 | Open file manager                   |                                                             |                               |
-| `SUPER + K`                       | `exec kitty`                                                  | Launch Kitty terminal               |                                                             |                               |
-| `SUPER + B`                       | `exec firefox`                                                | Launch Firefox                      |                                                             |                               |
-| `SUPER + R`                       | `exec foliate`                                                | Open Foliate (eBook reader)         |                                                             |                               |
-| `SUPER + V`                       | `exec $scriptsDir/ClipManager.sh`                             | Clipboard Manager                   |                                                             |                               |
-| `SUPER + C`                       | `exec code --ozone-platform=x11`                              | Launch VS Code                      |                                                             |                               |
-| `SUPER + O`                       | `exec obsidian --ozone-platform=x11`                          | Launch Obsidian                     |                                                             |                               |
-| `SUPER + S`                       | `exec spotify-launcher`                                       | Open Spotify                        |                                                             |                               |
-| `SUPER + I`                       | `exec vesktop`                                                | Launch Vesktop (Discord)            |                                                             |                               |
-| `SUPER + T`                       | \`exec (64gram-desktop                                        | telegram-desktop)\`                 | Open Telegram                                               |                               |
-| `SUPER + M`                       | `exec fdm`                                                    | Free Download Manager               |                                                             |                               |
-| `SUPER + E`                       | `kitty --title tmuxifier -e tmuxifier load-session web-dev`   | Start tmuxifier web-dev session     |                                                             |                               |
-| `SUPER + W`                       | `exec wasistlos`                                              | Open WhatsApp-Linux                 |                                                             |                               |
-| `SUPER + SHIFT + H`               | `exec $scriptsDir/KeyHints.sh`                                | Help / cheat sheet                  |
-| `SUPER + SHIFT + R`               | `exec $scriptsDir/Refresh.sh`                                 | Refresh waybar, swaync, rofi        |
-| `SUPER + SHIFT + O`               | `exec $scriptsDir/ChangeBlur.sh`                              | Toggle blur settings                |
-| `SUPER + SHIFT + G`               | `exec $UserScripts/MountGdrive.sh`                            | Mount Google Drive                  |
-| `SUPER + SHIFT + T`               | `exec $UserScripts/Toggle-tuned.sh`                           | Toggle tuned animations             |
-| `SUPER + SHIFT + D`               | `exec $UserScripts/SyncDotfiles.sh`                           | Sync dotfiles                       |
-| `SUPER + SHIFT + B`               | `exec $UserScripts/SyncBlog.sh`                               | Sync blog                           |
-| `SUPER + SHIFT + C`               | `exec $UserScripts/RcloneSync.sh`                             | Sync documents with Google Drive    |
-| `SUPER + SHIFT + L`               | `exec $scriptsDir/ChangeLayout.sh`                            | Toggle Master or Dwindle Layout     |
-| `SUPER + SHIFT + P`               | `exec hyprpicker -a / –autocopy`                              | Color picker                        |
-| `SUPER + SHIFT + V`               | `exec systemd-run --user --scope $scriptsDir/parrotOS-KVM.sh` | Start ParrotOS KVM                  |
-| `SUPER + SHIFT + F`               | `fullscreen`                                                  | Toggle fullscreen                   |
-| `SUPER + SHIFT + Return`          | `exec $scriptsDir/Dropterminal.sh $term`                      | Dropdown terminal                   |
-| `SUPER + CTRL + F`                | `fullscreen 1`                                                | Fake fullscreen                     |
-| `SUPER + SPACE`                   | `togglefloating`                                              | Toggle float mode                   |
-| `SUPER + ALT + SPACE`             | `exec hyprctl dispatch workspaceopt allfloat`                 | Toggle all-float mode               |
-| `SUPER + ALT + E`                 | `exec $scriptsDir/RofiEmoji.sh`                               | Emoji menu                          |
-| `SUPER + ALT + Mouse Scroll Down` | `hyprctl keyword cursor:zoom_factor factor*2`                 | Zoom in                             |
-| `SUPER + ALT + Mouse Scroll Up`   | `hyprctl keyword cursor:zoom_factor factor/2`                 | Zoom out                            |
-| `SUPER + CTRL + ALT + B`          | `pkill -SIGUSR1 waybar`                                       | Toggle hide/show Waybar             |
-| `SUPER + CTRL + B`                | `exec $scriptsDir/WaybarStyles.sh`                            | Waybar styles menu                  |
-| `SUPER + ALT + B`                 | `exec $scriptsDir/WaybarLayout.sh`                            | Waybar layout menu                  |
-| `SUPER + SHIFT + M`               | `exec $UserScripts/RofiBeats.sh`                              | Online music (Rofi)                 |
-| `SUPER + SHIFT + W`               | `exec $UserScripts/WallpaperSelect.sh`                        | Select wallpaper                    |
-| `SUPER + SHIFT + W` (2nd bind)    | `exec $UserScripts/WallpaperEffects.sh`                       | Wallpaper effects (Imagemagick)     |
-| `CTRL + ALT + W`                  | `exec $UserScripts/WallpaperRandom.sh`                        | Random wallpapers                   |
-| `SUPER + CTRL + O`                | `exec hyprctl setprop active opaque toggle`                   | Toggle window opacity               |
-| `SUPER + SHIFT + K`               | `exec $scriptsDir/KeyBinds.sh`                                | Search keybinds via Rofi            |
-| `SUPER + SHIFT + A`               | `exec $scriptsDir/Animations.sh`                              | Hyprland animations menu            |
-| `SUPER + SHIFT + Z`               | `exec $UserScripts/ZshChangeTheme.sh`                         | Change oh-my-zsh theme              |
-| `SUPER + CTRL + C`                | `exec $UserScripts/RofiCalc.sh`                               | Calculator (qalculate)              |
