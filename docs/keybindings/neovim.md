@@ -1,3 +1,5 @@
+# Neovim Keybindings
+
 | Mode(s)                | Key(s)                  | Action / Command                                                     | Description               |
 | ---------------------- | ----------------------- | -------------------------------------------------------------------- | ------------------------- |
 | Normal                 | `;`                     | `:`                                                                  | Enter command mode        |
@@ -11,8 +13,8 @@
 | Insert                 | `Ctrl + A`              | `<ESC>ggVG`                                                          | Select all in insert mode |
 | Visual                 | `Ctrl + A`              | `<ESC>ggVG`                                                          | Select all in visual mode |
 | Normal                 | `<leader>lg`            | `<cmd>LazyGit<CR>`                                                   | Open LazyGit              |
-| Visual                 | `i`                     | `vi`                                                                 | Select inside ` {} `      |
-| Visual                 | `a`                     | `va`                                                                 | Select around ` {} `      |
+| Visual                 | `i`                     | `vi`                                                                 | Select inside `{}`        |
+| Visual                 | `a`                     | `va`                                                                 | Select around `{}`        |
 | Normal                 | `<leader>1`…`<leader>9` | Switch to buffer `1-9`                                               | Buffer navigation         |
 | Normal, Terminal       | `Alt + i`               | `require("nvchad.term").toggle { pos="float", id="floatTerm", ... }` | Toggle floating terminal  |
 | Normal                 | `Ctrl + h`              | `<cmd>TmuxNavigateLeft<CR>`                                          | Tmux navigate left        |

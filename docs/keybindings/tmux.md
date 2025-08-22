@@ -1,3 +1,5 @@
+# Tmux Keybindings
+
 | Keys / Combo                | Mode / Context  | Action                                                |
 | --------------------------- | --------------- | ----------------------------------------------------- |
 | **r**                       | Prefix required | Reload `~/.tmux.conf`                                 |
