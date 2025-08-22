@@ -1,6 +1,6 @@
-## HyprFlux Keybindings
+# HyprFlux Keybindings
 
-### 1. Core Apps & Tools
+## 1. Core Apps & Tools
 
 | Keybinding         | Action / Command                                            | Description                                  |
 | ------------------ | ----------------------------------------------------------- | -------------------------------------------- |
@@ -21,7 +21,7 @@
 
 ---
 
-### 2. System & Utilities
+## 2. System & Utilities
 
 | Keybinding            | Action / Command                       | Description                  |
 | --------------------- | -------------------------------------- | ---------------------------- |
@@ -35,7 +35,7 @@
 
 ---
 
-### 3. Layouts & Window Management
+## 3. Layouts & Window Management
 
 | Keybinding                 | Action / Command                         | Description                       |
 | -------------------------- | ---------------------------------------- | --------------------------------- |
@@ -48,7 +48,7 @@
 
 ---
 
-### 4. Waybar Controls
+## 4. Waybar Controls
 
 | Keybinding                 | Action / Command              | Description             |
 | -------------------------- | ----------------------------- | ----------------------- |
@@ -58,7 +58,7 @@
 
 ---
 
-### 5. Sync & System Scripts
+## 5. Sync & System Scripts
 
 | Keybinding            | Action / Command               | Description                    |
 | --------------------- | ------------------------------ | ------------------------------ |
@@ -70,7 +70,7 @@
 
 ---
 
-### 6. Media, Wallpapers & Themes
+## 6. Media, Wallpapers & Themes
 
 | Keybinding            | Action / Command                   | Description                  |
 | --------------------- | ---------------------------------- | ---------------------------- |
@@ -82,7 +82,7 @@
 
 ---
 
-### 7. Extras & Productivity
+## 7. Extras & Productivity
 
 | Keybinding                   | Action / Command                                         | Description                     |
 | ---------------------------- | -------------------------------------------------------- | ------------------------------- |
@@ -95,7 +95,7 @@
 
 ---
 
-### 8. Default KeyBindings
+## 8. Default KeyBindings
 
 | Keybinding              | Action / Command                     | Description                                |
 | ----------------------- | ------------------------------------ | ------------------------------------------ |
@@ -107,7 +107,7 @@
 | **SUPER + N**           | `swaync-client -t -sw`               | Notification panel (swaync)                |
 | **SUPER + Shift + E**   | `$scriptsDir/Kool_Quick_Settings.sh` | Quick settings menu                        |
 
-### 9. Layout Controls
+## 9. Layout Controls
 
 | Keybinding                | Action / Command            | Description                                |
 | ------------------------- | --------------------------- | ------------------------------------------ |
@@ -120,7 +120,7 @@
 | **SUPER + P**             | `pseudo`                    | Pseudo split (dwindle layout)              |
 | **SUPER + J**             | `cyclenext`                 | Cycle next window (floating brings to top) |
 
-### 10. Special / Media Keys
+## 10. Special / Media Keys
 
 | Keybinding         | Action / Command                     | Description            |
 | ------------------ | ------------------------------------ | ---------------------- |
@@ -135,7 +135,7 @@
 | **Previous Track** | `$scriptsDir/MediaCtrl.sh --prv`     | Previous media track   |
 | **Stop**           | `$scriptsDir/MediaCtrl.sh --stop`    | Stop media             |
 
-### 11. Screenshot Controls
+## 11. Screenshot Controls
 
 | Keybinding                       | Action / Command                     | Description                    |
 | -------------------------------- | ------------------------------------ | ------------------------------ |
@@ -146,7 +146,7 @@
 | **ALT + Print**                  | `$scriptsDir/ScreenShot.sh --active` | Screenshot active window       |
 | **SUPER + Shift + S**            | `$scriptsDir/ScreenShot.sh --swappy` | Screenshot with Swappy         |
 
-### 12. Resize Windows
+## 12. Resize Windows
 
 | Keybinding                | Action / Command     | Description                 |
 | ------------------------- | -------------------- | --------------------------- |
@@ -155,7 +155,7 @@
 | **SUPER + Shift + Up**    | `resizeactive,0 -50` | Resize window, shrink up    |
 | **SUPER + Shift + Down**  | `resizeactive,0 50`  | Resize window, expand down  |
 
-### 13. Move Windows
+## 13. Move Windows
 
 | Keybinding               | Action / Command | Description       |
 | ------------------------ | ---------------- | ----------------- |
@@ -164,7 +164,7 @@
 | **SUPER + Ctrl + Up**    | `movewindow, u`  | Move window up    |
 | **SUPER + Ctrl + Down**  | `movewindow, d`  | Move window down  |
 
-### 14. Swap Windows
+## 14. Swap Windows
 
 | Keybinding              | Action / Command | Description                   |
 | ----------------------- | ---------------- | ----------------------------- |
@@ -173,7 +173,7 @@
 | **SUPER + Alt + Up**    | `swapwindow, u`  | Swap with window above        |
 | **SUPER + Alt + Down**  | `swapwindow, d`  | Swap with window below        |
 
-### 15. Move Focus
+## 15. Move Focus
 
 | Keybinding        | Action / Command | Description        |
 | ----------------- | ---------------- | ------------------ |
@@ -182,7 +182,7 @@
 | **SUPER + Up**    | `movefocus, u`   | Focus window up    |
 | **SUPER + Down**  | `movefocus, d`   | Focus window down  |
 
-### 16. Workspaces
+## 16. Workspaces
 
 | Keybinding                 | Action / Command                 | Description                                     |
 | -------------------------- | -------------------------------- | ----------------------------------------------- |
@@ -198,7 +198,7 @@
 | **SUPER + Mouse Scroll**   | `workspace, e+1 / e-1`           | Scroll through workspaces                       |
 | **SUPER + Period / Comma** | `workspace, e+1 / e-1`           | Switch to next / previous workspace             |
 
-### 17. Mouse Controls
+## 17. Mouse Controls
 
 | Keybinding              | Action / Command | Description              |
 | ----------------------- | ---------------- | ------------------------ |
