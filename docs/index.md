@@ -12,10 +12,10 @@ hero:
   actions:
     - theme: brand
       text: Showcase
-      link: /showcase.md
+      link: /general/showcase.md
     - theme: alt
       text: Quickstart
-      link: /api-examples
+      link: /general/installation.md
     - theme: alt
       text: GitHub
       link: https://www.github.com/ahmad9059

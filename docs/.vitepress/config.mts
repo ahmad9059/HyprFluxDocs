@@ -36,10 +36,35 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "Examples",
+        text: "General",
+        collapsed: false,
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "Showcase", link: "/general/showcase.md" },
+          { text: "Quick Start", link: "/general/getting-started.md" },
+          { text: "Installation", link: "/general/installation.md" },
+          { text: "KeyBindings", link: "/general/keybindings.md" },
+        ],
+      },
+      {
+        text: "Complete Installation (Arch Linux)",
+        collapsed: false,
+        items: [
+          {
+            text: "ArchLinux Installation",
+            link: "/installation/arch.md",
+          },
+          { text: "HyprFlux Install", link: "#" },
+        ],
+      },
+      {
+        text: "Features",
+        collapsed: false,
+        items: [
+          {
+            text: "Hyprland",
+            link: "/installation/arch.md",
+          },
+          { text: "Hyprlock", link: "/api-examples" },
         ],
       },
     ],
