@@ -64,6 +64,18 @@ export default defineConfig({
         ],
       },
       {
+        text: "KeyBindings",
+        collapsed: false,
+        items: [
+          {
+            text: "Hyprland",
+            link: "/keybindings/hyprland.md",
+          },
+          { text: "NeoVim", link: "/keybindings/neovim.md" },
+          { text: "Tmux", link: "/keybindings/tmux.md" },
+        ],
+      },
+      {
         text: "Features",
         collapsed: false,
         items: [
