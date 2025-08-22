@@ -15,8 +15,6 @@
 | **Prefix + (**)   | Prefix required | Previous session             |
 | **Prefix + )**    | Prefix required | Next session                 |
 
----
-
 ## Window Management
 
 | Keys / Combo   | Mode / Context  | Action                       |
@@ -29,8 +27,6 @@
 | **Prefix + w** | Prefix required | List windows                 |
 | **Prefix + f** | Prefix required | Find window by name          |
 | **Prefix + .** | Prefix required | Move window to another index |
-
----
 
 ## Pane Management
 
@@ -46,8 +42,6 @@
 | **Prefix + !**        | Prefix required | Break pane into new window           |
 | **Prefix + Space**    | Prefix required | Cycle pane layouts                   |
 | **Prefix + Alt+1..5** | Prefix required | Set specific pane layout             |
-
----
 
 ## Pane Navigation (Vim-style + Default)
 
@@ -68,8 +62,6 @@
 | **C-l**      | Copy-mode (vi)  | Select right pane                                     |
 | **C-\\**     | Copy-mode (vi)  | Select last active pane                               |
 
----
-
 ## Copy & Scroll Mode (vi keys enabled)
 
 | Keys / Combo      | Mode / Context  | Action                            |
@@ -84,8 +76,6 @@
 | **q**             | Copy-mode (vi)  | Quit copy-mode                    |
 | **PgUp / PgDn**   | Copy-mode       | Scroll page up/down               |
 
----
-
 ## Session & Server Management
 
 | Keys / Combo                | Mode / Context  | Action                 |
@@ -94,8 +84,6 @@
 | **Prefix + \$**             | Prefix required | Rename current session |
 | **Prefix + \:kill-session** | Command         | Kill current session   |
 | **Prefix + \:kill-server**  | Command         | Kill tmux server       |
-
----
 
 ## Plugins & Extras
 
