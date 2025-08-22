@@ -51,7 +51,7 @@ export default defineConfig({
         items: [
           {
             text: "ArchLinux Installation",
-            link: "/installation/arch.md",
+            link: "/complete/arch.md",
           },
           { text: "HyprFlux Install", link: "#" },
         ],
