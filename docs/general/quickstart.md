@@ -46,7 +46,7 @@ Knowing the keybindings is essential! Without them, navigating the Hyprland envi
 Need help, want to contribute, or just share your setup? Join our growing community!
 
 <div class="flex gap-4 mt-6">
-  <a id="c1-a"  href="#" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">GitHub</a>
+  <a id="c1-a"  href="https://github.com/ahmad9059/HyprFlux" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">GitHub</a>
   <a id="c1-a" href="#" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">Discord</a>
   <a id="c1-a" href="#" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">Reddit</a>
 </div>
