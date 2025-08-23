@@ -1,4 +1,4 @@
-# Demo Video
+Demo Video
 
 ---
 
@@ -15,7 +15,6 @@
 ![image](/showcase/img-4.webp)
 ![image](/showcase/img-5.webp)
 ![image](/showcase/img-6.webp)
-![image](/showcase/img-7.webp)
 ![image](/showcase/img-8.webp)
 ![image](/showcase/img-9.webp)
 
