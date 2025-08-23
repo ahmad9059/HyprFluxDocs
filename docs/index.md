@@ -9,6 +9,16 @@ hero:
     alt: HyprFlux-Img
   text: "Elegance That Moves at Light Speed ⚡"
   tagline: Minimal · Productive · Elegant · Fast
+  actions:
+    - theme: brand
+      text: Showcase
+      link: /general/showcase.md
+    - theme: alt
+      text: Quickstart
+      link: /general/installation.md
+    - theme: alt
+      text: GitHub
+      link: https://www.github.com/ahmad9059
 
 features:
   - icon: 🛠️
