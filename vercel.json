@@ -1,17 +1,8 @@
 {
   "cleanUrls": true,
-  "routes": [
-    {
-      "src": "/install",
-      "dest": "/api/install.js"
-    },
-    {
-      "src": "/personal",
-      "dest": "/api/personal.js"
-    },
-    {
-      "src": "/logo.png",
-      "dest": "/api/logo.png"
-    }
+  "rewrites": [
+    { "source": "/install", "destination": "/api/install.js" },
+    { "source": "/personal", "destination": "/api/personal.js" },
+    { "source": "/logo", "destination": "/api/logo.png" }
   ]
 }
