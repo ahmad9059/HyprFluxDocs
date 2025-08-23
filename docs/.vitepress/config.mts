@@ -49,7 +49,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: "Showcase", link: "/general/showcase.md" },
-          { text: "Quick Start", link: "/general/getting-started.md" },
+          { text: "Quick Start", link: "/general/quickstart.md" },
           { text: "Installation", link: "/general/installation.md" },
         ],
       },
