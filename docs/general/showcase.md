@@ -18,6 +18,4 @@ Demo Video
 ![image](/showcase/img-8.webp)
 ![image](/showcase/img-9.webp)
 
-<!-- ![image](/showcase/img-1.webp) -->
-
 ---
