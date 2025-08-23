@@ -1,9 +1,10 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, UserConfig } from "vitepress";
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
   localIconLoader,
 } from "vitepress-plugin-group-icons";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
+      tailwindcss(),
       groupIconVitePlugin({
         customIcon: {
           // key here must match [bash] in your markdown

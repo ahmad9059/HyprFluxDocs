@@ -15,7 +15,7 @@ hero:
       link: /general/showcase.md
     - theme: alt
       text: Quickstart
-      link: /general/installation.md
+      link: /general/quickstart.md
     - theme: alt
       text: GitHub
       link: https://www.github.com/ahmad9059
