@@ -9,14 +9,14 @@ Demo Video
 
 # Screenshoots
 
-![image](/showcase/img-1.png)
-![image](/showcase/img-3.png)
-![image](/showcase/img-2.png)
-![image](/showcase/img-4.png)
-![image](/showcase/img-5.png)
-![image](/showcase/img-6.png)
-![image](/showcase/img-7.webp)
-![image](/showcase/img-8.png)
-![image](/showcase/img-9.png)
+![image](/showcase/1.png)
+![image](/showcase/2.png)
+![image](/showcase/3.png)
+![image](/showcase/4.png)
+![image](/showcase/5.png)
+![image](/showcase/6.png)
+![image](/showcase/7.webp)
+![image](/showcase/8.png)
+![image](/showcase/9.png)
 
 ---
