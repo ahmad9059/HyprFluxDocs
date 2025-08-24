@@ -1,7 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/install", "destination": "/api/install.js" },
-    { "source": "/personal", "destination": "/api/personal.js" }
-  ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/install", "dest": "/api/install.js" },
+    { "src": "/personal", "dest": "/api/personal.js" }
+  ]
 }
