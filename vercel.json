@@ -2,6 +2,5 @@
   "routes": [
     { "src": "/install", "dest": "/api/install.js" },
     { "src": "/personal", "dest": "/api/personal.js" }
-  ],
-  "cleanUrls": true
+  ]
 }
