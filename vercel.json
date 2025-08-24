@@ -1,8 +1,7 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     { "source": "/install", "destination": "/api/install.js" },
-    { "source": "/personal", "destination": "/api/personal.js" },
-    { "source": "/logo", "destination": "/api/logo.png" }
-  ]
+    { "source": "/personal", "destination": "/api/personal.js" }
+  ],
+  "cleanUrls": true
 }

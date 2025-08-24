@@ -1,4 +1,4 @@
-import { defineConfig, UserConfig } from "vitepress";
+import { defineConfig } from "vitepress";
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
