@@ -1,6 +1,7 @@
 {
   "routes": [
     { "src": "/install", "dest": "/api/install.js" },
-    { "src": "/personal", "dest": "/api/personal.js" }
+    { "src": "/personal", "dest": "/api/personal.js" },
+    { "src": "/testing", "dest": "/api/testing.js" }
   ]
 }
