@@ -85,7 +85,7 @@ export default defineConfig({
             text: "Hyprland",
             link: "/features/hyprland.md",
           },
-          { text: "Hyprlock", link: "/features/hyprland.md" },
+          { text: "Hyprlock", link: "/features/hyprlock.md" },
           { text: "Waybar", link: "/features/waybar.md" },
           { text: "Rofi", link: "/features/rofi.md" },
           { text: "SwayNC", link: "/features/swaync.md" },
