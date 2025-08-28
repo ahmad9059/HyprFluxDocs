@@ -445,4 +445,6 @@ pkill waybar && waybar &
 "tooltip": false
 ```
 
-This modular approach makes Waybar highly customizable while maintaining excellent performance and visual appeal in the HyprFlux environment.
+::: tip Waybar Official Docs
+More Details : https://github.com/Alexays/Waybar/wiki
+:::

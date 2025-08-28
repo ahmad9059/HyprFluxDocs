@@ -535,4 +535,6 @@ input-field {
 }
 ```
 
-This configuration provides a secure, beautiful, and functional lock screen that integrates seamlessly with the HyprFlux desktop environment, offering extensive customization options for different preferences and hardware setups.
+::: tip Hyprlock Official Docs
+More Details : https://wiki.hypr.land/Hypr-Ecosystem/hyprlock
+:::

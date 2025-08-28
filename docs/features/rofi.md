@@ -482,4 +482,6 @@ time rofi -show drun -config ~/.config/rofi/config.rasi
 ps aux | grep rofi
 ```
 
-This comprehensive launcher system provides fast, efficient, and visually appealing access to applications and system functions, perfectly integrated with the HyprFlux desktop environment.
+::: tip Rofi Official Docs
+More Details : https://davatorium.github.io/rofi
+:::

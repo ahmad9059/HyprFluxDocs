@@ -93,6 +93,7 @@ export default defineConfig({
           { text: "Kitty", link: "/features/kitty.md" },
           { text: "QT Theming", link: "/features/qt-theming.md" },
           { text: "Neovim", link: "/features/nvim.md" },
+          { text: "Cava", link: "/features/cava.md" },
         ],
       },
     ],

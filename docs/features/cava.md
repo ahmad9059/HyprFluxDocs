@@ -463,4 +463,6 @@ pactl list sources | grep -A 10 "monitor"
 hyperfine 'timeout 5s cava -p ~/.config/cava/config-performance'
 ```
 
-This audio visualizer configuration provides beautiful, responsive audio visualization that enhances the HyprFlux desktop experience with real-time visual feedback from your audio system.
+::: tip Cava Official Docs
+More Details : https://github.com/karlstav/cava
+:::

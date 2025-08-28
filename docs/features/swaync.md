@@ -509,4 +509,6 @@ cp ~/.config/swaync/style.css ~/.config/swaync/themes/my-theme.css
 }
 ```
 
-This comprehensive notification system provides a modern, efficient, and highly customizable notification experience that integrates perfectly with the HyprFlux desktop environment.
+::: tip Cava Official Docs
+More Details : https://man.archlinux.org/man/swaync.5.en
+:::

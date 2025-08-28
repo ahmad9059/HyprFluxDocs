@@ -441,4 +441,6 @@ nvidia-smi  # For NVIDIA
 radeontop   # For AMD
 ```
 
-This terminal configuration provides a fast, beautiful, and highly functional terminal experience that integrates seamlessly with the HyprFlux desktop environment.
+::: tip Kitty Official Docs
+More Details : https://sw.kovidgoyal.net/kitty
+:::

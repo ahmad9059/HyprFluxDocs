@@ -458,4 +458,6 @@ ps aux | grep yazi
 hyperfine 'yazi --version'
 ```
 
-This file manager configuration provides a fast, efficient, and highly customizable file management experience that integrates seamlessly with the HyprFlux desktop environment.
+::: tip Yazi Official Docs
+More Details : https://yazi-rs.github.io
+:::

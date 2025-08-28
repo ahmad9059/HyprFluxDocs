@@ -483,4 +483,6 @@ window {
 }
 ```
 
-This logout menu provides a clean, efficient, and customizable way to manage system sessions, perfectly integrated with the HyprFlux desktop environment.
+::: tip Wlogout Official Docs
+More Details : https://github.com/ArtsyMacaw/wlogout
+:::

@@ -617,7 +617,6 @@ hyperfine 'nvim --headless -c "qa"'
 nvim --startuptime startup.log -c 'qa' && cat startup.log
 ```
 
-This comprehensive Neovim configuration provides a powerful, modern editing experience that integrates seamlessly with the HyprFlux desktop environment, offering both standalone functionality and VSCode compatibility.
-im Configuration
-
-Neovim is the powerful, extensible text editor
+::: tip Neovim Official Docs
+More Details : https://neovim.io/doc
+:::

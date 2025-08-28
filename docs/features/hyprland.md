@@ -244,4 +244,6 @@ layerrule = blur, rofi
 layerrule = ignorezero, waybar
 ```
 
-This modular approach makes HyprFlux highly customizable while maintaining stability and performance. Each component can be modified independently without affecting the core functionality.
+::: tip Hyprland Official Docs
+More Details : https://wiki.hypr.land/
+:::

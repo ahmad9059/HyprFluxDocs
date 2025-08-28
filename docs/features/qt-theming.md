@@ -399,4 +399,7 @@ export QT_QPA_PLATFORM=wayland
 export QT_WAYLAND_FORCE_DPI=96
 ```
 
-This comprehensive Qt theming system ensures that all Qt applications integrate seamlessly with the HyprFlux desktop environment, providing a consistent and beautiful user experience across all applications.
+::: tip Kvantum/QT Official Docs
+QT Details : https://doc.qt.io
+Kvantum Details : https://github.com/tsujan/Kvantum
+:::
