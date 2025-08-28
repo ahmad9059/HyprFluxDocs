@@ -91,6 +91,8 @@ export default defineConfig({
           { text: "SwayNC", link: "/features/swaync.md" },
           { text: "Wlogout", link: "/features/wlogout.md" },
           { text: "Kitty", link: "/features/kitty.md" },
+          { text: "QT Theming", link: "/features/qt-theming.md" },
+          { text: "Neovim", link: "/features/nvim.md" },
         ],
       },
     ],
