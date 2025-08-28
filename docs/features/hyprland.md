@@ -247,3 +247,14 @@ layerrule = ignorezero, waybar
 ::: tip Hyprland Official Docs
 More Details : https://wiki.hypr.land/
 :::
+
+## Hyprland Wiki
+
+- [FAQ](https://wiki.hyprland.org/FAQ/)
+- [Configuring Hyprland](https://wiki.hyprland.org/Configuring/Configuring-Hyprland/)
+- [Window Rules](https://wiki.hyprland.org/Configuring/Window-Rules/)
+- [Getting Started](https://wiki.hyprland.org/Getting-Started/)
+- [Configuring Monitors](https://wiki.hyprland.org/Configuring/Monitors/)
+- [xdg-desktop-portal-hyprland](https://wiki.hyprland.org/Useful-Utilities/xdg-desktop-portal-hyprland/)
+- [Apps Taking Long to Open](https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open)
+- [Performance](https://wiki.hyprland.org/Configuring/Performance/)
