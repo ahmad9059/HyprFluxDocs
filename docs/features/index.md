@@ -138,11 +138,11 @@ A powerful, extensible text editor configured with NvChad framework for modern d
 
 ### [Qt Application Theming](./qt-theming.md)
 
-Comprehensive theming system for Qt applications using Qt5ct, Qt6ct, and Kvantum.
+Comprehensive theming system for Qt applications using Qt6ct, Qt6ct, and Kvantum.
 
 **Key Features:**
 
-- Unified theming across Qt5 and Qt6 applications
+- Unified theming across Qt6 and Qt6 applications
 - Advanced styling with Kvantum engine
 - Custom color schemes and icon themes
 - Font configuration and interface settings
@@ -170,11 +170,11 @@ Comprehensive theming system for Qt applications using Qt5ct, Qt6ct, and Kvantum
 
 HyprFlux follows a modular configuration approach where:
 
-1. **Base configurations** provide sensible defaults
-2. **User configurations** allow easy customization
-3. **Dynamic theming** ensures visual consistency
-4. **Script integration** enables advanced functionality
-5. **Performance optimization** maintains smooth operation
+2. **Base configurations** provide sensible defaults
+3. **User configurations** allow easy customization
+4. **Dynamic theming** ensures visual consistency
+5. **Script integration** enables advanced functionality
+6. **Performance optimization** maintains smooth operation
 
 ## Getting Started
 
@@ -214,10 +214,10 @@ Each component documentation includes:
 
 All HyprFlux components integrate with the dynamic theming system:
 
-1. **Wallust** generates color schemes from wallpapers
-2. **Components** automatically apply generated colors
-3. **Consistency** is maintained across all applications
-4. **Customization** allows manual color overrides
+2. **Wallust** generates color schemes from wallpapers
+3. **Components** automatically apply generated colors
+4. **Consistency** is maintained across all applications
+5. **Customization** allows manual color overrides
 
 ## Performance Considerations
 
@@ -375,18 +375,18 @@ A console-based audio visualizer that creates beautiful real-time audio spectrum
 ### System Tools
 
 - **Kvantum**: Qt application theming
-- **Qt5ct/Qt6ct**: Qt configuration tools
+- **Qt6ct/Qt6ct**: Qt configuration tools
 - **Quickshell**: Alternative shell components
 
 ## Configuration Philosophy
 
 HyprFlux follows a modular configuration approach where:
 
-1. **Base configurations** provide sensible defaults
-2. **User configurations** allow easy customization
-3. **Dynamic theming** ensures visual consistency
-4. **Script integration** enables advanced functionality
-5. **Performance optimization** maintains smooth operation
+2. **Base configurations** provide sensible defaults
+3. **User configurations** allow easy customization
+4. **Dynamic theming** ensures visual consistency
+5. **Script integration** enables advanced functionality
+6. **Performance optimization** maintains smooth operation
 
 ## Getting Started
 
@@ -426,10 +426,10 @@ Each component documentation includes:
 
 All HyprFlux components integrate with the dynamic theming system:
 
-1. **Wallust** generates color schemes from wallpapers
-2. **Components** automatically apply generated colors
-3. **Consistency** is maintained across all applications
-4. **Customization** allows manual color overrides
+2. **Wallust** generates color schemes from wallpapers
+3. **Components** automatically apply generated colors
+4. **Consistency** is maintained across all applications
+5. **Customization** allows manual color overrides
 
 ## Performance Considerations
 
