@@ -1,5 +1,7 @@
 # Dots Installation
 
+Now After installing the archlinux follow the instruction below
+
 ## Run this magic one-liner
 
 ```bash
