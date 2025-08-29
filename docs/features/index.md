@@ -4,7 +4,7 @@ Welcome to the comprehensive HyprFlux features documentation. This section cover
 
 ## Core Components
 
-### [Hyprland](./hyprland.md)
+### [Hyprland](docs/features/hyprland.md)
 
 The heart of HyprFlux - a dynamic tiling Wayland compositor that provides the foundation for the entire desktop experience.
 
@@ -16,7 +16,7 @@ The heart of HyprFlux - a dynamic tiling Wayland compositor that provides the fo
 - Multi-monitor support
 - Extensive scripting capabilities
 
-### [Waybar](./waybar.md)
+### [Waybar](docs/features/waybar.md)
 
 A highly customizable status bar that provides system information and quick access to various functions.
 
@@ -28,7 +28,7 @@ A highly customizable status bar that provides system information and quick acce
 - Dynamic theming with wallpaper integration
 - Multiple layout options
 
-### [Hyprlock](./hyprlock.md)
+### [Hyprlock](docs/features/hyprlock.md)
 
 The screen lock utility that provides a secure and visually appealing lock screen experience.
 
@@ -42,7 +42,7 @@ The screen lock utility that provides a secure and visually appealing lock scree
 
 ## Application Launcher & Menus
 
-### [Rofi](./rofi.md)
+### [Rofi](docs/features/rofi.md)
 
 A powerful application launcher and window switcher that serves as the primary menu system.
 
@@ -54,7 +54,7 @@ A powerful application launcher and window switcher that serves as the primary m
 - Keyboard and mouse navigation
 - Extensible plugin system
 
-### [Wlogout](./wlogout.md)
+### [Wlogout](docs/features/wlogout.md)
 
 A logout menu for session management with options to logout, reboot, shutdown, suspend, and lock.
 
@@ -68,7 +68,7 @@ A logout menu for session management with options to logout, reboot, shutdown, s
 
 ## Notification System
 
-### [SwayNC](./swaync.md)
+### [SwayNC](docs/features/swaync.md)
 
 A notification daemon and control center that provides modern notification management.
 
@@ -82,7 +82,7 @@ A notification daemon and control center that provides modern notification manag
 
 ## Terminal & File Management
 
-### [Kitty](./kitty.md)
+### [Kitty](docs/features/kitty.md)
 
 The default terminal emulator providing a fast, feature-rich, and GPU-accelerated terminal experience.
 
@@ -94,7 +94,7 @@ The default terminal emulator providing a fast, feature-rich, and GPU-accelerate
 - Advanced font rendering
 - Tab and window management
 
-### [Yazi](./yazi.md)
+### [Yazi](docs/features/yazi.md)
 
 A blazingly fast terminal file manager that serves as the primary file management solution.
 
@@ -108,7 +108,7 @@ A blazingly fast terminal file manager that serves as the primary file managemen
 
 ## Audio & Visualization
 
-### [Cava](./cava.md)
+### [Cava](docs/features/cava.md)
 
 A console-based audio visualizer that creates beautiful real-time audio spectrum displays.
 
