@@ -14,7 +14,6 @@ This comprehensive guide covers the complete structure and functionality of the 
 ├── workspaces.conf            # Workspace configuration (auto-generated)
 ├── application-style.conf     # Application-specific styling
 ├── initial-boot.sh            # First-time setup script
-├── v2.3.16                    # Version marker file
 ├── animations/                # Animation presets collection
 ├── configs/                   # Base configuration files
 ├── hyprlock/                  # Lock screen assets and scripts
