@@ -29,7 +29,7 @@ Powered by the **Hyprland compositor**, HyprFlux delivers smooth animations, ele
 
 ## ⌨️ Keybindings
 
-::: tip
+::: info
 Knowing the keybindings is essential! Without them, navigating the Hyprland environment will feel difficult. Take a few minutes to learn them before diving in.
 :::
 

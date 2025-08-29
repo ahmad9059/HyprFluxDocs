@@ -221,3 +221,7 @@ The `archinstall` script will present a menu. Configure each option:
 Your minimal Arch Linux system is now ready!
 
 **Congratulations!** 🎉 You've successfully installed Arch Linux and can now proudly say "I use Arch, btw!"
+
+::: info Contiune the HyprFlux Installation
+Now go to this -> [HyprFlux Installation](/complete/hyprflux.md)
+:::

@@ -2,7 +2,7 @@
 
 ## Run this magic one-liner
 
-```bash
+```bash [bash]
 sh <(curl -fsSL https://hyprflux.dev/install)
 ```
 
@@ -21,6 +21,8 @@ Next, you will be asked to select the installation options.
 ---
 
 ## 🔧 Recommended Installation Options
+
+![select-option](/select-option.png)
 
 **Essential Components (Recommended):**
 

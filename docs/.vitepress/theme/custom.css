@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-.VPFeature {
-  /* width: 200px; */
-}
-
 #c1-h3 {
   margin: 0;
 }
@@ -12,16 +8,22 @@
   text-decoration: none;
 }
 
-.image-src {
-  /* min-width: 180px; */
-  /* min-height: 180px; */
-  /* margin-top: 20px; */
-  /* margin-left: 60px; */
-  /* border-radius: 40px; */
+.custom-block.danger {
+  @apply bg-red-900 text-red-200 rounded-xl;
 }
+
+.custom-block.warning {
+  @apply bg-yellow-900 text-yellow-200 rounded-xl;
+}
+
+.custom-block.info {
+  @apply bg-blue-900 text-blue-200 rounded-xl;
+}
+
 .custom-block.tip {
-  background: #1e66f5;
+  @apply bg-green-900 text-green-200 rounded-xl;
 }
+
 img video {
   border-radius: 14px; /* adjust value as you like */
   overflow: hidden;
@@ -47,25 +49,3 @@ img video {
     margin-left: 50px;
   }
 }
-
-/* .VPFooter > .container { */
-/*   max-height: 0px; */
-/*   height: 0px; */
-/* } */
-
-/* .VPImage { */
-/*   border-radius: 30px; */
-/* } */
-/* .image-container { */
-/*   transform: translate(-100px, -100px); */
-/*   border-radius: 30px; */
-/* } */
-
-/* .image { */
-/*   border-radius: 30px; */
-/* } */
-
-/* .image-bg { */
-/*   margin-top: 20px; */
-/*   margin-left: 50px; */
-/* } */
