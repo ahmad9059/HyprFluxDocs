@@ -21,72 +21,8 @@ This comprehensive guide covers the complete structure and functionality of the 
 ├── Monitor_Profiles/          # Monitor configuration profiles
 ├── scripts/                   # System utility scripts
 ├── UserConfigs/               # User-customizable configurations
-├── UserScripts/               # User-customizable scripts
-├── wallpaper_effects/         # Wallpaper management files
-└── wallust/                   # Dynamic theming configuration
+└── UserScripts/               # User-customizable scripts
 ```
-
-## Core Configuration Files
-
-### [hyprland.conf](./core-files.md#hyprland-conf)
-
-The main entry point that sources all other configuration files and sets up the basic Hyprland environment.
-
-### [hypridle.conf](./core-files.md#hypridle-conf)
-
-Manages system idle behavior, screen timeouts, and automatic locking.
-
-### [hyprlock.conf](./core-files.md#hyprlock-conf)
-
-Configures the lock screen appearance, security settings, and visual elements.
-
-### [monitors.conf](./core-files.md#monitors-conf)
-
-Auto-generated monitor configuration from nwg-displays tool.
-
-### [workspaces.conf](./core-files.md#workspaces-conf)
-
-Auto-generated workspace assignments and rules.
-
-## Configuration Directories
-
-### [animations/](./animations.md)
-
-Collection of animation presets for different performance levels and visual preferences.
-
-### [configs/](./configs.md)
-
-Base configuration files that provide default settings and keybindings.
-
-### [hyprlock/](./hyprlock.md)
-
-Lock screen assets including fonts, images, and helper scripts.
-
-### [Monitor_Profiles/](./monitor-profiles.md)
-
-Predefined monitor configurations for different setups and use cases.
-
-### [UserConfigs/](./user-configs.md)
-
-User-customizable configuration files for personalizing the desktop experience.
-
-### [UserScripts/](./user-scripts.md)
-
-User-customizable scripts for personal automation and workflows.
-
-### [wallpaper_effects/](./wallpaper-effects.md)
-
-Wallpaper management system with current wallpaper tracking.
-
-### [wallust/](./wallust.md)
-
-Dynamic theming system configuration for color scheme generation.
-
-## System Scripts
-
-### [scripts/](./scripts/index.md)
-
-Comprehensive collection of utility scripts for system management, theming, and automation.
 
 ## Key Features
 
@@ -155,13 +91,3 @@ Comprehensive collection of utility scripts for system management, theming, and 
 2. **Develop Themes**: Create custom wallust configurations
 3. **Optimize Performance**: Fine-tune animations and settings
 4. **Contribute**: Share configurations and improvements
-
-## Navigation
-
-- **[Core Files](./core-files.md)**: Main configuration files
-- **[Animations](./animations.md)**: Animation presets and configuration
-- **[User Configs](./user-configs.md)**: Customizable user settings
-- **[Scripts](./scripts/index.md)**: System and utility scripts
-- **[Monitor Profiles](./monitor-profiles.md)**: Display configuration
-- **[Wallpaper System](./wallpaper-effects.md)**: Wallpaper management
-- **[Dynamic Theming](./wallust.md)**: Color scheme generation
