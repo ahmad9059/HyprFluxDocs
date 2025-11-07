@@ -100,7 +100,7 @@ export default defineConfig({
         text: ".config/hypr",
         collapsed: false,
         items: [
-          { text: "Index", link: "/hyprland/index.md" },
+          // { text: "Index", link: "/hyprland/index.md" },
           {
             text: "hyprland.conf",
             link: "/hyprland/hyprland.md",
