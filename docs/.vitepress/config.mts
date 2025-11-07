@@ -80,7 +80,7 @@ export default defineConfig({
         text: "Features",
         collapsed: false,
         items: [
-          { text: "Index", link: "/features/index.md" },
+          // { text: "Index", link: "/features/index.md" },
           {
             text: "Hyprland",
             link: "/features/hyprland.md",
