@@ -41,7 +41,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Docs", link: "/general/quickstart" },
-      { text: "Blog", link: "/blog/" },
+      { text: "Notes", link: "/blog/" },
     ],
 
     sidebar: [
@@ -142,6 +142,14 @@ export default defineConfig({
           {
             text: "Release of HyprFlux",
             link: "/blog/release-of-hyprflux.md",
+          },
+          {
+            text: "Inside the HyprFlux Desktop",
+            link: "/blog/inside-the-hyprflux-desktop.md",
+          },
+          {
+            text: "What Is Coming Next",
+            link: "/blog/what-is-coming-next.md",
           },
         ],
       },
