@@ -40,7 +40,8 @@ export default defineConfig({
     },
     nav: [
       { text: "Home", link: "/" },
-      { text: "Docs", link: "/markdown-examples" },
+      { text: "Docs", link: "/general/quickstart" },
+      { text: "Blog", link: "/blog/" },
     ],
 
     sidebar: [
@@ -131,6 +132,17 @@ export default defineConfig({
           { text: "Startup_Apps.conf", link: "/hyprland/startup_apps.md" },
           { text: "keyBindings.conf", link: "/hyprland/keybinding.md" },
           { text: "hypr/scripts/", link: "/hyprland/scripts.md" },
+        ],
+      },
+      {
+        text: "Blog",
+        collapsed: false,
+        items: [
+          { text: "Overview", link: "/blog/" },
+          {
+            text: "Release of HyprFlux",
+            link: "/blog/release-of-hyprflux.md",
+          },
         ],
       },
     ],
