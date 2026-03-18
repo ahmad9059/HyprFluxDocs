@@ -30,4 +30,5 @@ These are optional packages. If you want to install them, answer accordingly wit
 
 ::: info
 Just Reboot The System, also during the process, it may ask for your **sudo password** 2–3 times. Stay nearby to enter it when needed.
+If you want to Install the base installation of archlinux first follow this artilce -> [Archlinux Installation](/complete/arch)
 :::
