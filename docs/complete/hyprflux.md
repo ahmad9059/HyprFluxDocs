@@ -1,53 +1,33 @@
 # Dots Installation
 
-Now After installing the archlinux follow the instruction below
+After installing Arch Linux, follow the instructions below.
 
-## Run this magic one-liner
+## 1. Run this magic one-liner
 
-```bash [bash]
+```bash
 sh <(curl -fsSL https://hyprflux.dev/install)
 ```
 
-This will start the installation. First, it will ask for your **sudo password**. Enter it when prompted.
+This starts the installation. First, it asks for your **sudo password**. Enter it when prompted.
 
 ![welcome](/welcome.png)
 
-After entering your sudo password, you will be asked to select an **AUR Helper** (`yay` or `paru`).
+After entering your sudo password, wait for the installation to complete.
 
-I recommend using **yay**.
+## 2. Pacman Packages Installation
 
-![yay-paru](/yay-paru.png)
+These are optional packages. If you want to install them, answer accordingly with `y` or `N`.
+![pacman](/pacman.png)
 
-Next, you will be asked to select the installation options.
+## 3. Yay Packages Installation
 
----
+These are optional packages. If you want to install them, answer accordingly with `y` or `N`.
+![pacman](/yay.png)
 
-## 🔧 Recommended Installation Options
+## 4. Congratulations, you have successfully installed HyprFlux! 🎉
 
-![select-option](/select-option.png)
-
-**Essential Components (Recommended):**
-
-- `input_group` — Add your user to the input group for some Waybar functionality
-- `sddm` — Display manager for the login screen
-- `sddm_theme` — Beautiful custom SDDM theme
-- `gtk_themes` — GTK theme integration
-- `bluetooth` — Bluetooth support
-- `thunar` — File manager
-- `xdph` — Desktop portal for Hyprland
-- `zsh` — Enhanced shell with Oh My Zsh
-- `dots` — Core dotfiles and configurations
-
-**Optional Components:**
-
-- `QuickShell` — QuickShell for desktop-like overview
-- `Pokemon` — Add Pokémon color scripts to your terminal
-- `Rog` — Pre-configured setup for ROG laptops
-
----
-
-After selecting your options, just wait and watch the installation complete.
+![complete](/complete.png)
 
 ::: info
-During the process, it may ask for your **sudo password** 2–3 times. Stay nearby to enter it when needed.
+Just Reboot The System, also during the process, it may ask for your **sudo password** 2–3 times. Stay nearby to enter it when needed.
 :::
