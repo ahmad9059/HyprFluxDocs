@@ -127,3 +127,46 @@ img video {
     grid-template-columns: 1fr;
   }
 }
+
+/* Hero button text visibility fix */
+.VPHero .actions .VPButton {
+  color: white !important;
+}
+
+.VPHero .actions .VPButton.medium.brand {
+  color: white !important;
+  background-color: var(--vp-button-brand-bg);
+  border-color: var(--vp-button-brand-border);
+}
+
+.VPHero .actions .VPButton.medium.alt {
+  color: var(--vp-c-text-1) !important;
+  background-color: var(--vp-button-alt-bg);
+  border-color: var(--vp-button-alt-border);
+}
+
+/* Ensure hero text is readable */
+.VPHero .text {
+  color: var(--vp-c-text-1) !important;
+}
+
+.VPHero .tagline {
+  color: var(--vp-c-text-2) !important;
+}
+
+/* Custom button text visibility fix - ensure white text on blue buttons */
+.vp-doc a#c1-a.inline-flex {
+  color: white !important;
+}
+
+.vp-doc a#c1-a.inline-flex:hover {
+  color: white !important;
+}
+
+.vp-doc a#c1-a.inline-flex.text-blue-400 {
+  color: rgb(96 165 250) !important;
+}
+
+.vp-doc a#c1-a.inline-flex.text-blue-400:hover {
+  color: rgb(147 197 253) !important;
+}

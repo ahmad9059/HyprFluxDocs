@@ -1,6 +1,7 @@
 # Node modules
 node_modules/
 
+references/
 # Build output / cache
 dist/
 .vite-temp/

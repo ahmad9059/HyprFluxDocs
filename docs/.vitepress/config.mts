@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
-  description: "Elegance That Moves at Light Speed ⚡",
+  description: "A Complete Operating System Built on Arch Linux",
   markdown: {
     theme: {
       light: "catppuccin-latte",
@@ -42,27 +42,41 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Docs", link: "/general/quickstart" },
       { text: "Notes", link: "/blog/" },
+      {
+        text: "Download",
+        link: "/general/download",
+        activeMatch: "^/general/download",
+      },
     ],
 
     sidebar: [
       {
-        text: "General",
+        text: "Getting Started",
         collapsed: false,
         items: [
-          { text: "Showcase", link: "/general/showcase.md" },
           { text: "Quick Start", link: "/general/quickstart.md" },
-          { text: "Installation", link: "/general/installation.md" },
+          { text: "Showcase", link: "/general/showcase.md" },
         ],
       },
       {
-        text: "Complete Installation (Arch Linux)",
+        text: "ISO Installation",
         collapsed: false,
         items: [
           {
-            text: "ArchLinux Installation",
+            text: "ISO Installation Guide",
+            link: "/general/iso-installation.md",
+          },
+        ],
+      },
+      {
+        text: "Dotfiles Installation",
+        collapsed: false,
+        items: [
+          { text: "Dots Installation", link: "/complete/hyprflux.md" },
+          {
+            text: "Arch Linux Installation",
             link: "/complete/arch.md",
           },
-          { text: "HyprFlux Install", link: "/complete/hyprflux.md" },
         ],
       },
       {

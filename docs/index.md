@@ -11,14 +11,17 @@ hero:
   tagline: Minimal · Productive · Elegant · Fast
   actions:
     - theme: brand
+      text: Download ISO
+      link: /general/download.md
+    - theme: alt
+      text: Install Dots
+      link: /general/installation.md
+    - theme: alt
       text: Showcase
       link: /general/showcase.md
     - theme: alt
-      text: Quickstart
+      text: Quick Start
       link: /general/quickstart.md
-    - theme: alt
-      text: GitHub
-      link: https://www.github.com/ahmad9059
 
 features:
   - icon: 🛠️
