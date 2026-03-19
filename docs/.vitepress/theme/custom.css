@@ -202,6 +202,25 @@ img video {
   padding-top: 0 !important;
 }
 
+.download-page .VPNav {
+  padding-left: 7rem !important;
+  padding-right: 7rem !important;
+}
+
+.download-page .VPNav .container {
+  max-width: 100% !important;
+}
+
+.download-page .VPNav .VPNavBar {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-bottom: none !important;
+}
+
+.download-page .divider {
+  display: none !important;
+}
+
 .download-page .vp-doc {
   max-width: 1000px !important;
   padding: 1rem 2rem 1.25rem;

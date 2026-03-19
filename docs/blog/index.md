@@ -18,11 +18,11 @@ hero:
 <div class="grid grid-cols-1 gap-6 mt-8">
   <a href="/blog/release-of-hyprflux" class="block border border-gray-800 rounded-2xl p-6 bg-gradient-to-br from-[rgba(30,30,46,0.72)] to-[rgba(17,17,27,0.92)] shadow-lg hover:border-blue-500/50 transition-colors no-underline" style="text-decoration: none;">
     <div class="flex items-center justify-between gap-4 mb-2">
-      <span class="text-sm text-gray-400">March 11, 2026</span>
+      <span class="text-sm text-gray-400">March 19, 2026</span>
       <span class="text-xs uppercase tracking-[0.2em] text-blue-400">Release</span>
     </div>
-    <div class="text-2xl font-semibold text-white mb-3">Release of HyprFlux</div>
-    <p class="text-gray-400 mb-5">The first public announcement of HyprFlux, covering the installer, the documentation site, and the initial desktop experience built around Hyprland.</p>
+    <div class="text-2xl font-semibold text-white mb-3">HyprFlux ISO v1.0.0 Release</div>
+    <p class="text-gray-400 mb-5">The first stable ISO release of HyprFlux for Arch Linux with a branded TUI installer, UEFI/BIOS support, and automated installation flow.</p>
     <span class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">Read article →</span>
   </a>
   <a href="/blog/inside-the-hyprflux-desktop" class="block border border-gray-800 rounded-2xl p-6 bg-gradient-to-br from-[rgba(30,30,46,0.72)] to-[rgba(17,17,27,0.92)] shadow-lg hover:border-blue-500/50 transition-colors no-underline" style="text-decoration: none;">
