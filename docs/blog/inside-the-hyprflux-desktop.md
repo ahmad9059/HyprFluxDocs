@@ -1,3 +1,8 @@
+---
+title: Inside the HyprFlux Desktop - HyprFlux
+description: A deep dive into the tools, structure, and design decisions that shape the HyprFlux desktop experience. Learn about Hyprland, Waybar, Rofi, and more.
+---
+
 # Inside the HyprFlux Desktop
 
 _Published: March 12, 2026_

@@ -1,5 +1,6 @@
 ---
-title: HyprFlux ISO v1.0.0
+title: HyprFlux ISO v1.0.0 Release
+description: The first stable release of HyprFlux ISO for Arch Linux. Download the bootable ISO with branded TUI installer, UEFI/BIOS support, and automated installation.
 ---
 
 # HyprFlux ISO v1.0.0

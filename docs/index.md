@@ -2,11 +2,19 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
+head:
+  - - meta
+    - name: description
+      content: HyprFlux is a complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment. Download the ISO or install dotfiles.
+  - - meta
+    - name: keywords
+      content: HyprFlux, Hyprland, Arch Linux, Linux Desktop, Wayland, Tiling Window Manager
+
 hero:
   name: "HyprFlux"
   image:
     src: /fav.webp
-    alt: HyprFlux-Img
+    alt: HyprFlux Desktop Environment Logo
   text: "Elegance That Moves at Light Speed ⚡"
   tagline: Minimal · Productive · Elegant · Fast
   actions:

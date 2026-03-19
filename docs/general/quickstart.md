@@ -1,4 +1,9 @@
-# Documentation
+---
+title: Getting Started - HyprFlux
+description: Learn how to get started with HyprFlux. Download the ISO or install dotfiles for your existing Arch Linux system.
+---
+
+# Getting Started
 
 Welcome to **HyprFlux** - A complete operating system built on Arch Linux!
 

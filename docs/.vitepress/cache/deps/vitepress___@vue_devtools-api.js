@@ -1,22 +1,20 @@
-// node_modules/.pnpm/@vue+devtools-shared@8.0.7/node_modules/@vue/devtools-shared/dist/index.js
+// node_modules/@vue/devtools-shared/dist/index.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJSMin = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
+var __commonJS = (cb, mod) => function() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
-      key = keys[i];
-      if (!__hasOwnProp.call(to, key) && key !== except) {
-        __defProp(to, key, {
-          get: ((k) => from[k]).bind(null, key),
-          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
-        });
-      }
-    }
+  if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
+    key = keys[i];
+    if (!__hasOwnProp.call(to, key) && key !== except) __defProp(to, key, {
+      get: ((k) => from[k]).bind(null, key),
+      enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
+    });
   }
   return to;
 };
@@ -30,13 +28,13 @@ var isInChromePanel = typeof target.chrome !== "undefined" && !!target.chrome.de
 var isInIframe = isBrowser && target.self !== target.top;
 var isInElectron = typeof navigator !== "undefined" && navigator.userAgent?.toLowerCase().includes("electron");
 var isNuxtApp = typeof window !== "undefined" && !!window.__NUXT__;
-var require_rfdc = __commonJSMin(((exports, module) => {
-  module.exports = rfdc;
+var require_rfdc = __commonJS({ "../../node_modules/.pnpm/rfdc@1.4.1/node_modules/rfdc/index.js"(exports, module) {
+  module.exports = rfdc$1;
   function copyBuffer(cur) {
     if (cur instanceof Buffer) return Buffer.from(cur);
     return new cur.constructor(cur.buffer.slice(), cur.byteOffset, cur.length);
   }
-  function rfdc(opts) {
+  function rfdc$1(opts) {
     opts = opts || {};
     if (opts.circles) return rfdcCircles(opts);
     const constructorHandlers = /* @__PURE__ */ new Map();
@@ -162,8 +160,8 @@ var require_rfdc = __commonJSMin(((exports, module) => {
       return o2;
     }
   }
-}));
-var import_rfdc = __toESM(require_rfdc(), 1);
+} });
+var import_rfdc = __toESM(require_rfdc());
 var classifyRE = /(?:^|[-_/])(\w)/g;
 function toUpper(_, c) {
   return c ? c.toUpperCase() : "";
@@ -188,14 +186,15 @@ function isUrlString(str) {
 }
 var deepClone = (0, import_rfdc.default)({ circles: true });
 
-// node_modules/.pnpm/perfect-debounce@2.1.0/node_modules/perfect-debounce/dist/index.mjs
-var DEBOUNCE_DEFAULTS = { trailing: true };
+// node_modules/perfect-debounce/dist/index.mjs
+var DEBOUNCE_DEFAULTS = {
+  trailing: true
+};
 function debounce(fn, wait = 25, options = {}) {
-  options = {
-    ...DEBOUNCE_DEFAULTS,
-    ...options
-  };
-  if (!Number.isFinite(wait)) throw new TypeError("Expected `wait` to be a finite number");
+  options = { ...DEBOUNCE_DEFAULTS, ...options };
+  if (!Number.isFinite(wait)) {
+    throw new TypeError("Expected `wait` to be a finite number");
+  }
   let leadingValue;
   let timeout;
   let resolveList = [];
@@ -213,51 +212,38 @@ function debounce(fn, wait = 25, options = {}) {
     });
     return currentPromise;
   };
-  const debounced = function(...args) {
-    if (options.trailing) trailingArgs = args;
-    if (currentPromise) return currentPromise;
+  return function(...args) {
+    if (currentPromise) {
+      if (options.trailing) {
+        trailingArgs = args;
+      }
+      return currentPromise;
+    }
     return new Promise((resolve) => {
       const shouldCallNow = !timeout && options.leading;
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         timeout = null;
         const promise = options.leading ? leadingValue : applyFn(this, args);
-        trailingArgs = null;
-        for (const _resolve of resolveList) _resolve(promise);
+        for (const _resolve of resolveList) {
+          _resolve(promise);
+        }
         resolveList = [];
       }, wait);
       if (shouldCallNow) {
         leadingValue = applyFn(this, args);
         resolve(leadingValue);
-      } else resolveList.push(resolve);
+      } else {
+        resolveList.push(resolve);
+      }
     });
   };
-  const _clearTimeout = (timer) => {
-    if (timer) {
-      clearTimeout(timer);
-      timeout = null;
-    }
-  };
-  debounced.isPending = () => !!timeout;
-  debounced.cancel = () => {
-    _clearTimeout(timeout);
-    resolveList = [];
-    trailingArgs = null;
-  };
-  debounced.flush = () => {
-    _clearTimeout(timeout);
-    if (!trailingArgs || currentPromise) return;
-    const args = trailingArgs;
-    trailingArgs = null;
-    return applyFn(this, args);
-  };
-  return debounced;
 }
 async function _applyPromised(fn, _this, args) {
   return await fn.apply(_this, args);
 }
 
-// node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs
+// node_modules/hookable/dist/index.mjs
 function flatHooks(configHooks, hooks2 = {}, parentName) {
   for (const key in configHooks) {
     const subHook = configHooks[key];
@@ -462,29 +448,27 @@ function createHooks() {
   return new Hookable();
 }
 
-// node_modules/.pnpm/birpc@2.9.0/node_modules/birpc/dist/index.mjs
+// node_modules/birpc/dist/index.mjs
 var { clearTimeout: clearTimeout2, setTimeout: setTimeout2 } = globalThis;
 var random = Math.random.bind(Math);
 
-// node_modules/.pnpm/@vue+devtools-kit@8.0.7/node_modules/@vue/devtools-kit/dist/index.js
+// node_modules/@vue/devtools-kit/dist/index.js
 var __create2 = Object.create;
 var __defProp2 = Object.defineProperty;
 var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames2 = Object.getOwnPropertyNames;
 var __getProtoOf2 = Object.getPrototypeOf;
 var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-var __commonJSMin2 = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
+var __commonJS2 = (cb, mod) => function() {
+  return mod || (0, cb[__getOwnPropNames2(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
 var __copyProps2 = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (var keys = __getOwnPropNames2(from), i = 0, n = keys.length, key; i < n; i++) {
-      key = keys[i];
-      if (!__hasOwnProp2.call(to, key) && key !== except) {
-        __defProp2(to, key, {
-          get: ((k) => from[k]).bind(null, key),
-          enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable
-        });
-      }
-    }
+  if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames2(from), i = 0, n = keys.length, key; i < n; i++) {
+    key = keys[i];
+    if (!__hasOwnProp2.call(to, key) && key !== except) __defProp2(to, key, {
+      get: ((k) => from[k]).bind(null, key),
+      enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable
+    });
   }
   return to;
 };
@@ -493,7 +477,6 @@ var __toESM2 = (mod, isNodeMode, target$1) => (target$1 = mod != null ? __create
   enumerable: true
 }) : target$1, mod));
 function getComponentTypeName(options) {
-  if (typeof options === "function") return options.displayName || options.name || options.__VUE_DEVTOOLS_COMPONENT_GUSSED_NAME__ || "";
   const name = options.name || options._componentTag || options.__VUE_DEVTOOLS_COMPONENT_GUSSED_NAME__ || options.__name;
   if (name === "index" && options.__file?.endsWith("index.vue")) return "";
   return name;
@@ -527,11 +510,14 @@ function getInstanceName(instance) {
   return "Anonymous Component";
 }
 function getUniqueComponentId(instance) {
-  return `${instance?.appContext?.app?.__VUE_DEVTOOLS_NEXT_APP_RECORD_ID__ ?? 0}:${instance === instance?.root ? "root" : instance.uid}`;
+  const appId = instance?.appContext?.app?.__VUE_DEVTOOLS_NEXT_APP_RECORD_ID__ ?? 0;
+  const instanceId = instance === instance?.root ? "root" : instance.uid;
+  return `${appId}:${instanceId}`;
 }
 function getComponentInstance(appRecord, instanceId) {
   instanceId = instanceId || `${appRecord.id}:root`;
-  return appRecord.instanceMap.get(instanceId) || appRecord.instanceMap.get(":root");
+  const instance = appRecord.instanceMap.get(instanceId);
+  return instance || appRecord.instanceMap.get(":root");
 }
 function createRect() {
   const rect = {
@@ -708,7 +694,8 @@ function highlight(instance) {
   const bounds = getComponentBoundingRect(instance);
   if (!bounds.width && !bounds.height) return;
   const name = getInstanceName(instance);
-  getContainerElement() ? update({
+  const container = getContainerElement();
+  container ? update({
     bounds,
     name
   }) : create({
@@ -727,10 +714,12 @@ function inspectFn(e) {
     const instance = target$1.__vueParentComponent;
     if (instance) {
       inspectInstance = instance;
-      if (instance.vnode.el) {
+      const el = instance.vnode.el;
+      if (el) {
         const bounds = getComponentBoundingRect(instance);
         const name = getInstanceName(instance);
-        getContainerElement() ? update({
+        const container = getContainerElement();
+        container ? update({
           bounds,
           name
         }) : create({
@@ -744,7 +733,10 @@ function inspectFn(e) {
 function selectComponentFn(e, cb) {
   e.preventDefault();
   e.stopPropagation();
-  if (inspectInstance) cb(getUniqueComponentId(inspectInstance));
+  if (inspectInstance) {
+    const uniqueComponentId = getUniqueComponentId(inspectInstance);
+    cb(uniqueComponentId);
+  }
 }
 var inspectComponentHighLighterSelectFn = null;
 function cancelInspectComponentHighLighter() {
@@ -844,13 +836,13 @@ function getComponentInspector() {
     else setup();
   });
 }
-var ReactiveFlags = (function(ReactiveFlags2) {
-  ReactiveFlags2["SKIP"] = "__v_skip";
-  ReactiveFlags2["IS_REACTIVE"] = "__v_isReactive";
-  ReactiveFlags2["IS_READONLY"] = "__v_isReadonly";
-  ReactiveFlags2["IS_SHALLOW"] = "__v_isShallow";
-  ReactiveFlags2["RAW"] = "__v_raw";
-  return ReactiveFlags2;
+var ReactiveFlags = (function(ReactiveFlags$1) {
+  ReactiveFlags$1["SKIP"] = "__v_skip";
+  ReactiveFlags$1["IS_REACTIVE"] = "__v_isReactive";
+  ReactiveFlags$1["IS_READONLY"] = "__v_isReadonly";
+  ReactiveFlags$1["IS_SHALLOW"] = "__v_isShallow";
+  ReactiveFlags$1["RAW"] = "__v_raw";
+  return ReactiveFlags$1;
 })({});
 function isReadonly(value) {
   return !!(value && value[ReactiveFlags.IS_READONLY]);
@@ -867,11 +859,10 @@ function toRaw$1(observed) {
   return raw ? toRaw$1(raw) : observed;
 }
 var StateEditor = class {
-  constructor() {
-    this.refEditor = new RefStateEditor();
-  }
+  refEditor = new RefStateEditor();
   set(object, path, value, cb) {
     const sections = Array.isArray(path) ? path : path.split(".");
+    const markRef = false;
     while (sections.length > 1) {
       const section = sections.shift();
       if (object instanceof Map) object = object.get(section);
@@ -959,7 +950,7 @@ var RefStateEditor = class {
 var stateEditor = new StateEditor();
 var TIMELINE_LAYERS_STATE_STORAGE_ID = "__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__";
 function getTimelineLayersStateFromStorage() {
-  if (typeof window === "undefined" || !isBrowser || typeof localStorage === "undefined" || localStorage === null) return {
+  if (!isBrowser || typeof localStorage === "undefined" || localStorage === null) return {
     recordingState: false,
     mouseEventEnabled: false,
     keyboardEventEnabled: false,
@@ -967,7 +958,7 @@ function getTimelineLayersStateFromStorage() {
     performanceEventEnabled: false,
     selected: ""
   };
-  const state = typeof localStorage.getItem !== "undefined" ? localStorage.getItem(TIMELINE_LAYERS_STATE_STORAGE_ID) : null;
+  const state = localStorage.getItem(TIMELINE_LAYERS_STATE_STORAGE_ID);
   return state ? JSON.parse(state) : {
     recordingState: false,
     mouseEventEnabled: false,
@@ -1026,42 +1017,42 @@ function getActiveInspectors() {
 function getInspector(id, app) {
   return devtoolsInspector.find((inspector) => inspector.options.id === id && (app ? inspector.descriptor.app === app : true));
 }
-var DevToolsV6PluginAPIHookKeys = (function(DevToolsV6PluginAPIHookKeys2) {
-  DevToolsV6PluginAPIHookKeys2["VISIT_COMPONENT_TREE"] = "visitComponentTree";
-  DevToolsV6PluginAPIHookKeys2["INSPECT_COMPONENT"] = "inspectComponent";
-  DevToolsV6PluginAPIHookKeys2["EDIT_COMPONENT_STATE"] = "editComponentState";
-  DevToolsV6PluginAPIHookKeys2["GET_INSPECTOR_TREE"] = "getInspectorTree";
-  DevToolsV6PluginAPIHookKeys2["GET_INSPECTOR_STATE"] = "getInspectorState";
-  DevToolsV6PluginAPIHookKeys2["EDIT_INSPECTOR_STATE"] = "editInspectorState";
-  DevToolsV6PluginAPIHookKeys2["INSPECT_TIMELINE_EVENT"] = "inspectTimelineEvent";
-  DevToolsV6PluginAPIHookKeys2["TIMELINE_CLEARED"] = "timelineCleared";
-  DevToolsV6PluginAPIHookKeys2["SET_PLUGIN_SETTINGS"] = "setPluginSettings";
-  return DevToolsV6PluginAPIHookKeys2;
+var DevToolsV6PluginAPIHookKeys = (function(DevToolsV6PluginAPIHookKeys$1) {
+  DevToolsV6PluginAPIHookKeys$1["VISIT_COMPONENT_TREE"] = "visitComponentTree";
+  DevToolsV6PluginAPIHookKeys$1["INSPECT_COMPONENT"] = "inspectComponent";
+  DevToolsV6PluginAPIHookKeys$1["EDIT_COMPONENT_STATE"] = "editComponentState";
+  DevToolsV6PluginAPIHookKeys$1["GET_INSPECTOR_TREE"] = "getInspectorTree";
+  DevToolsV6PluginAPIHookKeys$1["GET_INSPECTOR_STATE"] = "getInspectorState";
+  DevToolsV6PluginAPIHookKeys$1["EDIT_INSPECTOR_STATE"] = "editInspectorState";
+  DevToolsV6PluginAPIHookKeys$1["INSPECT_TIMELINE_EVENT"] = "inspectTimelineEvent";
+  DevToolsV6PluginAPIHookKeys$1["TIMELINE_CLEARED"] = "timelineCleared";
+  DevToolsV6PluginAPIHookKeys$1["SET_PLUGIN_SETTINGS"] = "setPluginSettings";
+  return DevToolsV6PluginAPIHookKeys$1;
 })({});
-var DevToolsContextHookKeys = (function(DevToolsContextHookKeys2) {
-  DevToolsContextHookKeys2["ADD_INSPECTOR"] = "addInspector";
-  DevToolsContextHookKeys2["SEND_INSPECTOR_TREE"] = "sendInspectorTree";
-  DevToolsContextHookKeys2["SEND_INSPECTOR_STATE"] = "sendInspectorState";
-  DevToolsContextHookKeys2["CUSTOM_INSPECTOR_SELECT_NODE"] = "customInspectorSelectNode";
-  DevToolsContextHookKeys2["TIMELINE_LAYER_ADDED"] = "timelineLayerAdded";
-  DevToolsContextHookKeys2["TIMELINE_EVENT_ADDED"] = "timelineEventAdded";
-  DevToolsContextHookKeys2["GET_COMPONENT_INSTANCES"] = "getComponentInstances";
-  DevToolsContextHookKeys2["GET_COMPONENT_BOUNDS"] = "getComponentBounds";
-  DevToolsContextHookKeys2["GET_COMPONENT_NAME"] = "getComponentName";
-  DevToolsContextHookKeys2["COMPONENT_HIGHLIGHT"] = "componentHighlight";
-  DevToolsContextHookKeys2["COMPONENT_UNHIGHLIGHT"] = "componentUnhighlight";
-  return DevToolsContextHookKeys2;
+var DevToolsContextHookKeys = (function(DevToolsContextHookKeys$1) {
+  DevToolsContextHookKeys$1["ADD_INSPECTOR"] = "addInspector";
+  DevToolsContextHookKeys$1["SEND_INSPECTOR_TREE"] = "sendInspectorTree";
+  DevToolsContextHookKeys$1["SEND_INSPECTOR_STATE"] = "sendInspectorState";
+  DevToolsContextHookKeys$1["CUSTOM_INSPECTOR_SELECT_NODE"] = "customInspectorSelectNode";
+  DevToolsContextHookKeys$1["TIMELINE_LAYER_ADDED"] = "timelineLayerAdded";
+  DevToolsContextHookKeys$1["TIMELINE_EVENT_ADDED"] = "timelineEventAdded";
+  DevToolsContextHookKeys$1["GET_COMPONENT_INSTANCES"] = "getComponentInstances";
+  DevToolsContextHookKeys$1["GET_COMPONENT_BOUNDS"] = "getComponentBounds";
+  DevToolsContextHookKeys$1["GET_COMPONENT_NAME"] = "getComponentName";
+  DevToolsContextHookKeys$1["COMPONENT_HIGHLIGHT"] = "componentHighlight";
+  DevToolsContextHookKeys$1["COMPONENT_UNHIGHLIGHT"] = "componentUnhighlight";
+  return DevToolsContextHookKeys$1;
 })({});
-var DevToolsMessagingHookKeys = (function(DevToolsMessagingHookKeys2) {
-  DevToolsMessagingHookKeys2["SEND_INSPECTOR_TREE_TO_CLIENT"] = "sendInspectorTreeToClient";
-  DevToolsMessagingHookKeys2["SEND_INSPECTOR_STATE_TO_CLIENT"] = "sendInspectorStateToClient";
-  DevToolsMessagingHookKeys2["SEND_TIMELINE_EVENT_TO_CLIENT"] = "sendTimelineEventToClient";
-  DevToolsMessagingHookKeys2["SEND_INSPECTOR_TO_CLIENT"] = "sendInspectorToClient";
-  DevToolsMessagingHookKeys2["SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT"] = "sendActiveAppUpdatedToClient";
-  DevToolsMessagingHookKeys2["DEVTOOLS_STATE_UPDATED"] = "devtoolsStateUpdated";
-  DevToolsMessagingHookKeys2["DEVTOOLS_CONNECTED_UPDATED"] = "devtoolsConnectedUpdated";
-  DevToolsMessagingHookKeys2["ROUTER_INFO_UPDATED"] = "routerInfoUpdated";
-  return DevToolsMessagingHookKeys2;
+var DevToolsMessagingHookKeys = (function(DevToolsMessagingHookKeys$1) {
+  DevToolsMessagingHookKeys$1["SEND_INSPECTOR_TREE_TO_CLIENT"] = "sendInspectorTreeToClient";
+  DevToolsMessagingHookKeys$1["SEND_INSPECTOR_STATE_TO_CLIENT"] = "sendInspectorStateToClient";
+  DevToolsMessagingHookKeys$1["SEND_TIMELINE_EVENT_TO_CLIENT"] = "sendTimelineEventToClient";
+  DevToolsMessagingHookKeys$1["SEND_INSPECTOR_TO_CLIENT"] = "sendInspectorToClient";
+  DevToolsMessagingHookKeys$1["SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT"] = "sendActiveAppUpdatedToClient";
+  DevToolsMessagingHookKeys$1["DEVTOOLS_STATE_UPDATED"] = "devtoolsStateUpdated";
+  DevToolsMessagingHookKeys$1["DEVTOOLS_CONNECTED_UPDATED"] = "devtoolsConnectedUpdated";
+  DevToolsMessagingHookKeys$1["ROUTER_INFO_UPDATED"] = "routerInfoUpdated";
+  return DevToolsMessagingHookKeys$1;
 })({});
 function createDevToolsCtxHooks() {
   const hooks$1 = createHooks();
@@ -1125,12 +1116,13 @@ function createDevToolsCtxHooks() {
     addTimelineLayer(options, plugin.descriptor);
   });
   hooks$1.hook(DevToolsContextHookKeys.TIMELINE_EVENT_ADDED, ({ options, plugin }) => {
-    if (devtoolsState.highPerfModeEnabled || !devtoolsState.timelineLayersState?.[plugin.descriptor.id] && ![
+    const internalLayerIds = [
       "performance",
       "component-event",
       "keyboard",
       "mouse"
-    ].includes(options.layerId)) return;
+    ];
+    if (devtoolsState.highPerfModeEnabled || !devtoolsState.timelineLayersState?.[plugin.descriptor.id] && !internalLayerIds.includes(options.layerId)) return;
     hooks$1.callHookWith(async (callbacks) => {
       await Promise.all(callbacks.map((cb) => cb(options)));
     }, DevToolsMessagingHookKeys.SEND_TIMELINE_EVENT_TO_CLIENT);
@@ -1139,13 +1131,16 @@ function createDevToolsCtxHooks() {
     const appRecord = app.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
     if (!appRecord) return null;
     const appId = appRecord.id.toString();
-    return [...appRecord.instanceMap].filter(([key]) => key.split(":")[0] === appId).map(([, instance]) => instance);
+    const instances = [...appRecord.instanceMap].filter(([key]) => key.split(":")[0] === appId).map(([, instance]) => instance);
+    return instances;
   });
   hooks$1.hook(DevToolsContextHookKeys.GET_COMPONENT_BOUNDS, async ({ instance }) => {
-    return getComponentBoundingRect(instance);
+    const bounds = getComponentBoundingRect(instance);
+    return bounds;
   });
   hooks$1.hook(DevToolsContextHookKeys.GET_COMPONENT_NAME, ({ instance }) => {
-    return getInstanceName(instance);
+    const name = getInstanceName(instance);
+    return name;
   });
   hooks$1.hook(DevToolsContextHookKeys.COMPONENT_HIGHLIGHT, ({ uid }) => {
     const instance = activeAppRecord.value.instanceMap.get(uid);
@@ -1226,7 +1221,7 @@ var devtoolsState = new Proxy(target[STATE_KEY], {
     return true;
   },
   set(target$1, property, value) {
-    ({ ...target[STATE_KEY] });
+    const oldState = { ...target[STATE_KEY] };
     target$1[property] = value;
     target[STATE_KEY][property] = value;
     return true;
@@ -1314,7 +1309,8 @@ function getPluginLocalKey(pluginId) {
   return `__VUE_DEVTOOLS_NEXT_PLUGIN_SETTINGS__${pluginId}__`;
 }
 function getPluginSettingsOptions(pluginId) {
-  return (devtoolsPluginBuffer.find((item) => item[0].id === pluginId && !!item[0]?.settings)?.[0] ?? null)?.settings ?? null;
+  const item = devtoolsPluginBuffer.find((item$1) => item$1[0].id === pluginId && !!item$1[0]?.settings)?.[0] ?? null;
+  return item?.settings ?? null;
 }
 function getPluginSettings(pluginId, fallbackValue) {
   const localKey = getPluginLocalKey(pluginId);
@@ -1322,12 +1318,16 @@ function getPluginSettings(pluginId, fallbackValue) {
     const localSettings = localStorage.getItem(localKey);
     if (localSettings) return JSON.parse(localSettings);
   }
-  if (pluginId) return _getSettings((devtoolsPluginBuffer.find((item) => item[0].id === pluginId)?.[0] ?? null)?.settings ?? {});
+  if (pluginId) {
+    const item = devtoolsPluginBuffer.find((item$1) => item$1[0].id === pluginId)?.[0] ?? null;
+    return _getSettings(item?.settings ?? {});
+  }
   return _getSettings(fallbackValue);
 }
 function initPluginSettings(pluginId, settings) {
   const localKey = getPluginLocalKey(pluginId);
-  if (!localStorage.getItem(localKey)) localStorage.setItem(localKey, JSON.stringify(_getSettings(settings)));
+  const localSettings = localStorage.getItem(localKey);
+  if (!localSettings) localStorage.setItem(localKey, JSON.stringify(_getSettings(settings)));
 }
 function setPluginSettings(pluginId, key, value) {
   const localKey = getPluginLocalKey(pluginId);
@@ -1348,22 +1348,22 @@ function setPluginSettings(pluginId, key, value) {
     }));
   }, DevToolsV6PluginAPIHookKeys.SET_PLUGIN_SETTINGS);
 }
-var DevToolsHooks = (function(DevToolsHooks2) {
-  DevToolsHooks2["APP_INIT"] = "app:init";
-  DevToolsHooks2["APP_UNMOUNT"] = "app:unmount";
-  DevToolsHooks2["COMPONENT_UPDATED"] = "component:updated";
-  DevToolsHooks2["COMPONENT_ADDED"] = "component:added";
-  DevToolsHooks2["COMPONENT_REMOVED"] = "component:removed";
-  DevToolsHooks2["COMPONENT_EMIT"] = "component:emit";
-  DevToolsHooks2["PERFORMANCE_START"] = "perf:start";
-  DevToolsHooks2["PERFORMANCE_END"] = "perf:end";
-  DevToolsHooks2["ADD_ROUTE"] = "router:add-route";
-  DevToolsHooks2["REMOVE_ROUTE"] = "router:remove-route";
-  DevToolsHooks2["RENDER_TRACKED"] = "render:tracked";
-  DevToolsHooks2["RENDER_TRIGGERED"] = "render:triggered";
-  DevToolsHooks2["APP_CONNECTED"] = "app:connected";
-  DevToolsHooks2["SETUP_DEVTOOLS_PLUGIN"] = "devtools-plugin:setup";
-  return DevToolsHooks2;
+var DevToolsHooks = (function(DevToolsHooks$1) {
+  DevToolsHooks$1["APP_INIT"] = "app:init";
+  DevToolsHooks$1["APP_UNMOUNT"] = "app:unmount";
+  DevToolsHooks$1["COMPONENT_UPDATED"] = "component:updated";
+  DevToolsHooks$1["COMPONENT_ADDED"] = "component:added";
+  DevToolsHooks$1["COMPONENT_REMOVED"] = "component:removed";
+  DevToolsHooks$1["COMPONENT_EMIT"] = "component:emit";
+  DevToolsHooks$1["PERFORMANCE_START"] = "perf:start";
+  DevToolsHooks$1["PERFORMANCE_END"] = "perf:end";
+  DevToolsHooks$1["ADD_ROUTE"] = "router:add-route";
+  DevToolsHooks$1["REMOVE_ROUTE"] = "router:remove-route";
+  DevToolsHooks$1["RENDER_TRACKED"] = "render:tracked";
+  DevToolsHooks$1["RENDER_TRIGGERED"] = "render:triggered";
+  DevToolsHooks$1["APP_CONNECTED"] = "app:connected";
+  DevToolsHooks$1["SETUP_DEVTOOLS_PLUGIN"] = "devtools-plugin:setup";
+  return DevToolsHooks$1;
 })({});
 var devtoolsHooks = target.__VUE_DEVTOOLS_HOOK ??= createHooks();
 var on = {
@@ -1405,6 +1405,8 @@ var hook = {
   }
 };
 var DevToolsV6PluginAPI = class {
+  plugin;
+  hooks;
   constructor({ plugin, ctx }) {
     this.hooks = ctx.hooks;
     this.plugin = plugin;
@@ -1749,7 +1751,7 @@ target.__VUE_DEVTOOLS_KIT_CONTEXT__ ??= {
   api: createDevToolsApi(hooks)
 };
 var devtoolsContext = target.__VUE_DEVTOOLS_KIT_CONTEXT__;
-var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
+var require_speakingurl$1 = __commonJS2({ "../../node_modules/.pnpm/speakingurl@14.0.1/node_modules/speakingurl/lib/speakingurl.js"(exports, module) {
   (function(root) {
     "use strict";
     var charMap = {
@@ -3165,10 +3167,10 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
     } catch (e) {
     }
   })(exports);
-}));
-var require_speakingurl = __commonJSMin2(((exports, module) => {
+} });
+var require_speakingurl = __commonJS2({ "../../node_modules/.pnpm/speakingurl@14.0.1/node_modules/speakingurl/index.js"(exports, module) {
   module.exports = require_speakingurl$1();
-}));
+} });
 var import_speakingurl = __toESM2(require_speakingurl(), 1);
 var appRecordInfo = target.__VUE_DEVTOOLS_NEXT_APP_RECORD_INFO__ ??= {
   id: 0,
@@ -3198,7 +3200,8 @@ function updateDevToolsClientDetected(params) {
     ...devtoolsState.devtoolsClientDetected,
     ...params
   };
-  toggleHighPerfMode(!Object.values(devtoolsState.devtoolsClientDetected).some(Boolean));
+  const devtoolsClientVisible = Object.values(devtoolsState.devtoolsClientDetected).some(Boolean);
+  toggleHighPerfMode(!devtoolsClientVisible);
 }
 target.__VUE_DEVTOOLS_UPDATE_CLIENT_DETECTED__ ??= updateDevToolsClientDetected;
 var DoubleIndexedKV = class {
@@ -3270,6 +3273,7 @@ function find(record, predicate) {
     const value = valuesNotNever[i];
     if (predicate(value)) return value;
   }
+  return void 0;
 }
 function forEach(record, run) {
   Object.entries(record).forEach(([key, value]) => run(value, key));
@@ -3282,6 +3286,7 @@ function findArr(record, predicate) {
     const value = record[i];
     if (predicate(value)) return value;
   }
+  return void 0;
 }
 var CustomTransformerRegistry = class {
   constructor() {
@@ -3330,12 +3335,14 @@ var parsePath = (string) => {
   let segment = "";
   for (let i = 0; i < string.length; i++) {
     let char = string.charAt(i);
-    if (char === "\\" && string.charAt(i + 1) === ".") {
+    const isEscapedDot = char === "\\" && string.charAt(i + 1) === ".";
+    if (isEscapedDot) {
       segment += ".";
       i++;
       continue;
     }
-    if (char === ".") {
+    const isEndOfSegment = char === ".";
+    if (isEndOfSegment) {
       result.push(segment);
       segment = "";
       continue;
@@ -3406,10 +3413,14 @@ function compositeTransformation(isApplicable, annotation, transform, untransfor
   };
 }
 var symbolRule = compositeTransformation((s, superJson) => {
-  if (isSymbol(s)) return !!superJson.symbolRegistry.getIdentifier(s);
+  if (isSymbol(s)) {
+    const isRegistered = !!superJson.symbolRegistry.getIdentifier(s);
+    return isRegistered;
+  }
   return false;
 }, (s, superJson) => {
-  return ["symbol", superJson.symbolRegistry.getIdentifier(s)];
+  const identifier = superJson.symbolRegistry.getIdentifier(s);
+  return ["symbol", identifier];
 }, (v) => v.description, (_, a, superJson) => {
   const value = superJson.symbolRegistry.getValue(a[1]);
   if (!value) throw new Error("Trying to deserialize unknown symbol");
@@ -3435,11 +3446,15 @@ var typedArrayRule = compositeTransformation(isTypedArray, (v) => ["typed-array"
   return new ctor(v);
 });
 function isInstanceOfRegisteredClass(potentialClass, superJson) {
-  if (potentialClass?.constructor) return !!superJson.classRegistry.getIdentifier(potentialClass.constructor);
+  if (potentialClass?.constructor) {
+    const isRegistered = !!superJson.classRegistry.getIdentifier(potentialClass.constructor);
+    return isRegistered;
+  }
   return false;
 }
 var classRule = compositeTransformation(isInstanceOfRegisteredClass, (clazz, superJson) => {
-  return ["class", superJson.classRegistry.getIdentifier(clazz.constructor)];
+  const identifier = superJson.classRegistry.getIdentifier(clazz.constructor);
+  return ["class", identifier];
 }, (clazz, superJson) => {
   const allowedProps = superJson.classRegistry.getAllowedProps(clazz.constructor);
   if (!allowedProps) return { ...clazz };
@@ -3456,9 +3471,11 @@ var classRule = compositeTransformation(isInstanceOfRegisteredClass, (clazz, sup
 var customRule = compositeTransformation((value, superJson) => {
   return !!superJson.customTransformerRegistry.findApplicable(value);
 }, (value, superJson) => {
-  return ["custom", superJson.customTransformerRegistry.findApplicable(value).name];
+  const transformer = superJson.customTransformerRegistry.findApplicable(value);
+  return ["custom", transformer.name];
 }, (value, superJson) => {
-  return superJson.customTransformerRegistry.findApplicable(value).serialize(value);
+  const transformer = superJson.customTransformerRegistry.findApplicable(value);
+  return transformer.serialize(value);
 }, (v, a, superJson) => {
   const transformer = superJson.customTransformerRegistry.findByName(a[1]);
   if (!transformer) throw new Error("Trying to deserialize unknown custom value");
@@ -3481,6 +3498,7 @@ var transformValue = (value, superJson) => {
     value: applicableSimpleRule.transform(value, superJson),
     type: applicableSimpleRule.annotation
   };
+  return void 0;
 };
 var simpleRulesByAnnotation = {};
 simpleRules.forEach((rule) => {
@@ -3554,7 +3572,8 @@ var setDeep = (object, path, mapper) => {
       const row = +key;
       parent = getNthKey(parent, row);
     } else if (isMap(parent)) {
-      if (i === path.length - 2) break;
+      const isEnd = i === path.length - 2;
+      if (isEnd) break;
       const row = +key;
       const type = +path[++i] === 0 ? "key" : "value";
       const keyOfRow = getNthKey(parent, row);
@@ -3582,31 +3601,33 @@ var setDeep = (object, path, mapper) => {
   if (isMap(parent)) {
     const row = +path[path.length - 2];
     const keyToRow = getNthKey(parent, row);
-    switch (+lastKey === 0 ? "key" : "value") {
+    const type = +lastKey === 0 ? "key" : "value";
+    switch (type) {
       case "key": {
         const newKey = mapper(keyToRow);
         parent.set(newKey, parent.get(keyToRow));
         if (newKey !== keyToRow) parent.delete(keyToRow);
         break;
       }
-      case "value":
+      case "value": {
         parent.set(keyToRow, mapper(parent.get(keyToRow)));
         break;
+      }
     }
   }
   return object;
 };
-function traverse(tree, walker2, origin = []) {
+function traverse(tree, walker$1, origin = []) {
   if (!tree) return;
   if (!isArray$2(tree)) {
-    forEach(tree, (subtree, key) => traverse(subtree, walker2, [...origin, ...parsePath(key)]));
+    forEach(tree, (subtree, key) => traverse(subtree, walker$1, [...origin, ...parsePath(key)]));
     return;
   }
   const [nodeValue, children] = tree;
   if (children) forEach(children, (child, key) => {
-    traverse(child, walker2, [...origin, ...parsePath(key)]);
+    traverse(child, walker$1, [...origin, ...parsePath(key)]);
   });
-  walker2(nodeValue, origin);
+  walker$1(nodeValue, origin);
 }
 function applyValueAnnotations(plain, annotations, superJson) {
   traverse(annotations, (type, path) => {
@@ -3729,7 +3750,8 @@ function copy(target$1, options = {}) {
   return [...props, ...symbols].reduce((carry, key) => {
     if (isArray$1(options.props) && !options.props.includes(key)) return carry;
     const val = target$1[key];
-    assignProp(carry, key, copy(val, options), target$1, options.nonenumerable);
+    const newVal = copy(val, options);
+    assignProp(carry, key, newVal, target$1, options.nonenumerable);
     return carry;
   }, {});
 }

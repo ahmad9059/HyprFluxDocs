@@ -1,3 +1,8 @@
+---
+title: Hyprland Keybindings - HyprFlux
+description: Complete reference for HyprFlux keyboard shortcuts. Master window management, app launching, workspace navigation, and media controls.
+---
+
 # HyprFlux Keybindings
 
 ## 1. Core Apps & Tools

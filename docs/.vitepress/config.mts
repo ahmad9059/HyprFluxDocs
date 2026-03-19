@@ -9,7 +9,8 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
-  description: "A Complete Operating System Built on Arch Linux",
+  titleTemplate: ":title | HyprFlux",
+  description: "HyprFlux is a complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment. Download the ISO or dotfiles.",
   head: [
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
@@ -17,6 +18,20 @@ export default defineConfig({
     ["meta", { name: "theme-color", content: "#0395cc" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     ["meta", { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" }],
+    ["meta", { name: "author", content: "Ahmad Hassan" }],
+    ["meta", { name: "keywords", content: "HyprFlux, Hyprland, Arch Linux, Linux Desktop, Wayland, Tiling Window Manager, Dotfiles, ISO" }],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:site_name", content: "HyprFlux" }],
+    ["meta", { property: "og:title", content: "HyprFlux - Beautiful Arch Linux Desktop" }],
+    ["meta", { property: "og:description", content: "A complete Arch Linux distribution with a beautiful, productive Hyprland desktop environment. Download the ISO or dotfiles." }],
+    ["meta", { property: "og:image", content: "https://hyprflux.org/og-image.png" }],
+    ["meta", { property: "og:url", content: "https://hyprflux.org" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:title", content: "HyprFlux - Beautiful Arch Linux Desktop" }],
+    ["meta", { name: "twitter:description", content: "A complete Arch Linux distribution with a beautiful, productive Hyprland desktop environment." }],
+    ["meta", { name: "twitter:image", content: "https://hyprflux.org/og-image.png" }],
+    ["link", { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
   ],
   markdown: {
     theme: {

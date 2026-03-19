@@ -1,3 +1,8 @@
+---
+title: Hyprland Configuration - HyprFlux
+description: Complete Hyprland configuration guide for HyprFlux. Learn about modular config files, window rules, animations, keybindings, and customizations.
+---
+
 # Hyprland Configuration
 
 Hyprland is the core Wayland compositor that powers the HyprFlux desktop environment. This configuration provides a highly customizable and performant tiling window manager experience.

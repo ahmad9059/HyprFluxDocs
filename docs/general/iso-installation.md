@@ -1,3 +1,8 @@
+---
+title: ISO Installation Guide - HyprFlux
+description: Complete step-by-step guide to install HyprFlux ISO. Learn how to create bootable USB, partition disks, and set up your Hyprland desktop.
+---
+
 # ISO Installation Guide
 
 This guide walks you through installing HyprFlux using the ISO image. This method installs a complete Arch Linux operating system with HyprFlux pre-configured.

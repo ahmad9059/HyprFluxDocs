@@ -1,3 +1,8 @@
+---
+title: What Is Coming Next - HyprFlux
+description: HyprFlux roadmap and future plans. Learn about upcoming improvements to the installer, documentation, and theme consistency.
+---
+
 # What Is Coming Next
 
 _Published: March 13, 2026_

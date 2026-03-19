@@ -1,4 +1,9 @@
-# Dots Installation
+---
+title: Dotfiles Installation - HyprFlux
+description: Install HyprFlux dotfiles on your existing Arch Linux system. One-command installation for window manager, status bar, and app configurations.
+---
+
+# Dotfiles Installation
 
 After installing Arch Linux, follow the instructions below.
 

@@ -1,4 +1,6 @@
 ---
+title: Download HyprFlux ISO and Dotfiles
+description: Download HyprFlux as a complete operating system (ISO) or dotfiles for your existing Arch Linux installation. Multiple mirrors available.
 pageClass: download-page
 sidebar: false
 aside: false
