@@ -9,20 +9,18 @@ Before you begin, ensure you have:
 - A USB drive (8GB or larger)
 - A computer with x86_64 architecture
 - At least 4GB of RAM (8GB+ recommended)
-- At least 20GB of free disk space
+- At least 30GB of free disk space
 - An active internet connection (required during installation)
 
-## Download the ISO
+## Download Links
 
-Download the latest HyprFlux ISO from one of these sources:
-
-- **GitHub Releases:** [v1.0.0](https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0)
-- **Google Drive:** [Download Mirror](https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing)
-- **SourceForge:** [Alternative Mirror](https://sourceforge.net/projects/hyprflux/files/v1.0.0/)
+| Source              | Link                                                                                                        | Notes                    |
+| ------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------ |
+| **GitHub Releases** | [Download v1.0.0](https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0)                             | Primary release channel  |
+| **Google Drive**    | [Download from Drive](https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing) | Mirror for faster access |
+| **SourceForge**     | [Download from SourceForge](https://sourceforge.net/projects/hyprflux/files/v1.0.0/)                        | Alternative mirror       |
 
 ## Create a Bootable USB
-
-### Linux
 
 Using `dd`:
 
@@ -33,29 +31,8 @@ sudo dd if=hyprflux-*.iso of=/dev/sdX bs=4M status=progress oflag=sync
 Replace `/dev/sdX` with your USB device (e.g., `/dev/sdb`).
 
 Using `balenaEtcher`:
+
 1. Download and install [balenaEtcher](https://www.balena.io/etcher/)
-2. Select the ISO file
-3. Select your USB drive
-4. Click "Flash"
-
-### Windows
-
-Using Rufus:
-1. Download [Rufus](https://rufus.ie/)
-2. Select your USB drive
-3. Select the HyprFlux ISO
-4. Click "Start"
-
-Using balenaEtcher:
-1. Download [balenaEtcher](https://www.balena.io/etcher/)
-2. Select the ISO file
-3. Select your USB drive
-4. Click "Flash"
-
-### macOS
-
-Using balenaEtcher:
-1. Download [balenaEtcher](https://www.balena.io/etcher/)
 2. Select the ISO file
 3. Select your USB drive
 4. Click "Flash"
@@ -76,37 +53,56 @@ The ISO supports both UEFI and Legacy BIOS boot modes. Select the appropriate op
 
 The HyprFlux installer will launch automatically after booting. It uses a TUI (Text User Interface) with the following steps:
 
+![Installer network setup screen](./assets/img-1.webp)
+
+![Installer welcome screen](./assets/img.webp)
+
 ### Step 0: Network Setup
 
 The installer will automatically detect and configure your network connection using NetworkManager. If you need to connect to Wi-Fi, you can use `nmtui` before starting the installation.
+
+![Network configuration screen](./assets/img-2.webp)
 
 ### Step 1: Welcome
 
 The installer displays a welcome message with the HyprFlux logo and installation overview.
 
+![Welcome screen with logo](./assets/img-3.webp)
+
 ### Step 2: Timezone Selection
 
 Select your timezone from the list or search for your location.
+
+![Timezone selection screen](./assets/img-4.webp)
 
 ### Step 3: Locale Selection
 
 Choose your system locale (language and character encoding).
 
+![Locale selection screen](./assets/img-5.webp)
+
 ### Step 4: Keyboard Layout
 
 Select your keyboard layout from the available options.
+
+![Keyboard layout selection screen](./assets/img-6.webp)
 
 ### Step 5: Hostname
 
 Enter a hostname for your computer (e.g., `hyprflux-pc`).
 
+![Hostname input screen](./assets/img-7.webp)
+
 ### Step 6: User Creation
 
 Create a user account:
+
 - Enter your full name
 - Enter a username
 - Set a password
 - Confirm the password
+
+![User creation screen](./assets/img-8.webp)
 
 ::: warning Important
 Remember your password! You'll need it to log in after installation.
@@ -117,14 +113,18 @@ Remember your password! You'll need it to log in after installation.
 Choose your partitioning method:
 
 **Automatic (Recommended for beginners):**
+
 - Wipes the entire selected disk
 - Creates EFI, swap, and root partitions automatically
 - Best for clean installations
 
 **Manual (Advanced):**
+
 - Allows custom partitioning
 - You must create and format partitions yourself
 - Best for dual-boot or custom setups
+
+![Disk partitioning demonstration](./assets/output.gif)
 
 ::: danger Data Loss Warning
 Automatic partitioning will erase all data on the selected disk. Make sure to backup important data before proceeding!
@@ -133,36 +133,46 @@ Automatic partitioning will erase all data on the selected disk. Make sure to ba
 ### Step 8: Base System Installation
 
 The installer will:
+
 - Format the partitions
 - Install the base Arch Linux system using `pacstrap`
 - Install essential packages
 
-This step requires an active internet connection and may take 10-30 minutes depending on your connection speed.
+This step requires an active internet connection and may take 10-20 minutes depending on your connection speed.
 
-### Step 9: System Configuration
+![Base system installation progress](./assets/img-10.webp)
 
-The installer configures:
-- Timezone and hardware clock
-- Locale and language settings
-- Hostname and hosts file
-- User accounts and passwords
-- GRUB bootloader (for both UEFI and BIOS)
-- Network configuration
+After the base Arch Linux installation is complete, it will ask for reboot. Press Enter to reboot the system.
+
+### Step 9: System Reboot
+
+After the system reboots, it will ask you to enter the username and password you created earlier.
+
+![Login screen after reboot](./assets/img-11.webp)
 
 ### Step 10: HyprFlux Integration
 
-The installer prepares the HyprFlux desktop environment by:
-- Cloning the HyprFlux dotfiles repository
-- Setting up the installation pipeline
-- Preparing first-boot configuration
+The HyprFlux installer starts the installation of HyprFlux. It may ask for your password again.
 
-### Step 11: Cleanup and Reboot
+![HyprFlux installation progress](./assets/img-12.webp)
 
-After installation completes:
-1. The installer will unmount all partitions
-2. You'll be prompted to reboot
-3. Remove the USB drive when instructed
-4. Press Enter to reboot
+This step requires an active internet connection and may take 10-20 minutes depending on your connection speed to set everything up. **It may ask for your sudo password 2-3 times, so enter it when needed.**
+
+### Step 11: Optional Packages Installation
+
+The installer will ask to install optional packages from Pacman and Yay. Install them according to your preference.
+
+![Optional packages selection screen](./assets/img-13.webp)
+
+### Step 12: Installation Complete
+
+**Congratulations! HyprFlux installation is complete.**
+
+![Installation complete screen](./assets/img-14.webp)
+
+::: tip Welcome to HyprFlux!
+You're all set! Enjoy your new HyprFlux desktop environment. Don't forget to star the repository if you like it!
+:::
 
 ## First Boot
 
@@ -185,12 +195,7 @@ After rebooting:
    sudo pacman -Syu
    ```
 
-2. **Install additional software:**
-   ```bash
-   yay -S package-name
-   ```
-
-3. **Customize your desktop:**
+2. **Customize your desktop:**
    - Edit configs in `~/.config/`
    - Change wallpapers in `~/Pictures/wallpapers/`
    - Modify keybindings in `~/.config/hypr/`
@@ -204,46 +209,5 @@ After rebooting:
 
 ### Getting Help
 
-- Visit the [Quick Start Guide](/general/quickstart) for usage tips
 - Check the [Keybindings](/keybindings/hyprland) reference
 - Report issues on [GitHub](https://github.com/ahmad9059/HyprFlux/issues)
-
-## Troubleshooting
-
-### Installation Hangs
-
-If the installer appears to hang:
-- Check your internet connection
-- Try a wired connection instead of Wi-Fi
-- Wait at least 30 minutes for slow connections
-
-### Boot Issues
-
-If the system won't boot:
-- Check that Secure Boot is disabled in BIOS
-- Verify the boot mode matches your partition scheme (UEFI/BIOS)
-- Reinstall GRUB if needed
-
-### Network Not Working
-
-If network doesn't work after installation:
-- Check that NetworkManager is running: `systemctl status NetworkManager`
-- Enable it if needed: `sudo systemctl enable --now NetworkManager`
-- Use `nmtui` to configure connections
-
-### Graphics Issues
-
-If you experience graphics problems:
-- For NVIDIA GPUs, ensure the proprietary drivers are installed
-- Check Hyprland logs: `hyprctl logs`
-- Verify your GPU is supported by Hyprland
-
-## Next Steps
-
-- [Quick Start Guide](/general/quickstart) - Learn the basics
-- [Keybindings Reference](/keybindings/hyprland) - Master the shortcuts
-- [Configuration Guide](/hyprland/hyprland) - Customize your setup
-
-::: tip Welcome to HyprFlux!
-You're all set! Enjoy your new HyprFlux desktop environment. Don't forget to star the repository if you like it!
-:::

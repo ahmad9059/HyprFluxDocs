@@ -18,7 +18,7 @@ Both deliver the same **beautiful, productive, and modern desktop environment** 
   <div class="border border-gray-700 rounded-2xl p-6 bg-[#0E0E16] shadow-lg">
     <h3 id="c1-h3" class="text-xl font-semibold mb-3">💿 Download HyprFlux</h3>
     <p class="text-gray-400 mb-4">Complete Operating System (ISO) - A full Arch Linux distribution with HyprFlux pre-configured</p>
-    <a id="c1-a" href="/general/download" class="inline-flex mt-7 items-center bg-[#0E0E16] border border-gray-700 rounded-lg px-8 py-3 text-cyan-400 bg-cyan-500  hover:text-blue-300 transition">
+    <a id="c1-a" href="/general/download" class="inline-flex mt-7 items-center bg-[#0E0E16] border border-gray-700 rounded-lg px-8 py-3 text-cyan-400 bg-cyan-600  hover:text-blue-300 transition">
      Download ISO 
     </a>
   </div>

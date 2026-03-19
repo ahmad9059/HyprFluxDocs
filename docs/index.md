@@ -14,14 +14,14 @@ hero:
       text: Download ISO
       link: /general/download.md
     - theme: alt
+      text: Quick Start
+      link: /general/quickstart.md
+    - theme: alt
       text: Install Dots
       link: /general/installation.md
     - theme: alt
       text: Showcase
       link: /general/showcase.md
-    - theme: alt
-      text: Quick Start
-      link: /general/quickstart.md
 
 features:
   - icon: 🛠️
