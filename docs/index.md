@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "HyprFlux"
   image:
-    src: /fav.png
+    src: /fav.webp
     alt: HyprFlux-Img
   text: "Elegance That Moves at Light Speed ⚡"
   tagline: Minimal · Productive · Elegant · Fast

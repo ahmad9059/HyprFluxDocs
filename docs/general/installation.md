@@ -49,19 +49,19 @@ chmod +x install.sh
 
 The installer will ask for your sudo password. Enter it when prompted.
 
-![welcome](/welcome.png)
+![welcome](/welcome.webp)
 
 ### Step 2: Select AUR Helper
 
 Choose an AUR helper (`yay` or `paru`). We recommend **yay**.
 
-![yay-paru](/yay-paru.png)
+![yay-paru](/yay-paru.webp)
 
 ### Step 3: Select Installation Options
 
 Choose which components to install:
 
-![select-option](/select-option.png)
+![select-option](/select-option.webp)
 
 #### Essential Components (Recommended)
 
