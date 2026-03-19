@@ -20,6 +20,9 @@ See HyprFlux in motion and preview the desktop before installing it.
 <p class="showcase-note">Open any screenshot to view the full-size original.</p>
 
 <div class="showcase-grid">
+  <a class="showcase-card" href="/showcase/0-1.webp" target="_blank" rel="noreferrer">
+    <img src="/showcase/0-1.webp" alt="HyprFlux desktop screenshot 1" loading="lazy" decoding="async" fetchpriority="low" />
+  </a>
   <a class="showcase-card" href="/showcase/1.webp" target="_blank" rel="noreferrer">
     <img src="/showcase/1.webp" alt="HyprFlux desktop screenshot 1" loading="lazy" decoding="async" fetchpriority="low" />
   </a>
@@ -43,5 +46,8 @@ See HyprFlux in motion and preview the desktop before installing it.
   </a>
   <a class="showcase-card" href="/showcase/9.webp" target="_blank" rel="noreferrer">
     <img src="/showcase/9.webp" alt="HyprFlux desktop screenshot 9" loading="lazy" decoding="async" fetchpriority="low" />
+  </a>
+  <a class="showcase-card" href="/showcase/10.webp" target="_blank" rel="noreferrer">
+    <img src="/showcase/10.webp" alt="HyprFlux desktop screenshot 9" loading="lazy" decoding="async" fetchpriority="low" />
   </a>
 </div>
