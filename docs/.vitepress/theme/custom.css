@@ -617,3 +617,68 @@ img video {
 .vp-doc a#c1-a.inline-flex.text-blue-400:hover {
   color: rgb(147 197 253) !important;
 }
+
+/* Installation cards - theme aware */
+.install-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: var(--vp-c-bg-soft);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.dark .install-card {
+  background: #0e0e16;
+}
+
+.install-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.install-card h3 {
+  color: var(--vp-c-text-1);
+}
+
+.install-card-desc {
+  color: var(--vp-c-text-2);
+}
+
+.install-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-3));
+  border: none;
+  border-radius: 0.5rem;
+  color: white !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.install-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(3, 149, 204, 0.3);
+}
+
+.install-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 0.5rem;
+  color: var(--vp-c-text-1);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.install-btn-outline:hover {
+  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}

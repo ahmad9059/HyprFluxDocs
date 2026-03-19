@@ -15,18 +15,18 @@ Both deliver the same **beautiful, productive, and modern desktop environment** 
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
 
-  <div class="border border-gray-700 rounded-2xl p-6 bg-[#0E0E16] shadow-lg">
+  <div class="install-card">
     <h3 id="c1-h3" class="text-xl font-semibold mb-3">💿 Download HyprFlux</h3>
-    <p class="text-gray-400 mb-4">Complete Operating System (ISO) - A full Arch Linux distribution with HyprFlux pre-configured</p>
-    <a id="c1-a" href="/general/download" class="inline-flex mt-7 items-center bg-[#0E0E16] border border-gray-700 rounded-lg px-8 py-3 text-cyan-400 bg-cyan-600  hover:text-blue-300 transition">
-     Download ISO 
+    <p class="install-card-desc mb-4">Complete Operating System (ISO) - A full Arch Linux distribution with HyprFlux pre-configured</p>
+    <a id="c1-a" href="/general/download" class="install-btn">
+      Download ISO
     </a>
   </div>
 
-  <div class="border border-gray-700 rounded-2xl p-6 bg-[#0E0E16] shadow-lg">
+  <div class="install-card">
     <h3 id="c1-h3" class="text-xl font-semibold mb-3">✨ Dots Installation</h3>
-    <p class="text-gray-400 mb-4">Setup the core HyprFlux dotfiles with window management, keybindings, and theme configurations.</p>
-    <a id="c1-a" href="/general/installation" class="inline-flex items-center mt-8 bg-[#0E0E16] border border-gray-700 rounded-lg px-8 py-3 text-blue-400 hover:text-blue-300 transition">
+    <p class="install-card-desc mb-4">Setup the core HyprFlux dotfiles with window management, keybindings, and theme configurations.</p>
+    <a id="c1-a" href="/general/installation" class="install-btn">
       Install Dotfiles
     </a>
   </div>
@@ -39,8 +39,8 @@ Knowing the keybindings is crucial! Without them, navigating the Hyprland enviro
 :::
 
 <div class="mt-6">
-  <a id="c1-a" href="/keybindings/hyprland" class="inline-flex items-center bg-[#0E0E16] border border-gray-700 rounded-lg px-8 py-3 text-blue-400 hover:text-blue-300 transition">
-    View Keybindings -
+  <a id="c1-a" href="/keybindings/hyprland" class="install-btn">
+    View Keybindings
   </a>
 </div>
 
@@ -58,9 +58,9 @@ After installation, explore these resources to get the most out of HyprFlux:
 Need help, want to contribute, or just share your setup? Join our growing community!
 
 <div class="flex gap-4 mt-6">
-  <a id="c1-a"  href="https://github.com/ahmad9059/HyprFlux" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">GitHub</a>
-  <a id="c1-a" href="#" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">Discord</a>
-  <a id="c1-a" href="#" class="px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">Reddit</a>
+  <a id="c1-a" href="https://github.com/ahmad9059/HyprFlux" class="install-btn-outline">GitHub</a>
+  <a id="c1-a" href="#" class="install-btn-outline">Discord</a>
+  <a id="c1-a" href="#" class="install-btn-outline">Reddit</a>
 </div>
 
 ## Documentation Structure
