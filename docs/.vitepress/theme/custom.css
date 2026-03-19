@@ -139,6 +139,41 @@ img video {
   transition:
     transform 0.18s ease,
     border-color 0.18s ease;
+  position: relative;
+  min-height: 200px;
+}
+
+.showcase-page .showcase-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 46, 0.3) 0%,
+    rgba(50, 50, 70, 0.5) 50%,
+    rgba(30, 30, 46, 0.3) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 18px;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.showcase-page .showcase-card.loaded::before {
+  opacity: 0;
+  animation: none;
+}
+
+.showcase-page .showcase-card picture {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .showcase-page .showcase-card:hover {
@@ -149,6 +184,9 @@ img video {
 .showcase-page .showcase-card img {
   display: block;
   width: 100%;
+  height: auto;
+  aspect-ratio: 16/10;
+  object-fit: cover;
   margin: 0;
   border-radius: 0;
 }
@@ -275,13 +313,47 @@ img video {
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid rgba(148, 163, 184, 0.15);
-  background: #0e0e16;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 14, 22, 0.5) 0%,
+    rgba(30, 30, 46, 0.8) 50%,
+    rgba(14, 14, 22, 0.5) 100%
+  );
+  background-size: 200% 100%;
   line-height: 0;
+}
+
+.download-page .slider-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 46, 0.2) 0%,
+    rgba(50, 50, 70, 0.4) 50%,
+    rgba(30, 30, 46, 0.2) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.download-page .slider-wrapper.loaded::before {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .download-page .slider-track {
   display: flex;
   animation: slide 27s infinite ease-in-out;
+  position: relative;
+  z-index: 1;
 }
 
 .download-page .slider-track:hover {
@@ -303,6 +375,12 @@ img video {
 .download-page .slider-slide {
   min-width: 100%;
   flex-shrink: 0;
+}
+
+.download-page .slider-slide picture {
+  display: block;
+  position: relative;
+  z-index: 2;
 }
 
 .download-page .slider-slide img {

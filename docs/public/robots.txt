@@ -1,13 +1,14 @@
 # https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
 Allow: /
 
 # Sitemap
 Sitemap: https://hyprflux.org/sitemap.xml
 
-# Block internal paths
-Disallow: /api-examples
-Disallow: /markdown-examples
-
 # Crawl delay for polite bots
 Crawl-delay: 1
+
+# Block VitePress internal pages
+Disallow: /*?*
+Disallow: /__test__

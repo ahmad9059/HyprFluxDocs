@@ -1,0 +1,59 @@
+# HyprFlux Documentation
+
+> A complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment.
+
+## What is HyprFlux?
+
+HyprFlux is a complete operating system built on Arch Linux, featuring the Hyprland Wayland compositor. It provides a minimal, productive, and elegant desktop experience with pre-configured dotfiles.
+
+## Available in Two Forms
+
+1. **ISO (Complete Operating System)** - A full Arch Linux distribution with HyprFlux pre-configured, install via bootable USB
+2. **Dotfiles Distribution** - Configuration files for existing Arch Linux installations
+
+## Installation Options
+
+- **Download ISO**: https://hyprflux.org/general/download
+- **Install Dotfiles**: https://hyprflux.org/complete/hyprflux
+
+## Key Components
+
+- Hyprland (Wayland compositor)
+- Waybar (status bar)
+- Rofi (launcher)
+- SwayNC (notifications)
+- Hyprlock (lock screen)
+- Kitty (terminal)
+- Neovim (editor)
+- Yazi (file manager)
+
+## Documentation Structure
+
+- `/general/quickstart` - Getting started guide
+- `/general/iso-installation` - ISO installation steps
+- `/general/download` - Download links
+- `/general/showcase` - Screenshots and demos
+- `/keybindings/hyprland` - Keyboard shortcuts
+- `/features/` - Component documentation
+- `/hyprland/` - Configuration reference
+
+## Search Tips
+
+When searching this documentation, use keywords like:
+- "install", "download", "setup"
+- "keybindings", "shortcuts", "keyboard"
+- "config", "configuration", "hyprland"
+- "hyprlock", "waybar", "rofi"
+- Component names (e.g., "rofi", "waybar", "hyprlock")
+
+## Sitemap
+
+- https://hyprflux.org/sitemap.xml
+
+## Author
+
+Ahmad Hassan (https://github.com/ahmad9059)
+
+## License
+
+MIT License

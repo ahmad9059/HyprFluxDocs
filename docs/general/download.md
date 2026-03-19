@@ -12,12 +12,12 @@ aside: false
 </div>
 
 <div class="slider-container">
-  <div class="slider-wrapper">
+  <div class="slider-wrapper" id="slider-wrapper">
     <div class="slider-track">
       <div class="slider-slide">
         <picture>
           <source srcset="/showcase/1.avif" type="image/avif">
-          <img src="/showcase/1.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+          <img src="/showcase/1.webp" alt="HyprFlux desktop screenshot" loading="eager" fetchpriority="high" onload="document.getElementById('slider-wrapper').classList.add('loaded')" />
         </picture>
       </div>
       <div class="slider-slide">
