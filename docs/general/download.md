@@ -1,91 +1,119 @@
-# Download HyprFlux
+---
+pageClass: download-page
+sidebar: false
+aside: false
+---
 
-HyprFlux is available as both a **complete operating system** (ISO) and a **dotfiles distribution** for existing Arch installations.
+<div class="download-hero">
+  <h1>Download HyprFlux</h1>
+  <p class="download-subtitle">Get HyprFlux as a complete operating system (ISO) or dotfiles for your existing Arch installation</p>
+</div>
 
 ## Download Links
 
-| Source              | Link                                                                                                        | Notes                    |
-| ------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------ |
-| **GitHub Releases** | [Download v1.0.0](https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0)                             | Primary release channel  |
-| **Google Drive**    | [Download from Drive](https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing) | Mirror for faster access |
-| **SourceForge**     | [Download from SourceForge](https://sourceforge.net/projects/hyprflux/files/v1.0.0/)                        | Alternative mirror       |
+<div class="download-cards">
+  <div class="download-card">
+    <span class="download-card-label">Primary</span>
+    <h3>GitHub Releases</h3>
+    <p>Official release channel with version history</p>
+    <a href="https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0" target="_blank" rel="noreferrer" class="download-btn">
+      Download v1.0.0
+    </a>
+  </div>
 
-### System Requirements
+  <div class="download-card">
+    <span class="download-card-label">Mirror</span>
+    <h3>Google Drive</h3>
+    <p>Fast mirror download for quicker access</p>
+    <a href="https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing" target="_blank" rel="noreferrer" class="download-btn">
+      Download from Drive
+    </a>
+  </div>
 
-- **Architecture:** x86_64
-- **Memory:** 4 GB minimum, 8 GB+ recommended
-- **Storage:** 20 GB minimum free space
-- **Network:** Active internet connection required
-- **Boot Mode:** UEFI or Legacy BIOS
+  <div class="download-card">
+    <span class="download-card-label">Mirror</span>
+    <h3>SourceForge</h3>
+    <p>Alternative mirror for reliable downloads</p>
+    <a href="https://sourceforge.net/projects/hyprflux/files/v1.0.0/" target="_blank" rel="noreferrer" class="download-btn">
+      Download from SourceForge
+    </a>
+  </div>
+</div>
 
-### Installation Steps
+## System Requirements
 
-1. **Download the ISO** from one of the links above
-2. **Create a bootable USB** using tools like:
-   - [BalenaEtcher](https://www.balena.io/etcher/) (Linux/Windows/macOS)
-   - [Rufus](https://rufus.ie/) (Windows)
-   - `dd` command (Linux)
-3. **Boot from USB** and select HyprFlux from the boot menu
-4. **Follow the TUI installer** - it will guide you through:
-   - Disk partitioning (Automatic or Manual)
-   - Timezone and locale selection
-   - User creation
-   - Base system installation
-   - HyprFlux configuration
-5. **Reboot** into your new HyprFlux system
+<div class="requirements-grid">
+  <div class="requirement-item">
+    <div class="requirement-content">
+      <strong>Architecture</strong>
+      <span>x86_64</span>
+    </div>
+  </div>
 
-For detailed ISO installation instructions, see the [ISO Installation Guide](/general/iso-installation).
+  <div class="requirement-item">
+    <div class="requirement-content">
+      <strong>Memory</strong>
+      <span>4 GB minimum, 8 GB+ recommended</span>
+    </div>
+  </div>
 
----
+  <div class="requirement-item">
+    <div class="requirement-content">
+      <strong>Storage</strong>
+      <span>20 GB minimum free space</span>
+    </div>
+  </div>
 
-## Dotfiles Installation
+  <div class="requirement-item">
+    <div class="requirement-content">
+      <strong>Network</strong>
+      <span>Active internet connection required</span>
+    </div>
+  </div>
 
-If you already have Arch Linux installed and just want the HyprFlux configurations:
+  <div class="requirement-item">
+    <div class="requirement-content">
+      <strong>Boot Mode</strong>
+      <span>UEFI or Legacy BIOS</span>
+    </div>
+  </div>
+</div>
 
-### Quick Install
+## Installation Steps
 
-```bash
-sh <(curl -fsSL https://hyprflux.dev/install)
-```
+<div class="steps-list">
+  <div class="step-item">
+    <div class="step-number">1</div>
+    <div class="step-content">
+      <h4>Download the ISO</h4>
+      <p>Choose a download source from the links above</p>
+    </div>
+  </div>
 
-### What Gets Installed
+  <div class="step-item">
+    <div class="step-number">2</div>
+    <div class="step-content">
+      <h4>Create Bootable USB</h4>
+      <p>Use <a href="https://www.balena.io/etcher/" target="_blank" rel="noreferrer">BalenaEtcher</a>, <a href="https://rufus.ie/" target="_blank" rel="noreferrer">Rufus</a>, or <code>dd</code> command</p>
+    </div>
+  </div>
 
-- Hyprland window manager configuration
-- Waybar with custom modules
-- Rofi application launcher
-- Kitty terminal configuration
-- SDDM login theme
-- GTK themes and icons
-- Zsh with Oh My Zsh
-- Neovim configuration (optional)
-- And much more!
+  <div class="step-item">
+    <div class="step-number">3</div>
+    <div class="step-content">
+      <h4>Boot & Install</h4>
+      <p>Boot from USB and follow the TUI installer</p>
+    </div>
+  </div>
 
-For detailed dotfiles installation, see the [Installation Guide](/general/installation).
-
----
-
-## Which Should I Choose?
-
-| Scenario                            | Recommended Path          |
-| ----------------------------------- | ------------------------- |
-| New computer or clean install       | **ISO Installation**      |
-| Existing Arch Linux system          | **Dotfiles Installation** |
-| Virtual machine testing             | **ISO Installation**      |
-| Want full control over partitioning | **ISO Installation**      |
-| Happy with current Arch setup       | **Dotfiles Installation** |
-
----
-
-## Post-Installation
-
-After installation (either ISO or dotfiles):
-
-1. **Reboot** your system
-2. **Log in** through SDDM (display manager)
-3. **Complete first-boot setup** (automatic)
-4. **Start using HyprFlux!**
-
-Check the [Quick Start Guide](/general/quickstart) for tips on using your new HyprFlux desktop.
+  <div class="step-item">
+    <div class="step-number">4</div>
+    <div class="step-content">
+      <h4>Reboot & Enjoy</h4>
+      <p>Restart into your new HyprFlux system</p>
+    </div>
+  </div>
+</div>
 
 ::: warning Important
 The HyprFlux ISO is an **online installer**. An active internet connection is required during installation to download packages and configurations.
@@ -95,5 +123,6 @@ The HyprFlux ISO is an **online installer**. An active internet connection is re
 
 - Visit our [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues) for support
 - Check the [Documentation](/general/quickstart) for detailed guides
-- Join the community discussions
+- See the [ISO Installation Guide](/general/iso-installation) for step-by-step instructions
   :::
+
