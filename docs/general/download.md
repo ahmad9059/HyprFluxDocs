@@ -13,31 +13,58 @@ aside: false
   <div class="slider-wrapper">
     <div class="slider-track">
       <div class="slider-slide">
-        <img src="/showcase/1.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/1.avif" type="image/avif">
+          <img src="/showcase/1.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/2.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/2.avif" type="image/avif">
+          <img src="/showcase/2.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/3.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/3.avif" type="image/avif">
+          <img src="/showcase/3.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/4.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/4.avif" type="image/avif">
+          <img src="/showcase/4.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/5.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/5.avif" type="image/avif">
+          <img src="/showcase/5.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/6.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/6.avif" type="image/avif">
+          <img src="/showcase/6.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/8.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/8.avif" type="image/avif">
+          <img src="/showcase/8.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/9.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/9.avif" type="image/avif">
+          <img src="/showcase/9.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
       <div class="slider-slide">
-        <img src="/showcase/10.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        <picture>
+          <source srcset="/showcase/10.avif" type="image/avif">
+          <img src="/showcase/10.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+        </picture>
       </div>
     </div>
   </div>

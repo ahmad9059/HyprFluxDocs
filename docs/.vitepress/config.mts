@@ -10,6 +10,14 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   title: "HyprFlux",
   description: "A Complete Operating System Built on Arch Linux",
+  head: [
+    ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
+    ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
+    ["link", { rel: "preload", href: "/fav.avif", as: "image", type: "image/avif" }],
+    ["meta", { name: "theme-color", content: "#0395cc" }],
+    ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
+    ["meta", { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" }],
+  ],
   markdown: {
     theme: {
       light: "catppuccin-latte",
@@ -26,12 +34,20 @@ export default defineConfig({
       tailwindcss(),
       groupIconVitePlugin({
         customIcon: {
-          // key here must match [bash] in your markdown
           sh: localIconLoader(import.meta.url, "../assets/bash.svg"),
         },
       }),
     ],
+    build: {
+      minify: "terser",
+      cssMinify: true,
+      chunkSizeWarningLimit: 1000,
+    },
   },
+  sitemap: {
+    hostname: "https://hyprflux.org",
+  },
+  cleanUrls: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "favicon.ico",

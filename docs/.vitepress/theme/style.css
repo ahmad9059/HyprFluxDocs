@@ -148,3 +148,21 @@
   /* --vp-c-bg-soft: #fff; */
   --vp-code-block-bg: #11111b;
 }
+
+/* Performance: Font rendering optimization */
+html {
+  font-display: swap;
+}
+
+/* Reduce layout shifts for images */
+.vp-doc img {
+  aspect-ratio: auto;
+}
+
+/* Content visibility for off-screen content */
+.vp-doc .showcase-grid,
+.vp-doc .download-cards,
+.vp-doc .requirements-grid {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}

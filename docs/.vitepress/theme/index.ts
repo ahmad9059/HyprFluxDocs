@@ -10,11 +10,15 @@ import "./custom.css";
 export default {
   extends: DefaultTheme,
   Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    });
+    return h(DefaultTheme.Layout, null, {});
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    if (typeof window !== "undefined") {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {});
+        });
+      }
+    }
   },
 } satisfies Theme;

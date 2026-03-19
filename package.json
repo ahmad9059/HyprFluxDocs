@@ -2,12 +2,16 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.12",
     "tailwindcss": "^4.1.12",
+    "terser": "^5.46.1",
+    "vite": "^6.0.0",
+    "vite-plugin-compression": "^0.5.1",
     "vitepress": "^2.0.0-alpha.11"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "build": "vitepress build docs"
   },
   "dependencies": {
     "@catppuccin/vitepress": "^0.1.2",
