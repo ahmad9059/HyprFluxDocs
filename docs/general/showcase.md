@@ -1,23 +1,13 @@
 ---
 pageClass: showcase-page
+sidebar: false
+aside: false
 ---
 
-# Showcase
-
-See HyprFlux in motion and preview the desktop before installing it.
-
-## Demo Video
-
-<div class="showcase-video-wrap">
-  <video controls preload="metadata" playsinline poster="/showcase/hyprflux-showcase-07.webp">
-    <source src="/showcase/hyprflux-showcase-video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+<div class="showcase-hero">
+  <h1>Showcase</h1>
+  <p class="showcase-subtitle">Experience HyprFlux in action — stunning screenshots and a showcase video showcasing the desktop environment</p>
 </div>
-
-## Screenshots
-
-<p class="showcase-note">Open any screenshot to view the full-size original.</p>
 
 <div class="showcase-grid">
   <a class="showcase-card" href="/showcase/0-1.webp" target="_blank" rel="noreferrer">
@@ -50,4 +40,13 @@ See HyprFlux in motion and preview the desktop before installing it.
   <a class="showcase-card" href="/showcase/10.webp" target="_blank" rel="noreferrer">
     <img src="/showcase/10.webp" alt="HyprFlux desktop screenshot 9" loading="lazy" decoding="async" fetchpriority="low" />
   </a>
+</div>
+
+## Showcase Video
+
+<div class="showcase-video-wrap">
+  <video controls preload="metadata" playsinline poster="/showcase/hyprflux-showcase-07.webp">
+    <source src="/showcase/hyprflux-showcase-video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 </div>
