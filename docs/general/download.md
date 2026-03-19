@@ -9,6 +9,40 @@ aside: false
   <p class="download-subtitle">Get HyprFlux as a complete operating system (ISO) or dotfiles for your existing Arch installation</p>
 </div>
 
+<div class="slider-container">
+  <div class="slider-wrapper">
+    <div class="slider-track">
+      <div class="slider-slide">
+        <img src="/showcase/1.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/2.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/3.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/4.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/5.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/6.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/8.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/9.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+      <div class="slider-slide">
+        <img src="/showcase/10.webp" alt="HyprFlux desktop screenshot" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</div>
+
 ## Download Links
 
 <div class="download-cards">
