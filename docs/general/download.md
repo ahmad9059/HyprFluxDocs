@@ -103,81 +103,6 @@ aside: false
   </div>
 </div>
 
-## System Requirements
-
-<div class="requirements-grid">
-  <div class="requirement-item">
-    <div class="requirement-content">
-      <strong>Architecture</strong>
-      <span>x86_64</span>
-    </div>
-  </div>
-
-  <div class="requirement-item">
-    <div class="requirement-content">
-      <strong>Memory</strong>
-      <span>4 GB minimum, 8 GB+ recommended</span>
-    </div>
-  </div>
-
-  <div class="requirement-item">
-    <div class="requirement-content">
-      <strong>Storage</strong>
-      <span>20 GB minimum free space</span>
-    </div>
-  </div>
-
-  <div class="requirement-item">
-    <div class="requirement-content">
-      <strong>Network</strong>
-      <span>Active internet connection required</span>
-    </div>
-  </div>
-
-  <div class="requirement-item">
-    <div class="requirement-content">
-      <strong>Boot Mode</strong>
-      <span>UEFI or Legacy BIOS</span>
-    </div>
-  </div>
-</div>
-
-## Installation Steps
-
-<div class="steps-list">
-  <div class="step-item">
-    <div class="step-number">1</div>
-    <div class="step-content">
-      <h4>Download the ISO</h4>
-      <p>Choose a download source from the links above</p>
-    </div>
-  </div>
-
-  <div class="step-item">
-    <div class="step-number">2</div>
-    <div class="step-content">
-      <h4>Create Bootable USB</h4>
-      <p>Use <a href="https://www.balena.io/etcher/" target="_blank" rel="noreferrer">BalenaEtcher</a>, <a href="https://rufus.ie/" target="_blank" rel="noreferrer">Rufus</a>, or <code>dd</code> command</p>
-    </div>
-  </div>
-
-  <div class="step-item">
-    <div class="step-number">3</div>
-    <div class="step-content">
-      <h4>Boot & Install</h4>
-      <p>Boot from USB and follow the TUI installer</p>
-    </div>
-  </div>
-
-  <div class="step-item">
-    <div class="step-number">4</div>
-    <div class="step-content">
-      <h4>Reboot & Enjoy</h4>
-      <p>Restart into your new HyprFlux system</p>
-    </div>
-  </div>
-</div>
-
 ::: warning Important
 The HyprFlux ISO is an **online installer**. An active internet connection is required during installation to download packages and configurations.
 :::
@@ -188,4 +113,3 @@ The HyprFlux ISO is an **online installer**. An active internet connection is re
 - Check the [Documentation](/general/quickstart) for detailed guides
 - See the [ISO Installation Guide](/general/iso-installation) for step-by-step instructions
   :::
-
