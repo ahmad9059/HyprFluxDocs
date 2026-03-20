@@ -206,7 +206,7 @@ export default defineConfig({
     footer: {
       message: "Released under the MIT License.",
       copyright:
-        'Made with 🤍 by <a  target="_blank" href="https://github.com/ahmad9059">Ahmad Hassan</a>',
+        'Made with 🤍 by <a target="_blank" href="https://ahmadx.dev/">Ahmad Hassan</a>',
     },
   },
 });
