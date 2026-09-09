@@ -79,8 +79,8 @@ aside: false
     <span class="download-card-label">Primary</span>
     <h3>GitHub Releases</h3>
     <p>Official release channel with version history</p>
-    <a href="https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0" target="_blank" rel="noreferrer" class="download-btn">
-      Download v1.0.0
+    <a href="https://github.com/ahmad9059/HyprFlux-ISO/releases/latest" target="_blank" rel="noreferrer" class="download-btn">
+      Download Latest Release
     </a>
   </div>
 
@@ -97,8 +97,8 @@ aside: false
     <span class="download-card-label">Mirror</span>
     <h3>SourceForge</h3>
     <p>Alternative mirror for reliable downloads</p>
-    <a href="https://sourceforge.net/projects/hyprflux/files/v1.0.0/" target="_blank" rel="noreferrer" class="download-btn">
-      Download from SourceForge
+    <a href="https://sourceforge.net/projects/hyprflux/files/latest/download" target="_blank" rel="noreferrer" class="download-btn">
+      Download Latest Mirror
     </a>
   </div>
 </div>

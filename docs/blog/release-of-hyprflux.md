@@ -63,4 +63,4 @@ This release establishes the initial ISO, installer, and CI pipeline. Additional
 
 ## Download
 
-Download the ISO from [GitHub Releases](https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0).
+Download the latest ISO from [GitHub Releases](https://github.com/ahmad9059/HyprFlux-ISO/releases/latest).

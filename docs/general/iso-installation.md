@@ -21,9 +21,9 @@ Before you begin, ensure you have:
 
 | Source              | Link                                                                                                        | Notes                    |
 | ------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------ |
-| **GitHub Releases** | [Download v1.0.0](https://github.com/ahmad9059/HyprFlux-ISO/releases/tag/1.0.0)                             | Primary release channel  |
+| **GitHub Releases** | [Download latest release](https://github.com/ahmad9059/HyprFlux-ISO/releases/latest)                        | Primary release channel  |
 | **Google Drive**    | [Download from Drive](https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing) | Mirror for faster access |
-| **SourceForge**     | [Download from SourceForge](https://sourceforge.net/projects/hyprflux/files/v1.0.0/)                        | Alternative mirror       |
+| **SourceForge**     | [Download latest mirror](https://sourceforge.net/projects/hyprflux/files/latest/download)                   | Alternative mirror       |
 
 ## Create a Bootable USB
 
