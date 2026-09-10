@@ -2,6 +2,8 @@
 
 Depends on: Phase 1 complete; use the main HyprFlux releases page
 
+Status: **Complete on 2026-09-10**
+
 ---
 
 ## 1. Goal
@@ -147,24 +149,24 @@ it should be verified but not changed without a demonstrated mismatch.
 
 ## 5. Acceptance Criteria / QA Checklist
 
-- [ ] HyprFlux and HyprFlux-ISO commit SHAs or immutable release references are
+- [x] HyprFlux and HyprFlux-ISO commit SHAs or immutable release references are
       recorded for the phase.
-- [ ] No current installation page asks users to choose Yay/Paru, QuickShell,
+- [x] No current installation page asks users to choose Yay/Paru, QuickShell,
       or formerly optional package groups.
-- [ ] Existing-Arch installation is described as full provisioning, not
+- [x] Existing-Arch installation is described as full provisioning, not
       configuration-only copying.
-- [ ] ISO docs show HyprFlux integration before the final reboot.
-- [ ] Automatic partitioning retains an unmistakable data-loss warning.
-- [ ] Download links resolve to the selected GitHub latest release, SourceForge
+- [x] ISO docs show HyprFlux integration before the final reboot.
+- [x] Automatic partitioning retains an unmistakable data-loss warning.
+- [x] Download links resolve to the selected GitHub latest release, SourceForge
       latest ISO, and the existing Google Drive folder.
-- [ ] Checksum instructions use the matching downloaded `.sha256` file.
-- [ ] Every retained screenshot matches the current flow and has meaningful alt text.
-- [ ] Duplicate install pages have distinct purposes and cross-link correctly.
-- [ ] `api/install.js` is verified to serve the intended public installer.
-- [ ] Targeted searches find no current-flow claims for Paru selection,
+- [x] Checksum instructions use the matching downloaded `.sha256` file.
+- [x] Every retained screenshot matches the current flow and has meaningful alt text.
+- [x] Duplicate install pages have distinct purposes and cross-link correctly.
+- [x] `api/install.js` is verified to serve the intended public installer.
+- [x] Targeted searches find no current-flow claims for Paru selection,
       optional QuickShell, or post-reboot full integration.
-- [ ] The production VitePress build succeeds.
-- [ ] Install/download pages are manually checked at desktop and mobile widths.
+- [x] The production VitePress build succeeds.
+- [x] Install/download pages are manually checked at desktop and mobile widths.
 
 ## 6. Approved Decisions and Open Questions
 
@@ -173,7 +175,37 @@ it should be verified but not changed without a demonstrated mismatch.
   download source. Do not mix assets or checksums from HyprFlux-ISO releases.
 - Should the Google Drive mirror expose only the latest files or retain
   versioned subfolders?
-- Are current installer screenshots available, or should stale screenshots be
-  removed until they can be recaptured?
-- Should `docs/complete/hyprflux.md` remain a short route for old inbound links,
-  or redirect to `/general/installation`?
+- **Resolved in Phase 2:** retain the current ISO screenshots through the disk
+  method selector and remove images that depict the deleted post-reboot flow.
+- **Resolved in Phase 2:** retain `docs/complete/hyprflux.md` as a short handoff
+  for old inbound links to `/general/installation`.
+
+## 7. Completion Record
+
+Phase 2 was implemented on 2026-09-10 against these revisions:
+
+- HyprFluxDocs starting revision: `7ecdd6b0414169784ba0e3ed92809258cfe708ae`
+- HyprFlux source: `f421b6bd108214079b56c435331ddbbfdfb89591`
+  (`v1.5.0`)
+- HyprFlux-ISO source: `025a7fadaf68099d32ce80cd060ec8f12a773efd`
+  (`v1.5.0`)
+
+The live `https://hyprflux.dev/install` response was verified byte-for-byte
+against the main-branch HyprFlux `install.sh`; both produced SHA-256
+`2c4d7245599d67514d377dc43cf967e7fd26dde83932b25b7c55b492b2c54991`.
+The canonical GitHub release, SourceForge latest download, Google Drive mirror,
+Arch Linux, Ventoy, balenaEtcher, and GitHub Issues links resolved during the
+phase audit.
+
+Stale ISO images `img-10.webp` through `img-14.webp` were removed because they
+showed reboot-before-provisioning and deleted package prompts. The obsolete
+direct-installer `welcome`, `yay-paru`, `select-option`, `pacman`, `yay`, and
+`complete` WebP/AVIF asset pairs were also removed after confirming that no
+remaining page referenced them.
+
+Verification completed with targeted stale-content and deleted-asset searches,
+`git diff --check`, a successful VitePress production build, and browser checks
+at 1440x900 and 390x844. The reviewed pages had no document-level horizontal
+overflow or browser console errors; retained ISO images loaded successfully.
+The existing pnpm esbuild-approval issue remains assigned to Phase 6, so the
+production build was invoked through the installed VitePress binary.

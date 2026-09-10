@@ -1,6 +1,6 @@
 ---
-title: Download HyprFlux ISO and Dotfiles
-description: Download HyprFlux as a complete operating system (ISO) or dotfiles for your existing Arch Linux installation. Multiple mirrors available.
+title: Download the HyprFlux ISO
+description: Download and verify the latest HyprFlux ISO from the canonical release channel or an approved mirror.
 pageClass: download-page
 sidebar: false
 aside: false
@@ -8,7 +8,7 @@ aside: false
 
 <div class="download-hero">
   <h1>Download HyprFlux</h1>
-  <p class="download-subtitle">Get HyprFlux as a complete operating system (ISO) or dotfiles for your existing Arch installation</p>
+  <p class="download-subtitle">Download the bootable ISO for a new installation, or use the installer guide for an existing Arch system</p>
 </div>
 
 <div class="slider-container">
@@ -79,26 +79,26 @@ aside: false
     <span class="download-card-label">Primary</span>
     <h3>GitHub Releases</h3>
     <p>Official release channel with version history</p>
-    <a href="https://github.com/ahmad9059/HyprFlux-ISO/releases/latest" target="_blank" rel="noreferrer" class="download-btn">
-      Download Latest Release
+    <a href="https://github.com/ahmad9059/HyprFlux/releases/latest" target="_blank" rel="noreferrer" class="download-btn">
+      Latest release
     </a>
   </div>
 
   <div class="download-card">
     <span class="download-card-label">Mirror</span>
     <h3>Google Drive</h3>
-    <p>Fast mirror download for quicker access</p>
+    <p>Mirror folder for alternative access</p>
     <a href="https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing" target="_blank" rel="noreferrer" class="download-btn">
-      Download from Drive
+      Open mirror folder
     </a>
   </div>
 
   <div class="download-card">
     <span class="download-card-label">Mirror</span>
     <h3>SourceForge</h3>
-    <p>Alternative mirror for reliable downloads</p>
+    <p>Latest ISO from the SourceForge mirror</p>
     <a href="https://sourceforge.net/projects/hyprflux/files/latest/download" target="_blank" rel="noreferrer" class="download-btn">
-      Download Latest Mirror
+      Download latest mirror
     </a>
   </div>
 </div>
@@ -107,9 +107,27 @@ aside: false
 The HyprFlux ISO is an **online installer**. An active internet connection is required during installation to download packages and configurations.
 :::
 
+## Verify the Download
+
+Download the `.iso` and its matching `.sha256` file from the **same release
+channel**, place them in the same directory, and run:
+
+```bash
+sha256sum -c hyprflux-*.iso.sha256
+```
+
+Continue only when the command reports `OK`. A checksum from a different
+release or mirror does not verify your ISO.
+
+## Installing on Existing Arch?
+
+You do not need the ISO. Follow the
+[existing Arch installation guide](/general/installation) to run the full
+HyprFlux provisioner on an installed Arch Linux system.
+
 ::: tip Need Help?
 
 - Visit our [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues) for support
-- Check the [Documentation](/general/quickstart) for detailed guides
+- Check [Getting Started](/general/quickstart) to choose an installation path
 - See the [ISO Installation Guide](/general/iso-installation) for step-by-step instructions
   :::

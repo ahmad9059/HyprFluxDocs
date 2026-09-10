@@ -1,218 +1,211 @@
 ---
 title: ISO Installation Guide - HyprFlux
-description: Complete step-by-step guide to install HyprFlux ISO. Learn how to create bootable USB, partition disks, and set up your Hyprland desktop.
+description: Download, verify, and install HyprFlux from the bootable online ISO using automatic or expert manual partitioning.
 ---
 
 # ISO Installation Guide
 
-This guide walks you through installing HyprFlux using the ISO image. This method installs a complete Arch Linux operating system with HyprFlux pre-configured.
+The HyprFlux ISO installs an Arch Linux base and provisions the complete
+HyprFlux desktop before the final reboot. It is an online installer and requires
+network access throughout the installation.
 
-## Prerequisites
+## Requirements
 
-Before you begin, ensure you have:
+- An x86_64 computer
+- At least 4 GB of RAM; 8 GB or more is recommended
+- At least 20 GB of target storage; the disk selector recommends about 25 GiB
+  or more
+- A USB drive large enough for the ISO
+- An internet connection that permits the installer's connectivity check and
+  package downloads
 
-- A USB drive (8GB or larger)
-- A computer with x86_64 architecture
-- At least 4GB of RAM (8GB+ recommended)
-- At least 30GB of free disk space
-- An active internet connection (required during installation)
+The source displays storage guidance but does not enforce a minimum. Leave
+additional space for applications and personal files.
 
-## Download Links
+## Download and Verify
 
-| Source              | Link                                                                                                        | Notes                    |
-| ------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------ |
-| **GitHub Releases** | [Download latest release](https://github.com/ahmad9059/HyprFlux-ISO/releases/latest)                        | Primary release channel  |
-| **Google Drive**    | [Download from Drive](https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing) | Mirror for faster access |
-| **SourceForge**     | [Download latest mirror](https://sourceforge.net/projects/hyprflux/files/latest/download)                   | Alternative mirror       |
+Download the latest `.iso` and matching `.sha256` file from the canonical
+[HyprFlux release](https://github.com/ahmad9059/HyprFlux/releases/latest).
+Alternative mirrors are listed on the [download page](/general/download).
 
-## Create a Bootable USB
-
-Using `dd`:
+Place both files in the same directory and verify them before writing the USB:
 
 ```bash
-sudo dd if=hyprflux-*.iso of=/dev/sdX bs=4M status=progress oflag=sync
+sha256sum -c hyprflux-*.iso.sha256
 ```
 
-Replace `/dev/sdX` with your USB device (e.g., `/dev/sdb`).
+Continue only when the output reports `OK`. Do not verify an ISO with a
+checksum obtained from another release channel.
 
-Using `balenaEtcher`:
+## Create the Bootable USB
 
-1. Download and install [balenaEtcher](https://www.balena.io/etcher/)
-2. Select the ISO file
-3. Select your USB drive
-4. Click "Flash"
-
-## Boot from USB
-
-1. Insert the bootable USB drive into your computer
-2. Restart your computer
-3. Enter the boot menu (usually F12, F10, F2, or Escape during startup)
-4. Select the USB drive from the boot menu
-5. Choose "HyprFlux" from the boot menu
-
-::: tip UEFI vs BIOS
-The ISO supports both UEFI and Legacy BIOS boot modes. Select the appropriate option for your system.
+::: danger The selected USB device will be erased
+`dd` writes to the entire destination device. Confirm the device with `lsblk`
+and replace `/dev/sdX` with the USB device, not one of its partitions. Choosing
+the wrong device destroys its data.
 :::
 
-## Installation Process
+```bash
+lsblk
+sudo dd bs=4M if=hyprflux-*.iso of=/dev/sdX status=progress oflag=sync
+```
 
-The HyprFlux installer will launch automatically after booting. It uses a TUI (Text User Interface) with the following steps:
+You can instead use [balenaEtcher](https://etcher.balena.io/) or another image
+writer that performs a raw ISO write.
 
-![Installer network setup screen](./assets/img-1.webp)
+## Boot the ISO
 
-![Installer welcome screen](./assets/img.webp)
+1. Insert the USB and open your firmware boot menu.
+2. Select the USB device.
+3. Choose the normal HyprFlux installer. A copy-to-RAM option is also available.
 
-### Step 0: Network Setup
+The image supports UEFI through GRUB and legacy BIOS through Syslinux. Secure
+Boot support is not currently documented by the installer source.
 
-The installer will automatically detect and configure your network connection using NetworkManager. If you need to connect to Wi-Fi, you can use `nmtui` before starting the installation.
+![HyprFlux UEFI boot menu](./assets/img-1.webp)
 
-![Network configuration screen](./assets/img-2.webp)
+![HyprFlux boot splash](./assets/img.webp)
 
-### Step 1: Welcome
+The live environment signs in as root on `tty1` and launches the text installer
+automatically. If you exit it, you remain at a root shell.
 
-The installer displays a welcome message with the HyprFlux logo and installation overview.
+## Installation Flow
 
-![Welcome screen with logo](./assets/img-3.webp)
+### 1. Network check
 
-### Step 2: Timezone Selection
+The installer requires a successful ping to `1.1.1.1`. Ethernet normally uses
+NetworkManager and DHCP. There is no Wi-Fi picker inside the installer; if the
+check fails, it exits to the shell and tells you to run:
 
-Select your timezone from the list or search for your location.
+```bash
+nmtui
+```
 
-![Timezone selection screen](./assets/img-4.webp)
+After connecting, restart the installer:
 
-### Step 3: Locale Selection
+```bash
+bash ~/hyprflux-install.sh
+```
 
-Choose your system locale (language and character encoding).
+![Installer network connectivity check](./assets/img-2.webp)
 
-![Locale selection screen](./assets/img-5.webp)
+### 2. Welcome and confirmation
 
-### Step 4: Keyboard Layout
+Review the requirements and confirm that you intend to install Arch Linux and
+HyprFlux. This confirmation does not erase a disk yet.
 
-Select your keyboard layout from the available options.
+![Installer welcome and requirements](./assets/img-3.webp)
 
-![Keyboard layout selection screen](./assets/img-6.webp)
+### 3. Regional settings
 
-### Step 5: Hostname
+Select the timezone, regional locale, and console keyboard layout.
 
-Enter a hostname for your computer (e.g., `hyprflux-pc`).
+- Timezone detection may suggest a value based on your network.
+- The locale selection controls regional date and time formatting; the
+  installed system language remains `en_US.UTF-8`.
+- Cancelling these selectors uses documented fallback values.
 
-![Hostname input screen](./assets/img-7.webp)
+![Timezone selection](./assets/img-4.webp)
 
-### Step 6: User Creation
+![Regional locale selection](./assets/img-5.webp)
 
-Create a user account:
+![Console keyboard selection](./assets/img-6.webp)
 
-- Enter your full name
-- Enter a username
-- Set a password
-- Confirm the password
+### 4. Hostname and user
 
-![User creation screen](./assets/img-8.webp)
+Choose a hostname, then create a lowercase username and password. The installer
+asks for a username, not a separate full name. Keep the password: it is used for
+the normal account and the root account on the installed system.
 
-::: warning Important
-Remember your password! You'll need it to log in after installation.
+![Hostname prompt](./assets/img-7.webp)
+
+![Username prompt](./assets/img-8.webp)
+
+### 5. Choose a disk method
+
+![Automatic and manual disk options](./assets/img-9.webp)
+
+**Automatic mode** creates a GPT/ext4 installation and erases the entire
+selected disk. UEFI systems receive an EFI System Partition; BIOS systems
+receive a BIOS Boot partition. Swap is optional.
+
+Before erasing anything, the installer shows the selected device and requires
+you to type the exact lowercase word `yes`. Destruction begins immediately
+after that confirmation by clearing the partition table and filesystem
+signatures.
+
+::: danger Automatic mode destroys the selected disk
+Back up all required data and verify the device model, path, and size. The
+installer cannot undo the wipe.
 :::
 
-### Step 7: Disk Partitioning
+**Manual mode** opens an unrestricted root shell for you to partition, format,
+and mount storage yourself. Mount root at `/mnt/archinstall`; on UEFI, mount the
+EFI System Partition at `/mnt/archinstall/boot`.
 
-Choose your partitioning method:
+Manual mode is an expert workflow. The installer checks only that the required
+mountpoints are mounted. It does not validate filesystem types, partition
+flags, available capacity, encryption, dual-boot safety, or that all mounts
+belong to the intended device.
 
-**Automatic (Recommended for beginners):**
+### 6. Install and configure Arch Linux
 
-- Wipes the entire selected disk
-- Creates EFI, swap, and root partitions automatically
-- Best for clean installations
+The installer selects mirrors, runs `pacstrap`, writes a UUID-based `fstab`,
+and configures timezone, locale, keyboard, hostname, users, sudo, pacman,
+NetworkManager, initramfs, and GRUB inside the target system. Package and mirror
+operations may be retried automatically.
 
-**Manual (Advanced):**
+### 7. Provision HyprFlux in chroot
 
-- Allows custom partitioning
-- You must create and format partitions yourself
-- Best for dual-boot or custom setups
+Before rebooting, the ISO fetches the HyprFlux revision pinned by that ISO
+release and runs the desktop provisioning inside the target system. This stage
+installs the base desktop and AUR packages, runs the numbered HyprFlux modules,
+configures SDDM, Bluetooth and networking, and selects the graphical boot
+target.
 
-![Disk partitioning demonstration](./assets/output.gif)
+The installer then rebuilds and checks the initramfs and validates the root UUID
+used by GRUB. A failed boot check prevents the automatic reboot.
 
-::: danger Data Loss Warning
-Automatic partitioning will erase all data on the selected disk. Make sure to backup important data before proceeding!
-:::
+### 8. Final reboot
 
-### Step 8: Base System Installation
+On success, remove the USB or detach the ISO and press Enter. The installer
+syncs data, unmounts the target, disables swap, verifies cleanup, and reboots.
 
-The installer will:
+Full HyprFlux provisioning happens before this reboot. Current releases do not
+reboot into a TTY to ask for package groups or start a second desktop installer.
 
-- Format the partitions
-- Install the base Arch Linux system using `pacstrap`
-- Install essential packages
+## First Desktop Login
 
-This step requires an active internet connection and may take 10-20 minutes depending on your connection speed.
+Boot the installed system and sign in through SDDM with the account created
+during installation. At the first desktop login, a narrowly scoped fixup:
 
-![Base system installation progress](./assets/img-10.webp)
+- applies GTK, icon, cursor, font, and dark-mode settings;
+- applies `nwg-look` settings;
+- enables PipeWire and WirePlumber user services;
+- retries any AUR packages recorded as missing.
 
-After the base Arch Linux installation is complete, it will ask for reboot. Press Enter to reboot the system.
+If packages remain unavailable, that retry runs again on a later login. The
+installer does not configure automatic login.
 
-### Step 9: System Reboot
+## Logs and Recovery Information
 
-After the system reboots, it will ask you to enter the username and password you created earlier.
+After installation, inspect retained HyprFlux-stage logs with:
 
-![Login screen after reboot](./assets/img-11.webp)
+```bash
+less "$HOME/HyprFlux/logs/iso-wrapper.log"
+less "$HOME/HyprFlux/logs/first-boot-aur.log"
+ls -la "$HOME/HyprFlux/logs" "$HOME/HyprFlux/logs/installer"
+```
 
-### Step 10: HyprFlux Integration
+The first-boot AUR log exists only after that fixup runs. Early partitioning,
+formatting, and `pacstrap` progress logs are temporary and are not promised to
+survive a failed live session.
 
-The HyprFlux installer starts the installation of HyprFlux. It may ask for your password again.
+If the installer exits before modifying storage, correct the reported problem
+and restart it with `bash ~/hyprflux-install.sh`. After partitioning begins, do
+not rerun or reformat blindly. Record the error and inspect the current mounts
+and devices before taking further action.
 
-![HyprFlux installation progress](./assets/img-12.webp)
-
-This step requires an active internet connection and may take 10-20 minutes depending on your connection speed to set everything up. **It may ask for your sudo password 2-3 times, so enter it when needed.**
-
-### Step 11: Optional Packages Installation
-
-The installer will ask to install optional packages from Pacman and Yay. Install them according to your preference.
-
-![Optional packages selection screen](./assets/img-13.webp)
-
-### Step 12: Installation Complete
-
-**Congratulations! HyprFlux installation is complete.**
-
-![Installation complete screen](./assets/img-14.webp)
-
-::: tip Welcome to HyprFlux!
-You're all set! Enjoy your new HyprFlux desktop environment. Don't forget to star the repository if you like it!
-:::
-
-## First Boot
-
-After rebooting:
-
-1. **Bootloader:** Select HyprFlux from the GRUB menu
-2. **Login:** Enter your username and password at the SDDM login screen
-3. **First-Boot Setup:** The system will automatically complete initial setup:
-   - Configure GTK themes
-   - Set up PipeWire audio
-   - Apply final configurations
-4. **Desktop:** You'll be logged into the HyprFlux desktop
-
-## Post-Installation
-
-### Initial Setup
-
-1. **Update the system:**
-   ```bash
-   sudo pacman -Syu
-   ```
-
-2. **Customize your desktop:**
-   - Edit configs in `~/.config/`
-   - Change wallpapers in `~/Pictures/wallpapers/`
-   - Modify keybindings in `~/.config/hypr/`
-
-### Useful Locations
-
-- **Configs:** `~/.config/`
-- **Wallpapers:** `~/Pictures/wallpapers/`
-- **Themes:** `~/.themes/`
-- **Icons:** `~/.icons/`
-
-### Getting Help
-
-- Check the [Keybindings](/keybindings/hyprland) reference
-- Report issues on [GitHub](https://github.com/ahmad9059/HyprFlux/issues)
+For help, open a [HyprFlux issue](https://github.com/ahmad9059/HyprFlux/issues)
+and include the ISO release, firmware mode, installation stage, device layout,
+and any retained logs.

@@ -1,25 +1,26 @@
 # HyprFlux Docs
 
-HyprFlux is an opinionated Arch Linux desktop built on the Hyprland compositor. This repository contains the public documentation site (VitePress + Tailwind CSS) and the Vercel serverless endpoints that deliver the one-line installation script used by the main HyprFlux dotfiles project.
+HyprFlux is an opinionated Arch Linux desktop platform built on the Hyprland compositor. This repository contains the public documentation site (VitePress + Tailwind CSS) and the Vercel serverless endpoints that deliver the one-line installer used by the main HyprFlux project.
 
 ## Highlights
-- One-command installer that streams the latest `install.sh` from the HyprFlux dotfiles repository via `https://hyprflux.dev/install`.
+- Two supported installation paths: a bootable ISO for a new system and full HyprFlux provisioning on an existing Arch Linux system.
+- One-command installer that streams the latest `install.sh` from the HyprFlux repository via `https://hyprflux.dev/install`.
 - Complete Arch Linux walkthrough plus post-install guides for Hyprland, Waybar, Rofi, Hyprlock, SwayNC, Wlogout, Kitty, Neovim, Cava, and more.
 - Modular configuration references for every Hyprland include (`UserConfigs`, `animations`, `scripts`, monitor layouts, keybindings, environment variables, window rules).
 - Catppuccin-themed VitePress site with Tailwind CSS 4 tooling and local search.
 - Vercel functions that proxy public, testing, and private install scripts with optional credential gating.
 
 ## Install HyprFlux on Arch
-Run the installer on a fresh or existing Arch Linux system:
+Run the installer on an existing Arch Linux system:
 
 ```bash
 sh <(curl -fsSL https://hyprflux.dev/install)
 ```
 
-The endpoint serves `install.sh` directly from the HyprFlux dotfiles repository. Keep a terminal open; the script will prompt for sudo, AUR helper selection, and component choices (sddm, themes, bluetooth, zsh, dots, optional QuickShell/Pokemon/ROG presets).
+The endpoint serves `install.sh` directly from the HyprFlux repository. The script bootstraps the checkout, updates the system, runs the automated base installer, deploys the maintained configuration through `dotsSetup.sh`, and then offers a reboot. It requests sudo authentication but does not present AUR-helper or component-selection menus.
 
 ## Documentation Map
-- `general/` — Showcase, quickstart, and the primary dots installation guide.
+- `general/` — Showcase, quickstart, ISO installation, and the primary existing-Arch installation guide.
 - `complete/` — Full Arch Linux installation using `archinstall`, then HyprFlux deployment.
 - `keybindings/` — Keyboard shortcuts for Hyprland, Neovim, and Tmux.
 - `features/` — Deep dives into Hyprland, Waybar, Hyprlock, Rofi, SwayNC, Wlogout, Kitty, QT theming, Neovim, and Cava configurations.

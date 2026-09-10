@@ -1,41 +1,44 @@
 ---
 title: Getting Started - HyprFlux
-description: Learn how to get started with HyprFlux. Download the ISO or install dotfiles for your existing Arch Linux system.
+description: Choose the HyprFlux ISO for a new system or fully provision HyprFlux on an existing Arch Linux installation.
 ---
 
 # Getting Started
 
-Welcome to **HyprFlux** - A complete operating system built on Arch Linux!
+HyprFlux is an Arch Linux desktop platform powered by Hyprland. Choose one of
+two installation paths; both install the maintained desktop stack and
+configuration.
 
-## Getting Started
+## Choose an Installation Path
 
-**HyprFlux** is now available in two forms:
+### Install a new system from the ISO
 
-1. **Complete Operating System (ISO)** - A full Arch Linux distribution with HyprFlux pre-configured
-2. **Dotfiles Distribution** - Configuration files for existing Arch Linux installations
+Use the bootable ISO when HyprFlux will own the target system. The online
+installer can wipe and partition a disk, installs Arch Linux, and provisions
+HyprFlux before the final reboot.
 
-Both deliver the same **beautiful, productive, and modern desktop environment** powered by the **Hyprland compositor**.
+::: danger Back up the target disk
+Automatic partitioning erases the entire selected disk. Verify the device and
+back up anything important before continuing.
+:::
 
-## Installation Options
+[Download the latest ISO](/general/download) or follow the
+[ISO installation guide](/general/iso-installation).
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+### Provision an existing Arch system
 
-  <div class="install-card">
-    <h3 id="c1-h3" class="text-xl font-semibold mb-3">💿 Download HyprFlux</h3>
-    <p class="install-card-desc mb-4">Complete Operating System (ISO) - A full Arch Linux distribution with HyprFlux pre-configured</p>
-    <a id="c1-a" href="/general/download" class="install-btn">
-      Download ISO
-    </a>
-  </div>
+Use the existing-Arch installer when Arch Linux is already installed. This is
+not a configuration-only copy: it updates the system, installs packages and
+services, replaces managed configuration directories, applies themes, and
+configures the desktop.
 
-  <div class="install-card">
-    <h3 id="c1-h3" class="text-xl font-semibold mb-3">✨ Dots Installation</h3>
-    <p class="install-card-desc mb-4">Setup the core HyprFlux dotfiles with window management, keybindings, and theme configurations.</p>
-    <a id="c1-a" href="/general/installation" class="install-btn">
-      Install Dotfiles
-    </a>
-  </div>
-</div>
+::: warning Existing configuration is replaced
+The installer creates `~/dotfiles_backup`, then replaces configuration
+directories managed by HyprFlux. A later rerun replaces that backup, so keep a
+separate copy of anything you need to preserve.
+:::
+
+[Install HyprFlux on existing Arch](/general/installation).
 
 ## Keybindings
 
@@ -43,11 +46,7 @@ Both deliver the same **beautiful, productive, and modern desktop environment** 
 Knowing the keybindings is crucial! Without them, navigating the Hyprland environment will feel difficult. Take a few minutes to learn them before diving in.
 :::
 
-<div class="mt-6">
-  <a id="c1-a" href="/keybindings/hyprland" class="install-btn">
-    View Keybindings
-  </a>
-</div>
+[View the Hyprland keybindings](/keybindings/hyprland).
 
 ## Next Steps
 
@@ -60,13 +59,9 @@ After installation, explore these resources to get the most out of HyprFlux:
 
 ## Community and Support
 
-Need help, want to contribute, or just share your setup? Join our growing community!
-
-<div class="flex gap-4 mt-6">
-  <a id="c1-a" href="https://github.com/ahmad9059/HyprFlux" class="install-btn-outline">GitHub</a>
-  <a id="c1-a" href="#" class="install-btn-outline">Discord</a>
-  <a id="c1-a" href="#" class="install-btn-outline">Reddit</a>
-</div>
+Use [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues) to report a
+problem. Include the installation path you used and the relevant files from
+`~/HyprFlux/logs/`.
 
 ## Documentation Structure
 
@@ -74,7 +69,7 @@ Need help, want to contribute, or just share your setup? Join our growing commun
 | ------------------------- | ------------------------------------------------- |
 | **Getting Started**       | Download, installation guides, and quick start    |
 | **ISO Installation**      | Complete OS installation with the ISO             |
-| **Dotfiles Installation** | Configuration-only installation for existing Arch |
+| **Existing Arch Installation** | Full HyprFlux provisioning on an installed Arch system |
 | **Keybindings**           | Keyboard shortcuts reference                      |
 | **Features**              | Individual component documentation                |
 | **Configuration**         | Detailed config file reference                    |

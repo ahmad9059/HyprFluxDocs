@@ -86,6 +86,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: "Quick Start", link: "/general/quickstart.md" },
+          { text: "Download ISO", link: "/general/download.md" },
           { text: "Showcase", link: "/general/showcase.md" },
         ],
       },
@@ -100,12 +101,15 @@ export default defineConfig({
         ],
       },
       {
-        text: "Dotfiles Installation",
+        text: "Existing Arch Installation",
         collapsed: false,
         items: [
-          { text: "Dots Installation", link: "/complete/hyprflux.md" },
           {
-            text: "Arch Linux Installation",
+            text: "Install on Existing Arch",
+            link: "/general/installation.md",
+          },
+          {
+            text: "Prepare Arch Linux",
             link: "/complete/arch.md",
           },
         ],

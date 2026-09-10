@@ -1,8 +1,8 @@
 # HyprFluxDocs Current-Source Modernization
 
-> Status: **Phase 1 complete and owner-approved; Phase 2 is ready to begin.** No
-> public documentation, application, installer, or configuration implementation
-> has been changed by this planning initiative.
+> Status: **Phases 1-2 complete; Phase 3 is ready to begin.** Product,
+> installation, download, and release journeys now reflect the pinned v1.5.0
+> sources.
 >
 > Source request: produce a detailed six-phase plan to replace old Hyprland
 > syntax and stale HyprFlux documentation, using the sibling HyprFlux checkout
@@ -197,8 +197,8 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 | Phase | Title | Status |
 |---|---|---|
 | 1 | [Validate Current State and Confirm Architecture](./phase-01-validate-current-state.md) | Complete; approved 2026-09-10 |
-| 2 | [Modernize Product, Installation, and Release Journeys](./phase-02-installation-and-releases.md) | Ready to begin |
-| 3 | [Rebuild the Hyprland Reference for Lua](./phase-03-hyprland-lua-reference.md) | Pending Phase 2 |
+| 2 | [Modernize Product, Installation, and Release Journeys](./phase-02-installation-and-releases.md) | Complete; verified 2026-09-10 |
+| 3 | [Rebuild the Hyprland Reference for Lua](./phase-03-hyprland-lua-reference.md) | Ready to begin |
 | 4 | [Refresh Desktop Components, Themes, and Wallpapers](./phase-04-desktop-components.md) | Pending Phase 3 |
 | 5 | [Rebuild Keybindings, Scripts, Hardware, and Troubleshooting](./phase-05-operations-reference.md) | Pending Phase 4 |
 | 6 | [Integrate Navigation, Metadata, Drift Checks, and Final QA](./phase-06-integrated-qa.md) | Pending Phases 2-5 |
@@ -240,7 +240,7 @@ domain rather than mixing all pages into one unreviewable rewrite.
 
 ## 7. Next Step
 
-Begin Phase 2 on a scoped branch using the decisions in Section 3. Re-record
-the current HyprFlux and HyprFlux-ISO revisions at the phase start and inspect
-changes since the Phase 1 baselines. Phase 1 produced evidence and decisions
-only; no public documentation implementation was performed.
+Begin Phase 3 using the finalized installation terminology and record the
+current HyprFlux revision before editing. Phase 2 established the ISO and
+existing-Arch journeys; compositor configuration and Lua authoring remain
+within Phase 3.

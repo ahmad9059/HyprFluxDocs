@@ -1,224 +1,146 @@
-# Dotfiles Installation
+# Install HyprFlux on Existing Arch
 
-This guide covers installing HyprFlux configurations on an existing Arch Linux system. If you want to install the complete operating system with automated partitioning, use the [ISO Installation](/general/iso-installation) instead.
+Use this path when Arch Linux is already installed. The HyprFlux installer
+performs full desktop provisioning: it updates the system, installs packages
+and services, deploys managed configuration, applies themes, and configures
+hardware-dependent settings.
 
-::: info Not for Clean Installs
-This method is for **existing Arch Linux installations**. For clean installations on new hardware, use the [ISO Installation](/general/iso-installation) method.
+For a new machine where the installer should create the Arch system and
+partition the target disk, use the [ISO installation guide](/general/iso-installation).
+
+::: warning This is not a configuration-only install
+HyprFlux makes system-wide package, service, login-manager, boot-theme, shell,
+and configuration changes. Read the safety notes and keep an independent backup
+before running it on a system you care about.
 :::
 
-## Prerequisites
+## Requirements
 
-Before installing HyprFlux dotfiles, ensure you have:
+- Arch Linux on an x86_64 system
+- A non-root user with `sudo` access
+- An active internet connection
+- At least 4 GB of RAM and 10 GB of free storage
+- `curl`, `git`, and `sudo`
 
-- An existing Arch Linux installation
-- A working internet connection
-- `sudo` privileges
-- Basic tools: `curl`, `git`, `sudo`
+The installer performs a full `pacman -Syu`. Resolve any existing package or
+keyring problems before continuing.
 
-## Installation Methods
+## Before You Install
 
-### Method 1: One-Liner Install (Recommended)
+Copy important files somewhere outside `~/.config` and outside
+`~/dotfiles_backup`. During installation:
 
-Run this command in your terminal:
+- the previous `~/dotfiles_backup` directory is deleted;
+- the current `~/.config`, `.zshrc`, and `.tmux.conf` are copied into a new
+  `~/dotfiles_backup`;
+- each configuration directory managed by HyprFlux is then removed and
+  replaced from the checkout;
+- Neovim, Tmuxifier, wallpapers, monitor profiles, and some theme directories
+  are also refreshed by their owning modules.
 
-```bash [bash]
+On a rerun, the backup therefore represents the state immediately before that
+rerun, not necessarily your original pre-HyprFlux setup.
+
+## Run the Installer
+
+### One-line install
+
+```bash
 sh <(curl -fsSL https://hyprflux.dev/install)
 ```
 
-### Method 2: Manual Install
+The endpoint serves the current `install.sh` from the main
+[HyprFlux repository](https://github.com/ahmad9059/HyprFlux).
 
-If you prefer to review the code first:
+### Review the source first
 
-1. Clone the repository:
+The current local-install path expects the checkout at `~/HyprFlux` unless you
+explicitly configure another path:
+
 ```bash
-git clone https://github.com/ahmad9059/HyprFlux.git
-cd HyprFlux
+git clone https://github.com/ahmad9059/HyprFlux.git "$HOME/HyprFlux"
+cd "$HOME/HyprFlux"
+bash install.sh
 ```
 
-2. Run the installer:
+## What Happens
+
+1. **Bootstrap:** The one-line script installs Git if needed, clones HyprFlux
+   to `~/HyprFlux`, or attempts a fast-forward update of an existing checkout.
+2. **Privilege setup:** The installer validates sudo once and keeps the
+   credential active while it runs.
+3. **System preparation:** It initializes the Arch keyring and performs a full
+   system update, ensuring Git and Vim are installed.
+4. **Base desktop:** The merged base installer provisions the fixed Hyprland
+   package set, PipeWire, fonts, SDDM, Bluetooth, Thunar, XDG portals, Zsh, and
+   hardware-dependent actions. Yay is bootstrapped automatically when no
+   supported AUR helper is present.
+5. **HyprFlux modules:** `dotsSetup.sh` runs the numbered modules in order for
+   backup, configuration deployment, Neovim, themes, Waybar, SDDM, GTK, boot
+   theming, Tmux, Zsh, wallpapers, web apps, cursor, monitors, and hardware
+   detection.
+6. **Reboot handoff:** Outside ISO mode, the installer asks whether to reboot.
+   Pressing Enter alone selects No, so you can inspect logs first.
+
+There is no AUR-helper picker, component picker, or optional package menu in
+the current installer.
+
+## Configuration Ownership
+
+The repository's `.config/` tree is the maintained source. During the normal
+install, module 02 deploys it into your home directory. The merged
+`base-dots/config/` tree is checked for parity but is not a second deployment
+source.
+
+`base-dots/copy.sh` is a separate manual workflow and is not called by the
+normal installer. Do not substitute it for this guide unless you specifically
+intend to run that lower-level copy path.
+
+## After Installation
+
+1. Review the logs before rebooting if the installer reported warnings.
+2. Reboot when ready.
+3. Sign in through SDDM with your existing user account.
+4. Read the [Hyprland keybindings](/keybindings/hyprland) before navigating the
+   desktop.
+
+Useful locations:
+
+| Location | Purpose |
+|---|---|
+| `~/HyprFlux/` | Installer checkout and retained logs |
+| `~/HyprFlux/logs/install.log` | Top-level installer output |
+| `~/HyprFlux/logs/dotsSetup.log` | Numbered module output |
+| `~/HyprFlux/logs/installer/` | Base-installer and package logs |
+| `~/dotfiles_backup/` | Backup created immediately before the latest run |
+| `~/.config/` | Installed application configuration |
+| `~/Pictures/wallpapers/` | Installed wallpaper collection |
+
+## If Installation Reports a Failure
+
+Do not assume the final reboot prompt means every module succeeded. Inspect the
+retained logs first:
+
 ```bash
-chmod +x install.sh
-./install.sh
+less "$HOME/HyprFlux/logs/install.log"
+less "$HOME/HyprFlux/logs/dotsSetup.log"
+ls -la "$HOME/HyprFlux/logs/installer"
 ```
 
----
+Check the final lines around the first reported error and include the relevant
+log when opening a [GitHub issue](https://github.com/ahmad9059/HyprFlux/issues).
+Because reruns replace `~/dotfiles_backup` and refresh several managed
+directories, preserve the current logs and backup before trying again.
 
-## Installation Process
+## ISO or Existing Arch?
 
-### Step 1: Enter Sudo Password
+| Capability | HyprFlux ISO | Existing Arch installer |
+|---|---|---|
+| Installs the Arch base system | Yes | No |
+| Can partition a target disk | Yes | No |
+| Provisions the complete HyprFlux desktop | Yes | Yes |
+| Intended for an existing Arch system | No | Yes |
+| Replaces managed user configuration | On the new system | On the existing system |
 
-The installer will ask for your sudo password. Enter it when prompted.
-
-![welcome](/welcome.webp)
-
-### Step 2: Select AUR Helper
-
-Choose an AUR helper (`yay` or `paru`). We recommend **yay**.
-
-![yay-paru](/yay-paru.webp)
-
-### Step 3: Select Installation Options
-
-Choose which components to install:
-
-![select-option](/select-option.webp)
-
-#### Essential Components (Recommended)
-
-| Component | Description |
-|-----------|-------------|
-| `input_group` | Add your user to the input group for Waybar functionality |
-| `sddm` | Display manager for the login screen |
-| `sddm_theme` | Beautiful custom SDDM theme |
-| `gtk_themes` | GTK theme integration |
-| `bluetooth` | Bluetooth support |
-| `thunar` | File manager |
-| `xdph` | Desktop portal for Hyprland |
-| `zsh` | Enhanced shell with Oh My Zsh |
-| `dots` | Core dotfiles and configurations |
-
-#### Optional Components
-
-| Component | Description |
-|-----------|-------------|
-| `QuickShell` | QuickShell for desktop-like overview |
-| `Pokemon` | Add Pokémon color scripts to your terminal |
-| `Rog` | Pre-configured setup for ROG laptops |
-
-::: tip Recommendation
-For the best experience, install all essential components. Optional components can be added later.
-:::
-
-### Step 4: Wait for Installation
-
-After selecting your options, the installer will:
-
-1. Install required packages from official repositories
-2. Install packages from AUR
-3. Copy dotfiles to your home directory
-4. Configure themes, icons, and cursors
-5. Set up SDDM login theme
-6. Configure Zsh shell
-7. Apply all configurations
-
-This process typically takes 15-45 minutes depending on your internet connection and system speed.
-
-::: info Sudo Password
-During the process, it may ask for your **sudo password** 2–3 times. Stay nearby to enter it when needed.
-:::
-
----
-
-## What's Installed
-
-After installation completes, you'll have:
-
-### Desktop Environment
-- **Hyprland** - Tiling Wayland compositor
-- **Waybar** - Status bar with custom modules
-- **Rofi** - Application launcher and menu system
-- **SDDM** - Login display manager with HyprFlux theme
-
-### Terminal & Shell
-- **Kitty** - GPU-accelerated terminal
-- **Zsh** - Shell with Oh My Zsh and custom plugins
-- **Tmux** - Terminal multiplexer
-
-### System Components
-- **GTK Themes** - HyprFlux dark theme
-- **Icons & Cursors** - Custom icon packs
-- **Wallpapers** - Curated wallpaper collection
-- **Fonts** - Nerd Fonts and system fonts
-
-### Optional (if selected)
-- **Neovim** - Text editor with full IDE features
-- **Bluetooth** - Bluetooth management tools
-- **Thunar** - File manager with customizations
-
----
-
-## Post-Installation
-
-### First Boot
-
-1. **Reboot your system** (if requested by the installer)
-2. **Log in** through SDDM
-3. **Wait for first-boot setup** - The system will automatically complete initial configuration
-4. **Start using HyprFlux!**
-
-### Important Locations
-
-| Location | Description |
-|----------|-------------|
-| `~/.config/` | All application configurations |
-| `~/.config/hypr/` | Hyprland window manager settings |
-| `~/.config/waybar/` | Status bar configuration |
-| `~/.config/rofi/` | Launcher themes |
-| `~/Pictures/wallpapers/` | Wallpapers |
-| `~/.themes/` | GTK themes |
-| `~/.icons/` | Icon packs |
-| `~/dotfiles_backup/` | Backup of your previous configs |
-
-### Backup
-
-The installer automatically backs up your existing dotfiles to `~/dotfiles_backup/` before replacing them. You can restore them if needed.
-
----
-
-## Troubleshooting
-
-### Installation Fails
-
-If the installation fails:
-1. Check your internet connection
-2. Ensure you have sufficient disk space
-3. Update your system: `sudo pacman -Syu`
-4. Try running the installer again
-
-### Packages Fail to Install
-
-If AUR packages fail:
-1. Try a different AUR helper (yay vs paru)
-2. Manually install problematic packages
-3. Check AUR package status online
-
-### Desktop Doesn't Start
-
-If Hyprland doesn't start:
-1. Check GPU drivers are installed
-2. Review logs: `hyprctl logs`
-3. Verify you're in the correct groups: `groups $USER`
-
-### Missing Features
-
-If some features don't work:
-1. Run the installer again and select missing components
-2. Check [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues) for known problems
-3. Ask for help in the community
-
----
-
-## Next Steps
-
-- [Quick Start Guide](/general/quickstart) - Learn the basics
-- [Keybindings](/keybindings/hyprland) - Master the keyboard shortcuts
-- [Configuration](/hyprland/hyprland) - Customize your setup
-
-::: tip Enjoy!
-You're all set! Enjoy your newly configured HyprFlux desktop.
-:::
-
----
-
-## Comparison: ISO vs Dotfiles
-
-| Feature | ISO Installation | Dotfiles Installation |
-|---------|-----------------|----------------------|
-| Clean system install | ✅ Yes | ❌ No (requires Arch) |
-| Automated partitioning | ✅ Yes | ❌ No |
-| Complete OS | ✅ Yes | ❌ Configs only |
-| Existing system | ❌ No | ✅ Yes |
-| Full control | ❌ Guided | ✅ More control |
-| Best for | New installs | Existing Arch users |
-
-Not sure which to choose? See the [Download page](/general/download) for more details.
+If you still need an Arch base, use the [HyprFlux ISO](/general/iso-installation)
+or follow the [Arch preparation guide](/complete/arch).

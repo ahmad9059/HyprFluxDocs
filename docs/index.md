@@ -5,7 +5,7 @@ layout: home
 head:
   - - meta
     - name: description
-      content: HyprFlux is a complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment. Download the ISO or install dotfiles.
+      content: HyprFlux is a complete Arch Linux desktop platform. Install it from the bootable ISO or provision it on an existing Arch Linux system.
   - - meta
     - name: keywords
       content: HyprFlux, Hyprland, Arch Linux, Linux Desktop, Wayland, Tiling Window Manager
@@ -25,7 +25,7 @@ hero:
       text: Quick Start
       link: /general/quickstart.md
     - theme: alt
-      text: Install Dots
+      text: Install on Arch
       link: /general/installation.md
     - theme: alt
       text: Showcase
@@ -34,7 +34,7 @@ hero:
 features:
   - icon: 🛠️
     title: Minimalist
-    details: Focused only on the essential tools, without unnecessary bloat.
+    details: A cohesive desktop stack with one maintained installation path and configuration set.
   - icon: ⏱️
     title: Productive
     details: Every component is crafted with productivity and workflow in mind.
@@ -43,5 +43,5 @@ features:
     details: Beautiful and eye-catching theme that feels modern and appealing.
   - icon: 🚀
     title: Fast
-    details: Lightweight configuration with a minimal number of packages for blazing speed.
+    details: A responsive Hyprland desktop configured for everyday work.
 ---
