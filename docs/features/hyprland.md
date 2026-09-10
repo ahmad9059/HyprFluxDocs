@@ -1,265 +1,82 @@
 ---
-title: Hyprland Configuration - HyprFlux
-description: Complete Hyprland configuration guide for HyprFlux. Learn about modular config files, window rules, animations, keybindings, and customizations.
+title: Hyprland in HyprFlux
+description: Learn how HyprFlux organizes Hyprland 0.55+ with a modular Lua configuration, generated display state, and user-owned overrides.
 ---
 
-# Hyprland Configuration
+# Hyprland in HyprFlux
 
-Hyprland is the core Wayland compositor that powers the HyprFlux desktop environment. This configuration provides a highly customizable and performant tiling window manager experience.
+Hyprland is the Wayland compositor at the center of the HyprFlux desktop.
+HyprFlux 1.5 uses Hyprland 0.55 or newer and configures the compositor through
+Lua. The old `hyprland.conf` entrypoint and sourced Hyprlang fragments are no
+longer supported.
 
-## Overview
+## What HyprFlux Adds
 
-The HyprFlux Hyprland configuration is modular and organized into several key components:
+- A modular `~/.config/hypr/hyprland.lua` entrypoint
+- User-owned modules for applications, environment, settings, appearance,
+  animations, bindings, rules, and startup
+- Base bindings plus separate user and laptop binding layers
+- Generated Lua output for monitors and workspace assignments
+- A static shared color palette used across the desktop
+- Hyprlock and Hypridle integration for locking and idle behavior
 
-- **Main Configuration**: `hyprland.conf` - Entry point that sources all other configs
-- **User Configurations**: Customizable settings in `UserConfigs/` directory
-- **Scripts**: Automation and utility scripts in `scripts/` directory
-- **Animations**: Various animation presets in `animations/` directory
+## Start Customizing
 
-## Configuration Structure
+Use the file that owns the behavior you want to change:
 
+| Goal | Start here |
+|---|---|
+| Change terminal, editor, file manager | `UserConfigs/user-defaults.lua` |
+| Change input, layout, cursor, VRR | `UserConfigs/user-settings.lua` |
+| Change gaps, borders, blur, opacity | `UserConfigs/user-decorations.lua` |
+| Change animation behavior | `UserConfigs/user-animations.lua` |
+| Add application shortcuts | `UserConfigs/user-keybinds.lua` |
+| Place or style application windows | `UserConfigs/window-rules.lua` |
+| Start session applications | `UserConfigs/startup-apps.lua` |
+| Configure outputs and workspace assignment | `nwg-displays` |
+
+Read the [configuration architecture](/hyprland/) before editing. It explains
+which files are user-owned, generated, or installer-managed.
+
+## Current Lua Model
+
+HyprFlux modules use the `hl` API rather than Hyprlang assignment lines:
+
+```lua
+local defaults = require("UserConfigs.user-defaults")
+
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.config({ general = { layout = "dwindle" } })
+hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(defaults.term))
 ```
-~/.config/hypr/
-├── hyprland.conf           # Main configuration file
-├── configs/                # Default configurations
-├── UserConfigs/           # User-customizable configurations
-├── scripts/               # Utility scripts
-├── animations/            # Animation presets
-├── hyprlock/             # Lock screen configurations
-└── wallpaper_effects/    # Wallpaper management
-```
 
-## Key Features
+The complete shortcut lookup belongs in the
+[Hyprland keybinding reference](/keybindings/hyprland). The pages in this
+section focus on authoring and ownership instead of duplicating that table.
 
-### 1. Modular Configuration System
+## Validate Changes
 
-The configuration is split into logical modules for easy customization:
+Check Lua syntax and then validate the complete compositor configuration:
 
 ```bash
-# Main configuration sources
-source= $UserConfigs/Startup_Apps.conf      # Startup applications
-source= $UserConfigs/ENVariables.conf       # Environment variables
-source= $UserConfigs/WindowRules.conf       # Window and layer rules
-source= $UserConfigs/UserDecorations.conf   # Visual decorations
-source= $UserConfigs/UserAnimations.conf    # Animation settings
-source= $UserConfigs/UserKeybinds.conf      # Custom keybindings
-source= $UserConfigs/UserSettings.conf      # Main Hyprland settings
+luac -p ~/.config/hypr/hyprland.lua
+Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 ```
 
-### 2. User Customization
-
-#### Startup Applications (`UserConfigs/Startup_Apps.conf`)
-
-Configure which applications launch at startup:
+Inside a running session, reload and inspect errors with:
 
 ```bash
-# Example startup applications
-exec-once = waybar
-exec-once = swaync
-exec-once = swww-daemon
-exec-once = hypridle
-```
-
-#### Environment Variables (`UserConfigs/ENVariables.conf`)
-
-Set environment variables for your session:
-
-```bash
-# Example environment variables
-env = XCURSOR_SIZE,24
-env = HYPRCURSOR_SIZE,24
-env = QT_QPA_PLATFORM,wayland
-env = GDK_BACKEND,wayland,x11
-```
-
-#### Window Rules (`UserConfigs/WindowRules.conf`)
-
-Define how specific applications behave:
-
-```bash
-# Example window rules
-windowrule = float, ^(pavucontrol)$
-windowrule = float, ^(blueman-manager)$
-windowrule = size 800 600, ^(pavucontrol)$
-```
-
-### 3. Animation System
-
-Choose from multiple animation presets:
-
-- **Default**: Balanced animations for daily use
-- **Minimal**: Reduced animations for performance
-- **Dynamic**: Enhanced animations for visual appeal
-- **Disabled**: No animations for maximum performance
-
-To change animations:
-
-```bash
-# Edit UserConfigs/UserAnimations.conf
-source = $HOME/.config/hypr/animations/00-default.conf
-```
-
-### 4. Monitor Configuration
-
-Configure multiple monitors through:
-
-```bash
-# monitors.conf - Generated by nwg-displays
-monitor = DP-1,1920x1080@60,0x0,1
-monitor = HDMI-A-1,1920x1080@60,1920x0,1
-```
-
-## Customization Guide
-
-### Adding Custom Keybindings
-
-Edit `UserConfigs/UserKeybinds.conf`:
-
-```bash
-# Custom keybindings
-bind = SUPER, T, exec, kitty
-bind = SUPER, E, exec, thunar
-bind = SUPER, B, exec, firefox
-bind = SUPER SHIFT, Q, killactive
-```
-
-### Configuring Workspaces
-
-Edit `workspaces.conf`:
-
-```bash
-# Workspace configuration
-workspace = 1, monitor:DP-1, default:true
-workspace = 2, monitor:DP-1
-workspace = 3, monitor:HDMI-A-1, default:true
-```
-
-### Custom Decorations
-
-Edit `UserConfigs/UserDecorations.conf`:
-
-```bash
-decoration {
-    rounding = 10
-    blur {
-        enabled = true
-        size = 3
-        passes = 1
-    }
-    drop_shadow = true
-    shadow_range = 4
-    shadow_render_power = 3
-}
-```
-
-### Performance Tuning
-
-For better performance, edit `UserConfigs/UserSettings.conf`:
-
-```bash
-general {
-    gaps_in = 5
-    gaps_out = 10
-    border_size = 2
-    no_border_on_floating = false
-    layout = dwindle
-}
-
-misc {
-    disable_hyprland_logo = true
-    disable_splash_rendering = true
-    mouse_move_enables_dpms = true
-    key_press_enables_dpms = true
-}
-```
-
-## Scripts and Utilities
-
-### Key Scripts
-
-- **Refresh.sh**: Reload Hyprland configuration
-- **ScreenShot.sh**: Screenshot functionality
-- **WallpaperSelect.sh**: Wallpaper management
-- **GameMode.sh**: Toggle gaming optimizations
-- **Brightness.sh**: Brightness control
-- **Volume.sh**: Audio control
-
-### Using Scripts
-
-```bash
-# Reload configuration
-~/.config/hypr/scripts/Refresh.sh
-
-# Take screenshot
-~/.config/hypr/scripts/ScreenShot.sh
-
-# Change wallpaper
-~/.config/hypr/scripts/WallpaperSelect.sh
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Applications not starting**: Check `Startup_Apps.conf` syntax
-2. **Keybindings not working**: Verify `UserKeybinds.conf` format
-3. **Performance issues**: Try minimal animations or disable them
-4. **Monitor issues**: Reconfigure with `nwg-displays`
-
-### Debug Commands
-
-```bash
-# Check Hyprland logs
-journalctl -f -u hyprland
-
-# Reload configuration
 hyprctl reload
-
-# List active windows
-hyprctl clients
-
-# Monitor information
-hyprctl monitors
+hyprctl configerrors
 ```
 
-## Advanced Configuration
+If validation fails, restore the last known-good edit rather than replacing the
+whole configuration tree. See the [`hyprland.lua` reference](/hyprland/hyprland)
+for the exact module order.
 
-### Custom Window Rules
+## Upstream References
 
-```bash
-# Floating windows
-windowrule = float, ^(calculator)$
-windowrule = float, ^(file-roller)$
-
-# Workspace assignments
-windowrule = workspace 2, ^(firefox)$
-windowrule = workspace 3, ^(code)$
-
-# Opacity rules
-windowrule = opacity 0.9, ^(kitty)$
-windowrule = opacity 0.8, ^(thunar)$
-```
-
-### Layer Rules
-
-```bash
-# Configure layer behavior
-layerrule = blur, waybar
-layerrule = blur, rofi
-layerrule = ignorezero, waybar
-```
-
-::: tip Hyprland Official Docs
-More Details : https://wiki.hypr.land/
-:::
-
-## Hyprland Wiki
-
-- [FAQ](https://wiki.hyprland.org/FAQ/)
-- [Configuring Hyprland](https://wiki.hyprland.org/Configuring/Configuring-Hyprland/)
-- [Window Rules](https://wiki.hyprland.org/Configuring/Window-Rules/)
-- [Getting Started](https://wiki.hyprland.org/Getting-Started/)
-- [Configuring Monitors](https://wiki.hyprland.org/Configuring/Monitors/)
-- [xdg-desktop-portal-hyprland](https://wiki.hyprland.org/Useful-Utilities/xdg-desktop-portal-hyprland/)
-- [Apps Taking Long to Open](https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open)
-- [Performance](https://wiki.hyprland.org/Configuring/Performance/)
+- [Hyprland configuration](https://wiki.hypr.land/Configuring/Start/)
+- [Hyprland Lua configuration](https://wiki.hypr.land/Configuring/Lua/)
+- [Hyprland dispatchers](https://wiki.hypr.land/Configuring/Dispatchers/)
+- [HyprFlux v1.5.0 source](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr)

@@ -2,6 +2,8 @@
 
 Depends on: Phase 2 and a pinned HyprFlux source revision
 
+Status: **Complete on 2026-09-10**
+
 ---
 
 ## 1. Goal
@@ -152,30 +154,61 @@ against current files and make the architecture distinction prominent:
 
 ## 5. Acceptance Criteria / QA Checklist
 
-- [ ] A source commit SHA is recorded for the phase.
-- [ ] No current Hyprland compositor page identifies `hyprland.conf` as the entrypoint.
-- [ ] No current module page teaches `source=`, `exec-once`, `bind =`,
+- [x] A source commit SHA is recorded for the phase.
+- [x] No current Hyprland compositor page identifies `hyprland.conf` as the entrypoint.
+- [x] No current module page teaches `source=`, `exec-once`, `bind =`,
       `env =`, or old `windowrule =` syntax as the supported implementation.
-- [ ] The documented `require(...)` order matches `hyprland.lua` exactly.
-- [ ] Every old module filename has a clear current-file mapping.
-- [ ] Supporting `.conf` files are retained only where their owning tool still uses them.
-- [ ] `animation.md` is non-empty or intentionally retired with route handling.
-- [ ] Generated monitor/workspace files and safe customization boundaries are explained.
-- [ ] Base/user/laptop keybinding load order is accurate.
-- [ ] Lua snippets pass `luac -p` when extracted into valid contexts, or are
+- [x] The documented `require(...)` order matches `hyprland.lua` exactly.
+- [x] Every old module filename has a clear current-file mapping.
+- [x] Supporting `.conf` files are retained only where their owning tool still uses them.
+- [x] `animation.md` is non-empty or intentionally retired with route handling.
+- [x] Generated monitor/workspace files and safe customization boundaries are explained.
+- [x] Base/user/laptop keybinding load order is accurate.
+- [x] Lua snippets pass `luac -p` when extracted into valid contexts, or are
       clearly marked as partial snippets.
-- [ ] `Hyprland --config ~/.config/hypr/hyprland.lua --verify-config` is documented.
-- [ ] Sidebar labels use current filenames.
-- [ ] The VitePress production build succeeds.
-- [ ] The Hyprland section is manually reviewed for broken anchors and mobile tables.
+- [x] `Hyprland --config ~/.config/hypr/hyprland.lua --verify-config` is documented.
+- [x] Sidebar labels use current filenames.
+- [x] The VitePress production build succeeds.
+- [x] The Hyprland section is manually reviewed for broken anchors and mobile tables.
 
-## 6. Open Questions
+## 6. Resolved Decisions
 
-- Should route slugs such as `01-userdefaults` be retained indefinitely for
-  compatibility, or redirected later to normalized Lua filenames?
-- Should the empty animation route become the canonical animation reference or
-  redirect to a section in the main Hyprland guide?
-- How much of the `hl` Lua API should be explained locally versus linked to
-  upstream Hyprland documentation?
-- Should legacy `.conf` migration guidance include an archived example, or only
-  a filename/concept mapping?
+- Existing route slugs, including `01-userdefaults`, remain in place for inbound
+  compatibility; titles and sidebar labels use current filenames.
+- `animation.md` is the canonical Lua animation reference and is now populated
+  from `user-animations.lua` and the preset selector.
+- Module pages explain only the `hl` patterns used by their current source owner
+  and link to upstream Hyprland references for the broader API.
+- Legacy compositor migration guidance is a filename/concept map only. Removed
+  Hyprlang examples are not preserved as a supported configuration path.
+
+## 7. Completion Record
+
+Phase 3 was implemented on 2026-09-10 against HyprFlux revision
+`f421b6bd108214079b56c435331ddbbfdfb89591` (`v1.5.0`). All scoped routes were
+rewritten in place and link to pinned public GitHub source paths; no local
+filesystem path is exposed in public content.
+
+Validation completed with `luac -p` across the entrypoint and all loaded Lua
+owners, followed by:
+
+```bash
+Hyprland --config .config/hypr/hyprland.lua --verify-config
+```
+
+The complete source configuration returned `config ok`. An independent review
+also parsed all 36 scoped Lua code blocks successfully and verified internal
+Markdown routes and pinned source paths.
+
+The VitePress production build succeeded. Browser checks at 1440x900 and
+390x844 covered the architecture index, animation reference, monitor guide, and
+Hyprlock reference. Pages had no document-level horizontal overflow or
+placeholder links. Preview mode reported the existing relative favicon 404;
+that global metadata path remains assigned to Phase 6.
+
+The source audit confirmed defects that documentation must not normalize:
+Hyprlock rejects options in both shipped configurations, active Hypridle DPMS
+commands are not shell-quoted, `application-style.conf` misspells `roundness`,
+monitor generation is duplicated across modules 15 and 16, and the HyprFlux
+monitor-profile helper has drifted from current nwg-displays. These are recorded
+in the master risk register and were not changed from this repository.

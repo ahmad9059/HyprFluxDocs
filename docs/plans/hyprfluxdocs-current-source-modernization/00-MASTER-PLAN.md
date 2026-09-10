@@ -1,8 +1,7 @@
 # HyprFluxDocs Current-Source Modernization
 
-> Status: **Phases 1-2 complete; Phase 3 is ready to begin.** Product,
-> installation, download, and release journeys now reflect the pinned v1.5.0
-> sources.
+> Status: **Phases 1-3 complete; Phase 4 is ready to begin.** Installation and
+> Hyprland configuration references now reflect the pinned v1.5.0 sources.
 >
 > Source request: produce a detailed six-phase plan to replace old Hyprland
 > syntax and stale HyprFlux documentation, using the sibling HyprFlux checkout
@@ -191,6 +190,10 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 | R11 | Missing social preview image | Medium | Phase 6 must either add the referenced asset or change metadata to an existing image (`docs/.vitepress/config.mts:23-32`). |
 | R12 | Source code may change during the six-phase effort | High | Record `git rev-parse HEAD` at each phase start and revalidate all cited source files before editing docs. |
 | R13 | pnpm build entrypoint is blocked by an unresolved esbuild approval | Medium | Direct VitePress build succeeds, but `pnpm docs:build` fails because `pnpm-workspace.yaml` contains a placeholder `allowBuilds.esbuild` value. Resolve when standardizing pnpm in Phase 6. |
+| R14 | Shipped Hyprlock files contain rejected options/syntax | High | Hyprlock 0.9.6 reports errors in both current configs and ignores faulty entries. Documented in Phase 3; fix in HyprFlux source. |
+| R15 | Hypridle DPMS dispatcher commands are shell-invalid | High | The Lua dispatcher expression is unquoted in active/disabled command examples. Phase 3 documents a valid pattern without changing source. |
+| R16 | `application-style.conf` misspells `roundness` | Medium | The shipped `roundess` key is ignored by current hyprland-qt-support. Track a source correction. |
+| R17 | Monitor generation/profile workflows conflict | Medium | Modules 15/16 both write monitor state, and the HyprFlux profile helper differs from nwg-displays native profiles. Document generated ownership; resolve in source. |
 
 ## 5. Phase Map
 
@@ -198,8 +201,8 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 |---|---|---|
 | 1 | [Validate Current State and Confirm Architecture](./phase-01-validate-current-state.md) | Complete; approved 2026-09-10 |
 | 2 | [Modernize Product, Installation, and Release Journeys](./phase-02-installation-and-releases.md) | Complete; verified 2026-09-10 |
-| 3 | [Rebuild the Hyprland Reference for Lua](./phase-03-hyprland-lua-reference.md) | Ready to begin |
-| 4 | [Refresh Desktop Components, Themes, and Wallpapers](./phase-04-desktop-components.md) | Pending Phase 3 |
+| 3 | [Rebuild the Hyprland Reference for Lua](./phase-03-hyprland-lua-reference.md) | Complete; verified 2026-09-10 |
+| 4 | [Refresh Desktop Components, Themes, and Wallpapers](./phase-04-desktop-components.md) | Ready to begin |
 | 5 | [Rebuild Keybindings, Scripts, Hardware, and Troubleshooting](./phase-05-operations-reference.md) | Pending Phase 4 |
 | 6 | [Integrate Navigation, Metadata, Drift Checks, and Final QA](./phase-06-integrated-qa.md) | Pending Phases 2-5 |
 
@@ -240,7 +243,6 @@ domain rather than mixing all pages into one unreviewable rewrite.
 
 ## 7. Next Step
 
-Begin Phase 3 using the finalized installation terminology and record the
-current HyprFlux revision before editing. Phase 2 established the ISO and
-existing-Arch journeys; compositor configuration and Lua authoring remain
-within Phase 3.
+Begin Phase 4 using the finalized Lua terminology and generated-file ownership
+from Phase 3. Re-record the current HyprFlux revision and validate every
+component against its configuration and installer owner before editing.

@@ -6,6 +6,7 @@ references/
 dist/
 .vite-temp/
 .vitepress/dist/
+docs/.vitepress/cache/
 # Logs
 npm-debug.log*
 yarn-debug.log*

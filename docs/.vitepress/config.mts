@@ -150,36 +150,58 @@ export default defineConfig({
         text: ".config/hypr",
         collapsed: false,
         items: [
-          // { text: "Index", link: "/hyprland/index.md" },
           {
-            text: "hyprland.conf",
+            text: "Configuration Architecture",
+            link: "/hyprland/index.md",
+          },
+          {
+            text: "hyprland.lua",
             link: "/hyprland/hyprland.md",
           },
+          {
+            text: "user-defaults.lua",
+            link: "/hyprland/01-userdefaults.md",
+          },
+          {
+            text: "env-variables.lua",
+            link: "/hyprland/envariables.md",
+          },
+          {
+            text: "user-settings.lua",
+            link: "/hyprland/usersettings.md",
+          },
+          {
+            text: "user-decorations.lua",
+            link: "/hyprland/userdecorations.md",
+          },
+          {
+            text: "user-animations.lua",
+            link: "/hyprland/animation.md",
+          },
+          { text: "keybinds.lua", link: "/hyprland/keybinding.md" },
+          {
+            text: "user-keybinds.lua",
+            link: "/hyprland/userkeybindings.md",
+          },
+          {
+            text: "window-rules.lua",
+            link: "/hyprland/windowrules.md",
+          },
+          {
+            text: "workspaces.lua + workspace-rules.lua",
+            link: "/hyprland/workspaces.md",
+          },
+          {
+            text: "startup-apps.lua",
+            link: "/hyprland/startup_apps.md",
+          },
+          { text: "monitors.lua", link: "/hyprland/monitors.md" },
           { text: "hyprlock.conf", link: "/hyprland/hyprlock.md" },
           { text: "hypridle.conf", link: "/hyprland/hypridle.md" },
-          { text: "monitors.conf", link: "/hyprland/monitors.md" },
-          { text: "workspaces.conf", link: "/hyprland/workspaces.md" },
           {
             text: "application-style.conf",
             link: "/hyprland/application-style.md",
           },
-          {
-            text: "01-UserDefaults.conf",
-            link: "/hyprland/01-userdefaults.md",
-          },
-          { text: "ENVariables.conf", link: "/hyprland/envariables.md" },
-          {
-            text: "UserKeybindings.conf",
-            link: "/hyprland/userkeybindings.md",
-          },
-          { text: "UserSettings.conf", link: "/hyprland/usersettings.md" },
-          { text: "WindowRules.conf", link: "/hyprland/windowrules.md" },
-          {
-            text: "UserDecorations.conf",
-            link: "/hyprland/userdecorations.md",
-          },
-          { text: "Startup_Apps.conf", link: "/hyprland/startup_apps.md" },
-          { text: "keyBindings.conf", link: "/hyprland/keybinding.md" },
           { text: "hypr/scripts/", link: "/hyprland/scripts.md" },
         ],
       },
