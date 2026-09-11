@@ -1,622 +1,204 @@
-# Neovim Configuration
+# Neovim
 
-Neovim is the powerful, extensible text editor configured in HyprFlux with NvChad framework, providing a modern IDE-like experience with advanced features for development and text editing.
+HyprFlux installs Neovim, then replaces `~/.config/nvim` with the current head
+of the external [`ahmad9059/nvim`](https://github.com/ahmad9059/nvim)
+repository. Editor behavior belongs to that repository, not to the HyprFlux
+configuration tree.
 
-## Overview
+> HyprFlux source snapshot: [`f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
+>
+> Neovim configuration snapshot: [`d11951c8`](https://github.com/ahmad9059/nvim/tree/d11951c8dd548f0e9d1b470ba279d28e2d7a4696)
 
-The HyprFlux Neovim configuration features:
+## Installation ownership
 
-- NvChad framework for modern UI and functionality
-- LSP integration for intelligent code completion
-- Advanced syntax highlighting with Treesitter
-- Git integration with LazyGit
-- Plugin management with Lazy.nvim
-- VSCode-Neovim compatibility mode
+| Concern | Owner |
+|---|---|
+| Neovim package | HyprFlux main package batch |
+| Configuration URL | `REPO_URL_NVIM` in `dotsSetup.sh` |
+| Clone/bootstrap | [`modules/03-neovim.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/03-neovim.sh) |
+| Editor settings and plugins | External `ahmad9059/nvim` repository |
 
-## Configuration Structure
+The installer deletes an existing destination directory before cloning the
+external repository. Back up local Neovim configuration before running or
+rerunning that module.
 
-```
+HyprFlux does not pin the external revision. The exact configuration installed
+at a later date can differ from this page's verified snapshot.
+
+## Configuration structure
+
+The verified external revision contains:
+
+```text
 ~/.config/nvim/
-├── init.lua                    # Main entry point with VSCode compatibility
-├── lazy-lock.json             # Plugin version lock file
-├── lua/
-│   ├── autocmds.lua           # Auto commands
-│   ├── chadrc.lua             # NvChad configuration
-│   ├── mappings.lua           # Key mappings
-│   ├── options.lua            # Neovim options
-│   ├── configs/
-│   │   ├── conform.lua        # Formatter configuration
-│   │   ├── lazy.lua           # Lazy.nvim setup
-│   │   └── lspconfig.lua      # LSP server configurations
-│   └── plugins/               # Custom plugin configurations
-└── preview/                   # Screenshots and documentation
+|- init.lua
+|- lazy-lock.json
+|- .stylua.toml
+`- lua/
+   |- chadrc.lua
+   |- options.lua
+   |- mappings.lua
+   |- autocmds.lua
+   |- configs/
+   |  |- conform.lua
+   |  |- lazy.lua
+   |  `- lspconfig.lua
+   `- plugins/init.lua
 ```
 
-## Key Features
-
-### 1. NvChad Framework
-
-#### Base Configuration
-
-```lua
--- chadrc.lua
-local M = {}
-
-M.base46 = {
-  theme = "tokyonight",
-  transparency = true,
-  hl_override = {
-    Comment = { italic = true },
-    ["@comment"] = { italic = true },
-  },
-}
-
-M.ui = {
-  tabufline = {
-    lazyload = false,
-  },
-  statusline = {
-    theme = "minimal",
-    separator_style = "round",
-  },
-}
-```
-
-#### Dashboard Configuration
-
-```lua
-M.nvdash = {
-  load_on_startup = true,
-  header = {
-    " __  __       __     __  __     __       ",
-    "/\\ \\_\\ \\     /\\ \\   /\\ \\/ /    /\\ \\      ",
-    '\\ \\  __ \\   _\\_\\ \\  \\ \\  _"-.  \\ \\ \\____ ',
-    " \\ \\_\\ \\_\\ /\\_____\\  \\ \\_\\ \\_\\  \\ \\_____\\",
-    "  \\/_/\\/_/ \\/_____/   \\/_/\\/_/   \\/_____/",
-  },
-}
-```
-
-### 2. Plugin System
-
-#### Core Plugins
-
-```lua
--- Plugin configuration with Lazy.nvim
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-  },
-  { import = "plugins" },
-}, lazy_config)
-```
-
-#### Essential Plugins
-
-| Plugin                            | Purpose                      | Status    |
-| --------------------------------- | ---------------------------- | --------- |
-| `NvChad/NvChad`                   | Base configuration framework | ✅ Active |
-| `folke/noice.nvim`                | Enhanced command line UI     | ✅ Active |
-| `rcarriga/nvim-notify`            | Beautiful notifications      | ✅ Active |
-| `neovim/nvim-lspconfig`           | LSP configuration            | ✅ Active |
-| `stevearc/conform.nvim`           | Code formatting              | ✅ Active |
-| `kdheepak/lazygit.nvim`           | Git integration              | ✅ Active |
-| `nvim-treesitter/nvim-treesitter` | Syntax highlighting          | ✅ Active |
-
-### 3. LSP Configuration
-
-#### Language Server Setup
-
-```lua
--- lspconfig.lua
-local configs = require "nvchad.configs.lspconfig"
-
-local servers = {
-  html = {},
-  cssls = {},
-  ts_ls = {},
-  pyright = {},
-  rust_analyzer = {},
-  gopls = {},
-  lua_ls = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim" },
-        },
-      },
-    },
-  },
-}
-
-for name, opts in pairs(servers) do
-  opts.on_init = configs.on_init
-  opts.on_attach = configs.on_attach
-  opts.capabilities = configs.capabilities
-
-  require("lspconfig")[name].setup(opts)
-end
-```
-
-#### Completion Engine
-
-```lua
--- Using blink.cmp for fast completion
-{
-  "saghen/blink.cmp",
-  lazy = false,
-  dependencies = "rafamadriz/friendly-snippets",
-  version = "v0.*",
-  opts = {
-    keymap = { preset = "default" },
-    appearance = {
-      use_nvim_cmp_as_default = true,
-      nerd_font_variant = "mono"
-    },
-    sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
-    },
-  },
-}
-```
-
-### 4. Code Formatting
-
-#### Conform.nvim Configuration
-
-```lua
--- conform.lua
-local options = {
-  formatters_by_ft = {
-    lua = { "stylua" },
-    css = { "prettier" },
-    html = { "prettier" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    javascriptreact = { "prettier" },
-    typescriptreact = { "prettier" },
-    json = { "prettier" },
-    markdown = { "prettier" },
-    python = { "black" },
-    rust = { "rustfmt" },
-    go = { "gofmt" },
-  },
-
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_fallback = true,
-  },
-}
-
-require("conform").setup(options)
-```
-
-### 5. Git Integration
-
-#### LazyGit Integration
-
-```lua
--- LazyGit plugin configuration
-{
-  "kdheepak/lazygit.nvim",
-  lazy = true,
-  cmd = {
-    "LazyGit",
-    "LazyGitConfig",
-    "LazyGitCurrentFile",
-    "LazyGitFilter",
-    "LazyGitFilterCurrentFile",
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  keys = {
-    { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-  },
-}
-```
-
-## Customization Guide
-
-### 1. Theme Configuration
-
-#### Available Themes
-
-- **tokyonight**: Dark blue theme (default)
-- **catppuccin**: Pastel color scheme
-- **onedark**: Atom-inspired theme
-- **gruvbox**: Retro groove colors
-- **nord**: Arctic-inspired palette
-
-#### Changing Theme
-
-```lua
--- In chadrc.lua
-M.base46 = {
-  theme = "catppuccin",  -- Change theme here
-  transparency = true,   -- Enable transparency
-}
-```
-
-#### Custom Highlights
-
-```lua
-M.base46 = {
-  hl_override = {
-    Comment = { italic = true, fg = "#7c7c7c" },
-    ["@variable"] = { fg = "#e06c75" },
-    ["@function"] = { fg = "#61afef", bold = true },
-    CursorLine = { bg = "#2c323c" },
-  },
-}
-```
-
-### 2. Key Mappings
-
-#### Custom Keybindings
-
-```lua
--- mappings.lua
-local map = vim.keymap.set
-
--- General mappings
-map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-map("n", "<C-q>", "<cmd>q<CR>", { desc = "Quit" })
-map("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all" })
-
--- Buffer navigation
-map("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
-map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
-map("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close buffer" })
-
--- Window management
-map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
-
--- LSP mappings
-map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-map("n", "gr", vim.lsp.buf.references, { desc = "Show references" })
-map("n", "K", vim.lsp.buf.hover, { desc = "Show hover info" })
-map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-```
-
-#### Plugin-Specific Mappings
-
-```lua
--- Telescope mappings
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
-
--- Git mappings
-map("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "LazyGit" })
-map("n", "<leader>gh", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
-```
-
-### 3. Options Configuration
-
-#### Editor Settings
-
-```lua
--- options.lua
-local opt = vim.opt
-
--- Line numbers
-opt.relativenumber = true
-opt.number = true
-
--- Indentation
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.autoindent = true
-
--- Search settings
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
-
--- Appearance
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
-opt.wrap = false
-opt.cursorline = true
-
--- Behavior
-opt.hidden = true
-opt.errorbells = false
-opt.swapfile = false
-opt.backup = false
-opt.undofile = true
-opt.backspace = "indent,eol,start"
-opt.splitright = true
-opt.splitbelow = true
-```
-
-### 4. Auto Commands
-
-#### Custom Auto Commands
-
-```lua
--- autocmds.lua
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
--- Highlight on yank
-autocmd("TextYankPost", {
-  group = augroup("HighlightYank", {}),
-  pattern = "*",
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = "IncSearch",
-      timeout = 40,
-    })
-  end,
-})
-
--- Auto format on save
-autocmd("BufWritePre", {
-  group = augroup("AutoFormat", {}),
-  pattern = "*",
-  callback = function()
-    require("conform").format({ async = false, lsp_fallback = true })
-  end,
-})
-
--- Remove trailing whitespace
-autocmd("BufWritePre", {
-  group = augroup("TrimWhitespace", {}),
-  pattern = "*",
-  command = [[%s/\s\+$//e]],
-})
-```
-
-## Advanced Features
-
-### 1. Language-Specific Configuration
-
-#### JavaScript/TypeScript
-
-```lua
--- Enhanced JS/TS support
-{
-  "axelvc/template-string.nvim",
-  event = "InsertEnter",
-  ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-  config = function()
-    require("template-string").setup({
-      filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-      jsx_brackets = true,
-      remove_template_string = false,
-      restore_quotes = {
-        normal = [[']],
-        jsx = [["]],
-      },
-    })
-  end,
-}
-```
-
-#### HTML/JSX Auto-tagging
-
-```lua
-{
-  "windwp/nvim-ts-autotag",
-  ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue", "xml" },
-  config = function()
-    require("nvim-ts-autotag").setup()
-  end,
-}
-```
-
-#### Markdown Rendering
-
-```lua
-{
-  "MeanderingProgrammer/render-markdown.nvim",
-  opts = {},
-  ft = { "markdown", "norg", "rmd", "org" },
-  config = function(_, opts)
-    require("render-markdown").setup(opts)
-  end,
-}
-```
-
-### 2. Text Editing Enhancements
-
-#### Smart Surround Operations
-
-```lua
-{
-  "echasnovski/mini.surround",
-  version = "*",
-  event = "VeryLazy",
-  config = function()
-    require("mini.surround").setup({
-      mappings = {
-        add = "sa",            -- Add surrounding in Normal and Visual modes
-        delete = "sd",         -- Delete surrounding
-        find = "sf",           -- Find surrounding (to the right)
-        find_left = "sF",      -- Find surrounding (to the left)
-        highlight = "sh",      -- Highlight surrounding
-        replace = "sr",        -- Replace surrounding
-        update_n_lines = "sn", -- Update `n_lines`
-      },
-    })
-  end,
-}
-```
-
-### 3. Navigation Enhancements
-
-#### Tmux Integration
-
-```lua
-{
-  "christoomey/vim-tmux-navigator",
-  lazy = false,
-  cmd = {
-    "TmuxNavigateLeft",
-    "TmuxNavigateDown",
-    "TmuxNavigateUp",
-    "TmuxNavigateRight",
-    "TmuxNavigatePrevious",
-  },
-  keys = {
-    { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-    { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-    { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-    { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-    { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-  },
-}
-```
-
-## VSCode Integration
-
-### 1. VSCode-Neovim Compatibility
-
-The configuration includes special handling for VSCode-Neovim:
-
-```lua
--- init.lua
-if vim.g.vscode then
-  -- Minimal config for VSCode-Neovim
-  vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
-
-  -- Key mappings for consistency
-  vim.keymap.set("n", "Y", '"+y', { noremap = true, silent = true })
-  vim.keymap.set("v", "Y", '"+y', { noremap = true, silent = true })
-  vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
-
-  return -- Skip full Neovim config
-end
-```
-
-### 2. VSCode Settings
-
-```json
-// settings.json
-{
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.lua",
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  }
-}
-```
-
-## Integration with HyprFlux
-
-### 1. Hyprland Integration
-
-#### Keybindings
+`init.lua` bootstraps NvChad 2.5 through Lazy.nvim. In VSCode-Neovim mode it
+installs a small clipboard/mapping branch and returns before loading the full
+desktop configuration.
+
+## Interface defaults
+
+The pinned config explicitly selects:
+
+- Tokyo Night colors.
+- Transparent editor surfaces.
+- A custom dashboard.
+- Minimal rounded statusline styling.
+- Borderless Telescope.
+- Relative line numbers.
+- Rounded borders for floating windows.
+
+These are configuration-specific claims. General Neovim defaults and the
+separate [Neovim cheat sheet](../keybindings/neovim.md) are not evidence of
+HyprFlux's installed mappings.
+
+## Custom mappings
+
+The verified custom mapping file includes the following highlights; it is not
+an exhaustive key table:
+
+| Mapping | Purpose |
+|---|---|
+| `;` | Enter command mode |
+| `jk` | Leave insert mode |
+| `CTRL+S` | Save |
+| `ALT+h/j/k/l` | Move the cursor without leaving insert mode |
+| Select-all mapping | Select the complete buffer |
+| LazyGit mapping | Open LazyGit |
+| Numbered buffer mappings | Select buffers directly |
+| Floating terminal mapping | Toggle a terminal |
+| Tmux navigation mappings | Move across editor and tmux panes |
+| `<leader>R...` family | Send and manage HTTP requests through Kulala |
+
+Buffer selection also includes `g0`; attached LSP buffers add code action,
+references, hover, and related mappings. The VSCode branch defines clipboard
+behavior for `Y` and insert-mode `CTRL+A`. Review both branches in the pinned
+mapping source for exact keys.
+
+Use the pinned
+[`lua/mappings.lua`](https://github.com/ahmad9059/nvim/blob/d11951c8dd548f0e9d1b470ba279d28e2d7a4696/lua/mappings.lua)
+for desktop custom mappings,
+[`init.lua`](https://github.com/ahmad9059/nvim/blob/d11951c8dd548f0e9d1b470ba279d28e2d7a4696/init.lua)
+for the VSCode branch, and
+[`lua/configs/lspconfig.lua`](https://github.com/ahmad9059/nvim/blob/d11951c8dd548f0e9d1b470ba279d28e2d7a4696/lua/configs/lspconfig.lua)
+for buffer-local LSP mappings.
+
+## Plugins
+
+The custom plugin specification includes:
+
+- Conform for formatting.
+- Native `nvim-lspconfig` integration.
+- lazydev for Lua development.
+- LazyGit integration.
+- blink.cmp completion overrides.
+- Treesitter and automatic HTML/JSX tag handling.
+- Telescope UI Select.
+- render-markdown.
+- Kulala for HTTP workflows.
+- vim-tmux-navigator.
+- which-key.
+- template-string helpers.
+
+`noice.nvim`, `nvim-notify`, and `mini.surround` are not active custom plugins
+at the pinned revision.
+
+## Language servers
+
+The external config explicitly enables servers for:
+
+- HTML, CSS, Tailwind CSS, Emmet, and TypeScript.
+- JSON, YAML, GraphQL, ESLint, and Prisma.
+- Bash and Markdown.
+- C/C++ through clangd.
+- Docker and Docker Compose.
+
+Lua LSP is configured through the NvChad path. Python, Rust, and Go servers are
+not enabled in the pinned custom server list.
+
+The configuration uses current `vim.lsp.config` and `vim.lsp.enable` APIs. Do
+not rely on the external README's older minimum-version claim; Neovim 0.11 or
+newer is required by these APIs and the pinned NvChad path.
+
+TypeScript LSP formatting is disabled in favor of Conform/prettierd. ESLint
+runs `EslintFixAll` on save. Tailwind and GraphQL activation is bounded by their
+configured project root markers.
+
+## Automatic behavior
+
+Custom autocommands mark `.env`, `.env.*`, and `*.env` as shell syntax,
+identify Compose files as `yaml.docker-compose`, and disable folding in
+floating HTTP/REST response windows.
+
+## Formatting
+
+Conform formats on save with a 500 ms timeout and LSP fallback. The configured
+executables include:
+
+| File types | Formatter |
+|---|---|
+| Lua | `stylua` |
+| Shell | `shfmt` |
+| Web, JSON, YAML, GraphQL, Markdown | `prettierd` where mapped |
+| C/C++ | `clang-format` |
+
+HyprFlux and the external repository do not comprehensively provision every
+language server or formatter executable. Install missing tools separately for
+the languages you use.
+
+## Plugin bootstrap
+
+After cloning, the HyprFlux module runs a headless startup and `Lazy sync`.
+Both commands currently suppress failures before the module logs success. Check
+the editor directly after installation:
 
 ```bash
-# In UserConfigs/UserKeybinds.conf
-bind = SUPER, E, exec, kitty nvim
-bind = SUPER SHIFT, E, exec, code
-bind = SUPER CTRL, E, exec, kitty --class="nvim-floating" nvim
+nvim
 ```
 
-#### Window Rules
+Open and save a project file first so the file-event plugins load, then inspect:
+
+```vim
+:checkhealth
+:Lazy
+:LspInfo
+:ConformInfo
+```
+
+The external `lazy-lock.json` records plugin commits for the repository
+snapshot. HyprFlux then runs `Lazy sync`, which can advance plugins and rewrite
+that lockfile, so it is not an immutable post-install dependency snapshot.
+HyprFlux also does not pin the configuration repository commit that supplies
+the original lockfile.
+
+## Updating safely
+
+Before pulling external configuration changes, inspect local modifications:
 
 ```bash
-# In UserConfigs/WindowRules.conf
-windowrule = float, ^(nvim-floating)$
-windowrule = size 1200 800, ^(nvim-floating)$
-windowrule = center, ^(nvim-floating)$
+git -C ~/.config/nvim status --short
+git -C ~/.config/nvim log -1 --oneline
 ```
 
-### 2. Terminal Integration
+Review upstream changes before updating. Rerunning the HyprFlux Neovim module
+is destructive to the existing directory.
 
-#### Kitty Integration
+## Related pages
 
-```bash
-# Launch nvim in kitty with specific configuration
-kitty --title="Neovim" --class="nvim" nvim
-```
-
-#### Tmux Integration
-
-```bash
-# Tmux session for development
-tmux new-session -d -s dev
-tmux send-keys -t dev 'nvim' C-m
-```
-
-## Performance Optimization
-
-### 1. Lazy Loading
-
-```lua
--- Optimize plugin loading
-{
-  "plugin-name",
-  lazy = true,
-  event = "VeryLazy",  -- Load after startup
-  ft = { "lua", "vim" }, -- Load for specific filetypes
-  cmd = { "Command" },   -- Load on command
-  keys = { "<leader>x" }, -- Load on keypress
-}
-```
-
-### 2. Startup Time Optimization
-
-```lua
--- Disable unused providers
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_python_provider = 0
-
--- Use faster grep
-if vim.fn.executable("rg") == 1 then
-  vim.o.grepprg = "rg --vimgrep --smart-case --follow"
-end
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Slow startup**: Check plugin loading and disable unused providers
-2. **LSP not working**: Verify language servers are installed
-3. **Formatting issues**: Check conform.nvim configuration
-4. **Theme not loading**: Verify NvChad installation
-
-### Debug Commands
-
-```bash
-# Check Neovim health
-nvim --headless -c 'checkhealth' -c 'qa'
-
-# Profile startup time
-nvim --startuptime startup.log
-
-# Check plugin status
-nvim -c 'Lazy'
-
-# Update plugins
-nvim -c 'Lazy sync'
-```
-
-### Performance Monitoring
-
-```bash
-# Measure startup time
-hyperfine 'nvim --headless -c "qa"'
-
-# Check plugin load times
-nvim --startuptime startup.log -c 'qa' && cat startup.log
-```
-
-::: tip Neovim Official Docs
-More Details : https://neovim.io/doc
-:::
+- [Neovim cheat sheet](../keybindings/neovim.md)
+- [Kitty](./kitty.md)
+- [Yazi](./yazi.md)

@@ -2,6 +2,8 @@
 
 Depends on: Phase 3 Lua terminology and source baseline
 
+Status: **Complete on 2026-09-12**
+
 ---
 
 ## 1. Goal
@@ -133,44 +135,123 @@ that `swww` is absent from the package list while the source still contains it
 
 ## 4. Files Touched
 
+### 4.1 Source baseline and ownership matrix
+
+Phase 4 uses HyprFlux revision
+`f421b6bd108214079b56c435331ddbbfdfb89591` (`v1.5.0`). The externally owned
+Neovim configuration was audited separately at
+`ahmad9059/nvim@d11951c8dd548f0e9d1b470ba279d28e2d7a4696`.
+
+The canonical `.config` tree and `base-dots/config` parity mirror matched at the
+start of the phase. Current installation deploys canonical `.config` through
+`modules/02-dotfiles.sh`; legacy `base-dots/copy.sh` behavior is not an active
+install owner.
+
+| Component | Package/source owner | Config entrypoint | Install/runtime owner | Validation |
+|---|---|---|---|---|
+| Waybar | `waybar-git`, repository/AUR helper | `.config/waybar/config`, `style.css` | modules 02, 05, and hardware module 16 | include graph, generated colors, live reload |
+| Rofi | official `rofi` package batch | `.config/rofi/config.rasi` -> `master-config.rasi` | module 02 and Hyprland menu scripts | Rasi/source inventory and direct menu runs |
+| SwayNC | official `swaync` package batch | `.config/swaync/config.json`, `style.css` | module 02; Hyprland startup | JSON/widget inventory and client reload |
+| Wlogout | official `wlogout` package batch | `.config/wlogout/layout`, `style.css` | module 02; `Wlogout.sh` geometry | action trace and direct launcher run |
+| Hyprlock/Hypridle | base Hyprland installer | `.config/hypr/hyprlock*.conf`, `hypridle.conf` | module 02; Hypridle startup and logind mediation | invalid-socket parser checks and action trace |
+| Kitty | official `kitty` package batch | `.config/kitty/kitty.conf` | module 02; `user-defaults.lua` | launch with installed config |
+| GTK/Qt/Kvantum | theme modules plus Qt/Kvantum packages | `.config/qt5ct`, `.config/qt6ct`, `.config/Kvantum` | modules 02, 04, 07, 14; `initial-boot.sh` | file/gsettings precedence audit |
+| Yazi | official `yazi` package batch | `.config/yazi/yazi.toml` | module 02; shell alias/tmuxifier | direct launch and command dependency audit |
+| Cava | official `cava` package batch | `.config/cava/config` | module 02; `WaybarCava.sh` for panel output | direct and Waybar config comparison |
+| Wallpapers | external WallpaperBank; prebuilt AWWW; `mpvpaper` helper | Hyprland wallpaper scripts and `startup-apps.lua` | module 12 and session startup | script trace, runtime-state ownership, `luac -p` after video persistence |
+| Neovim | official package plus external `ahmad9059/nvim` | external `init.lua` | module 03 destructive clone/bootstrap | pinned external source audit and `:checkhealth` guidance |
+
+### 4.2 Resolved implementation decisions
+
+- Keep Kitty and create the missing page because it is the configured default
+  terminal and has several active launch paths.
+- Keep Yazi and add it to feature navigation as the shipped terminal file
+  manager, while identifying Thunar as the graphical default.
+- Add a dedicated wallpaper route because image selection, effects, random,
+  disabled auto-change, and video behavior span several owners and cannot be
+  represented accurately as a Rofi subsection.
+- Focus component pages on stable workflows and ownership, with exact current
+  values only where they explain shipped behavior or a confirmed defect.
+- Document conflicting first-boot theme values as source defects. Do not choose
+  an invented effective theme on behalf of GTK/Qt applications.
+
 - `docs/features/waybar.md`
 - `docs/features/rofi.md`
 - `docs/features/swaync.md`
 - `docs/features/wlogout.md`
 - `docs/features/hyprlock.md`
-- `docs/features/kitty.md` (new, if approved; otherwise remove nav entry)
+- `docs/features/wallpapers.md` (new)
+- `docs/features/kitty.md` (new)
 - `docs/features/qt-theming.md`
 - `docs/features/yazi.md`
 - `docs/features/cava.md`
 - `docs/features/nvim.md`
+- `docs/hyprland/hyprlock.md` (installed/runtime ownership correction)
+- `docs/hyprland/hypridle.md` (lock-mediation behavior correction)
 - `docs/.vitepress/config.mts` (feature section only)
 - Relevant current screenshots/assets under `docs/public/` (only after an
   explicit stale/replace audit)
 
 ## 5. Acceptance Criteria / QA Checklist
 
-- [ ] A source commit SHA and component ownership matrix are recorded.
-- [ ] Every component page names its actual config entrypoint and install owner.
-- [ ] Current pages contain no Wallust-driven-theme or `swww-daemon` workflow claims.
-- [ ] AWWW and mpvpaper roles are accurate and distinct.
-- [ ] Waybar docs match the shipped module composition and stylesheet entrypoint.
-- [ ] Rofi docs import the current generated palette and list only live menus.
-- [ ] SwayNC, Wlogout, Hyprlock, Hypridle, Qt/Kvantum, Yazi, and Cava examples
+- [x] A source commit SHA and component ownership matrix are recorded.
+- [x] Every component page names its actual config entrypoint and install owner.
+- [x] Current pages contain no Wallust-driven-theme or `swww-daemon` workflow claims.
+- [x] AWWW and mpvpaper roles are accurate and distinct.
+- [x] Waybar docs match the shipped module composition and stylesheet entrypoint.
+- [x] Rofi docs import the current generated palette and list only live menus.
+- [x] SwayNC, Wlogout, Hyprlock, Hypridle, Qt/Kvantum, Yazi, and Cava examples
       match current source.
-- [ ] The Kitty sidebar entry resolves to a real page or is removed.
-- [ ] Yazi navigation matches the decision to retain its page.
-- [ ] Neovim claims are validated against the external repo or explicitly scoped down.
-- [ ] Duplicate feature/config pages have distinct user-facing vs authoring purposes.
-- [ ] The production VitePress build succeeds.
-- [ ] Component screenshots, wide tables, and code blocks are manually checked
+- [x] The Kitty sidebar entry resolves to a real page or is removed.
+- [x] Yazi navigation matches the decision to retain its page.
+- [x] Neovim claims are validated against the external repo or explicitly scoped down.
+- [x] Duplicate feature/config pages have distinct user-facing vs authoring purposes.
+- [x] The production VitePress build succeeds.
+- [x] Component screenshots, wide tables, and code blocks are manually checked
       on desktop and mobile.
 
-## 6. Approved Decisions and Open Questions
+## 6. Resolved Decisions
 
-- Create a dedicated Kitty page or remove the sidebar item?
-- **Approved in Phase 1:** Neovim is in scope, but its claims must be validated
-  against a pinned revision of the external `ahmad9059/nvim` repository.
-- Should Yazi be promoted into the active sidebar after refresh?
-- Which theme values are effective after `initial-boot.sh` runs on a fresh install?
-- Should component pages show exact current configuration snapshots or focus
-  on stable workflows with source links to reduce drift?
+- Create a dedicated Kitty page and retain its navigation because Kitty is the
+  shipped default terminal.
+- Keep Neovim in scope and attribute editor behavior to the independently pinned
+  external repository revision.
+- Promote Yazi into feature navigation as the shipped terminal file manager;
+  retain Thunar as the documented graphical default.
+- Do not publish one effective first-boot theme value while source owners
+  conflict. Record the GTK, Qt, Kvantum, and cursor precedence separately.
+- Focus pages on stable workflows and ownership. Include exact current values
+  only where they define shipped behavior or expose a confirmed source defect.
+
+## 7. Completion Record
+
+Phase 4 was completed on 2026-09-12 against HyprFlux revision
+`f421b6bd108214079b56c435331ddbbfdfb89591` and external Neovim revision
+`d11951c8dd548f0e9d1b470ba279d28e2d7a4696`. Source parity between canonical
+`.config` and `base-dots/config` was confirmed before editing.
+
+The existing Waybar, Rofi, SwayNC, Wlogout, Hyprlock, Qt/Kvantum, Yazi, Cava,
+and Neovim pages were rebuilt from current owners. A missing Kitty page and a
+canonical Wallpapers page were added; Kitty, Wallpapers, and Yazi all resolve
+through feature navigation. Hyprlock and Hypridle configuration pages received
+small ownership corrections so feature workflow and authoring reference remain
+distinct.
+
+Four independent source-fidelity reviews checked the rewritten component
+groups and a second pass verified every correction. Internal links in the
+reviewed pages and all feature sidebar routes resolved.
+
+```bash
+./node_modules/.bin/vitepress build docs
+```
+
+The production build succeeded. Browser checks at 1440x900 and 390x844 covered
+Waybar, toolkit theming, Wallpapers, Neovim, Yazi, and Kitty. There was no
+document-level horizontal overflow; wide tables and code blocks remained in
+scrollable containers. The only browser warning was the existing unused
+`fav.avif` preload, which remains assigned to Phase 6 metadata cleanup.
+
+No screenshots were retained or replaced because the rewritten pages do not
+depend on stale component captures. Confirmed component, wallpaper, theme, and
+external Neovim defects were documented without changing HyprFlux source and
+are recorded in the master risk register.

@@ -44,8 +44,8 @@ one quoted shell argument:
 ```ini
 listener {
     timeout = 630
-    on-timeout = hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'
-    on-resume = hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'
+    on-timeout = hyprctl dispatch 'hl.dsp.dpms({ action = "off" })'
+    on-resume = hyprctl dispatch 'hl.dsp.dpms({ action = "on" })'
 }
 ```
 
@@ -57,6 +57,19 @@ unquoted `on`/`off` examples in the v1.5.0 file should not be copied.
 The base `CTRL+ALT+L` binding runs `LockScreen.sh`, which requests
 `loginctl lock-session`. Hypridle receives the request and runs its guarded
 `lock_cmd`. Waybar also exposes controls for Hypridle and locking.
+
+```text
+loginctl lock-session -> running Hypridle -> guarded Hyprlock process
+```
+
+Stopping Hypridle disables the warning/lock timers and removes HyprFlux's
+configured consumer for the normal session-lock request. The usual shortcut,
+Wlogout Lock, SwayNC Lock, and Waybar's normal lock button can then request a
+lock without launching the visual locker. Waybar's direct-lock mouse action is
+the exception because it invokes `hyprlock` itself.
+
+The shipped `Hypridle.sh toggle` starts Hypridle in the foreground of the
+invoking command when it turns the daemon back on.
 
 ## Validation
 

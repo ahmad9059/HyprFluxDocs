@@ -1,7 +1,8 @@
 # HyprFluxDocs Current-Source Modernization
 
-> Status: **Phases 1-3 complete; Phase 4 is ready to begin.** Installation and
-> Hyprland configuration references now reflect the pinned v1.5.0 sources.
+> Status: **Phases 1-4 complete; Phase 5 is ready to begin.** Installation,
+> Hyprland, desktop component, theme, and wallpaper references now reflect the
+> pinned v1.5.0 sources.
 >
 > Source request: produce a detailed six-phase plan to replace old Hyprland
 > syntax and stale HyprFlux documentation, using the sibling HyprFlux checkout
@@ -194,6 +195,11 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 | R15 | Hypridle DPMS dispatcher commands are shell-invalid | High | The Lua dispatcher expression is unquoted in active/disabled command examples. Phase 3 documents a valid pattern without changing source. |
 | R16 | `application-style.conf` misspells `roundness` | Medium | The shipped `roundess` key is ignored by current hyprland-qt-support. Track a source correction. |
 | R17 | Monitor generation/profile workflows conflict | Medium | Modules 15/16 both write monitor state, and the HyprFlux profile helper differs from nwg-displays native profiles. Document generated ownership; resolve in source. |
+| R18 | Wallpaper workflows contain conflicting or unsafe persistence paths | High | Duplicate selector/effect binding, stale auto-change refresh, malformed video persistence, and unescaped paths are documented. Repair in HyprFlux before advertising unattended rotation or persistent video. |
+| R19 | Toolkit and cursor setup has conflicting owners | High | First boot overrides installer GTK/cursor values, Qt platform-theme is assigned twice, Kvantum is not selected by Qt controllers, and legacy Bibata cursor payload is absent. Document precedence; resolve in source. |
+| R20 | Component menus expose dead or obsolete actions | Medium | Quick Settings has entries without handlers, SwayNC Exit uses an obsolete dispatcher, and several inactive Waybar/Rofi definitions are invalid. Omit from supported workflows and fix upstream. |
+| R21 | External Neovim configuration is unpinned and bootstrap masks failures | High | Phase 4 pins docs to `d11951c8`, but installation clones external HEAD and suppresses bootstrap/sync failures. Pin source and validate tool provisioning upstream. |
+| R22 | Shipped component configs reference undeclared tools or ambiguous backends | Medium | Yazi references optional tools not directly installed; Cava repeats input keys; wallpaper video previews call undeclared `ffmpeg`. Document dependencies and repair package/config ownership. |
 
 ## 5. Phase Map
 
@@ -202,8 +208,8 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 | 1 | [Validate Current State and Confirm Architecture](./phase-01-validate-current-state.md) | Complete; approved 2026-09-10 |
 | 2 | [Modernize Product, Installation, and Release Journeys](./phase-02-installation-and-releases.md) | Complete; verified 2026-09-10 |
 | 3 | [Rebuild the Hyprland Reference for Lua](./phase-03-hyprland-lua-reference.md) | Complete; verified 2026-09-10 |
-| 4 | [Refresh Desktop Components, Themes, and Wallpapers](./phase-04-desktop-components.md) | Ready to begin |
-| 5 | [Rebuild Keybindings, Scripts, Hardware, and Troubleshooting](./phase-05-operations-reference.md) | Pending Phase 4 |
+| 4 | [Refresh Desktop Components, Themes, and Wallpapers](./phase-04-desktop-components.md) | Complete; verified 2026-09-12 |
+| 5 | [Rebuild Keybindings, Scripts, Hardware, and Troubleshooting](./phase-05-operations-reference.md) | Ready to begin |
 | 6 | [Integrate Navigation, Metadata, Drift Checks, and Final QA](./phase-06-integrated-qa.md) | Pending Phases 2-5 |
 
 Six phases are warranted because this is a site-wide modernization spanning
@@ -243,6 +249,7 @@ domain rather than mixing all pages into one unreviewable rewrite.
 
 ## 7. Next Step
 
-Begin Phase 4 using the finalized Lua terminology and generated-file ownership
-from Phase 3. Re-record the current HyprFlux revision and validate every
-component against its configuration and installer owner before editing.
+Begin Phase 5 using the current component ownership and source-defect boundaries
+from Phase 4. Re-record the current HyprFlux revision, derive operational tables
+from live Lua/script owners, and do not present broken source paths as supported
+troubleshooting workflows.

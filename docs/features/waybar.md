@@ -1,450 +1,136 @@
-# Waybar Configuration
+# Waybar
 
-Waybar is the highly customizable status bar for Wayland compositors, serving as the primary panel in HyprFlux. It provides system information, workspace management, and quick access to various functions.
+Waybar is the primary HyprFlux panel. HyprFlux ships one active horizontal
+layout, reusable module banks, grouped drawers, and a static generated color
+palette.
 
-## Overview
+> Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-The HyprFlux Waybar configuration features:
+## Ownership
 
-- Modular design with separate configuration files
-- Multiple layout options and styles
-- System monitoring (CPU, memory, temperature, battery)
-- Media controls and network information
-- Custom modules for HyprFlux-specific functions
-- Dynamic theming with wallpaper integration
+| Concern | Owner |
+|---|---|
+| Package | [`waybar-git` in the AUR package batch](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/base-installer/install-scripts/01-hypr-pkgs.sh#L132-L145) |
+| Installed configuration | `~/.config/waybar/`, copied by [`modules/02-dotfiles.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/02-dotfiles.sh#L9-L45) |
+| Layout entrypoint | [`~/.config/waybar/config`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/config) |
+| Stylesheet entrypoint | [`~/.config/waybar/style.css`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/style.css) |
+| Generated colors | [`hyprflux-colors.css`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/hyprflux-colors.css) |
+| Install-time mutation | Temperature sensor paths may be rewritten by [`modules/16-hardware-detect.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/16-hardware-detect.sh#L459-L536) |
 
-## Configuration Structure
+HyprFlux installs `waybar-git` because its workspace module uses Hyprland's Lua
+dispatcher support. The repository's `.config/waybar/` directory is canonical;
+`base-dots/config/waybar/` is a parity mirror, not a second deployment source.
 
-```
+## Configuration graph
+
+```text
 ~/.config/waybar/
-├── Modules                 # Standard waybar modules
-├── ModulesCustom          # Custom HyprFlux modules
-├── ModulesGroups          # Grouped module configurations
-├── ModulesVertical        # Vertical layout modules
-├── ModulesWorkspaces      # Workspace-specific modules
-├── UserModules            # User-customizable modules
-├── configs/               # Layout configurations
-├── style/                 # CSS styling files
-└── wallust/              # Dynamic color schemes
+|- config                    # active layout and module placement
+|- style.css                 # imports the default stylesheet
+|- Modules                   # standard Waybar modules
+|- ModulesCustom             # HyprFlux commands and launchers
+|- ModulesGroups             # expandable drawers
+|- ModulesWorkspaces         # workspace display variants
+|- ModulesVertical           # definitions not loaded by default
+|- UserModules               # empty extension point
+|- hyprflux-colors.css       # generated static palette
+`- style/HyprFlux-Default.css
 ```
 
-## Key Features
+The active [`config`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/config#L1-L55)
+includes the standard, workspace, custom, group, and user module banks. It does
+not include `ModulesVertical`. The desktop and laptop layout files are currently
+identical.
 
-### 1. System Monitoring
+## Active layout
 
-#### CPU Usage
+| Region | Modules |
+|---|---|
+| Left | separators, Cava visualizer, player controls, active-window title |
+| Center | window-rewrite workspaces, clock, weather, idle inhibitor |
+| Right | application, notification, tray, terminal, updater, laptop, hardware, audio, and status groups |
 
-```json
-"cpu": {
-    "format": "{usage}% 󰍛",
-    "interval": 1,
-    "min-length": 5,
-    "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-click-right": "gnome-system-monitor"
-}
-```
+The expandable groups are defined in
+[`ModulesGroups`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/ModulesGroups):
 
-#### Memory Usage
+| Group | Contents |
+|---|---|
+| Applications | Rofi, wallpaper selector, Thunar, Kitty, browser, quick settings |
+| Notifications | SwayNC state and HyprFlux updater |
+| Laptop | Backlight and battery |
+| Hardware | Temperature, CPU, power profile, memory, disk |
+| Audio | Output volume and microphone |
+| Status | Wlogout, lock, Caps Lock, keyboard layout |
 
-```json
-"memory": {
-    "interval": 10,
-    "format": "{used:0.1f}G 󰾆",
-    "format-alt": "{percentage}% 󰾆",
-    "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-    "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --btop"
-}
-```
+`ModulesWorkspaces` contains several display variants, but the active layout
+uses `hyprland/workspaces#rw`. Its clicks and scroll actions use Hyprland Lua
+dispatchers; changing to another variant can change those semantics.
 
-#### Temperature Monitoring
+## Common interactions
 
-```json
-"temperature": {
-    "interval": 10,
-    "hwmon-path": [
-        "/sys/class/hwmon/hwmon1/temp1_input",
-        "/sys/class/thermal/thermal_zone0/temp"
-    ],
-    "critical-threshold": 82,
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": ["󰈸"],
-    "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nvtop"
-}
-```
+| Control | Action |
+|---|---|
+| Rofi button | Closes an existing Rofi instance; otherwise opens `drun`, run, file-browser, and window modes |
+| Wallpaper button | Middle-click opens the selector; images use AWWW and videos use mpvpaper |
+| Terminal button | Resolves the terminal from `user-defaults.lua` and opens Kitty by default |
+| SwayNC button | Left click toggles the panel; right click toggles do-not-disturb |
+| Player | Previous/play-next on mouse buttons; wheel adjusts volume |
+| Hardware controls | Open tools such as `btop`, `nvtop`, or `gnome-system-monitor` |
+| Power control | Opens the adaptive Wlogout launcher |
+| Lock control | Calls the HyprFlux lock bridge |
 
-### 2. Audio Controls
+The exact commands live in
+[`ModulesCustom`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/ModulesCustom)
+and
+[`ModulesGroups`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/ModulesGroups).
 
-#### PulseAudio Integration
+## Colors and styling
 
-```json
-"pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon} 󰂰 {volume}%",
-    "format-muted": "󰖁",
-    "format-icons": {
-        "headphone": "",
-        "default": ["", "", "󰕾", ""]
-    },
-    "on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
-    "on-click-right": "pavucontrol -t 3",
-    "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
-    "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec"
-}
-```
+Waybar colors do not change with the wallpaper. The default stylesheet imports
+`hyprflux-colors.css`, which is generated from HyprFlux's central static palette
+by [`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L112-L173).
 
-#### Microphone Control
-
-```json
-"pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": "",
-    "on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
-    "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --mic-inc",
-    "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --mic-dec"
-}
-```
-
-### 3. Network Information
-
-#### Network Status
-
-```json
-"network": {
-    "format-wifi": "{icon}",
-    "format-ethernet": "󰌘",
-    "format-disconnected": "󰌙",
-    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nmtui"
-}
-```
-
-#### Network Speed
-
-```json
-"network#speed": {
-    "interval": 1,
-    "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "format-ethernet": "󰌘  {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "min-length": 24,
-    "max-length": 24
-}
-```
-
-### 4. Battery Management
-
-```json
-"battery": {
-    "states": {
-        "good": 95,
-        "warning": 30,
-        "critical": 15
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": "󱘖 {capacity}%",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "tooltip-format": "{timeTo} {power}w",
-    "on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh"
-}
-```
-
-### 5. Media Controls
-
-#### MPRIS Integration
-
-```json
-"mpris": {
-    "format": "{player_icon} ",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "on-click-middle": "playerctl play-pause",
-    "on-click": "playerctl previous",
-    "on-click-right": "playerctl next",
-    "player-icons": {
-        "spotify": "",
-        "firefox": "",
-        "mpv": "󰐹",
-        "vlc": "󰕼"
-    },
-    "max-length": 30
-}
-```
-
-## Custom Modules
-
-### 1. HyprFlux-Specific Modules
-
-#### Settings Menu
-
-```json
-"custom/settings": {
-    "format": " ",
-    "on-click": "$HOME/.config/hypr/scripts/Kool_Quick_Settings.sh",
-    "tooltip-format": "Launch KooL Hyprland Settings Menu"
-}
-```
-
-#### Wallpaper Controls
-
-```json
-"custom/cycle_wall": {
-    "format": " ",
-    "on-click": "$HOME/.config/hypr/UserScripts/WallpaperSelect.sh",
-    "on-click-right": "$HOME/.config/hypr/UserScripts/WallpaperRandom.sh",
-    "on-click-middle": "$HOME/.config/hypr/scripts/WaybarStyles.sh",
-    "tooltip-format": "Left: Wallpaper Menu\\nMiddle: Random\\nRight: Styles"
-}
-```
-
-#### Notification Center
-
-```json
-"custom/swaync": {
-    "format": "{} {icon} ",
-    "format-icons": {
-        "notification": "<span foreground='red'><sup></sup></span>",
-        "none": "",
-        "dnd-notification": "<span foreground='red'><sup></sup></span>",
-        "dnd-none": ""
-    },
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw"
-}
-```
-
-### 2. Utility Modules
-
-#### Weather Information
-
-```json
-"custom/weather": {
-    "format": "{}",
-    "interval": 3600,
-    "return-type": "json",
-    "exec": "$HOME/.config/hypr/UserScripts/Weather.py",
-    "tooltip": true
-}
-```
-
-#### System Updates
-
-```json
-"custom/updater": {
-    "format": " {}",
-    "exec": "checkupdates | wc -l",
-    "interval": 43200,
-    "on-click": "$HOME/.config/hypr/scripts/Distro_update.sh",
-    "tooltip-format": "Left Click: Update System"
-}
-```
-
-#### Hypridle Control
-
-```json
-"custom/hypridle": {
-    "format": "󱫗 ",
-    "exec": "$HOME/.config/hypr/scripts/Hypridle.sh status",
-    "on-click": "$HOME/.config/hypr/scripts/Hypridle.sh toggle",
-    "on-click-right": "hyprlock"
-}
-```
-
-## Customization Guide
-
-### Adding New Modules
-
-1. **Create module configuration** in `UserModules`:
-
-```json
-"custom/my_module": {
-    "format": "{}",
-    "exec": "echo 'Hello World'",
-    "interval": 30,
-    "on-click": "notify-send 'Clicked!'",
-    "tooltip": true
-}
-```
-
-2. **Add to layout** in your chosen config file:
-
-```json
-"modules-left": ["custom/my_module"],
-"modules-center": [],
-"modules-right": []
-```
-
-### Modifying Existing Modules
-
-#### Change Update Intervals
-
-```json
-"cpu": {
-    "interval": 5,  // Update every 5 seconds instead of 1
-    // ... other options
-}
-```
-
-#### Customize Click Actions
-
-```json
-"memory": {
-    "on-click": "kitty htop",           // Left click
-    "on-click-right": "gnome-system-monitor",  // Right click
-    "on-click-middle": "notify-send 'Memory: $(free -h)'"  // Middle click
-}
-```
-
-#### Modify Display Format
-
-```json
-"clock": {
-    "format": " {:%H:%M}",              // 24-hour format
-    "format-alt": " {:%I:%M %p}",       // 12-hour format
-    "tooltip-format": "<big>{:%Y %B}</big>\\n<tt><small>{calendar}</small></tt>"
-}
-```
-
-### Creating Custom Layouts
-
-1. **Create new config file** in `configs/`:
-
-```json
-{
-  "layer": "top",
-  "position": "top",
-  "height": 30,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "battery", "tray"]
-}
-```
-
-2. **Switch layouts** using the script:
+For source development, edit the central palette and regenerate outputs:
 
 ```bash
-~/.config/hypr/scripts/WaybarLayout.sh
+./utilities/sync-colors.sh
 ```
 
-### Styling and Themes
+Do not hand-edit `hyprflux-colors.css` in a source contribution. CI verifies
+generated output and `.config`/`base-dots` parity.
 
-#### CSS Customization
+## Reload and troubleshooting
 
-Edit files in `style/` directory:
-
-```css
-/* Custom module styling */
-#custom-my_module {
-  background-color: #1e1e2e;
-  color: #cdd6f4;
-  border-radius: 10px;
-  padding: 0 10px;
-  margin: 0 5px;
-}
-
-/* Hover effects */
-#custom-my_module:hover {
-  background-color: #313244;
-  transition: all 0.3s ease;
-}
-```
-
-#### Dynamic Theming
-
-Waybar integrates with wallust for automatic color generation:
+Reload a running bar after editing:
 
 ```bash
-# Colors are automatically applied from
-~/.config/waybar/wallust/colors-waybar.css
+pkill -SIGUSR2 waybar
 ```
 
-## Advanced Features
-
-### Multi-Monitor Setup
-
-Configure different layouts for different monitors:
-
-```json
-{
-  "output": "DP-1",
-  "modules-left": ["hyprland/workspaces"]
-  // ... primary monitor config
-}
-```
-
-```json
-{
-  "output": "HDMI-A-1",
-  "modules-left": ["clock"]
-  // ... secondary monitor config
-}
-```
-
-### Conditional Modules
-
-Show modules only when conditions are met:
-
-```json
-"custom/battery": {
-    "exec-if": "test -e /sys/class/power_supply/BAT0",
-    // ... only show on laptops
-}
-```
-
-### Workspace Integration
-
-```json
-"hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "urgent": "",
-        "default": ""
-    },
-    "persistent-workspaces": {
-        "*": 5
-    }
-}
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Module not updating**: Check script permissions and paths
-2. **Icons not showing**: Install required fonts (Nerd Fonts)
-3. **High CPU usage**: Increase update intervals
-4. **Styling issues**: Verify CSS syntax and selectors
-
-### Debug Commands
+Restart it if reload is insufficient:
 
 ```bash
-# Test waybar configuration
-waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css
-
-# Check for errors
-journalctl -f -u waybar
-
-# Reload waybar
-pkill waybar && waybar &
+pkill waybar
+waybar
 ```
 
-### Performance Optimization
+Run Waybar in a terminal to inspect module errors:
 
-```json
-// Reduce update frequency for resource-intensive modules
-"cpu": { "interval": 5 },
-"memory": { "interval": 10 },
-"network": { "interval": 5 }
-
-// Disable tooltips for better performance
-"tooltip": false
+```bash
+waybar -l debug
 ```
 
-::: tip Waybar Official Docs
-More Details : https://github.com/Alexays/Waybar/wiki
+::: warning Current source limitations
+The shipped tooltip describes the wallpaper click incorrectly, the updater
+visibility guard also treats zero as visible, and the inactive vertical power
+group references an undefined module. The selected horizontal layout remains
+usable; these defects must be fixed in HyprFlux source rather than worked
+around in documentation.
 :::
+
+## Related pages
+
+- [Rofi](./rofi.md)
+- [Wallpapers](./wallpapers.md)
+- [SwayNC](./swaync.md)
+- [Wlogout](./wlogout.md)

@@ -1,8 +1,8 @@
 # Hyprlock Configuration Reference
 
-Primary path: `~/.config/hypr/hyprlock.conf`
+Repository primary path: `~/.config/hypr/hyprlock.conf`
 
-Optional variant: `~/.config/hypr/hyprlock-1080p.conf`
+Repository alternate path: `~/.config/hypr/hyprlock-1080p.conf`
 
 [View the pinned v1.5.0 configuration](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/hyprlock.conf).
 
@@ -21,7 +21,7 @@ Use lock-specific variables such as `$lock_border`, `$lock_text`, `$lock_box`,
 `$lock_outer`, and `$lock_font` instead of copying literal colors into every
 widget.
 
-## Primary Layout
+## Repository Primary Layout
 
 The default file applies its widgets to every monitor and contains:
 
@@ -35,14 +35,13 @@ Widgets use native blocks such as `background`, `image`, `shape`, `label`, and
 `input-field`. Dynamic labels use `cmd[update:<milliseconds>]` and should run
 fast because they execute repeatedly.
 
-## Low-Resolution Variant
+## Repository Alternate Layout
 
-`hyprlock-1080p.conf` is intended for displays below 1080p. It uses the current
-wallpaper artifact and adds separate hour/minute/second, keyboard layout,
-uptime, battery, and cached-weather labels.
+`hyprlock-1080p.conf` is labeled as a low-resolution variant in the source. It
+uses the current wallpaper artifact and adds separate hour/minute/second,
+keyboard layout, uptime, battery, and cached-weather labels.
 
-The normal installed callers invoke bare `hyprlock`, so the primary
-`hyprlock.conf` remains the default. Test the variant explicitly:
+Bare `hyprlock` uses the primary file. Test the alternate explicitly:
 
 ```bash
 hyprlock --config ~/.config/hypr/hyprlock-1080p.conf
@@ -69,8 +68,10 @@ WAYLAND_DISPLAY=__invalid__ hyprlock \
   --config ~/.config/hypr/hyprlock.conf --verbose
 ```
 
-There should be no preceding `Config has errors` block. Repeat with the
-low-resolution variant after changing it. Also confirm referenced image,
-script, and font paths exist.
+There should be no preceding `Config has errors` block. Repeat with every
+installed variant after changing it. Also confirm referenced image, script, and
+font paths exist. The primary source requests an SF Pro Semibold face that is
+not bundled under that exact name. Victor Mono for the alternate layout is
+installed by the base font installer.
 
 For the user-facing lock workflow, see [Hyprlock features](/features/hyprlock).

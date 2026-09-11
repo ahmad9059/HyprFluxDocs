@@ -1,463 +1,103 @@
-# Yazi File Manager Configuration
+# Yazi
 
-Yazi is a blazingly fast terminal file manager written in Rust, serving as the primary file management solution in HyprFlux. It provides a modern, efficient, and highly customizable file browsing experience.
+Yazi is the shipped terminal file manager. It is available from shells and a
+tmuxifier layout, but Thunar remains HyprFlux's default graphical file manager.
 
-## Overview
+> Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-The HyprFlux Yazi configuration features:
+## Ownership
 
-- Lightning-fast file operations
-- Vim-like keybindings and navigation
-- Rich preview capabilities (images, videos, documents)
-- Plugin system for extended functionality
-- Customizable themes and layouts
-- Integration with system tools and editors
+| Concern | Owner |
+|---|---|
+| Package | [`yazi` in the second main package batch](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/base-installer/install-scripts/01-hypr-pkgs.sh#L55-L86) |
+| Configuration | [`~/.config/yazi/`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591/.config/yazi) |
+| Deployment | [`modules/02-dotfiles.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/02-dotfiles.sh#L9-L45) |
+| Shell entry | `alias y='yazi'` in the shipped `.zshrc` |
+| Desktop file manager | Thunar from `user-defaults.lua`, not Yazi |
 
-## Configuration Structure
+## Configuration
 
-```
+```text
 ~/.config/yazi/
-├── yazi.toml              # Main configuration
-├── keymap.toml            # Keybinding configuration
-├── theme.toml             # Theme and styling
-├── plugins/               # Custom plugins
-├── flavors/               # Color schemes
-└── init.lua               # Lua initialization script
+|- yazi.toml
+|- keymap.toml
+|- theme.toml
+`- flavors/tokyo-night.yazi/flavor.toml
 ```
 
-## Key Features
+No plugins directory or `init.lua` is shipped. The active manager settings use
+the current `[mgr]` section:
 
-### 1. Navigation and Interface
+| Setting | Value |
+|---|---|
+| Pane ratio | `[2, 4, 3]` |
+| Hidden files | Shown |
+| Preview size | 600 x 600 |
+| Preview filtering | Nearest |
+| Preview image quality | 50 |
+| Editor | `$EDITOR`, falling back to Neovim |
+| Linux open/reveal | `xdg-open` |
+| Media opener | VLC |
+| Theme | Bundled Tokyo Night flavor |
 
-#### Basic Configuration
+## Launching Yazi
 
-```toml
-[manager]
-ratio = [1, 4, 3]          # Column ratios (parent, current, preview)
-sort_by = "alphabetical"    # Sort method
-sort_sensitive = false      # Case sensitivity
-sort_reverse = false        # Reverse sort order
-sort_dir_first = true      # Directories first
-linemode = "none"          # Line mode display
-show_hidden = false        # Show hidden files
-show_symlink = true        # Show symlink indicators
-```
-
-#### Preview Configuration
-
-```toml
-[preview]
-tab_size = 2               # Tab size for text files
-max_width = 600            # Maximum preview width
-max_height = 900           # Maximum preview height
-cache_dir = ""             # Cache directory for previews
-```
-
-### 2. File Operations
-
-#### Default Actions
-
-```toml
-[opener]
-edit = [
-    { run = 'nvim "$@"', block = true, for = "unix" },
-    { run = 'code "$@"', block = false, for = "unix" }
-]
-
-open = [
-    { run = 'xdg-open "$@"', desc = "Open with default application" }
-]
-
-extract = [
-    { run = 'unar "$1"', desc = "Extract archive" }
-]
-```
-
-#### Custom Openers
-
-```toml
-[opener]
-image = [
-    { run = 'imv "$@"', desc = "View with imv" },
-    { run = 'gimp "$@"', desc = "Edit with GIMP" }
-]
-
-video = [
-    { run = 'mpv "$@"', desc = "Play with mpv" },
-    { run = 'vlc "$@"', desc = "Play with VLC" }
-]
-
-pdf = [
-    { run = 'zathura "$@"', desc = "View with Zathura" },
-    { run = 'firefox "$@"', desc = "Open in Firefox" }
-]
-```
-
-### 3. Keybinding System
-
-#### Navigation Keys
-
-```toml
-[manager]
-keymap = [
-    { on = [ "h" ], run = "leave", desc = "Go back" },
-    { on = [ "l" ], run = "enter", desc = "Enter directory" },
-    { on = [ "j" ], run = "arrow 1", desc = "Move down" },
-    { on = [ "k" ], run = "arrow -1", desc = "Move up" },
-    { on = [ "g", "g" ], run = "arrow -99999999", desc = "Go to top" },
-    { on = [ "G" ], run = "arrow 99999999", desc = "Go to bottom" }
-]
-```
-
-#### File Operations
-
-```toml
-[manager]
-keymap = [
-    { on = [ "y", "y" ], run = "yank", desc = "Copy files" },
-    { on = [ "d", "d" ], run = "yank --cut", desc = "Cut files" },
-    { on = [ "p" ], run = "paste", desc = "Paste files" },
-    { on = [ "P" ], run = "paste --force", desc = "Force paste" },
-    { on = [ "D" ], run = "remove", desc = "Delete files" },
-    { on = [ "r" ], run = "rename", desc = "Rename file" }
-]
-```
-
-#### Quick Actions
-
-```toml
-[manager]
-keymap = [
-    { on = [ "o" ], run = "open", desc = "Open file" },
-    { on = [ "O" ], run = "open --interactive", desc = "Open with..." },
-    { on = [ "e" ], run = "open --interactive", desc = "Edit file" },
-    { on = [ "." ], run = "hidden toggle", desc = "Toggle hidden files" },
-    { on = [ "s" ], run = "search fd", desc = "Search files" },
-    { on = [ "/" ], run = "find --smart", desc = "Find in current directory" }
-]
-```
-
-### 4. Theme and Styling
-
-#### Color Scheme
-
-```toml
-[flavor]
-use = "catppuccin-mocha"   # Base theme
-
-[theme]
-# File type colors
-regular = { fg = "#c6d0f5" }
-directory = { fg = "#8caaee", bold = true }
-executable = { fg = "#a6e3a1" }
-symlink = { fg = "#f9e2af" }
-broken = { fg = "#e78284", crossed = true }
-
-# Selection colors
-selected = { bg = "#414559", bold = true }
-hovered = { bg = "#51576d" }
-```
-
-#### Status Line
-
-```toml
-[status]
-separator_open = ""
-separator_close = ""
-separator_style = { fg = "#45475a" }
-
-[status.left]
-left = [
-    { type = "line", style = { fg = "#89b4fa" } },
-    { type = "size", style = { fg = "#f9e2af" } },
-    { type = "name", style = { fg = "#c6d0f5" } }
-]
-
-[status.right]
-right = [
-    { type = "permissions", style = { fg = "#a6e3a1" } },
-    { type = "percentage", style = { fg = "#fab387" } },
-    { type = "position", style = { fg = "#f38ba8" } }
-]
-```
-
-## Advanced Features
-
-### 1. Plugin System
-
-#### Installing Plugins
+Run either command in a terminal:
 
 ```bash
-# Clone plugin repository
-git clone https://github.com/yazi-rs/plugins.git ~/.config/yazi/plugins
-
-# Or install specific plugins
-ya pack -a yazi-rs/plugins:git
-ya pack -a yazi-rs/plugins:jump
-ya pack -a yazi-rs/plugins:smart-filter
+yazi
+y
 ```
 
-#### Popular Plugins
+The shipped `web-dev` tmuxifier layout also opens Yazi in one window. There is
+no default Hyprland keybinding or Waybar button for Yazi; `SUPER+F` and the
+Waybar file-manager control open Thunar.
 
-- **git**: Git integration and status display
-- **jump**: Quick directory jumping
-- **smart-filter**: Enhanced filtering capabilities
-- **archive**: Archive management
-- **chmod**: Permission management
-- **full-border**: Enhanced border styling
+## Shipped keys
 
-### 2. Custom Commands
+| Key | Action |
+|---|---|
+| `y` | Copy selected files |
+| `x` | Cut selected files |
+| `d` | Move selected files to trash |
+| `D` | Permanently delete selected files |
+| `s` | Search names with `fd` |
+| `S` | Search contents with `rg` |
+| `z` | Jump with `fzf` |
+| `Z` | Jump with `zoxide` |
+| `gh` | Go home |
+| `gc` | Go to config |
+| `gd` | Go to Downloads |
 
-#### Shell Integration
+Review the complete pinned
+[`keymap.toml`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/yazi/keymap.toml)
+before replacing existing mappings.
 
-```toml
-[manager]
-keymap = [
-    { on = [ "!" ], run = "shell --block", desc = "Open shell" },
-    { on = [ "c", "d" ], run = "cd", desc = "Change directory" },
-    { on = [ "c", "w" ], run = "cd ~/Downloads", desc = "Go to Downloads" },
-    { on = [ "c", "h" ], run = "cd ~", desc = "Go to Home" }
-]
-```
+## Optional command gaps
 
-#### Custom Scripts
-
-```toml
-[manager]
-keymap = [
-    { on = [ "T" ], run = "shell 'kitty --working-directory=\"$PWD\" &'", desc = "Open terminal here" },
-    { on = [ "C" ], run = "shell 'code \"$PWD\"'", desc = "Open in VS Code" },
-    { on = [ "F" ], run = "shell 'thunar \"$PWD\" &'", desc = "Open in GUI file manager" }
-]
-```
-
-### 3. Preview Enhancements
-
-#### Image Preview
-
-```toml
-[preview]
-image_filter = "triangle"   # Image scaling filter
-image_quality = 75         # JPEG quality for thumbnails
-sixel_fraction = 15        # Sixel preview size
-```
-
-#### Video Preview
-
-```toml
-[plugin]
-prepend_previewers = [
-    { mime = "video/*", run = "video" },
-    { mime = "audio/*", run = "audio" }
-]
-```
-
-#### Document Preview
-
-```toml
-[plugin]
-prepend_previewers = [
-    { name = "*.pdf", run = "pdf" },
-    { name = "*.docx", run = "docx" },
-    { name = "*.xlsx", run = "xlsx" }
-]
-```
-
-## Customization Guide
-
-### Changing Layout
-
-#### Column Ratios
-
-```toml
-[manager]
-ratio = [2, 5, 3]          # Wider current column
-# ratio = [1, 6, 2]        # Minimal parent/preview
-# ratio = [0, 1, 0]        # Single column mode
-```
-
-#### Line Mode
-
-```toml
-[manager]
-linemode = "size"          # Show file sizes
-# linemode = "permissions" # Show permissions
-# linemode = "mtime"       # Show modification time
-# linemode = "none"        # Clean view
-```
-
-### Custom Keybindings
-
-#### Bookmark System
-
-```toml
-[manager]
-keymap = [
-    { on = [ "m", "h" ], run = "cd ~", desc = "Bookmark: Home" },
-    { on = [ "m", "d" ], run = "cd ~/Downloads", desc = "Bookmark: Downloads" },
-    { on = [ "m", "c" ], run = "cd ~/.config", desc = "Bookmark: Config" },
-    { on = [ "m", "p" ], run = "cd ~/Pictures", desc = "Bookmark: Pictures" }
-]
-```
-
-#### Quick Operations
-
-```toml
-[manager]
-keymap = [
-    { on = [ "z", "h" ], run = "hidden toggle", desc = "Toggle hidden" },
-    { on = [ "z", "s" ], run = "sort modified --reverse", desc = "Sort by date" },
-    { on = [ "z", "z" ], run = "sort alphabetical", desc = "Sort alphabetically" },
-    { on = [ "z", "S" ], run = "sort size --reverse", desc = "Sort by size" }
-]
-```
-
-### Theme Customization
-
-#### Custom Colors
-
-```toml
-[theme]
-# Custom file type colors
-regular = { fg = "#ffffff" }
-directory = { fg = "#89b4fa", bold = true }
-executable = { fg = "#a6e3a1", bold = true }
-symlink = { fg = "#f9e2af", italic = true }
-broken = { fg = "#f38ba8", crossed = true }
-
-# Selection styling
-selected = { bg = "#313244", bold = true }
-hovered = { bg = "#45475a" }
-```
-
-#### Border Styling
-
-```toml
-[theme]
-border = { fg = "#6c7086" }
-border_symbol = "│"
-border_style = { fg = "#6c7086" }
-```
-
-## Integration with HyprFlux
-
-### Hyprland Integration
-
-#### Keybindings
+The configuration invokes `fd`, `rg`, `exiftool`, and `mediainfo`, but the
+pinned HyprFlux package inventory does not explicitly install them. If a search
+or metadata preview reports a missing command, install the corresponding Arch
+package rather than changing Yazi syntax:
 
 ```bash
-# In UserConfigs/UserKeybinds.conf
-bind = SUPER, E, exec, kitty yazi
-bind = SUPER SHIFT, E, exec, yazi
-bind = SUPER, F, exec, kitty --class="yazi-floating" yazi
+sudo pacman -S fd ripgrep perl-image-exiftool mediainfo
 ```
 
-#### Window Rules
+`fzf` and `zoxide` are explicitly provisioned by HyprFlux.
+
+## Validate changes
+
+Start Yazi from a terminal after editing so configuration errors remain visible:
 
 ```bash
-# In UserConfigs/WindowRules.conf
-windowrule = float, ^(yazi-floating)$
-windowrule = size 1200 800, ^(yazi-floating)$
-windowrule = center, ^(yazi-floating)$
+yazi
 ```
 
-### Waybar Integration
+Keep local changes in the four shipped configuration areas unless you also
+intend to install and maintain external plugins.
 
-```json
-"custom/file_manager": {
-    "format": " ",
-    "on-click": "kitty yazi",
-    "tooltip-format": "File Manager"
-}
-```
+## Related pages
 
-### Shell Integration
-
-#### Zsh Integration
-
-```bash
-# In .zshrc
-function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
-```
-
-#### Fish Integration
-
-```fish
-# In config.fish
-function y
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    yazi $argv --cwd-file="$tmp"
-    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-        cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
-end
-```
-
-## Performance Optimization
-
-### Cache Configuration
-
-```toml
-[preview]
-cache_dir = "/tmp/yazi"    # Use tmpfs for cache
-max_width = 400            # Reduce preview size
-max_height = 600           # Reduce preview size
-```
-
-### Memory Management
-
-```toml
-[manager]
-scrolloff = 5              # Reduce scroll offset
-tab_size = 2               # Smaller tab size
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Slow preview generation**: Reduce preview size or disable for large files
-2. **Keybindings not working**: Check for conflicts in keymap.toml
-3. **Themes not loading**: Verify theme file paths and syntax
-4. **Plugins not working**: Check plugin installation and dependencies
-
-### Debug Commands
-
-```bash
-# Check yazi configuration
-yazi --debug
-
-# Test specific features
-yazi --clear-cache
-
-# Check plugin status
-ya pack -l
-
-# Validate configuration
-yazi --check-config
-```
-
-### Performance Monitoring
-
-```bash
-# Monitor yazi performance
-time yazi --version
-
-# Check memory usage
-ps aux | grep yazi
-
-# Profile startup time
-hyperfine 'yazi --version'
-```
-
-::: tip Yazi Official Docs
-More Details : https://yazi-rs.github.io
-:::
+- [Kitty](./kitty.md)
+- [Hyprland user defaults](../hyprland/01-userdefaults.md)
