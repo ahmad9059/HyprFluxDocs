@@ -65,7 +65,7 @@ is not the active Qt widget style under the shipped controller settings.
 `env-variables.lua` sets `QT_QPA_PLATFORMTHEME` first to `qt5ct` and then to
 `qt6ct`. One process environment cannot retain both values; the later value is
 expected to win. Verify the application environment instead of assuming each
-Qt major version automatically reaches its matching controller — see
+Qt major version automatically reaches its matching controller - see
 [Diagnose the active theme](#diagnose-the-active-theme) below.
 
 ### Install and first-boot precedence
@@ -82,7 +82,7 @@ Qt major version automatically reaches its matching controller — see
 
 The first-boot marker is written without validating all backgrounded commands.
 If theming is inconsistent, inspect current settings rather than rerunning the
-whole installer — see [Diagnose the active theme](#diagnose-the-active-theme)
+whole installer - see [Diagnose the active theme](#diagnose-the-active-theme)
 below.
 
 ### Static colors
@@ -107,7 +107,7 @@ qt6ct
 ```
 
 Check which `QT_QPA_PLATFORMTHEME` value a running Qt application actually
-received — replace `<process-name>` with its executable name:
+received - replace `<process-name>` with its executable name:
 
 ```bash
 tr '\0' '\n' < /proc/$(pgrep -n '<process-name>')/environ | grep '^QT_'

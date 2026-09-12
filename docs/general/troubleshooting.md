@@ -6,7 +6,7 @@ description: Safe, symptom-led diagnostics for HyprFlux installation, sessions, 
 # Troubleshooting
 
 Find the section below that matches what you're seeing, then work through it
-in order: **Diagnose** first, then **Fix**. Use inspection before correction —
+in order: **Diagnose** first, then **Fix**. Use inspection before correction -
 the commands below do not delete configuration, recursively change
 permissions, or rerun disk provisioning. Collect command output and relevant
 logs before escalating an issue.

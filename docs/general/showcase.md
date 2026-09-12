@@ -6,7 +6,7 @@ aside: false
 
 <div class="showcase-hero">
   <h1>Showcase</h1>
-  <p class="showcase-subtitle">Experience HyprFlux in action — stunning screenshots and a showcase video showcasing the desktop environment</p>
+  <p class="showcase-subtitle">Experience HyprFlux in action - stunning screenshots and a showcase video showcasing the desktop environment</p>
 </div>
 
 <div class="showcase-grid">

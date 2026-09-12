@@ -50,7 +50,7 @@ at once:
 └── application-style.conf       # Hyprland Qt/QML application style
 ```
 
-This is a map for orientation, not a lookup table — each file's own reference
+This is a map for orientation, not a lookup table - each file's own reference
 page documents its exact fields and defaults.
 
 ## Four Kinds of Files, Four Editing Rules
@@ -58,26 +58,26 @@ page documents its exact fields and defaults.
 Every file in that tree falls into one of four categories, and knowing which
 category a file belongs to tells you whether you should ever hand-edit it.
 
-**The entrypoint** — `hyprland.lua` itself. It doesn't hold your settings; it
+**The entrypoint** - `hyprland.lua` itself. It doesn't hold your settings; it
 orchestrates everything else by requiring modules in a specific order. You
 edit it only to add, remove, or reorder a `require(...)` line, not to change
 a setting directly. See the [entrypoint reference](/hyprland/hyprland) for
 its exact contents.
 
-**User-owned modules** — most of what's under `UserConfigs/`. These are your
+**User-owned modules** - most of what's under `UserConfigs/`. These are your
 customization surface: terminal and editor choice, input and layout
 behavior, decorations, animations, personal keybindings, window rules, and
 startup applications. Edit these freely; each has its own reference page.
 
-**Generated files** — `monitors.lua`, `workspaces.lua`, and
+**Generated files** - `monitors.lua`, `workspaces.lua`, and
 `hyprflux-colors.lua`. A tool owns each of these, not you directly:
 `nwg-displays` writes monitor and workspace Lua output, installer hardware
 modules can regenerate monitor output and profiles, and
 `utilities/sync-colors.sh` generates the Lua palette from the central color
-source. Hand-editing one of these is a temporary experiment at best — the
+source. Hand-editing one of these is a temporary experiment at best - the
 owning tool can overwrite it the next time it runs.
 
-**Distribution defaults** — `configs/keybinds.lua`. This is the HyprFlux base
+**Distribution defaults** - `configs/keybinds.lua`. This is the HyprFlux base
 binding layer, shipped and maintained by the project. Add your own bindings
 in `UserConfigs/user-keybinds.lua` instead of editing this file directly, so
 your changes survive an update.
@@ -99,13 +99,13 @@ That single rule explains two things that otherwise look like inconsistencies:
 - **Why the environment module loads first.** `env-variables.lua` must run
   before any other module that calls an `hl.*` function, because those calls
   can depend on environment state already being set. Defaults and the color
-  palette can load before it only because they just return Lua tables — they
+  palette can load before it only because they just return Lua tables - they
   don't call anything yet. See the
   [entrypoint reference](/hyprland/hyprland#complete-load-order) for the
   complete ordered list.
 - **Why some keybindings collide.** Because a later `hl.bind` doesn't remove
   an earlier one, HyprFlux's own source currently registers more than one
-  action on `SUPER+K`, `SUPER+O`, and `SUPER+SHIFT+W` — both actions run on
+  action on `SUPER+K`, `SUPER+O`, and `SUPER+SHIFT+W` - both actions run on
   every press. This isn't a menu or a fallback; it's what "additive, not
   overriding" means in practice. See the full list in the
   [Hyprland keybindings reference](/keybindings/hyprland#known-collisions).
@@ -133,7 +133,7 @@ the Lua migration, the filenames changed along with the format:
 | `monitors.conf` compositor input | generated `monitors.lua` |
 | `workspaces.conf` compositor input | generated `workspaces.lua` |
 
-Treat this table as a translation aid, not as valid current syntax — don't
+Treat this table as a translation aid, not as valid current syntax - don't
 write new configuration in the removed format.
 
 ## For Contributors

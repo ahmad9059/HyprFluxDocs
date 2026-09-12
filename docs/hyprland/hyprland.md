@@ -112,7 +112,7 @@ The entrypoint requires these modules in exactly this order:
 16. `UserConfigs.LaptopDisplay`
 
 This is a reference summary of the sections above, not a substitute for
-reading them — each numbered step is explained in more detail earlier on
+reading them - each numbered step is explained in more detail earlier on
 this page.
 
 ## Validation

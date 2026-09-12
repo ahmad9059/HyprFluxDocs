@@ -6,7 +6,7 @@ description: The complete How-to procedure for provisioning HyprFlux on a system
 # Provision HyprFlux on an Existing Arch System
 
 **Goal:** provision the complete HyprFlux desktop on a system that already
-has Arch Linux installed — updating the system, installing packages and
+has Arch Linux installed - updating the system, installing packages and
 services, deploying configuration, and applying themes.
 
 Use this path when Arch Linux is already installed. The HyprFlux installer
@@ -108,7 +108,7 @@ intend to run that lower-level copy path.
 
 ## Verify the Installation
 
-Before rebooting, confirm the installer didn't report a failure — see
+Before rebooting, confirm the installer didn't report a failure - see
 [If Installation Reports a Failure](#if-installation-reports-a-failure) for
 the exact log commands. If nothing failed, continue to rebooting below.
 

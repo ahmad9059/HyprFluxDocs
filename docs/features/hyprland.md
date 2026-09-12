@@ -7,7 +7,7 @@ description: Understand Hyprland's role in the HyprFlux desktop, what HyprFlux's
 
 Hyprland is the Wayland compositor at the center of the HyprFlux desktop.
 HyprFlux 1.5 uses Hyprland 0.55 or newer and configures it entirely through
-Lua — the old `hyprland.conf` entrypoint and sourced Hyprlang fragments are no
+Lua - the old `hyprland.conf` entrypoint and sourced Hyprlang fragments are no
 longer supported.
 
 ## What HyprFlux Adds on Top of Hyprland
@@ -21,7 +21,7 @@ can manage that state instead of you, a static shared color palette used
 consistently across the desktop, and Hyprlock/Hypridle wired in for locking
 and idle behavior.
 
-None of this changes what Hyprland itself can do — it's an opinionated
+None of this changes what Hyprland itself can do - it's an opinionated
 arrangement of Hyprland's own configuration surface. See
 [Understanding the Hyprland Configuration Architecture](/hyprland/) for how
 the pieces fit together and the file-by-file ownership rules.
@@ -40,14 +40,14 @@ hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(defaults.term))
 The difference is more than cosmetic: Lua is a real language, not a static
 assignment format, so a module can compute values instead of only declaring
 them. The clearest example already in HyprFlux's own source is its numbered
-workspace bindings — a `for` loop generates all ten instead of thirty
+workspace bindings - a `for` loop generates all ten instead of thirty
 near-identical copied lines (see
 [Generate Repeated Bindings](/hyprland/keybinding#generate-repeated-bindings)).
 A Hyprlang file couldn't express that loop; it could only contain the
 expanded result.
 
-The exact syntax for each kind of declaration — `hl.env`, `hl.config`,
-`hl.bind`, `hl.window_rule`, and so on — is documented on each owning file's
+The exact syntax for each kind of declaration - `hl.env`, `hl.config`,
+`hl.bind`, `hl.window_rule`, and so on - is documented on each owning file's
 reference page, not repeated here.
 
 ## Quick Reference: Where to Make a Change
@@ -65,7 +65,7 @@ reference page, not repeated here.
 
 ## Keep the Configuration Valid
 
-After any change, validate before reloading — the
+After any change, validate before reloading - the
 [entrypoint reference](/hyprland/hyprland#validation) has the exact commands
 and what to do if validation fails.
 
