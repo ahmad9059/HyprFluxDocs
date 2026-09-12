@@ -90,6 +90,31 @@ loads `UserConfigs/user-settings.lua` relative to the Hyprland configuration
 root. A failed required module is a configuration error; there is no automatic
 fallback to an old `.conf` file.
 
+## Complete Load Order
+
+The entrypoint requires these modules in exactly this order:
+
+1. `UserConfigs.user-defaults`
+2. `hyprflux-colors`
+3. `UserConfigs.env-variables`
+4. `UserConfigs.user-settings`
+5. `UserConfigs.user-decorations`
+6. `UserConfigs.user-animations`
+7. `configs.keybinds`
+8. `UserConfigs.user-keybinds`
+9. `UserConfigs.laptops`
+10. `UserConfigs.window-rules`
+11. `UserConfigs.workspace-rules`
+12. Register the `initial-boot.sh` startup callback
+13. `UserConfigs.startup-apps`
+14. `monitors`
+15. `workspaces`
+16. `UserConfigs.LaptopDisplay`
+
+This is a reference summary of the sections above, not a substitute for
+reading them — each numbered step is explained in more detail earlier on
+this page.
+
 ## Validation
 
 Validate individual Lua files while editing:
