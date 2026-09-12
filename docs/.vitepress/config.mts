@@ -98,7 +98,7 @@ export default defineConfig({
         text: "Getting Started",
         collapsed: false,
         items: [
-          { text: "Quick Start", link: "/general/quickstart.md" },
+          { text: "Quick Start (Tutorial)", link: "/general/quickstart.md" },
           { text: "Download ISO", link: "/general/download.md" },
           { text: "Showcase", link: "/general/showcase.md" },
         ],
@@ -136,7 +136,7 @@ export default defineConfig({
         ],
       },
       {
-        text: "Keybindings",
+        text: "Keybindings (Reference)",
         collapsed: false,
         items: [
           {
@@ -148,11 +148,11 @@ export default defineConfig({
         ],
       },
       {
-        text: "Features",
+        text: "Features (Component Guides)",
         collapsed: false,
         items: [
           {
-            text: "Hyprland",
+            text: "Hyprland (Explanation)",
             link: "/features/hyprland.md",
           },
           { text: "Hyprlock", link: "/features/hyprlock.md" },
@@ -169,11 +169,11 @@ export default defineConfig({
         ],
       },
       {
-        text: ".config/hypr",
+        text: ".config/hypr (Reference)",
         collapsed: false,
         items: [
           {
-            text: "Configuration Architecture",
+            text: "Configuration Architecture (Explanation)",
             link: "/hyprland/index.md",
           },
           {

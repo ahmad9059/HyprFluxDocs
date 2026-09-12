@@ -24,7 +24,7 @@ Arch installer menus and supported storage options change independently of
 HyprFlux, so this guide does not duplicate version-specific menu labels or
 partition commands.
 
-::: danger Disk operations can destroy data
+::: warning Disk operations can destroy data
 Writing installation media, formatting partitions, and selecting an install
 disk can erase data. Verify every device and back up important files before
 following the Arch installation documentation.

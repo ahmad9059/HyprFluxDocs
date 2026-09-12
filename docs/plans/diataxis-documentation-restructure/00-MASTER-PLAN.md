@@ -1,6 +1,6 @@
 # Diátaxis Documentation Restructure
 
-> Status: **Phases 1–4 complete and verified.** Phase 5 not started.
+> Status: **Complete. All five phases verified.**
 >
 > Source request: apply the Diátaxis framework (Tutorial / How-to Guide /
 > Reference / Explanation) to the existing HyprFluxDocs site, per the
@@ -103,7 +103,7 @@ Sign-off was obtained in chat before this plan was written.
 | 2 | [Reference Cleanup](./phase-02-reference-cleanup.md) | Complete and verified |
 | 3 | [Explanation](./phase-03-explanation.md) | Complete and verified |
 | 4 | [Component Pages](./phase-04-component-pages.md) | Complete and verified |
-| 5 | [Navigation Labels](./phase-05-navigation-labels.md) | Not started |
+| 5 | [Navigation Labels](./phase-05-navigation-labels.md) | Complete and verified |
 
 Five phases match the quadrant/section groupings already agreed with the
 maintainer; each is an independently reviewable diff.
@@ -133,7 +133,15 @@ maintainer; each is an independently reviewable diff.
 
 ## 7. Next Step
 
-Phases 1–4 are complete and verified. Only Phase 5 remains: relabel the
-`docs/.vitepress/config.mts` sidebar groups to signal each section's
-Diátaxis quadrant, touching labels only — no `link` values, and nothing
-else in that file (see Risk R4 and `phase-05-navigation-labels.md`).
+All five phases are complete and verified. There is no further scheduled
+work in this plan. Should the site grow, two items are worth carrying
+forward as genuine (not fabricated) follow-ups:
+
+- `general/hardware.md` was never in scope for this initiative and has not
+  been classified into a Diátaxis quadrant (see Phase 5 §7).
+- If new pages are added to any restructured section, match the pattern
+  that phase established (Tutorial voice in `general/quickstart.md`,
+  Diagnose/Fix labeling in `general/troubleshooting.md`, the dictionary
+  voice in `hyprland/*.md` and `keybindings/*.md`, the synthesis-not-invention
+  approach in `hyprland/index.md` and `features/hyprland.md`, and the three-
+  section skeleton in `features/*.md`).

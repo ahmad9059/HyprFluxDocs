@@ -28,7 +28,7 @@ You will need:
 - A USB drive large enough to hold the ISO.
 - An internet connection — the installer downloads packages throughout.
 
-::: danger This tutorial erases a disk
+::: warning This tutorial erases a disk
 The installer will erase the entire disk you choose during setup. Use a
 spare machine or virtual machine if you're unsure, and back up anything you
 care about first.
@@ -56,7 +56,7 @@ you'd rather use a mirror.
 
 Find your USB drive's device name with `lsblk`, then write the ISO to it:
 
-::: danger This erases the USB drive
+::: warning This erases the USB drive
 `dd` writes to the whole device, not a partition. Double-check `/dev/sdX`
 before running this — the wrong device name destroys its data.
 :::
@@ -100,7 +100,7 @@ The installer walks you through several screens in order:
 
    ![Automatic and manual disk options](./assets/img-9.webp)
 
-   ::: danger Automatic mode erases the selected disk
+   ::: warning Automatic mode erases the selected disk
    Double-check the device name, path, and size before typing `yes`. This
    cannot be undone.
    :::

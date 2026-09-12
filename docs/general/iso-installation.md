@@ -49,7 +49,7 @@ checksum obtained from another release channel.
 
 ## Create the Bootable USB
 
-::: danger The selected USB device will be erased
+::: warning The selected USB device will be erased
 `dd` writes to the entire destination device. Confirm the device with `lsblk`
 and replace `/dev/sdX` with the USB device, not one of its partitions. Choosing
 the wrong device destroys its data.
@@ -144,7 +144,7 @@ you to type the exact lowercase word `yes`. Destruction begins immediately
 after that confirmation by clearing the partition table and filesystem
 signatures.
 
-::: danger Automatic mode destroys the selected disk
+::: warning Automatic mode destroys the selected disk
 Back up all required data and verify the device model, path, and size. The
 installer cannot undo the wipe.
 :::
