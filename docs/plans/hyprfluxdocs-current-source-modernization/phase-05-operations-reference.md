@@ -1,5 +1,9 @@
 # Phase 5 — Rebuild Keybindings, Scripts, Hardware, and Troubleshooting
 
+> Status: **Complete; verified 2026-09-12.** Public references were rebuilt
+> against HyprFlux `f421b6bd108214079b56c435331ddbbfdfb89591` and the external
+> Neovim configuration at `d11951c8dd548f0e9d1b470ba279d28e2d7a4696`.
+
 Depends on: Phases 2–4 and their finalized terminology
 
 ---
@@ -219,27 +223,27 @@ re-running destructive partitioning.
 
 ## 5. Acceptance Criteria / QA Checklist
 
-- [ ] A source commit SHA and complete binding/script inventories are recorded.
-- [ ] Every active Hyprland binding from base, user, and laptop owners has a
+- [x] A source commit SHA and complete binding/script inventories are recorded.
+- [x] Every active Hyprland binding from base, user, and laptop owners has a
       reviewed outcome: documented, intentionally private, or intentionally omitted.
-- [ ] Duplicate and overridden combinations are identified before publication.
-- [ ] `/keybindings/hyprland` is the canonical lookup table; Hyprland config
+- [x] Duplicate and overridden combinations are identified before publication.
+- [x] `/keybindings/hyprland` is the canonical lookup table; Hyprland config
       pages teach authoring without duplicating it.
-- [ ] Every script sidebar item maps to a live source or has an explicit
+- [x] Every script sidebar item maps to a live source or has an explicit
       retirement/redirect decision.
-- [ ] Current docs contain no unsupported Wallust, SWWW-service, Waybar layout
+- [x] Current docs contain no unsupported Wallust, SWWW-service, Waybar layout
       switcher, or removed shell-script workflow.
-- [ ] Hardware guidance distinguishes generated files from safe user-owned files.
-- [ ] The hardware/source-owner matrix covers GPU, monitors, laptop behavior,
+- [x] Hardware guidance distinguishes generated files from safe user-owned files.
+- [x] The hardware/source-owner matrix covers GPU, monitors, laptop behavior,
       power/input, audio, Bluetooth, and stable logs before prose is drafted.
-- [ ] Troubleshooting commands are non-destructive and source-backed.
-- [ ] Config verification and relevant log locations are easy to find.
-- [ ] Application keybinding pages are omitted or scoped down when their
+- [x] Troubleshooting commands are non-destructive and source-backed.
+- [x] Config verification and relevant log locations are easy to find.
+- [x] Application keybinding pages are omitted or scoped down when their
       external source cannot be validated.
-- [ ] Any extraction/check script processes source statically and has a clear
+- [x] Any extraction/check script processes source statically and has a clear
       failure mode.
-- [ ] The production VitePress build succeeds.
-- [ ] Key tables and runbook callouts are usable at mobile widths.
+- [x] The production VitePress build succeeds.
+- [x] Key tables and runbook callouts are usable at mobile widths.
 
 ## 6. Approved Decisions and Open Questions
 
@@ -251,3 +255,48 @@ re-running destructive partitioning.
 - **Approved in Phase 1:** verify Neovim shortcuts against a pinned revision of
   the external `ahmad9059/nvim` repository before updating them.
 - Which installer and service logs should be treated as stable public interfaces?
+
+## 7. Implementation Record
+
+### 7.1 Revision and inventory decisions
+
+- HyprFlux source: `f421b6bd108214079b56c435331ddbbfdfb89591` (`v1.5.0`).
+- External Neovim source: `d11951c8dd548f0e9d1b470ba279d28e2d7a4696`.
+- The canonical binding inventory is the grouped table at
+  `docs/keybindings/hyprland.md`. It records every active declaration from the
+  93-bind expanded base layer, 42 active user declarations, and 13 active
+  laptop declarations,
+  including the generated number-row ranges, mouse binds, flags, conditions,
+  source line ranges, and private-workflow outcomes.
+- The three duplicate combinations are `SUPER+K`, `SUPER+O`, and
+  `SUPER+SHIFT+W`. They register multiple actions; load order was not described
+  as replacement precedence.
+- The complete 35-entry managed-script inventory and 16-entry `UserScripts`
+  inventory are recorded in `docs/hyprland/scripts.md` with public, helper,
+  recovery, unsupported, private, and retired outcomes.
+- A static binding extractor was not added. Lua callbacks, loops, string
+  composition, and conditional ASUS declarations make regex extraction less
+  reliable than the checked inventory. Phase 6's drift check will flag source
+  filenames and removed-script vocabulary without executing checked-out code.
+
+### 7.2 Route and content decisions
+
+- Existing keybinding and script routes were rewritten in place.
+- `/general/hardware` consolidates hardware and generated-state ownership rather
+  than splitting tightly coupled installer/runtime behavior across pages.
+- `/general/troubleshooting` is symptom-led and uses inspection-first commands.
+- Neovim was reduced to mappings proven by the pinned external source. Tmux was
+  reduced to explicit declarations in the shipped `.tmux.conf`; generic editor
+  and tmux cheat-sheet claims were removed.
+- Stable public logs are `logs/install.log`, `logs/dotsSetup.log`,
+  `logs/installer/*.log`, and `logs/copy/*.log`, rooted at
+  `${HYPRFLUX_LOGS_DIR:-$HOME/HyprFlux/logs}`.
+
+### 7.3 Verification
+
+- Targeted stale-term and removed-script searches passed after distinguishing
+  historical/planning references from current operational claims.
+- The direct VitePress production build passed. The standard pnpm entrypoint
+  remains a Phase 6 item under R13.
+- Desktop and mobile checks covered the canonical binding table, script
+  inventory, hardware matrix, and troubleshooting runbook.

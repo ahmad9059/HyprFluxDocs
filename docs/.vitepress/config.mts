@@ -115,6 +115,14 @@ export default defineConfig({
         ],
       },
       {
+        text: "Operations",
+        collapsed: false,
+        items: [
+          { text: "Hardware and Generated State", link: "/general/hardware.md" },
+          { text: "Troubleshooting", link: "/general/troubleshooting.md" },
+        ],
+      },
+      {
         text: "KeyBindings",
         collapsed: false,
         items: [

@@ -1,8 +1,8 @@
 # HyprFluxDocs Current-Source Modernization
 
-> Status: **Phases 1-4 complete; Phase 5 is ready to begin.** Installation,
-> Hyprland, desktop component, theme, and wallpaper references now reflect the
-> pinned v1.5.0 sources.
+> Status: **Phases 1-5 complete; Phase 6 is ready to begin.** Installation,
+> Hyprland, desktop component, operational, hardware, and troubleshooting
+> references now reflect the pinned v1.5.0 sources.
 >
 > Source request: produce a detailed six-phase plan to replace old Hyprland
 > syntax and stale HyprFlux documentation, using the sibling HyprFlux checkout
@@ -200,6 +200,9 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 | R20 | Component menus expose dead or obsolete actions | Medium | Quick Settings has entries without handlers, SwayNC Exit uses an obsolete dispatcher, and several inactive Waybar/Rofi definitions are invalid. Omit from supported workflows and fix upstream. |
 | R21 | External Neovim configuration is unpinned and bootstrap masks failures | High | Phase 4 pins docs to `d11951c8`, but installation clones external HEAD and suppresses bootstrap/sync failures. Pin source and validate tool provisioning upstream. |
 | R22 | Shipped component configs reference undeclared tools or ambiguous backends | Medium | Yazi references optional tools not directly installed; Cava repeats input keys; wallpaper video previews call undeclared `ffmpeg`. Document dependencies and repair package/config ownership. |
+| R23 | Active operational commands contain runtime defects | High | The color-picker and Telegram command strings are malformed or ambiguous, microphone decrement calls a nonexistent function when muted, and per-window keyboard switching starts an inconsistent listener. Documentation labels these paths; repair in HyprFlux source. |
+| R24 | Script refresh/profile workflows call removed wallpaper code | High | `RefreshNoWaybar.sh` calls removed `WallpaperSwww.sh`; animation and monitor-profile selectors invoke that helper, and the monitor profile path does not reliably reload Hyprland. Documentation avoids presenting it as a recovery path. |
+| R25 | PipeWire forced-reinstall loop uses the wrong variable | Medium | `pipewire.sh` iterates `PIPEWIRE2` but passes stale `PIPEWIRE` to `install_package_pacman`. The primary package list includes `pipewire-pulse`; fix the second loop upstream. |
 
 ## 5. Phase Map
 
@@ -209,8 +212,8 @@ Owner sign-off was recorded on 2026-09-10 during Phase 1.
 | 2 | [Modernize Product, Installation, and Release Journeys](./phase-02-installation-and-releases.md) | Complete; verified 2026-09-10 |
 | 3 | [Rebuild the Hyprland Reference for Lua](./phase-03-hyprland-lua-reference.md) | Complete; verified 2026-09-10 |
 | 4 | [Refresh Desktop Components, Themes, and Wallpapers](./phase-04-desktop-components.md) | Complete; verified 2026-09-12 |
-| 5 | [Rebuild Keybindings, Scripts, Hardware, and Troubleshooting](./phase-05-operations-reference.md) | Ready to begin |
-| 6 | [Integrate Navigation, Metadata, Drift Checks, and Final QA](./phase-06-integrated-qa.md) | Pending Phases 2-5 |
+| 5 | [Rebuild Keybindings, Scripts, Hardware, and Troubleshooting](./phase-05-operations-reference.md) | Complete; verified 2026-09-12 |
+| 6 | [Integrate Navigation, Metadata, Drift Checks, and Final QA](./phase-06-integrated-qa.md) | Ready to begin |
 
 Six phases are warranted because this is a site-wide modernization spanning
 two installation paths, a compositor-language migration, many independently
@@ -249,7 +252,7 @@ domain rather than mixing all pages into one unreviewable rewrite.
 
 ## 7. Next Step
 
-Begin Phase 5 using the current component ownership and source-defect boundaries
-from Phase 4. Re-record the current HyprFlux revision, derive operational tables
-from live Lua/script owners, and do not present broken source paths as supported
-troubleshooting workflows.
+Begin Phase 6 with the current source pin and the completed content architecture.
+Integrate metadata, navigation, links, source-drift checks, the standard pnpm
+build path, and final desktop/mobile QA without reopening phase-scoped content
+unless an integrated check proves a defect.

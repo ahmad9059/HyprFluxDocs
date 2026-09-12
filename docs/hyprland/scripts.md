@@ -1,372 +1,153 @@
-# Scripts Directory
+---
+title: Scripts and Utilities - HyprFlux
+description: Source-verified workflows, dependencies, flags, ownership, and known limitations for HyprFlux desktop scripts.
+---
+
+# Scripts And Utilities
+
+HyprFlux source revision
+[`f421b6b`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
+ships two script directories:
+
+- `~/.config/hypr/scripts/` is managed by HyprFlux updates.
+- `~/.config/hypr/UserScripts/` is the customization layer and is not replaced
+  by upgrades.
+
+For personal changes, copy a managed script into `UserScripts`, edit that copy,
+and update its binding or Waybar command to the new path. A `UserScripts` copy
+does not override the managed script automatically.
+
+## Supported Entry Points
+
+These are called by active keybindings, startup configuration, Hyprlock, or the
+selected Waybar modules.
+
+### Menus And Launchers
+
+| Entry point | What it does | Runtime requirements |
+|---|---|---|
+| `HyprFlux_Quick_Settings.sh` | Opens configuration files and selected desktop tools. | Rofi and the terminal/editor from `user-defaults.lua`. Several displayed entries currently have no handler; unsupported selections simply return. |
+| `ClipManager.sh` | Selects, deletes, or clears `cliphist` entries and copies a selection. | Rofi, `cliphist`, `wl-copy`; `CTRL+Delete` deletes one entry and `ALT+Delete` clears all. |
+| `RofiEmoji.sh` | Searches embedded emoji data and copies the first field. | Rofi and `wl-copy`. Its self-extracting data makes `bash -n` report a false positive, so source CI explicitly excludes it. |
+| `KeyBinds.sh` | Displays the live `hyprctl binds -j` result. | Running Hyprland, Python 3, Rofi. Choosing a row intentionally performs no action. |
+| `KeyHints.sh` | Opens a curated shortcut sheet. | Yad. It is shorter than the live binding list. |
+| `WaybarScripts.sh` | Launches `btop`, `nvtop`, `nmtui`, the configured terminal, or file manager for Waybar. | `--btop`, `--nvtop`, `--nmtui`, `--term`, `--files`; corresponding applications. |
+| `Dropterminal.sh` | Creates or toggles a floating terminal through a scratchpad workspace. | A terminal command argument, Hyprland, and `jq`; `-d` enables debug output. |
+
+### Session And Window Controls
+
+| Entry point | What it does | Important boundary |
+|---|---|---|
+| `LockScreen.sh` | Calls `loginctl lock-session`; Hypridle responds with Hyprlock. | It does not launch Hyprlock directly. |
+| `Wlogout.sh` | Opens the Wlogout power menu with margins derived from the focused output. | Requires `hyprctl`, `jq`, `awk`, and Wlogout. |
+| `KillActiveProcess.sh` | Reads the active-window PID and sends `kill`. | This is forceful compared with `SUPER+Q`; unsaved work may be lost. |
+| `ChangeLayout.sh` | Cycles Dwindle, Master, and Scrolling in compositor memory. | Requires `jq`; the choice is not persisted to `user-settings.lua`. |
+| `ChangeBlur.sh` | Toggles between the shipped low and normal blur values in memory. | Requires `jq`; reloading the config restores file-backed values. |
+| `GameMode.sh` | Temporarily disables visual effects and saves the prior state. | State is stored in `$XDG_RUNTIME_DIR/gamemode.state`; it also stops/restarts AWWW. |
+| `Refresh.sh` | Stops and starts Waybar and SwayNC and closes Rofi. | This is a component restart, not a Hyprland config reload. |
+| `Hypridle.sh` | Emits Waybar JSON or toggles the Hypridle process. | Only `status` and `toggle` are accepted. |
+
+### Media, Input, And Capture
+
+| Entry point | Accepted input | Behavior |
+|---|---|---|
+| `Volume.sh` | `--get`, `--inc`, `--dec`, `--toggle`, `--toggle-mic`, `--get-icon`, `--get-mic-icon`, `--mic-inc`, `--mic-dec` | Uses `pamixer`; output changes by 5% and may boost to 150%. `--mic-dec` contains a bad `toggle-mic` call when muted, a known source defect. |
+| `MediaCtrl.sh` | `--nxt`, `--prv`, `--pause`, `--stop` | Uses `playerctl` and sends playback notifications. |
+| `Brightness.sh` | `--get`, `--inc`, `--dec` | Uses `brightnessctl`; changes by 10% and clamps to 5%-95%. Unknown or missing input prints the current value. |
+| `BrightnessKbd.sh` | `--get`, `--inc`, `--dec` | Targets `*::kbd_backlight`; changes by 30%. Unknown or missing input prints the current value. |
+| `TouchPad.sh` | No arguments | Toggles one configured device and stores state in `$XDG_RUNTIME_DIR/touchpad.status`. The shipped device name is maintainer-specific. |
+| `SwitchKeyboardLayout.sh` | No arguments | Cycles layouts from `user-settings.lua` for non-ignored keyboards. The active Waybar module calls it; its direct keybinding is commented out. |
+| `ScreenShot.sh` | `--now`, `--in5`, `--in10`, `--win`, `--area`, `--active`, `--swappy` | Saves under the XDG Pictures `Screenshots` directory and copies image data with `wl-copy`. See [Hyprland Keybindings](/keybindings/hyprland#screenshots). |
+| `Sounds.sh` | `--screenshot`, `--volume`, `--error` | Internal notification-sound helper; uses `pw-play` then `pa-play`. |
+| `AirplaneMode.sh` | No arguments | Blocks or unblocks Wi-Fi with `rfkill`. It does **not** change Bluetooth state. |
+| `Battery.sh` | No arguments | Prints status for any `BAT0` through `BAT3` sysfs battery. It does not implement percentage/time flags or warnings. |
+
+### Waybar Helpers
+
+`WaybarCava.sh` is the selected custom Cava module's output adapter. It writes a
+temporary Cava configuration and converts raw values to bar glyphs.
+`WaybarScripts.sh`, `Hypridle.sh`, brightness, volume, Wlogout, update, and
+wallpaper scripts are also called from Waybar. See [Waybar](/features/waybar)
+for the selected module composition.
+
+## Wallpapers And Visual Presets
+
+Wallpaper selection, effects, randomization, video handling, and automatic
+rotation are documented together on [Wallpapers](/features/wallpapers). Their
+main entry points are in `UserScripts`, while `WallpaperAwww.sh` is an internal
+cache synchronizer used after AWWW changes.
+
+`Animations.sh` copies a selected preset to `user-animations.lua` and reloads
+Hyprland. It then calls `RefreshNoWaybar.sh`, which still invokes the removed
+`WallpaperSwww.sh`; the animation has already been applied, but that refresh
+tail is stale.
+
+`MonitorProfiles.sh` similarly copies a `.lua` profile into `monitors.lua`, then
+calls the same stale refresh helper. The helper does not run `hyprctl reload`,
+so selecting a profile is not a reliable live-apply workflow. Prefer
+`nwg-displays`, or reload explicitly after reviewing the generated file. See
+[Hardware and Generated State](/general/hardware#displays).
+
+## Update And Recovery Tools
+
+| Script | Scope | Guidance |
+|---|---|---|
+| `HyprFluxUpdate.sh` | Waybar and Quick Settings update prompt | Compares a local version marker with scraped GitHub HTML, then may `git stash`, pull, and run `dotsSetup.sh`. Review local changes first; use the documented installation/update flow when predictability matters. |
+| `Distro_update.sh` | Waybar package update launcher | The project supports Arch Linux. Although the script contains DNF, APT, and Zypper branches, those distributions are not HyprFlux support claims. |
+| `PortalHyprland.sh` | Manual portal recovery | Force-kills several portal implementations and starts binaries from two possible paths. Use only to diagnose portal startup, not as normal autostart. |
+| `Polkit.sh` | Startup implementation detail | Starts the first installed authentication agent from a path list. It is called by `startup-apps.lua`. |
+
+## Complete Managed Inventory
+
+All 35 entries in `~/.config/hypr/scripts/` have a reviewed outcome:
 
-The `scripts/` directory contains utility scripts for system management, theming, automation, and desktop functionality. These scripts provide the core functionality that powers many HyprFlux features.
+| Outcome | Scripts |
+|---|---|
+| Public entry points | `AirplaneMode.sh`, `Animations.sh`, `Brightness.sh`, `BrightnessKbd.sh`, `ChangeBlur.sh`, `ChangeLayout.sh`, `ClipManager.sh`, `Distro_update.sh`, `Dropterminal.sh`, `GameMode.sh`, `HyprFlux_Quick_Settings.sh`, `HyprFluxUpdate.sh`, `Hypridle.sh`, `KeyBinds.sh`, `KeyHints.sh`, `KillActiveProcess.sh`, `LockScreen.sh`, `MediaCtrl.sh`, `MonitorProfiles.sh`, `Refresh.sh`, `RofiEmoji.sh`, `ScreenShot.sh`, `SwitchKeyboardLayout.sh`, `TouchPad.sh`, `Volume.sh`, `WaybarScripts.sh`, `Wlogout.sh` |
+| Output/internal helpers | `Battery.sh`, `Polkit.sh`, `Sounds.sh`, `WallpaperAwww.sh`, `WaybarCava.sh` |
+| Manual recovery only | `PortalHyprland.sh` |
+| Present but not a supported path | `RefreshNoWaybar.sh`, `Tak0-Per-Window-Switch.sh` |
 
-## Script Categories
+`Tak0-Per-Window-Switch.sh` has only a commented binding. It also starts its
+listener without the `--listener` argument that its duplicate-process check
+expects, so it is not documented as a supported workflow.
 
-### System Management
+## UserScripts Scope
 
-- **[System Control](#system-control)**: Power management, updates, and system utilities
-- **[Hardware Control](#hardware-control)**: Brightness, volume, battery, and device management
-- **[Process Management](#process-management)**: Application and service control
+The 16 shipped `UserScripts` entries are examples or owner-specific workflows,
+not a stable public automation API:
 
-### Desktop Environment
+| Scope | Entries |
+|---|---|
+| Wallpaper workflow | `WallpaperSelect.sh`, `WallpaperEffects.sh`, `WallpaperRandom.sh`, `WallpaperAutoChange.sh` |
+| General customizable examples | `RofiCalc.sh`, `RofiBeats.sh`, `GitRepoClone.sh`, `TmuxifierProjects.sh`, `Toggle-tuned.sh`, `Weather.py`, `Weather.sh` |
+| Maintainer-private | `SyncBlog.sh`, `SyncDotfiles.sh`, `ObsidianGenerate.sh`, `notes-ai` |
+| Policy file | `00-Readme` |
 
-- **[Window Management](#window-management)**: Layout switching, window control, and workspace management
-- **[Theming](#theming)**: Theme switching, wallpaper management, and visual customization
-- **[Interface](#interface)**: Waybar, rofi, and UI component management
+The private scripts contain machine-specific paths or publishing assumptions.
+Do not run them unchanged. `Weather.py` is the selected Waybar implementation;
+`Weather.sh` remains an alternate example.
 
-### User Interaction
+## Removed Or Retired Names
 
-- **[Input/Output](#input-output)**: Screenshots, clipboard, keyboard, and media controls
-- **[Launchers](#launchers)**: Application launchers and menu systems
-- **[Utilities](#utilities)**: Helper scripts and convenience functions
+The current tree has no `DarkLight.sh`, `Kitty_themes.sh`, `RofiSearch.sh`,
+`Tak0-Autodispatch.sh`, `WallustSwww.sh`, `WallpaperSwww.sh`,
+`WaybarLayout.sh`, or `WaybarStyles.sh`. Old links or tutorials naming those
+files describe earlier releases. HyprFlux now uses AWWW for active wallpaper
+startup, one selected Waybar composition, generated palette files, and Lua for
+compositor configuration.
 
-## System Control
+## Inspect A Script Safely
 
-### AirplaneMode.sh
-
-**Purpose**: Toggle airplane mode (disable/enable wireless connections)
-**Usage**: `./AirplaneMode.sh`
-**Features**: Toggles WiFi and Bluetooth simultaneously
-
-### Battery.sh
-
-**Purpose**: Battery status monitoring and power management
-**Usage**: `./Battery.sh [--status|--percentage|--time]`
-**Features**: Battery info display, low battery warnings
-
-### Distro_update.sh
-
-**Purpose**: System package updates with notifications
-**Usage**: `./Distro_update.sh`
-**Features**: Arch/AUR updates, progress notifications, error handling
-
-### GameMode.sh
-
-**Purpose**: Toggle gaming optimizations and performance mode
-**Usage**: `./GameMode.sh [--on|--off|--toggle]`
-**Features**: Performance tweaks, notification suppression, resource optimization
-
-### Hypridle.sh
-
-**Purpose**: Manage hypridle daemon (idle management)
-**Usage**: `./Hypridle.sh [start|stop|restart|status|toggle]`
-**Features**: Idle timeout control, power management integration
-
-### KooLsDotsUpdate.sh
-
-**Purpose**: Update HyprFlux configuration from repository
-**Usage**: `./KooLsDotsUpdate.sh`
-**Features**: Git-based updates, backup creation, conflict resolution
-
-### Polkit.sh / Polkit-NixOS.sh
-
-**Purpose**: Authentication agent management
-**Usage**: `./Polkit.sh`
-**Features**: Privilege escalation, secure authentication
-
-### PortalHyprland.sh
-
-**Purpose**: XDG desktop portal management for Hyprland
-**Usage**: `./PortalHyprland.sh`
-**Features**: File picker integration, screen sharing setup
-
-### UptimeNixOS.sh
-
-**Purpose**: System uptime display for NixOS systems
-**Usage**: `./UptimeNixOS.sh`
-**Features**: Formatted uptime output, system statistics
-
-## Hardware Control
-
-### Brightness.sh
-
-**Purpose**: Screen brightness control with smooth transitions
-**Usage**: `./Brightness.sh [--inc|--dec|--set VALUE]`
-**Features**: Smooth brightness changes, OSD notifications, multi-monitor support
-
-### BrightnessKbd.sh
-
-**Purpose**: Keyboard backlight brightness control
-**Usage**: `./BrightnessKbd.sh [--inc|--dec|--set VALUE]`
-**Features**: Keyboard backlight adjustment, brightness persistence
-
-### SwitchKeyboardLayout.sh
-
-**Purpose**: Cycle through keyboard layouts
-**Usage**: `./SwitchKeyboardLayout.sh`
-**Features**: Layout switching, layout indicator updates, persistence
-
-### TouchPad.sh
-
-**Purpose**: Touchpad enable/disable toggle
-**Usage**: `./TouchPad.sh [--on|--off|--toggle]`
-**Features**: Touchpad control, status notifications
-
-### Volume.sh
-
-**Purpose**: Audio volume and microphone control
-**Usage**: `./Volume.sh [--inc|--dec|--toggle|--mic-inc|--mic-dec|--toggle-mic]`
-**Features**: Volume adjustment, mute toggle, microphone control, OSD notifications
-
-## Window Management
-
-### ChangeLayout.sh
-
-**Purpose**: Switch between Hyprland layout algorithms
-**Usage**: `./ChangeLayout.sh [dwindle|master]`
-**Features**: Layout switching, window reorganization
-
-### KillActiveProcess.sh
-
-**Purpose**: Force kill the currently active window/process
-**Usage**: `./KillActiveProcess.sh`
-**Features**: Safe process termination, confirmation dialogs
-
-### MonitorProfiles.sh
-
-**Purpose**: Switch between predefined monitor configurations
-**Usage**: `./MonitorProfiles.sh`
-**Features**: Profile selection via rofi, monitor setup automation
-
-### Refresh.sh
-
-**Purpose**: Reload Hyprland configuration and restart services
-**Usage**: `./Refresh.sh`
-**Features**: Config reload, waybar restart, theme reapplication
-
-### RefreshNoWaybar.sh
-
-**Purpose**: Reload Hyprland configuration without restarting waybar
-**Usage**: `./RefreshNoWaybar.sh`
-**Features**: Minimal reload, faster refresh
-
-## Theming
-
-### Animations.sh
-
-**Purpose**: Switch between animation presets
-**Usage**: `./Animations.sh`
-**Features**: Animation preset selection, performance optimization
-
-### ChangeBlur.sh
-
-**Purpose**: Toggle blur effects on/off
-**Usage**: `./ChangeBlur.sh`
-**Features**: Blur toggle, performance optimization
-
-### DarkLight.sh
-
-**Purpose**: Switch between dark and light themes
-**Usage**: `./DarkLight.sh`
-**Features**: System-wide theme switching, application integration
-
-### Kitty_themes.sh
-
-**Purpose**: Change Kitty terminal color schemes
-**Usage**: `./Kitty_themes.sh`
-**Features**: Theme selection, live preview, persistence
-
-### RofiThemeSelector.sh / RofiThemeSelector-modified.sh
-
-**Purpose**: Select and apply rofi themes
-**Usage**: `./RofiThemeSelector.sh`
-**Features**: Theme preview, instant application
-
-### WallustSwww.sh
-
-**Purpose**: Generate color schemes from wallpapers using wallust
-**Usage**: `./WallustSwww.sh [WALLPAPER_PATH]`
-**Features**: Color extraction, theme generation, system-wide application
-
-## Interface
-
-### WaybarCava.sh
-
-**Purpose**: Audio visualizer integration for waybar
-**Usage**: `./WaybarCava.sh`
-**Features**: Real-time audio visualization, waybar module output
-
-### WaybarLayout.sh
-
-**Purpose**: Switch between waybar layout configurations
-**Usage**: `./WaybarLayout.sh`
-**Features**: Layout selection, instant switching
-
-### WaybarScripts.sh
-
-**Purpose**: Waybar module helper functions
-**Usage**: `./WaybarScripts.sh [--btop|--nvtop|--files|--term|--nmtui]`
-**Features**: Quick application launchers, system monitors
-
-### WaybarStyles.sh
-
-**Purpose**: Switch between waybar visual styles
-**Usage**: `./WaybarStyles.sh`
-**Features**: Style selection, CSS switching
-
-### Wlogout.sh
-
-**Purpose**: Launch logout/power menu
-**Usage**: `./Wlogout.sh`
-**Features**: Session management, power options
-
-## Input/Output
-
-### ClipManager.sh
-
-**Purpose**: Clipboard history management
-**Usage**: `./ClipManager.sh`
-**Features**: Clipboard history, rofi integration
-
-### KeyBinds.sh
-
-**Purpose**: Display current keybindings
-**Usage**: `./KeyBinds.sh`
-**Features**: Keybinding reference, searchable list
-
-### KeyHints.sh
-
-**Purpose**: Show helpful keyboard shortcuts
-**Usage**: `./KeyHints.sh`
-**Features**: Quick tips, beginner guidance
-
-### MediaCtrl.sh
-
-**Purpose**: Media player control (play/pause/next/previous)
-**Usage**: `./MediaCtrl.sh [play|pause|next|prev|toggle]`
-**Features**: MPRIS integration, multi-player support
-
-### ScreenShot.sh
-
-**Purpose**: Screenshot capture with various modes
-**Usage**: `./ScreenShot.sh [--now|--area|--win|--delay]`
-**Features**: Full screen, area selection, window capture, clipboard integration
-
-## Launchers
-
-### Dropterminal.sh
-
-**Purpose**: Toggle dropdown terminal
-**Usage**: `./Dropterminal.sh`
-**Features**: Quake-style terminal, toggle visibility
-
-### Kool_Quick_Settings.sh
-
-**Purpose**: Quick settings menu launcher
-**Usage**: `./Kool_Quick_Settings.sh`
-**Features**: System settings access, configuration shortcuts
-
-### LockScreen.sh
-
-**Purpose**: Lock screen activation
-**Usage**: `./LockScreen.sh`
-**Features**: Secure screen locking, idle integration
-
-### RofiEmoji.sh
-
-**Purpose**: Emoji picker using rofi
-**Usage**: `./RofiEmoji.sh`
-**Features**: Emoji selection, clipboard integration
-
-### RofiSearch.sh
-
-**Purpose**: Web search launcher
-**Usage**: `./RofiSearch.sh`
-**Features**: Search engine integration, quick web searches
-
-## Utilities
-
-### Sounds.sh
-
-**Purpose**: System sound management and testing
-**Usage**: `./Sounds.sh [--test|--enable|--disable]`
-**Features**: Sound theme management, audio testing
-
-### Tak0-Autodispatch.sh
-
-**Purpose**: Automatic window dispatching based on rules
-**Usage**: `./Tak0-Autodispatch.sh`
-**Features**: Smart window placement, rule-based automation
-
-### Tak0-Per-Window-Switch.sh
-
-**Purpose**: Per-window keyboard layout switching
-**Usage**: `./Tak0-Per-Window-Switch.sh`
-**Features**: Application-specific layouts, automatic switching
-
-## Script Usage Patterns
-
-### Common Parameters
-
-- `--help` or `-h`: Display help information
-- `--version` or `-v`: Show script version
-- `--verbose`: Enable verbose output
-- `--dry-run`: Show what would be done without executing
-
-### Integration Examples
-
-#### Waybar Integration
-
-```json
-"custom/brightness": {
-    "exec": "~/.config/hypr/scripts/Brightness.sh --get",
-    "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
-    "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec"
-}
-```
-
-#### Keybinding Integration
+Read the script before invoking it, especially update, kill, recovery, and
+`UserScripts` workflows:
 
 ```bash
-bind = SUPER, Print, exec, ~/.config/hypr/scripts/ScreenShot.sh --area
-bind = , XF86AudioRaiseVolume, exec, ~/.config/hypr/scripts/Volume.sh --inc
-bind = SUPER, L, exec, ~/.config/hypr/scripts/LockScreen.sh
+less ~/.config/hypr/scripts/Volume.sh
+bash -n ~/.config/hypr/scripts/Volume.sh
+command -v pamixer notify-send
 ```
 
-#### Startup Integration
-
-```bash
-exec-once = ~/.config/hypr/scripts/PortalHyprland.sh
-exec-once = ~/.config/hypr/scripts/Polkit.sh
-```
-
-## Development Guidelines
-
-### Script Standards
-
-- Use bash shebang: `#!/bin/bash`
-- Include error handling
-- Provide help information
-- Use consistent parameter naming
-- Include logging for debugging
-
-### Error Handling
-
-```bash
-set -euo pipefail  # Exit on error, undefined vars, pipe failures
-
-# Function for error messages
-error() {
-    echo "Error: $1" >&2
-    exit 1
-}
-
-# Check dependencies
-command -v hyprctl >/dev/null 2>&1 || error "hyprctl not found"
-```
-
-### Logging
-
-```bash
-# Log file location
-LOG_FILE="$HOME/.local/share/hyprflux/logs/script.log"
-
-# Logging function
-log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
-}
-```
-
-This script ecosystem provides comprehensive functionality for managing and customizing the HyprFlux desktop environment.
+Do not assume every script accepts `--help`, `--version`, `--verbose`, or
+`--dry-run`; only the arguments listed on this page are implemented by the
+current source.
