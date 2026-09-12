@@ -1,16 +1,13 @@
+const canonicalOrigin = "https://hyprflux.dev";
+
 // Structured Data for SEO - JSON-LD Schemas
 
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "HyprFlux",
-  url: "https://hyprflux.org",
-  description: "A complete Arch Linux distribution with a beautiful, productive Hyprland desktop environment",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://hyprflux.org/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  url: canonicalOrigin,
+  description: "An Arch Linux desktop platform built around Hyprland, available as a bootable ISO or a full provisioner for existing Arch systems",
 };
 
 export const softwareSchema = {
@@ -24,27 +21,22 @@ export const softwareSchema = {
     price: "0",
     priceCurrency: "USD"
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "150"
-  },
-  description: "A complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment",
+  description: "An Arch Linux desktop platform built around Hyprland, available as a bootable ISO or an existing-system provisioner",
   author: {
     "@type": "Person",
     name: "Ahmad Hassan",
     url: "https://github.com/ahmad9059"
   },
-  downloadUrl: "https://hyprflux.org/general/download",
-  softwareVersion: "1.0.0"
+  downloadUrl: `${canonicalOrigin}/general/download`,
+  softwareVersion: "1.5.0"
 };
 
 export const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "HyprFlux",
-  url: "https://hyprflux.org",
-  logo: "https://hyprflux.org/logo.webp",
+  url: canonicalOrigin,
+  logo: `${canonicalOrigin}/logo.webp`,
   sameAs: [
     "https://github.com/ahmad9059/HyprFlux"
   ]
@@ -57,7 +49,7 @@ export const breadcrumbSchema = (items: Array<{name: string; url: string}>) => (
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: `https://hyprflux.org${item.url}`
+    item: `${canonicalOrigin}${item.url}`
   }))
 });
 
@@ -75,7 +67,7 @@ export const articleSchema = (title: string, description: string, datePublished:
     name: "HyprFlux",
     logo: {
       "@type": "ImageObject",
-      url: "https://hyprflux.org/logo.webp"
+      url: `${canonicalOrigin}/logo.webp`
     }
   },
   datePublished: datePublished,

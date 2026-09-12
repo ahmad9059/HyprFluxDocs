@@ -56,6 +56,8 @@ After installation, explore these resources to get the most out of HyprFlux:
 - **[Features](/features/hyprland)** - Learn about desktop features
 - **[Configuration](/hyprland/hyprland)** - Customize your setup
 - **[Keybindings](/keybindings/hyprland)** - Master keyboard shortcuts
+- **[Hardware notes](/general/hardware)** - Understand generated and device-specific state
+- **[Troubleshooting](/general/troubleshooting)** - Diagnose installation and desktop failures
 
 ## Community and Support
 

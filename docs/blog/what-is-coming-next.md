@@ -7,6 +7,12 @@ description: HyprFlux roadmap and future plans. Learn about upcoming improvement
 
 _Published: March 13, 2026_
 
+::: info Archived roadmap
+This roadmap records plans at its publication date and is not a promise of
+current work. Use the [current documentation](/general/quickstart) and
+[repository](https://github.com/ahmad9059/HyprFlux) for present behavior.
+:::
+
 The first release of HyprFlux is only the starting point.
 
 Now that the project is public, the next phase is about refinement. The goal is not to add features for the sake of adding more. The goal is to improve the overall experience while keeping HyprFlux focused.

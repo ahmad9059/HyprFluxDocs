@@ -17,7 +17,7 @@ Added unique descriptions to **9 key pages:**
 - ISO Installation
 - Hyprland Configuration
 - Hyprland Keybindings
-- Dotfiles Installation
+- Existing Arch Installation
 - Blog posts (3)
 
 ### 3. Open Graph Tags ✓
@@ -72,9 +72,9 @@ docs/blog/what-is-coming-next.md
 ## Remaining Tasks
 
 ### High Priority
-- [ ] Create og-image.png (1200x630px)
-- [ ] Create twitter-image.png
-- [ ] Create apple-touch-icon.png
+- [x] Use the maintained `logo.webp` for Open Graph and Twitter previews
+- [x] Generate canonical URLs for every page on `https://hyprflux.dev`
+- [x] Remove unsupported rating and search-action schema claims
 
 ### Medium Priority
 - [ ] Submit sitemap to Google Search Console
@@ -91,7 +91,7 @@ docs/blog/what-is-coming-next.md
 ## Metrics to Track
 
 1. **Indexation**
-   - site:hyprflux.org pages indexed
+   - `site:hyprflux.dev` pages indexed
    - Search Console coverage report
 
 2. **Organic Traffic**
@@ -108,8 +108,7 @@ docs/blog/what-is-coming-next.md
 
 ## Recommended Next Steps
 
-1. **Create social images** - Use logo + showcase screenshot
-2. **Submit to Search Consoles** - Google and Bing
-3. **Monitor indexation** - Check for crawl errors
-4. **Track rankings** - For "HyprFlux", "Hyprland Arch", etc.
-5. **Build backlinks** - Submit to Arch Linux wikis, Reddit, HackerNews
+1. **Submit to Search Consoles** - Google and Bing
+2. **Monitor indexation** - Check for crawl errors
+3. **Track rankings** - For "HyprFlux", "Hyprland Arch", etc.
+4. **Build backlinks** - Submit to relevant Linux communities and directories

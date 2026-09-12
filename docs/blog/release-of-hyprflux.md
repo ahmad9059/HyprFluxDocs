@@ -7,6 +7,12 @@ description: The first stable release of HyprFlux ISO for Arch Linux. Download t
 
 _Published: March 19, 2026_
 
+::: info Archived release note
+This page preserves the v1.0.0 announcement. For current installation behavior,
+use the [ISO guide](/general/iso-installation) and the [canonical release
+channel](https://github.com/ahmad9059/HyprFlux/releases/latest).
+:::
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/ahmad9059/HyprFlux/main/review/HyprFlux.svg" alt="HyprFlux" width="600" />
 </p>
@@ -63,4 +69,4 @@ This release establishes the initial ISO, installer, and CI pipeline. Additional
 
 ## Download
 
-Download the latest ISO from [GitHub Releases](https://github.com/ahmad9059/HyprFlux-ISO/releases/latest).
+Current images are available from the [canonical HyprFlux releases](https://github.com/ahmad9059/HyprFlux/releases/latest).

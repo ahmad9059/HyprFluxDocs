@@ -34,10 +34,10 @@ The endpoint serves `install.sh` directly from the HyprFlux repository. The scri
 - `vercel.json` — Route rewrites for `/install`, `/personal`, `/testing`.
 
 ## Develop the Docs Locally
-1) Install dependencies: `npm install`.
-2) Start the docs server: `npm run docs:dev` (VitePress with Tailwind CSS; defaults to localhost:5173).
-3) Build static site: `npm run docs:build`.
-4) Preview production build: `npm run docs:preview`.
+1. Install dependencies: `pnpm install`.
+2. Start the docs server: `pnpm docs:dev` (defaults to localhost:5173).
+3. Run source, route, asset, and production checks: `pnpm docs:check`.
+4. Preview the production build: `pnpm docs:preview`.
 
 Node 18+ is recommended. Environment variables are only needed when exercising the API routes locally (`PERSONAL_PASSWORD`, `GITHUB_TOKEN`).
 
@@ -46,5 +46,12 @@ The project is designed for Vercel. The provided routes expose the installer end
 
 ## Contributing
 - Review or extend docs under `docs/` and keep navigation updated in `.vitepress/config.mts`.
+- Review current behavior against a recorded HyprFlux commit before editing. The sibling checkout's `.config/` tree is canonical; `base-dots/config/` is its CI-enforced parity mirror, not a second authority.
 - When changing installer behavior, ensure the Vercel functions continue to point at the correct scripts and update any references in the docs.
-- Run `npm run docs:build` before pushing to catch broken links or build errors.
+- Run `pnpm docs:check` before pushing. When `../HyprFlux` is available, it also verifies the recorded source revision and required owner files; isolated docs checkouts report that source checks were skipped.
+
+## Release Documentation Checklist
+- Update the documented release version and pinned source revision together.
+- Verify the canonical `HyprFlux/releases/latest` page, release assets, and matching checksum instructions.
+- Review download mirrors, homepage copy, archive notices, structured data, and `docs/public/llms.txt`.
+- Confirm canonical URLs use `https://hyprflux.dev` and run `pnpm docs:check`.

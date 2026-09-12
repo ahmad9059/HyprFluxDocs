@@ -6,33 +6,46 @@ import {
 } from "vitepress-plugin-group-icons";
 import tailwindcss from "@tailwindcss/vite";
 
+const canonicalOrigin = "https://hyprflux.dev";
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HyprFlux",
   titleTemplate: ":title | HyprFlux",
-  description: "HyprFlux is a complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment. Download the ISO or dotfiles.",
+  description: "HyprFlux is an Arch Linux desktop platform built around Hyprland. Install it from the bootable ISO or provision it on an existing Arch system.",
   head: [
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
-    ["link", { rel: "preload", href: "/fav.avif", as: "image", type: "image/avif" }],
     ["meta", { name: "theme-color", content: "#0395cc" }],
+    ["meta", { name: "mobile-web-app-capable", content: "yes" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     ["meta", { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" }],
     ["meta", { name: "author", content: "Ahmad Hassan" }],
-    ["meta", { name: "keywords", content: "HyprFlux, Hyprland, Arch Linux, Linux Desktop, Wayland, Tiling Window Manager, Dotfiles, ISO" }],
+    ["meta", { name: "keywords", content: "HyprFlux, Hyprland, Arch Linux, Linux Desktop, Wayland, Tiling Window Manager, ISO" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:site_name", content: "HyprFlux" }],
     ["meta", { property: "og:title", content: "HyprFlux - Beautiful Arch Linux Desktop" }],
-    ["meta", { property: "og:description", content: "A complete Arch Linux distribution with a beautiful, productive Hyprland desktop environment. Download the ISO or dotfiles." }],
-    ["meta", { property: "og:image", content: "https://hyprflux.org/og-image.png" }],
-    ["meta", { property: "og:url", content: "https://hyprflux.org" }],
+    ["meta", { property: "og:description", content: "An Arch Linux desktop platform built around Hyprland, available as a bootable ISO or an existing-system provisioner." }],
+    ["meta", { property: "og:image", content: `${canonicalOrigin}/logo.webp` }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { name: "twitter:title", content: "HyprFlux - Beautiful Arch Linux Desktop" }],
-    ["meta", { name: "twitter:description", content: "A complete Arch Linux distribution with a beautiful, productive Hyprland desktop environment." }],
-    ["meta", { name: "twitter:image", content: "https://hyprflux.org/og-image.png" }],
+    ["meta", { name: "twitter:description", content: "An Arch Linux desktop platform built around Hyprland, available as an ISO or an existing-system provisioner." }],
+    ["meta", { name: "twitter:image", content: `${canonicalOrigin}/logo.webp` }],
     ["link", { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
+    ["link", { rel: "apple-touch-icon", href: "/favicon.ico" }],
   ],
+  transformPageData(pageData) {
+    const route = pageData.relativePath
+      .replace(/(^|\/)index\.md$/, "$1")
+      .replace(/\.md$/, "");
+    const canonicalUrl = `${canonicalOrigin}/${route}`;
+
+    pageData.frontmatter.head ??= [];
+    pageData.frontmatter.head.push(
+      ["link", { rel: "canonical", href: canonicalUrl }],
+      ["meta", { property: "og:url", content: canonicalUrl }],
+    );
+  },
   markdown: {
     theme: {
       light: "catppuccin-latte",
@@ -60,12 +73,12 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://hyprflux.org",
+    hostname: canonicalOrigin,
   },
   cleanUrls: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "favicon.ico",
+    logo: "/favicon.ico",
     search: {
       provider: "local",
     },
@@ -123,14 +136,14 @@ export default defineConfig({
         ],
       },
       {
-        text: "KeyBindings",
+        text: "Keybindings",
         collapsed: false,
         items: [
           {
             text: "Hyprland",
             link: "/keybindings/hyprland.md",
           },
-          { text: "NeoVim", link: "/keybindings/neovim.md" },
+          { text: "Neovim", link: "/keybindings/neovim.md" },
           { text: "Tmux", link: "/keybindings/tmux.md" },
         ],
       },
@@ -138,7 +151,6 @@ export default defineConfig({
         text: "Features",
         collapsed: false,
         items: [
-          // { text: "Index", link: "/features/index.md" },
           {
             text: "Hyprland",
             link: "/features/hyprland.md",

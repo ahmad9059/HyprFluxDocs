@@ -7,6 +7,12 @@ description: A deep dive into the tools, structure, and design decisions that sh
 
 _Published: March 12, 2026_
 
+::: info Archived article
+This article reflects the project at its publication date. See the [current
+desktop overview](/features/hyprland) and [Lua configuration
+reference](/hyprland/) for maintained guidance.
+:::
+
 HyprFlux is built as a complete desktop experience, not just a theme pack.
 
 The idea is simple: every part of the system should feel connected. Hyprland handles the window management, but the overall experience depends just as much on the bar, launcher, notifications, lock screen, terminal, editor, and small helper scripts that tie everything together.

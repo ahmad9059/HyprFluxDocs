@@ -208,4 +208,5 @@ and devices before taking further action.
 
 For help, open a [HyprFlux issue](https://github.com/ahmad9059/HyprFlux/issues)
 and include the ISO release, firmware mode, installation stage, device layout,
-and any retained logs.
+and any retained logs. The [troubleshooting guide](/general/troubleshooting)
+provides checks for the installed desktop and its services.

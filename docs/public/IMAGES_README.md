@@ -1,11 +1,12 @@
-# Social Media Image Placeholder
+# Shared Site Images
 
-This directory should contain:
-- og-image.png (1200x630px) - Open Graph image for social shares
-- twitter-image.png (1200x630px) - Twitter card image
-- apple-touch-icon.png (180x180px) - Apple touch icon
+The global metadata and navigation use these maintained assets:
 
-Generate these images using:
-- The HyprFlux logo
-- Hero screenshot from showcase
-- Brand colors: #0395cc (primary)
+- `logo.webp` - Open Graph, Twitter, and structured-data image
+- `favicon.ico` - browser, navigation, and Apple touch icon fallback
+- `fav.webp` - homepage hero image
+
+If one of these stable public paths changes, update
+`docs/.vitepress/config.mts`, `docs/.vitepress/theme/structured-data.ts`, and the
+service-worker cache policy together. Run `pnpm docs:check` to detect missing
+Markdown assets and production build failures.

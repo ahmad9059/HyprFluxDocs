@@ -2,6 +2,9 @@
 
 Depends on: Phases 2–5 complete
 
+> Status: **Complete; verified 2026-09-12.** Source baseline recorded at
+> `f421b6bd108214079b56c435331ddbbfdfb89591` (`v1.5.0`).
+
 ---
 
 ## 1. Goal
@@ -66,6 +69,20 @@ one outcome:
 Use VitePress-compatible redirects or thin handoff pages according to the
 project's deployment behavior. Do not silently delete old script/config routes
 merely because their source owner disappeared.
+
+#### Pre-modernization route ledger
+
+| Outcome | Routes |
+|---|---|
+| Retained and revised | `/`, `/complete/arch`, `/features/cava`, `/features/hyprland`, `/features/hyprlock`, `/features/nvim`, `/features/qt-theming`, `/features/rofi`, `/features/swaync`, `/features/waybar`, `/features/wlogout`, `/features/yazi`, `/general/download`, `/general/installation`, `/general/iso-installation`, `/general/quickstart`, `/general/showcase`, `/hyprland/`, `/hyprland/01-userdefaults`, `/hyprland/animation`, `/hyprland/application-style`, `/hyprland/envariables`, `/hyprland/hypridle`, `/hyprland/hyprland`, `/hyprland/hyprlock`, `/hyprland/keybinding`, `/hyprland/monitors`, `/hyprland/scripts`, `/hyprland/startup_apps`, `/hyprland/userdecorations`, `/hyprland/userkeybindings`, `/hyprland/usersettings`, `/hyprland/windowrules`, `/hyprland/workspaces`, `/keybindings/hyprland`, `/keybindings/neovim`, `/keybindings/tmux` |
+| Retained as compatibility handoff | `/complete/hyprflux` |
+| Retained and explicitly archived | `/blog/`, `/blog/inside-the-hyprflux-desktop`, `/blog/release-of-hyprflux`, `/blog/what-is-coming-next` |
+| Redirected, removed, or renamed | None |
+
+The ledger is derived from HyprFluxDocs baseline
+`f7cefb2f943f408808bb0583e88c6d025f013d14`. The route validator also protects
+the post-modernization `/features/kitty`, `/features/wallpapers`,
+`/general/hardware`, and `/general/troubleshooting` routes.
 
 Before editing, resolve the ledger into an exact allowed-file list for this
 phase. Replace the open-ended entries in Section 4 with those concrete paths in
@@ -170,6 +187,8 @@ archived blog post.
 - `docs/index.md`
 - `docs/public/robots.txt`
 - `docs/public/llms.txt`
+- `docs/public/IMAGES_README.md`
+- `docs/public/sw.js`
 - `README.md`
 - `package.json`
 - `pnpm-lock.yaml` or the selected package manager's lockfile, only if changed by tooling
@@ -181,27 +200,27 @@ archived blog post.
 
 ## 5. Acceptance Criteria / QA Checklist
 
-- [ ] All six phase source baselines and owner decisions are recorded.
-- [ ] Every active page appears in navigation or has an intentional deep-link-only role.
-- [ ] Every old public route has a recorded retain/redirect/archive/remove outcome.
-- [ ] The route ledger has been converted into an exact allowed-file list before edits.
-- [ ] Domain, canonical URL, sitemap, robots, structured data, `llms.txt`, and
+- [x] All six phase source baselines and owner decisions are recorded.
+- [x] Every active page appears in navigation or has an intentional deep-link-only role.
+- [x] Every old public route has a recorded retain/redirect/archive/remove outcome.
+- [x] The route ledger has been converted into an exact allowed-file list before edits.
+- [x] Domain, canonical URL, sitemap, robots, structured data, `llms.txt`, and
       visible absolute links use the approved host.
-- [ ] Structured data does not report stale version `1.0.0` for current software.
-- [ ] Historical blog content is preserved and clearly labeled when obsolete.
-- [ ] Current docs contain no obsolete installer choices, Hyprland entrypoint,
+- [x] Structured data does not report stale version `1.0.0` for current software.
+- [x] Historical blog content is preserved and clearly labeled when obsolete.
+- [x] Current docs contain no obsolete installer choices, Hyprland entrypoint,
       removed script names, or wallpaper-driven-color instructions.
-- [ ] Legitimate Hyprlock/Hypridle `.conf` and current package references are not
+- [x] Legitimate Hyprlock/Hypridle `.conf` and current package references are not
       incorrectly rejected by drift checks.
-- [ ] One documented docs check command succeeds from a clean checkout.
-- [ ] The production VitePress build succeeds with no broken internal links.
-- [ ] Approved external release/download links return expected files/pages.
-- [ ] Homepage-to-install-to-troubleshooting journeys pass manual review.
-- [ ] Representative pages pass desktop/mobile, keyboard, focus, heading, alt
+- [x] One documented docs check command succeeds from a clean checkout.
+- [x] The production VitePress build succeeds with no broken internal links.
+- [x] Approved external release/download links return expected files/pages.
+- [x] Homepage-to-install-to-troubleshooting journeys pass manual review.
+- [x] Representative pages pass desktop/mobile, keyboard, focus, heading, alt
       text, contrast, overflow, and reduced-motion checks.
-- [ ] Contributor/release guidance identifies canonical source ownership and
+- [x] Contributor/release guidance identifies canonical source ownership and
       one supported package manager.
-- [ ] `git diff --check` and repository status show only intended changes.
+- [x] `git diff --check` and repository status show only intended changes.
 
 ## 6. Approved Decisions and Open Questions
 
@@ -214,3 +233,73 @@ archived blog post.
   local maintainer command?
 - **Approved in Phase 1:** pnpm is authoritative for contributors and CI.
 - What browser/device matrix is required beyond one desktop and one narrow mobile viewport?
+
+Resolved during implementation:
+
+- No redirects were required because all pre-modernization routes remain.
+- `softwareVersion` is maintained manually with the release checklist.
+- CI adoption is deferred; `pnpm docs:check` is the supported local contract.
+- Browser QA used 1440x1000 desktop and 390x844 mobile viewports.
+
+## 7. Implementation Guardrail
+
+The route review resolved Phase 6 to this exact allowed-file list before
+implementation:
+
+- `docs/.vitepress/config.mts`
+- `docs/.vitepress/theme/structured-data.ts`
+- `docs/.vitepress/theme/custom.css`
+- `docs/index.md`
+- `docs/general/quickstart.md`
+- `docs/general/installation.md`
+- `docs/general/iso-installation.md`
+- `docs/blog/index.md`
+- `docs/blog/release-of-hyprflux.md`
+- `docs/blog/inside-the-hyprflux-desktop.md`
+- `docs/blog/what-is-coming-next.md`
+- `docs/public/robots.txt`
+- `docs/public/llms.txt`
+- `docs/public/IMAGES_README.md`
+- `docs/public/sw.js`
+- `README.md`
+- `SEO_IMPLEMENTATION.md`
+- `package.json`
+- `pnpm-workspace.yaml`
+- `scripts/check-docs.mjs` (new)
+- `docs/plans/hyprfluxdocs-current-source-modernization/00-MASTER-PLAN.md`
+- `docs/plans/hyprfluxdocs-current-source-modernization/phase-06-integrated-qa.md`
+- `docs/plans/hyprfluxdocs-current-source-modernization/COMPLETION-REPORT.md` (new)
+
+No compatibility redirect files are required: every pre-modernization Markdown
+route still exists. `/complete/hyprflux` remains a thin handoff page, while
+`/plans/*` remains intentionally deep-link-only maintainer evidence. CI adoption
+is deferred because it was not approved; the validation command ships locally
+and can be wired into CI later without changing its contract.
+
+## 8. Implementation Record
+
+Phase 6 normalized canonical, sitemap, crawler, social, and JSON-LD metadata to
+`https://hyprflux.dev`; removed unsupported rating/search claims; and records
+software version 1.5.0. Existing blog prose remains intact behind explicit
+archive notices and current-guide handoffs.
+
+`pnpm-workspace.yaml` now approves only esbuild's required lifecycle scripts.
+`pnpm install` ran both installed esbuild postinstall versions successfully.
+`pnpm docs:check` protects 46 public routes, shared assets, current-content
+tokens, removed keybinding tokens, and the pinned sibling source revision. An
+isolated-checkout run with `HYPRFLUX_SOURCE` pointed at a missing directory also
+passed and printed the intended skip notice.
+
+The production build completed with no broken internal links. The canonical
+GitHub v1.5.0 release, live `/install` script, and social image returned
+successfully. Browser checks covered the homepage, both installation paths, a
+Lua reference, wallpaper component guide, keybinding table, troubleshooting,
+showcase, and archived release post. Desktop and mobile checks found no page
+overflow, missing image alt text, duplicate/missing H1, or final console
+errors/warnings. Keyboard focus exposed the skip link and custom cards have a
+3px focus ring. Emulated reduced motion reduced custom animation duration to
+0.001 seconds.
+
+The browser pass also found and fixed two integration-only defects: a relative
+navbar favicon path on nested pages and service-worker interception of hashed
+VitePress JavaScript. Final `git diff --check` passed.

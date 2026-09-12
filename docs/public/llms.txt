@@ -1,59 +1,51 @@
 # HyprFlux Documentation
 
-> A complete Arch Linux distribution featuring a beautiful, productive Hyprland desktop environment.
+> HyprFlux is an Arch Linux desktop platform built around the Hyprland Wayland compositor. It is available as a bootable installation ISO and as a full desktop provisioner for an existing Arch Linux system.
 
-## What is HyprFlux?
+## Current Documentation Baseline
 
-HyprFlux is a complete operating system built on Arch Linux, featuring the Hyprland Wayland compositor. It provides a minimal, productive, and elegant desktop experience with pre-configured dotfiles.
+- HyprFlux release documented: 1.5.0
+- Source revision: f421b6bd108214079b56c435331ddbbfdfb89591
+- Canonical website: https://hyprflux.dev
+- Source repository: https://github.com/ahmad9059/HyprFlux
+- Canonical releases: https://github.com/ahmad9059/HyprFlux/releases/latest
 
-## Available in Two Forms
+## Installation Paths
 
-1. **ISO (Complete Operating System)** - A full Arch Linux distribution with HyprFlux pre-configured, install via bootable USB
-2. **Dotfiles Distribution** - Configuration files for existing Arch Linux installations
+- Choose a path: https://hyprflux.dev/general/quickstart
+- Download and verify the ISO: https://hyprflux.dev/general/download
+- Install from the ISO: https://hyprflux.dev/general/iso-installation
+- Provision an existing Arch system: https://hyprflux.dev/general/installation
 
-## Installation Options
+The existing-Arch path performs full provisioning. It is not a configuration-only dotfiles copy.
 
-- **Download ISO**: https://hyprflux.org/general/download
-- **Install Dotfiles**: https://hyprflux.org/complete/hyprflux
+## Operations
 
-## Key Components
+- Hardware and generated state: https://hyprflux.dev/general/hardware
+- Troubleshooting: https://hyprflux.dev/general/troubleshooting
+- Hyprland shortcuts: https://hyprflux.dev/keybindings/hyprland
+- Managed scripts and utilities: https://hyprflux.dev/hyprland/scripts
 
-- Hyprland (Wayland compositor)
-- Waybar (status bar)
-- Rofi (launcher)
-- SwayNC (notifications)
-- Hyprlock (lock screen)
-- Kitty (terminal)
-- Neovim (editor)
-- Yazi (file manager)
+## Configuration And Components
 
-## Documentation Structure
+- Hyprland Lua architecture: https://hyprflux.dev/hyprland/
+- Hyprland user experience: https://hyprflux.dev/features/hyprland
+- Waybar: https://hyprflux.dev/features/waybar
+- Rofi: https://hyprflux.dev/features/rofi
+- SwayNC: https://hyprflux.dev/features/swaync
+- Hyprlock: https://hyprflux.dev/features/hyprlock
+- Wallpapers and AWWW: https://hyprflux.dev/features/wallpapers
+- Kitty: https://hyprflux.dev/features/kitty
+- Neovim: https://hyprflux.dev/features/nvim
 
-- `/general/quickstart` - Getting started guide
-- `/general/iso-installation` - ISO installation steps
-- `/general/download` - Download links
-- `/general/showcase` - Screenshots and demos
-- `/keybindings/hyprland` - Keyboard shortcuts
-- `/features/` - Component documentation
-- `/hyprland/` - Configuration reference
+Hyprland 0.55+ configuration is Lua-only in current HyprFlux. Hyprlock, Hypridle, and application-style configuration legitimately remain in their native `.conf` formats.
 
-## Search Tips
+## Historical Content
 
-When searching this documentation, use keywords like:
-- "install", "download", "setup"
-- "keybindings", "shortcuts", "keyboard"
-- "config", "configuration", "hyprland"
-- "hyprlock", "waybar", "rofi"
-- Component names (e.g., "rofi", "waybar", "hyprlock")
+Pages under https://hyprflux.dev/blog/ are dated archive records. Use the current guides above for installation, downloads, and configuration.
 
-## Sitemap
+## Sitemap And Support
 
-- https://hyprflux.org/sitemap.xml
-
-## Author
-
-Ahmad Hassan (https://github.com/ahmad9059)
-
-## License
-
-MIT License
+- Sitemap: https://hyprflux.dev/sitemap.xml
+- Issues: https://github.com/ahmad9059/HyprFlux/issues
+- License: MIT

@@ -1,4 +1,4 @@
-const CACHE_NAME = "hyprflux-v1";
+const CACHE_NAME = "hyprflux-v2";
 const STATIC_ASSETS = [
   "/",
   "/favicon.ico",
@@ -49,29 +49,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (
-    url.pathname.match(/\.(js|css|woff2?|ttf|eot)$/i) ||
-    url.pathname.startsWith("/assets/")
-  ) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cached) => {
-          if (cached) return cached;
-          return fetch(request).then((response) => {
-            if (response.ok) {
-              cache.put(request, response.clone());
-            }
-            return response;
-          });
-        });
-      })
-    );
-    return;
+  if (request.mode === "navigate") {
+    event.respondWith(fetch(request).catch(() => caches.match("/")));
   }
-
-  event.respondWith(
-    fetch(request).catch(() => {
-      return caches.match(request);
-    })
-  );
 });

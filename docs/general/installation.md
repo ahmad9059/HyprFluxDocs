@@ -132,6 +132,9 @@ log when opening a [GitHub issue](https://github.com/ahmad9059/HyprFlux/issues).
 Because reruns replace `~/dotfiles_backup` and refresh several managed
 directories, preserve the current logs and backup before trying again.
 
+Use the [troubleshooting guide](/general/troubleshooting) for installation,
+configuration, graphics, wallpaper, and service diagnostics.
+
 ## ISO or Existing Arch?
 
 | Capability | HyprFlux ISO | Existing Arch installer |
