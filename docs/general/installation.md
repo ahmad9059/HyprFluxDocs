@@ -1,4 +1,13 @@
-# Install HyprFlux on Existing Arch
+---
+title: Provision HyprFlux on an Existing Arch System - HyprFlux
+description: The complete How-to procedure for provisioning HyprFlux on a system that already has Arch Linux installed.
+---
+
+# Provision HyprFlux on an Existing Arch System
+
+**Goal:** provision the complete HyprFlux desktop on a system that already
+has Arch Linux installed — updating the system, installing packages and
+services, deploying configuration, and applying themes.
 
 Use this path when Arch Linux is already installed. The HyprFlux installer
 performs full desktop provisioning: it updates the system, installs packages
@@ -6,7 +15,8 @@ and services, deploys managed configuration, applies themes, and configures
 hardware-dependent settings.
 
 For a new machine where the installer should create the Arch system and
-partition the target disk, use the [ISO installation guide](/general/iso-installation).
+partition the target disk, use the [ISO installation guide](/general/iso-installation)
+or follow the [guided tutorial](/general/quickstart).
 
 ::: warning This is not a configuration-only install
 HyprFlux makes system-wide package, service, login-manager, boot-theme, shell,
@@ -95,6 +105,12 @@ source.
 `base-dots/copy.sh` is a separate manual workflow and is not called by the
 normal installer. Do not substitute it for this guide unless you specifically
 intend to run that lower-level copy path.
+
+## Verify the Installation
+
+Before rebooting, confirm the installer didn't report a failure — see
+[If Installation Reports a Failure](#if-installation-reports-a-failure) for
+the exact log commands. If nothing failed, continue to rebooting below.
 
 ## After Installation
 

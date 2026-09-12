@@ -1,15 +1,25 @@
 ---
-title: ISO Installation Guide - HyprFlux
-description: Download, verify, and install HyprFlux from the bootable online ISO using automatic or expert manual partitioning.
+title: Install HyprFlux from the ISO (Complete Procedure) - HyprFlux
+description: The complete How-to procedure for installing HyprFlux from the bootable ISO, covering both automatic and manual disk partitioning.
 ---
 
-# ISO Installation Guide
+# Install HyprFlux from the ISO (Complete Procedure)
+
+**Goal:** install a complete HyprFlux desktop on a computer that doesn't
+have Arch Linux yet, using the bootable ISO — including both automatic and
+manual partitioning, and what to do if a step doesn't go as expected.
+
+::: tip New to HyprFlux?
+If this is your first install and you don't need manual partitioning or
+edge-case handling, follow the [guided tutorial](/general/quickstart)
+instead — it walks the same installer using the automatic-partitioning path.
+:::
 
 The HyprFlux ISO installs an Arch Linux base and provisions the complete
 HyprFlux desktop before the final reboot. It is an online installer and requires
 network access throughout the installation.
 
-## Requirements
+## Prerequisites
 
 - An x86_64 computer
 - At least 4 GB of RAM; 8 GB or more is recommended
@@ -187,7 +197,14 @@ during installation. At the first desktop login, a narrowly scoped fixup:
 If packages remain unavailable, that retry runs again on a later login. The
 installer does not configure automatic login.
 
-## Logs and Recovery Information
+## Verify Your Installation
+
+You have a successful installation once you can sign in through SDDM and
+reach a working Hyprland desktop. If SDDM doesn't offer a session, or the
+desktop doesn't start, don't rerun the installer yet — check the logs below
+first, since reruns replace some of your managed state.
+
+## If Something Goes Wrong
 
 After installation, inspect retained HyprFlux-stage logs with:
 

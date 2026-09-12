@@ -5,6 +5,9 @@ description: Prepare a supported existing Arch Linux base before running the ful
 
 # Prepare Arch Linux for HyprFlux
 
+**Goal:** get a supported, up-to-date Arch Linux base ready, so you can run
+the full HyprFlux provisioner on it next.
+
 This page is for users who want to install Arch Linux themselves and then run
 HyprFlux on that existing system. If HyprFlux should install and partition the
 whole machine, the [HyprFlux ISO](/general/iso-installation) is the shorter path.

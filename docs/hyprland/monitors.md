@@ -54,7 +54,7 @@ the running session before creating a profile:
 hyprctl monitors -j
 ```
 
-## Recommended Workflow
+## How to Apply a New Monitor Layout
 
 1. Open nwg-displays.
 2. Arrange outputs, modes, and scaling.

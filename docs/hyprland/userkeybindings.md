@@ -1,4 +1,4 @@
-# Customize `user-keybinds.lua`
+# `user-keybinds.lua`
 
 Path: `~/.config/hypr/UserConfigs/user-keybinds.lua`
 

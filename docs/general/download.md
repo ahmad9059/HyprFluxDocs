@@ -72,7 +72,11 @@ aside: false
   </div>
 </div>
 
-## Download Links
+## Goal
+
+Get a verified HyprFlux ISO file, ready to write to a USB drive.
+
+## Download
 
 <div class="download-cards">
   <div class="download-card">
@@ -107,7 +111,7 @@ aside: false
 The HyprFlux ISO is an **online installer**. An active internet connection is required during installation to download packages and configurations.
 :::
 
-## Verify the Download
+## Verify the Checksum
 
 Download the `.iso` and its matching `.sha256` file from the **same release
 channel**, place them in the same directory, and run:
@@ -119,15 +123,16 @@ sha256sum -c hyprflux-*.iso.sha256
 Continue only when the command reports `OK`. A checksum from a different
 release or mirror does not verify your ISO.
 
-## Installing on Existing Arch?
+## Installing on Existing Arch Instead?
 
 You do not need the ISO. Follow the
 [existing Arch installation guide](/general/installation) to run the full
 HyprFlux provisioner on an installed Arch Linux system.
 
-::: tip Need Help?
+## Next Step
 
-- Visit our [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues) for support
-- Check [Getting Started](/general/quickstart) to choose an installation path
-- See the [ISO Installation Guide](/general/iso-installation) for step-by-step instructions
-  :::
+- New to HyprFlux? Follow the [guided tutorial](/general/quickstart) for a
+  full first-time walkthrough.
+- Done this before? Go straight to the
+  [complete ISO installation guide](/general/iso-installation).
+- Need help? Visit [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues).

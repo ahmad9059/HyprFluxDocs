@@ -1,7 +1,6 @@
 # Diátaxis Documentation Restructure
 
-> Status: **Planning; Phase 1 outline drafted and awaiting final approval.** No
-> page content has been rewritten yet.
+> Status: **Phases 1–2 complete and verified.** Phases 3–5 not started.
 >
 > Source request: apply the Diátaxis framework (Tutorial / How-to Guide /
 > Reference / Explanation) to the existing HyprFluxDocs site, per the
@@ -92,7 +91,7 @@ Sign-off was obtained in chat before this plan was written.
 | R3 | Moving embedded rationale out of Reference pages (`hyprland/*.md`) into Explanation may leave some Reference pages feeling terse | Low | Acceptable trade — Reference should read like a technical dictionary; verify readability isn't harmed after Phase 2. |
 | R4 | Phase 5 touches `docs/.vitepress/config.mts`, the same file the completed Phase 6 canonical-URL work modified | Medium | Sidebar-label-only change; must not touch `transformPageData`, sitemap, or head metadata added by that prior initiative. Diff must be reviewed for scope creep. |
 | R5 | `pnpm docs:check` (from the prior modernization plan) asserts specific tokens/routes exist in several of these pages | Medium | Re-run `pnpm docs:check` and the production build after every phase that edits page content; update the validator only if a check's assumption about page structure (not facts) needs adjusting. |
-| R6 | Phases 2–4 have not yet had a full per-file content audit in this plan | Low | Each phase file states this explicitly; the detailed per-page outline for that phase is produced and approved at the start of that phase, matching the documentation-writer skill's workflow. |
+| R6 | Phases 3–4 have not yet had a full per-file content audit in this plan | Low | Phase 2's full audit (19 files) found the Reference quadrant already in excellent shape, needing only 2 small consistency edits — a positive signal that Phases 3–4 may similarly require less rewriting than originally scoped. Each remaining phase file states its audit is pending; it is produced at the start of that phase, matching the documentation-writer skill's workflow. |
 
 ---
 
@@ -100,8 +99,8 @@ Sign-off was obtained in chat before this plan was written.
 
 | Phase | Title | Status |
 |---|---|---|
-| 1 | [Tutorial and Onboarding How-To](./phase-01-tutorial-and-onboarding-howto.md) | Outline drafted, awaiting approval |
-| 2 | [Reference Cleanup](./phase-02-reference-cleanup.md) | Not started |
+| 1 | [Tutorial and Onboarding How-To](./phase-01-tutorial-and-onboarding-howto.md) | Complete and verified |
+| 2 | [Reference Cleanup](./phase-02-reference-cleanup.md) | Complete and verified |
 | 3 | [Explanation](./phase-03-explanation.md) | Not started |
 | 4 | [Component Pages](./phase-04-component-pages.md) | Not started |
 | 5 | [Navigation Labels](./phase-05-navigation-labels.md) | Not started |
@@ -134,7 +133,8 @@ maintainer; each is an independently reviewable diff.
 
 ## 7. Next Step
 
-Review and approve Phase 1's detailed outline in
-`phase-01-tutorial-and-onboarding-howto.md`. Once approved, I write that
-phase's full Markdown, run the verification steps in §6, and report back
-before starting Phase 2.
+Phases 1 and 2 are complete and verified. Begin Phase 3 (Explanation):
+re-read `hyprland/index.md` and `features/hyprland.md` in full, draft that
+phase's detailed outline (informed by Phase 2's finding that little
+explanation-shaped content needed relocating out of the Reference pages),
+and present it before writing.

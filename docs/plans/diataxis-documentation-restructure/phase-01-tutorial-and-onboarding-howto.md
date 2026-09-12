@@ -2,7 +2,7 @@
 
 Depends on: Master plan §2–3 decisions (approved)
 
-Status: **Outline drafted; awaiting approval to write full content.**
+Status: **Complete and verified.**
 
 ---
 
@@ -120,20 +120,42 @@ Already a correct, minimal How-to redirect stub.
 
 ## 5. Acceptance Criteria / QA Checklist
 
-- [ ] `quickstart.md` reads as a single narrated lesson with one golden path,
+- [x] `quickstart.md` reads as a single narrated lesson with one golden path,
       not a path-selector hub.
-- [ ] No technical claim, command, or fact in any touched page differs from
+- [x] No technical claim, command, or fact in any touched page differs from
       what is currently documented.
-- [ ] Every touched How-to page has an explicit, scannable Goal statement.
-- [ ] `iso-installation.md` and `installation.md` still fully cover manual
+- [x] Every touched How-to page has an explicit, scannable Goal statement.
+- [x] `iso-installation.md` and `installation.md` still fully cover manual
       partitioning and existing-Arch provisioning respectively (nothing was
       dropped when the Tutorial was extracted).
-- [ ] All internal links between these seven pages still resolve.
-- [ ] `pnpm docs:check` passes.
-- [ ] The production VitePress build succeeds.
-- [ ] `git diff --check` is clean.
+- [x] All internal links between these seven pages still resolve, including
+      the two new anchor links from `quickstart.md` into
+      `iso-installation.md` (verified in-browser; the numbered heading
+      `### 5. Choose a disk method` slugifies to `_5-choose-a-disk-method`
+      with a leading underscore, not `5-choose-a-disk-method` — corrected).
+- [x] `pnpm docs:check` passes.
+- [x] The production VitePress build succeeds.
+- [x] `git diff --check` is clean.
 
 ## 6. Open Questions
 
-- None outstanding — this outline reflects the approach already confirmed
-  with the maintainer. Proceeding to full content on approval of this file.
+- None outstanding.
+
+## 7. Implementation Notes
+
+- `complete/hyprflux.md` required no edit; it was already a correct, minimal
+  How-to redirect stub, as scoped.
+- `installation.md` had no frontmatter block in the original file. Added
+  `title`/`description` frontmatter for consistency with every other page in
+  scope — a presentational fix, not a new technical claim.
+- `troubleshooting.md`'s 11 symptom sections now each carry explicit
+  **Diagnose:** / **Fix:** / (where the original already had one)
+  **If you still need help:** labels. No command, path, or claim changed;
+  three sections (Lua Configuration Errors, Wallpaper/AWWW, Brightness/
+  Touchpad, Audio Controls) had no explicit escalation sentence in the
+  original and were left without one rather than inventing an "If you still
+  need help" line — the page's closing "What To Include In A Report"
+  section remains the general fallback.
+- Verified in-browser at 1440×1000: no broken images, no duplicate/missing
+  H1, no horizontal overflow, and both corrected anchor links resolve to
+  their target headings on `iso-installation.md` and `installation.md`.
