@@ -66,9 +66,12 @@ instead of promoted as supported recovery paths.
 Canonical metadata, crawler files, social images, and structured data now use
 `https://hyprflux.dev`; current software schema reports v1.5.0 without invented
 ratings. Historical posts are visibly archived. `README.md` now defines pnpm,
-source ownership, `pnpm docs:check`, and release-maintenance steps.
+source ownership, `pnpm docs:check`, and release-maintenance steps. A new
+current-release post links the official
+[v1.5.0 release](https://github.com/ahmad9059/HyprFlux/releases/tag/v1.5.0)
+and leads both the Notes index and Blog sidebar.
 
-The new validator preserves 46 routes, checks shared and Markdown assets,
+The new validator preserves 47 routes, checks shared and Markdown assets,
 requires current source tokens, rejects selected removed tokens where they
 would be stale, and checks the sibling HyprFlux pin when available. The pnpm
 esbuild allowlist was repaired, and the standard install/build path succeeds.

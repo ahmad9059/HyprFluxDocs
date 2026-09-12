@@ -9,6 +9,7 @@
 - Canonical website: https://hyprflux.dev
 - Source repository: https://github.com/ahmad9059/HyprFlux
 - Canonical releases: https://github.com/ahmad9059/HyprFlux/releases/latest
+- v1.5.0 release note: https://hyprflux.dev/blog/release-v1.5.0
 
 ## Installation Paths
 

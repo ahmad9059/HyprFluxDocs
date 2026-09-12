@@ -233,6 +233,10 @@ export default defineConfig({
         items: [
           { text: "Overview", link: "/blog/" },
           {
+            text: "HyprFlux v1.5.0 Release",
+            link: "/blog/release-v1.5.0.md",
+          },
+          {
             text: "Release of HyprFlux",
             link: "/blog/release-of-hyprflux.md",
           },

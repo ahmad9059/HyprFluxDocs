@@ -281,11 +281,15 @@ and can be wired into CI later without changing its contract.
 Phase 6 normalized canonical, sitemap, crawler, social, and JSON-LD metadata to
 `https://hyprflux.dev`; removed unsupported rating/search claims; and records
 software version 1.5.0. Existing blog prose remains intact behind explicit
-archive notices and current-guide handoffs.
+archive notices and current-guide handoffs. A new current-release post,
+`docs/blog/release-v1.5.0.md`, links the official
+[v1.5.0 release](https://github.com/ahmad9059/HyprFlux/releases/tag/v1.5.0) and
+its pinned commit, is the default Notes hero action and lead card, and is
+listed first under the Blog sidebar.
 
 `pnpm-workspace.yaml` now approves only esbuild's required lifecycle scripts.
 `pnpm install` ran both installed esbuild postinstall versions successfully.
-`pnpm docs:check` protects 46 public routes, shared assets, current-content
+`pnpm docs:check` protects 47 public routes, shared assets, current-content
 tokens, removed keybinding tokens, and the pinned sibling source revision. An
 isolated-checkout run with `HYPRFLUX_SOURCE` pointed at a missing directory also
 passed and printed the intended skip notice.
