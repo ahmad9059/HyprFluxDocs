@@ -1,12 +1,16 @@
 # Waybar
 
+## What It Is
+
 Waybar is the primary HyprFlux panel. HyprFlux ships one active horizontal
 layout, reusable module banks, grouped drawers, and a static generated color
 palette.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership
+## Configuration
+
+### Ownership
 
 | Concern | Owner |
 |---|---|
@@ -21,7 +25,7 @@ HyprFlux installs `waybar-git` because its workspace module uses Hyprland's Lua
 dispatcher support. The repository's `.config/waybar/` directory is canonical;
 `base-dots/config/waybar/` is a parity mirror, not a second deployment source.
 
-## Configuration graph
+### Configuration graph
 
 ```text
 ~/.config/waybar/
@@ -42,7 +46,7 @@ includes the standard, workspace, custom, group, and user module banks. It does
 not include `ModulesVertical`. The desktop and laptop layout files are currently
 identical.
 
-## Active layout
+### Active layout
 
 | Region | Modules |
 |---|---|
@@ -66,7 +70,24 @@ The expandable groups are defined in
 uses `hyprland/workspaces#rw`. Its clicks and scroll actions use Hyprland Lua
 dispatchers; changing to another variant can change those semantics.
 
-## Common interactions
+### Colors and styling
+
+Waybar colors do not change with the wallpaper. The default stylesheet imports
+`hyprflux-colors.css`, which is generated from HyprFlux's central static palette
+by [`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L112-L173).
+
+For source development, edit the central palette and regenerate outputs:
+
+```bash
+./utilities/sync-colors.sh
+```
+
+Do not hand-edit `hyprflux-colors.css` in a source contribution. CI verifies
+generated output and `.config`/`base-dots` parity.
+
+## Common Tasks
+
+### Common interactions
 
 | Control | Action |
 |---|---|
@@ -84,22 +105,7 @@ The exact commands live in
 and
 [`ModulesGroups`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/waybar/ModulesGroups).
 
-## Colors and styling
-
-Waybar colors do not change with the wallpaper. The default stylesheet imports
-`hyprflux-colors.css`, which is generated from HyprFlux's central static palette
-by [`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L112-L173).
-
-For source development, edit the central palette and regenerate outputs:
-
-```bash
-./utilities/sync-colors.sh
-```
-
-Do not hand-edit `hyprflux-colors.css` in a source contribution. CI verifies
-generated output and `.config`/`base-dots` parity.
-
-## Reload and troubleshooting
+### Reload and troubleshooting
 
 Reload a running bar after editing:
 

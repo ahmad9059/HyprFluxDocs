@@ -1,11 +1,15 @@
 # Kitty
 
+## What It Is
+
 Kitty is the default HyprFlux terminal. Its main configuration is user-editable,
 while its active color include is generated from the central static palette.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership
+## Configuration
+
+### Ownership
 
 | Concern | Owner |
 |---|---|
@@ -15,7 +19,7 @@ while its active color include is generated from the central static palette.
 | Default selection | [`user-defaults.lua`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/UserConfigs/user-defaults.lua#L10-L20) |
 | Deployment | [`modules/02-dotfiles.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/02-dotfiles.sh#L9-L45) |
 
-## Shipped settings
+### Shipped settings
 
 | Setting | Value |
 |---|---|
@@ -30,7 +34,9 @@ while its active color include is generated from the central static palette.
 The repository also carries a legacy-named file under `kitty-themes/`, but the
 active include is `kitty-colors.conf`. Wallpaper changes do not regenerate it.
 
-## Launch paths
+## Common Tasks
+
+### Launch paths
 
 | Entry point | Behavior |
 |---|---|
@@ -51,7 +57,7 @@ normal and dropdown bindings, Waybar terminal path, and the terminal used when
 Quick Settings opens the selected editor. Scripts that explicitly require
 Kitty can still use it.
 
-## Colors
+### Colors
 
 `kitty-colors.conf` is generated from HyprFlux's central palette by
 [`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L157-L173).
@@ -71,7 +77,7 @@ script has no matching handler and no Kitty theme-switching script. Edit the
 configuration directly until that source workflow is implemented.
 :::
 
-## Validate changes
+### Validate changes
 
 Open a separate terminal, then launch a test window with the installed config.
 Kitty reports parse errors to the invoking terminal:

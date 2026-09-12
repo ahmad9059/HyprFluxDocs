@@ -1,12 +1,16 @@
 # GTK, Qt, Kvantum, Icons, and Cursors
 
+## What It Is
+
 HyprFlux ships toolkit configuration for GTK, Qt5, Qt6, and Kvantum. These
 settings are static and currently contain first-boot precedence conflicts, so
 there is no single reliable wallpaper-derived or unified theme state.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership
+## Configuration
+
+### Ownership
 
 | Area | Install/config owner |
 |---|---|
@@ -22,7 +26,7 @@ there is no single reliable wallpaper-derived or unified theme state.
 See the pinned [`dotsSetup.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/dotsSetup.sh#L87-L120)
 for module order.
 
-## Qt5ct and Qt6ct
+### Qt5ct and Qt6ct
 
 Both shipped controller files select:
 
@@ -36,18 +40,10 @@ Both shipped controller files select:
 | General font | Adwaita Sans 12 |
 
 During deployment, module 02 replaces the repository home placeholder in the
-Qt color-file paths with the installing user's home directory.
+Qt color-file paths with the installing user's home directory. The controllers
+are also exposed by the `SUPER+SHIFT+E` HyprFlux Quick Settings menu.
 
-Open the controllers directly:
-
-```bash
-qt5ct
-qt6ct
-```
-
-They are also exposed by the `SUPER+SHIFT+E` HyprFlux Quick Settings menu.
-
-## Kvantum
+### Kvantum
 
 HyprFlux bundles exactly two Kvantum themes:
 
@@ -64,21 +60,15 @@ However, Qt5ct and Qt6ct both select `Fusion`, and HyprFlux does not set
 `QT_STYLE_OVERRIDE=kvantum`. Kvantum is therefore installed and configured but
 is not the active Qt widget style under the shipped controller settings.
 
-## Environment conflict
+### Environment conflict
 
 `env-variables.lua` sets `QT_QPA_PLATFORMTHEME` first to `qt5ct` and then to
 `qt6ct`. One process environment cannot retain both values; the later value is
 expected to win. Verify the application environment instead of assuming each
-Qt major version automatically reaches its matching controller:
+Qt major version automatically reaches its matching controller — see
+[Diagnose the active theme](#diagnose-the-active-theme) below.
 
-Launch a Qt application, replace `<process-name>` below with its executable
-name, and inspect the environment:
-
-```bash
-tr '\0' '\n' < /proc/$(pgrep -n '<process-name>')/environ | grep '^QT_'
-```
-
-## Install and first-boot precedence
+### Install and first-boot precedence
 
 | Setting | Installer/modules | First Hyprland boot | User-visible result |
 |---|---|---|---|
@@ -92,7 +82,38 @@ tr '\0' '\n' < /proc/$(pgrep -n '<process-name>')/environ | grep '^QT_'
 
 The first-boot marker is written without validating all backgrounded commands.
 If theming is inconsistent, inspect current settings rather than rerunning the
-whole installer:
+whole installer — see [Diagnose the active theme](#diagnose-the-active-theme)
+below.
+
+### Static colors
+
+Qt, Kvantum, GTK, icons, and cursors use bundled static theme data. They are
+not generated from the current wallpaper. The central HyprFlux color generator
+updates Rofi, Waybar, Kitty, SwayNC, and Wlogout, but not these toolkit themes.
+
+## Common Tasks
+
+### Diagnose the active theme
+
+Because installer defaults, first-boot overrides, and the Qt environment
+conflict can each win independently, check what's actually active rather than
+assuming the tables above describe the running system.
+
+Open the controllers directly:
+
+```bash
+qt5ct
+qt6ct
+```
+
+Check which `QT_QPA_PLATFORMTHEME` value a running Qt application actually
+received — replace `<process-name>` with its executable name:
+
+```bash
+tr '\0' '\n' < /proc/$(pgrep -n '<process-name>')/environ | grep '^QT_'
+```
+
+Check the GTK and Qt settings that first-boot and the installer each wrote:
 
 ```bash
 gsettings get org.gnome.desktop.interface gtk-theme
@@ -100,12 +121,6 @@ gsettings get org.gnome.desktop.interface icon-theme
 gsettings get org.gnome.desktop.interface cursor-theme
 grep -E '^(style|icon_theme|color_scheme_path)=' ~/.config/qt5ct/qt5ct.conf ~/.config/qt6ct/qt6ct.conf
 ```
-
-## Static colors
-
-Qt, Kvantum, GTK, icons, and cursors use bundled static theme data. They are
-not generated from the current wallpaper. The central HyprFlux color generator
-updates Rofi, Waybar, Kitty, SwayNC, and Wlogout, but not these toolkit themes.
 
 ## Related pages
 

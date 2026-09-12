@@ -1,12 +1,16 @@
 # Wallpapers
 
+## What It Is
+
 HyprFlux uses AWWW for image wallpapers and mpvpaper for video wallpapers.
 Wallpaper state supports image effects, the alternate Hyprlock background, and
 GameMode restoration; it does not generate the desktop application palette.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership chain
+## Configuration
+
+### Ownership chain
 
 1. [`modules/12-wallpapers.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/12-wallpapers.sh)
    replaces `~/Pictures/wallpapers` with a shallow clone of
@@ -24,7 +28,26 @@ The wallpaper repository and Neovim repository are external and unpinned by
 the HyprFlux installer. The bank contained static images/GIFs, but no supported
 video files, when this page was audited.
 
-## Select an image
+### Runtime state files
+
+| File | Purpose |
+|---|---|
+| `~/.config/rofi/.current_wallpaper` | Symlink used by `GameMode.sh` for wallpaper restoration |
+| `~/.config/hypr/wallpaper_effects/.wallpaper_current` | Effects input and alternate Hyprlock background |
+| `~/.config/hypr/wallpaper_effects/.wallpaper_modified` | Generated effect output |
+
+These are runtime artifacts. They do not feed Waybar, Kitty, SwayNC, Wlogout,
+or Rofi color generation.
+
+### AWWW versus SWWW
+
+AWWW is the active image engine. The `swww` package remains in the install and
+final-check inventories as source residue, but no active `swww-daemon` or
+`swww img` workflow is shipped. Do not start both wallpaper daemons.
+
+## Common Tasks
+
+### Select an image
 
 The supported selector is:
 
@@ -44,18 +67,7 @@ The active Waybar application drawer exposes this selector. The source also
 binds both the selector and effect menu to `SUPER+SHIFT+W`, so that duplicate
 binding is not a reliable way to open only one menu.
 
-## Runtime state files
-
-| File | Purpose |
-|---|---|
-| `~/.config/rofi/.current_wallpaper` | Symlink used by `GameMode.sh` for wallpaper restoration |
-| `~/.config/hypr/wallpaper_effects/.wallpaper_current` | Effects input and alternate Hyprlock background |
-| `~/.config/hypr/wallpaper_effects/.wallpaper_modified` | Generated effect output |
-
-These are runtime artifacts. They do not feed Waybar, Kitty, SwayNC, Wlogout,
-or Rofi color generation.
-
-## Image effects
+### Apply image effects
 
 Run:
 
@@ -67,7 +79,7 @@ The Rofi menu applies ImageMagick transforms such as grayscale, blur, edge
 detection, emboss, negate, oil paint, posterize, sepia, sharpen, vignette, and
 zoom. The output is displayed through AWWW without changing the source image.
 
-## Random image
+### Pick a random image
 
 `CTRL+ALT+W` runs:
 
@@ -78,7 +90,7 @@ zoom. The output is displayed through AWWW without changing the source image.
 It chooses a static image, applies it to the focused monitor, and updates the
 runtime state files. It does not select videos.
 
-## Automatic rotation
+### Set up automatic rotation
 
 Automatic rotation is disabled by default. The example in `startup-apps.lua`
 would call:
@@ -97,7 +109,7 @@ rotation as a supported unattended workflow until those source issues are
 fixed.
 :::
 
-## Video wallpapers
+### Use a video wallpaper
 
 Add an `.mp4`, `.mkv`, `.mov`, or `.webm` file to the wallpaper directory and
 select it through `WallpaperSelect.sh`. The immediate path stops AWWW and starts:
@@ -113,13 +125,7 @@ as unsupported until the source rewrite is fixed. `luac -p` can detect damaged
 Lua syntax but cannot prove that the generated shell command is correctly
 spaced or escaped.
 
-## AWWW versus SWWW
-
-AWWW is the active image engine. The `swww` package remains in the install and
-final-check inventories as source residue, but no active `swww-daemon` or
-`swww img` workflow is shipped. Do not start both wallpaper daemons.
-
-## Troubleshooting
+### Troubleshooting
 
 Check the daemon and current AWWW cache:
 

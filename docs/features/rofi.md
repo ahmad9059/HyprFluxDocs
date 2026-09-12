@@ -1,12 +1,16 @@
 # Rofi
 
+## What It Is
+
 Rofi provides the HyprFlux application launcher and the presentation layer for
 several script-backed menus. It does not own wallpaper-derived theming or a
 Waybar layout selector.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership
+## Configuration
+
+### Ownership
 
 | Concern | Owner |
 |---|---|
@@ -16,7 +20,7 @@ Waybar layout selector.
 | User menus | Scripts under `~/.config/hypr/scripts/` and `UserScripts/` |
 | Generated colors | [`hyprflux-colors.rasi`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/rofi/hyprflux-colors.rasi) |
 
-## Configuration chain
+### Configuration chain
 
 The normal launcher follows this chain:
 
@@ -37,7 +41,7 @@ rofi -show drun -modi drun,filebrowser,run,window
 
 The default binding is `SUPER+D`.
 
-## Shipped presentations
+### Shipped presentations
 
 | File | Purpose |
 |---|---|
@@ -58,7 +62,30 @@ The default binding is `SUPER+D`.
 These files are presentations. Their shell scripts own data collection and
 side effects.
 
-## Live menus
+### Wallpaper state
+
+The repository currently tracks `.current_wallpaper` as a symlink with a
+maintainer-specific target; `WallpaperAwww.sh` replaces it at runtime.
+`.wallpaper_current` and `.wallpaper_modified` live under
+`~/.config/hypr/wallpaper_effects/` and are used by effects. None of these files
+changes the application palette. See [Wallpapers](./wallpapers.md).
+
+### Static generated colors
+
+`hyprflux-colors.rasi` is generated from the central HyprFlux palette and is
+not regenerated at runtime. Contributors regenerate all tracked color outputs
+with:
+
+```bash
+./utilities/sync-colors.sh
+```
+
+CI checks that generated files are current and that the canonical `.config`
+tree matches its parity mirror.
+
+## Common Tasks
+
+### Live menus
 
 | Menu | How it works |
 |---|---|
@@ -90,34 +117,13 @@ The wallpaper selector and effect selector are both bound to
 wallpaper control or run one script directly until the duplicate binding is
 fixed.
 
-## Wallpaper state
-
-The repository currently tracks `.current_wallpaper` as a symlink with a
-maintainer-specific target; `WallpaperAwww.sh` replaces it at runtime.
-`.wallpaper_current` and `.wallpaper_modified` live under
-`~/.config/hypr/wallpaper_effects/` and are used by effects. None of these files
-changes the application palette. See [Wallpapers](./wallpapers.md).
-
-## Static generated colors
-
-`hyprflux-colors.rasi` is generated from the central HyprFlux palette and is
-not regenerated at runtime. Contributors regenerate all tracked color outputs
-with:
-
-```bash
-./utilities/sync-colors.sh
-```
-
-CI checks that generated files are current and that the canonical `.config`
-tree matches its parity mirror.
-
 ::: warning Unsupported menu entries
 Quick Settings displays Kitty-theme, Rofi-theme, and dark/light-theme entries
 without matching handlers. They are current source defects, not supported
 workflows. HyprFlux also ships no Waybar layout selector or Rofi theme selector.
 :::
 
-## Troubleshooting
+### Troubleshooting
 
 Run the main launcher directly:
 

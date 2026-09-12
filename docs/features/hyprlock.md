@@ -1,12 +1,14 @@
 # Lock Screen Workflow
 
+## What It Is
+
 HyprFlux combines logind, Hypridle, and Hyprlock. This page explains the
 user-facing workflow; the native configuration blocks, palette variables, and
 validation steps live in the [Hyprlock configuration reference](../hyprland/hyprlock.md).
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Components
+### Components
 
 | Component | Responsibility |
 |---|---|
@@ -22,19 +24,24 @@ Their configurations and integration scripts are deployed from the canonical
 Hypridle and Hyprlock use native `.conf` parsers. They are not Hyprland Lua
 modules.
 
-## Manual locking
+## Configuration
 
-The normal shortcut is `CTRL+ALT+L`. Wlogout Lock, SwayNC Lock, and Waybar's
-normal lock control use the same chain:
+### Which layout is active?
 
-```text
-LockScreen.sh -> loginctl lock-session -> Hypridle lock_cmd -> Hyprlock
+The repository and current installer retain a primary Mario layout at
+`hyprlock.conf` and an alternate low-resolution layout at
+`hyprlock-1080p.conf`. Bare `hyprlock` uses the Mario layout. The alternate uses
+the current wallpaper and adds separate clock labels, keyboard layout, uptime,
+battery, and weather.
+
+Launch the alternate explicitly when you want to test that layout. This command
+locks the current session immediately:
+
+```bash
+hyprlock --config ~/.config/hypr/hyprlock-1080p.conf
 ```
 
-The lock command is guarded by `pidof hyprlock || hyprlock`, so repeated events
-do not intentionally create multiple lockers.
-
-## Automatic locking
+### Automatic locking
 
 Hypridle starts with the Hyprland session and honors application D-Bus idle
 inhibitors. The active timers are:
@@ -49,7 +56,21 @@ inhibitors. The active timers are:
 Automatic display power-off and automatic suspend listeners are commented out
 in the shipped configuration.
 
-## When Hypridle is disabled
+## Common Tasks
+
+### Manual locking
+
+The normal shortcut is `CTRL+ALT+L`. Wlogout Lock, SwayNC Lock, and Waybar's
+normal lock control use the same chain:
+
+```text
+LockScreen.sh -> loginctl lock-session -> Hypridle lock_cmd -> Hyprlock
+```
+
+The lock command is guarded by `pidof hyprlock || hyprlock`, so repeated events
+do not intentionally create multiple lockers.
+
+### When Hypridle is disabled
 
 The Waybar idle control can stop Hypridle. This disables idle timers and also
 removes HyprFlux's configured consumer for `loginctl lock-session`. The usual
@@ -68,22 +89,7 @@ Restart mediation with:
 hypridle
 ```
 
-## Which layout is active?
-
-The repository and current installer retain a primary Mario layout at
-`hyprlock.conf` and an alternate low-resolution layout at
-`hyprlock-1080p.conf`. Bare `hyprlock` uses the Mario layout. The alternate uses
-the current wallpaper and adds separate clock labels, keyboard layout, uptime,
-battery, and weather.
-
-Launch the alternate explicitly when you want to test that layout. This command
-locks the current session immediately:
-
-```bash
-hyprlock --config ~/.config/hypr/hyprlock-1080p.conf
-```
-
-## Safe customization
+### Safe customization
 
 For simple visual changes:
 

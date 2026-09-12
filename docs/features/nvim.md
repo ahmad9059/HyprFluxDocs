@@ -1,5 +1,7 @@
 # Neovim
 
+## What It Is
+
 HyprFlux installs Neovim, then replaces `~/.config/nvim` with the current head
 of the external [`ahmad9059/nvim`](https://github.com/ahmad9059/nvim)
 repository. Editor behavior belongs to that repository, not to the HyprFlux
@@ -9,7 +11,12 @@ configuration tree.
 >
 > Neovim configuration snapshot: [`d11951c8`](https://github.com/ahmad9059/nvim/tree/d11951c8dd548f0e9d1b470ba279d28e2d7a4696)
 
-## Installation ownership
+HyprFlux does not pin the external revision. The exact configuration installed
+at a later date can differ from this page's verified snapshot.
+
+## Configuration
+
+### Installation ownership
 
 | Concern | Owner |
 |---|---|
@@ -22,10 +29,7 @@ The installer deletes an existing destination directory before cloning the
 external repository. Back up local Neovim configuration before running or
 rerunning that module.
 
-HyprFlux does not pin the external revision. The exact configuration installed
-at a later date can differ from this page's verified snapshot.
-
-## Configuration structure
+### Configuration structure
 
 The verified external revision contains:
 
@@ -50,7 +54,7 @@ The verified external revision contains:
 installs a small clipboard/mapping branch and returns before loading the full
 desktop configuration.
 
-## Interface defaults
+### Interface defaults
 
 The pinned config explicitly selects:
 
@@ -66,7 +70,7 @@ These are configuration-specific claims. General Neovim defaults and the
 separate [Neovim cheat sheet](../keybindings/neovim.md) are not evidence of
 HyprFlux's installed mappings.
 
-## Custom mappings
+### Custom mappings
 
 The verified custom mapping file includes the following highlights; it is not
 an exhaustive key table:
@@ -97,7 +101,7 @@ for the VSCode branch, and
 [`lua/configs/lspconfig.lua`](https://github.com/ahmad9059/nvim/blob/d11951c8dd548f0e9d1b470ba279d28e2d7a4696/lua/configs/lspconfig.lua)
 for buffer-local LSP mappings.
 
-## Plugins
+### Plugins
 
 The custom plugin specification includes:
 
@@ -117,7 +121,7 @@ The custom plugin specification includes:
 `noice.nvim`, `nvim-notify`, and `mini.surround` are not active custom plugins
 at the pinned revision.
 
-## Language servers
+### Language servers
 
 The external config explicitly enables servers for:
 
@@ -138,13 +142,13 @@ TypeScript LSP formatting is disabled in favor of Conform/prettierd. ESLint
 runs `EslintFixAll` on save. Tailwind and GraphQL activation is bounded by their
 configured project root markers.
 
-## Automatic behavior
+### Automatic behavior
 
 Custom autocommands mark `.env`, `.env.*`, and `*.env` as shell syntax,
 identify Compose files as `yaml.docker-compose`, and disable folding in
 floating HTTP/REST response windows.
 
-## Formatting
+### Formatting
 
 Conform formats on save with a 500 ms timeout and LSP fallback. The configured
 executables include:
@@ -160,7 +164,9 @@ HyprFlux and the external repository do not comprehensively provision every
 language server or formatter executable. Install missing tools separately for
 the languages you use.
 
-## Plugin bootstrap
+## Common Tasks
+
+### Plugin bootstrap
 
 After cloning, the HyprFlux module runs a headless startup and `Lazy sync`.
 Both commands currently suppress failures before the module logs success. Check
@@ -185,7 +191,7 @@ that lockfile, so it is not an immutable post-install dependency snapshot.
 HyprFlux also does not pin the configuration repository commit that supplies
 the original lockfile.
 
-## Updating safely
+### Updating safely
 
 Before pulling external configuration changes, inspect local modifications:
 

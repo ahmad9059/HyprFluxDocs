@@ -1,12 +1,16 @@
 # SwayNC
 
+## What It Is
+
 SwayNC provides notification popups and the HyprFlux notification center. Its
 own JSON configuration is separate from the Rofi-based HyprFlux Quick Settings
 menu.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership
+## Configuration
+
+### Ownership
 
 | Concern | Owner |
 |---|---|
@@ -16,7 +20,7 @@ menu.
 | Startup | [`startup-apps.lua`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/UserConfigs/startup-apps.lua#L34-L40) |
 | Panel binding | `SUPER+N` in [`configs/keybinds.lua`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/configs/keybinds.lua#L16-L23) |
 
-## Shipped layout
+### Shipped layout
 
 | Setting | Value |
 |---|---|
@@ -39,7 +43,7 @@ The active widget order is:
 Volume and backlight labels are present in `widget-config`, but their widgets
 are not included in the active list.
 
-## Button grid
+### Button grid
 
 | Button | Command owner |
 |---|---|
@@ -58,7 +62,20 @@ Lua migration requires the native Lua dispatcher. Treat this button as a known
 source defect; use `CTRL+ALT+Delete` for the configured exit path.
 :::
 
-## Integration
+### Styling and colors
+
+The CSS styles notification rows, actions, inline replies, MPRIS, DND, title,
+and the button grid. Its scrollbar is transparent and zero-width while wheel
+scrolling remains available.
+
+The leading color block is generated from the central static palette by
+[`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L199-L244).
+It is injected inline because GTK color definitions do not reliably propagate
+through imports. Wallpaper changes do not recolor SwayNC.
+
+## Common Tasks
+
+### Integration
 
 SwayNC starts directly from Hyprland, not from a shipped systemd user service.
 Use:
@@ -76,18 +93,7 @@ these mouse actions:
 `SUPER+SHIFT+E` opens the separate Rofi-based HyprFlux Quick Settings menu. It
 is not a SwayNC widget.
 
-## Styling and colors
-
-The CSS styles notification rows, actions, inline replies, MPRIS, DND, title,
-and the button grid. Its scrollbar is transparent and zero-width while wheel
-scrolling remains available.
-
-The leading color block is generated from the central static palette by
-[`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L199-L244).
-It is injected inline because GTK color definitions do not reliably propagate
-through imports. Wallpaper changes do not recolor SwayNC.
-
-## Refresh and troubleshooting
+### Refresh and troubleshooting
 
 Reload CSS and configuration:
 

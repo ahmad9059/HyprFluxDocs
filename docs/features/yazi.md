@@ -1,11 +1,15 @@
 # Yazi
 
+## What It Is
+
 Yazi is the shipped terminal file manager. It is available from shells and a
 tmuxifier layout, but Thunar remains HyprFlux's default graphical file manager.
 
 > Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
 
-## Ownership
+## Configuration
+
+### Ownership
 
 | Concern | Owner |
 |---|---|
@@ -15,7 +19,7 @@ tmuxifier layout, but Thunar remains HyprFlux's default graphical file manager.
 | Shell entry | `alias y='yazi'` in the shipped `.zshrc` |
 | Desktop file manager | Thunar from `user-defaults.lua`, not Yazi |
 
-## Configuration
+### Configuration Files
 
 ```text
 ~/.config/yazi/
@@ -40,20 +44,7 @@ the current `[mgr]` section:
 | Media opener | VLC |
 | Theme | Bundled Tokyo Night flavor |
 
-## Launching Yazi
-
-Run either command in a terminal:
-
-```bash
-yazi
-y
-```
-
-The shipped `web-dev` tmuxifier layout also opens Yazi in one window. There is
-no default Hyprland keybinding or Waybar button for Yazi; `SUPER+F` and the
-Waybar file-manager control open Thunar.
-
-## Shipped keys
+### Shipped keys
 
 | Key | Action |
 |---|---|
@@ -73,7 +64,22 @@ Review the complete pinned
 [`keymap.toml`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/yazi/keymap.toml)
 before replacing existing mappings.
 
-## Optional command gaps
+## Common Tasks
+
+### Launching Yazi
+
+Run either command in a terminal:
+
+```bash
+yazi
+y
+```
+
+The shipped `web-dev` tmuxifier layout also opens Yazi in one window. There is
+no default Hyprland keybinding or Waybar button for Yazi; `SUPER+F` and the
+Waybar file-manager control open Thunar.
+
+### Optional command gaps
 
 The configuration invokes `fd`, `rg`, `exiftool`, and `mediainfo`, but the
 pinned HyprFlux package inventory does not explicitly install them. If a search
@@ -86,7 +92,7 @@ sudo pacman -S fd ripgrep perl-image-exiftool mediainfo
 
 `fzf` and `zoxide` are explicitly provisioned by HyprFlux.
 
-## Validate changes
+### Validate changes
 
 Start Yazi from a terminal after editing so configuration errors remain visible:
 
