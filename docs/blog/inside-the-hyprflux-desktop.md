@@ -13,17 +13,17 @@ This article reflects the project at its publication date. See the [current desk
 
 HyprFlux is built as a complete desktop, not just a theme pack.
 
-The idea is simple: every part of the system should feel connected. Hyprland handles window management, but the overall experience depends just as much on the bar, launcher, notifications, lock screen, terminal, editor, and the small helper scripts that tie everything together.
+The idea is simple: every part of the system should feel connected. Hyprland handles window management. The rest of the experience comes from the bar, launcher, notifications, lock screen, terminal, editor, and the helper scripts that tie them together.
 
 ## What shapes the desktop
 
 The setup centers on a practical stack:
 
-- Hyprland for tiling and motion;
-- Waybar for workspace and system status;
-- Rofi for launchers and menus;
-- Hyprlock and Hypridle for locking and idle behavior;
-- SwayNC for notifications;
+- Hyprland for tiling and motion
+- Waybar for workspace and system status
+- Rofi for launchers and menus
+- Hyprlock and Hypridle for locking and idle behavior
+- SwayNC for notifications
 - Kitty and Neovim for the daily workflow.
 
 Consistency is the point. Colors, spacing, shortcuts, and layout choices are meant to feel like they belong to one system.
@@ -34,4 +34,4 @@ HyprFlux splits its configuration into smaller pieces so users can understand it
 
 ## The goal going forward
 
-The desktop keeps evolving, but the direction stays the same: sensible defaults, good usability, and enough structure that you can live in the setup instead of constantly repairing it.
+The desktop keeps evolving, but the direction stays the same. The goal is sensible defaults, good usability, and enough structure to live in the setup without constantly repairing it.

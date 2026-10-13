@@ -11,10 +11,10 @@ Hyprland is the Wayland compositor at the center of the HyprFlux desktop. HyprFl
 
 Stock Hyprland gives you a compositor and a configuration language. HyprFlux organizes that configuration in a particular way:
 
-- a modular entrypoint that splits settings by concern instead of one large file;
-- separate base and personal binding layers, so an update does not quietly overwrite your shortcuts;
-- generated Lua output for monitors and workspaces, so display tools manage that state instead of you;
-- a static shared color palette used across the desktop;
+- a modular entrypoint that splits settings by concern instead of one large file
+- separate base and personal binding layers, so an update does not quietly overwrite your shortcuts
+- generated Lua output for monitors and workspaces, so display tools manage that state instead of you
+- a static shared color palette used across the desktop
 - Hyprlock and Hypridle wired in for locking and idle behavior.
 
 None of this changes what Hyprland itself can do. It is an opinionated arrangement of Hyprland's own configuration surface. See [Hyprland Configuration Architecture](/hyprland/) for how the pieces fit together and which file owns what.
@@ -29,9 +29,9 @@ hl.config({ general = { layout = "dwindle" } })
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(defaults.term))
 ```
 
-The difference is more than cosmetic. Lua is a real language, so a module can compute values instead of only declaring them. The clearest example in HyprFlux itself is the numbered workspace bindings: a `for` loop generates all ten instead of thirty near-identical copied lines (see [Generate Repeated Bindings](/hyprland/keybinding#generate-repeated-bindings)). A Hyprlang file could only contain the expanded result.
+The difference is more than cosmetic. Lua is a real language, so a module can compute values instead of only declaring them. The clearest example is the numbered workspace bindings: a `for` loop generates all ten, instead of thirty near-identical copied lines (see [Generate Repeated Bindings](/hyprland/keybinding#generate-repeated-bindings)). A Hyprlang file could only contain the expanded result.
 
-The syntax for each kind of declaration, such as `hl.env`, `hl.config`, `hl.bind`, and `hl.window_rule`, is documented on the reference page for the file that owns it.
+Each kind of declaration, such as `hl.env`, `hl.config`, `hl.bind`, and `hl.window_rule`, is documented on the reference page for the owning file.
 
 ## Where to make a change
 

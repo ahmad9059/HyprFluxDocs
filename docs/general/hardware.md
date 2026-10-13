@@ -13,7 +13,7 @@ This page describes behavior at HyprFlux source revision [`0f62647`](https://git
 
 | Area | Installer or generator | Runtime owner | Inspect with |
 |---|---|---|---|
-| GPU | `modules/16-hardware-detect.sh`; NVIDIA installer scripts | `UserConfigs/env-variables.lua` marker block | `lspci -k`, `ls -l /dev/dri`, `sed -n '/GPU_CONFIG_START/,/GPU_CONFIG_END/p' ~/.config/hypr/UserConfigs/env-variables.lua` |
+| GPU | `modules/16-hardware-detect.sh` and the NVIDIA installer scripts | `UserConfigs/env-variables.lua` marker block | `lspci -k`, `ls -l /dev/dri`, `sed -n '/GPU_CONFIG_START/,/GPU_CONFIG_END/p' ~/.config/hypr/UserConfigs/env-variables.lua` |
 | Displays | `modules/15-monitors.sh` and `modules/16-hardware-detect.sh` | `monitors.lua`, then Hyprland | `hyprctl monitors all`, `Hyprland --config ~/.config/hypr/hyprland.lua --verify-config` |
 | Workspaces | `nwg-displays` | `workspaces.lua` | `hyprctl workspaces` |
 | Keyboard layout | `modules/16-hardware-detect.sh` | `UserConfigs/user-settings.lua` | `hyprctl devices`, `localectl status` |
@@ -107,7 +107,7 @@ wpctl status
 pamixer --get-volume
 ```
 
-The PipeWire installer has a bug in its forced `pipewire-pulse` reinstall step: the loop iterates its second package list but installs the variable from the first list. The normal package loop already includes `pipewire-pulse`, so audio usually works anyway. If audio setup fails, inspect the installer log.
+The PipeWire installer has a bug in its forced `pipewire-pulse` reinstall step. The loop iterates its second package list but installs the variable from the first list. The normal package loop already includes `pipewire-pulse`, so audio usually works anyway. If audio setup fails, inspect the installer log.
 
 Bluetooth provisioning installs BlueZ, the BlueZ utilities, and Blueman, then enables `bluetooth.service`:
 

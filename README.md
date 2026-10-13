@@ -65,6 +65,7 @@ The canonical configuration source in HyprFlux is the `.config/` tree. `base-dot
 - Edit content under `docs/` and keep the sidebar in `docs/.vitepress/config.mts` in sync with any new page.
 - Run `pnpm docs:check` before you push. It verifies routes, shared assets, Markdown image references, current content tokens, and (when present) the sibling source revision.
 - If you change installer behavior, keep the Vercel functions pointing at the correct scripts and update any affected documentation.
+- Before writing or rewriting a page, see the project skill at `.opencode/skills/hyprflux-docs/SKILL.md`. It documents the house style, the merged writing standards, and the Diátaxis page types. Check a page with `node .opencode/skills/hyprflux-docs/scripts/house-style.mjs <files>`.
 
 ## Release checklist
 

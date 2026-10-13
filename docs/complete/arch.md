@@ -23,11 +23,11 @@ Writing installation media, formatting partitions, and selecting an install disk
 
 Before you start HyprFlux, boot into the installed Arch system and confirm that you have:
 
-- an x86_64 Arch Linux installation;
-- a non-root user with working `sudo` access;
-- an active internet connection;
-- at least 4 GB of RAM and 10 GB of free storage;
-- `curl`, `git`, and `sudo` available;
+- an x86_64 Arch Linux installation
+- a non-root user with working `sudo` access
+- an active internet connection
+- at least 4 GB of RAM and 10 GB of free storage
+- `curl`, `git`, and `sudo` available
 - an up-to-date package database and system.
 
 Check the base system:
@@ -40,7 +40,7 @@ sudo -v
 sudo pacman -Syu
 ```
 
-The architecture should report `x86_64`, the root filesystem should be mounted normally, networking should work, and the sudo and system update commands should finish without errors.
+The architecture should report `x86_64`, and the root filesystem should be mounted normally. Networking should work, and the sudo and system update commands should finish without errors.
 
 ## Continue with HyprFlux
 

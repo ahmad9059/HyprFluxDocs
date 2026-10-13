@@ -33,7 +33,7 @@ The current file registers two listeners:
 
 | Timeout | Action |
 |---|---|
-| 540 seconds | Show an idle warning; show a return notification on activity |
+| 540 seconds | Show an idle warning. Show a return notification on activity |
 | 600 seconds | Run `loginctl lock-session`, which triggers `lock_cmd` |
 
 The screen-off and suspend listeners are present only as disabled examples.

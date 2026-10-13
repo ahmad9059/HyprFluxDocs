@@ -26,7 +26,7 @@ The repository also carries a legacy-named file under `kitty-themes/`, but the a
 | Entry point | Behavior |
 |---|---|
 | `SUPER+RETURN` | Opens the configured default terminal |
-| `SUPER+SHIFT+RETURN` | Calls `Dropterminal.sh` with the configured terminal; Kitty is shipped |
+| `SUPER+SHIFT+RETURN` | Calls `Dropterminal.sh` with the configured terminal. Kitty is shipped |
 | Waybar terminal control | Resolves `term` from `user-defaults.lua` |
 | `SUPER+E` project selector | Starts Kitty with a selected tmuxifier project |
 | Update scripts | Open Kitty for interactive update workflows |

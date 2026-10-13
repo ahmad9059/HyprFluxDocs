@@ -37,14 +37,14 @@ Hyprlang keys that contain dashes use underscores in Lua. Values should use Lua 
 | Area | Notable values |
 |---|---|
 | Layout | Dwindle, preserved splits, border resizing enabled |
-| Master layout | New windows become master; factor `0.5` |
+| Master layout | New windows become master, with factor `0.5` |
 | Keyboard | US layout, `kb_options` unset, repeat rate 50, delay 300 ms |
 | Pointer | Follow mouse, normal sensitivity, right-handed |
 | Touchpad | Natural scrolling and tap-to-click enabled |
 | Miscellaneous | VRR mode 2, ANR dialog enabled, middle-click paste disabled |
 | XWayland | Enabled with forced zero scaling |
 | Rendering | Direct scanout mode 2 (`auto`) |
-| Cursor | Hyprcursor enabled; hardware cursor mode 2 |
+| Cursor | Hyprcursor enabled, with hardware cursor mode 2 |
 | Debug | VFR enabled under `debug.vfr` |
 
 `kb_options` is empty by default. The installer can fill in `kb_layout` from hardware detection. If you want a keyboard remap such as Caps Lock to Ctrl, set `kb_options = "ctrl:nocaps"` here yourself.

@@ -57,7 +57,7 @@ These files are presentations. Their shell scripts own the data collection and t
 
 | Menu | How it works |
 |---|---|
-| Clipboard | `ClipManager.sh` reads `cliphist`; the selection is decoded and copied |
+| Clipboard | `ClipManager.sh` reads `cliphist`. The selection is decoded and copied |
 | Calculator | `RofiCalc.sh` evaluates repeated dmenu input with `qalc` and copies the result |
 | Emoji | `RofiEmoji.sh` pipes embedded emoji data to dmenu and copies the selected symbol |
 | Wallpapers | `WallpaperSelect.sh` builds image and video previews and applies the selection |

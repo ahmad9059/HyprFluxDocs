@@ -32,7 +32,7 @@ These scripts are called by active keybindings, the startup configuration, Hyprl
 
 | Entry point | What it does | Boundary |
 |---|---|---|
-| `LockScreen.sh` | Calls `loginctl lock-session`; Hypridle responds with Hyprlock. | It does not launch Hyprlock directly. |
+| `LockScreen.sh` | Calls `loginctl lock-session`. Hypridle responds with Hyprlock. | It does not launch Hyprlock directly. |
 | `Wlogout.sh` | Opens the Wlogout power menu with margins derived from the focused output. | Requires `hyprctl`, `jq`, `awk`, and Wlogout. |
 | `KillActiveProcess.sh` | Reads the active-window PID and sends `kill`. | Forceful, compared with `SUPER+Q`. Unsaved work may be lost. |
 | `ChangeLayout.sh` | Cycles Dwindle, Master, and Scrolling in compositor memory. | Requires `jq`. The choice is not written to `user-settings.lua`. |
@@ -50,7 +50,7 @@ These scripts are called by active keybindings, the startup configuration, Hyprl
 | `Brightness.sh` | `--get`, `--inc`, `--dec` | Uses `brightnessctl`. Changes by 10% and clamps to 5% to 95%. An unknown or missing argument prints the current value. |
 | `BrightnessKbd.sh` | `--get`, `--inc`, `--dec` | Targets `*::kbd_backlight`. Changes by 30%. |
 | `TouchPad.sh` | No arguments | Toggles one configured device and stores state in `$XDG_RUNTIME_DIR/touchpad.status`. The shipped device name is maintainer-specific. |
-| `SwitchKeyboardLayout.sh` | No arguments | Cycles the layouts from `user-settings.lua` for non-ignored keyboards. The active Waybar module calls it; its direct keybinding is commented out. |
+| `SwitchKeyboardLayout.sh` | No arguments | Cycles the layouts from `user-settings.lua` for non-ignored keyboards. The active Waybar module calls it, and its direct keybinding is commented out. |
 | `ScreenShot.sh` | `--now`, `--in5`, `--in10`, `--win`, `--area`, `--active`, `--save-area` | Saves under the XDG Pictures `Screenshots` directory and copies the image with `wl-copy`. See [Hyprland Keybindings](/keybindings/hyprland#screenshots). |
 | `Sounds.sh` | `--screenshot`, `--volume`, `--error` | Internal notification-sound helper. Uses `pw-play`, then `pa-play`. |
 | `AirplaneMode.sh` | No arguments | Blocks or unblocks Wi-Fi with `rfkill`. It does not change Bluetooth. |

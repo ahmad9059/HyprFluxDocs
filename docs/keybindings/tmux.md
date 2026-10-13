@@ -15,8 +15,8 @@ These are the custom declarations in the shipped [`~/.tmux.conf`](https://github
 |---|---|---|
 | `ALT+O` | Global | Send the tmux prefix. Press it twice to forward `ALT+O` to the application. |
 | Prefix, then `r` | Prefix | Reload `~/.tmux.conf` |
-| Prefix, then `*` | Prefix | Split horizontally; the new pane gets 20% width |
-| Prefix, then `"` | Prefix | Split vertically; the new pane gets 20% height |
+| Prefix, then `*` | Prefix | Split horizontally, giving the new pane 20% width |
+| Prefix, then `"` | Prefix | Split vertically, giving the new pane 20% height |
 | `ALT+U` | Global | Toggle zoom for the active pane |
 | Prefix, then `h/j/k/l` | Prefix | Select the pane left/down/up/right |
 

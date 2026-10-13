@@ -14,9 +14,9 @@ HyprFlux ships toolkit configuration for GTK, Qt5, Qt6, and Kvantum. The setting
 | Qt packages | `qt5ct`, `qt6ct`, `qt6-svg`, and `kvantum` in the main package batch |
 | Qt configuration | `~/.config/qt5ct/` and `~/.config/qt6ct/`, deployed by `modules/02-dotfiles.sh` |
 | Kvantum | `~/.config/Kvantum/`, deployed by module 02 |
-| GTK themes | Bundled `.themes`, installed by `modules/04-themes.sh`; settings written by `modules/07-gtk.sh` |
+| GTK themes | Bundled `.themes`, installed by `modules/04-themes.sh`. Settings written by `modules/07-gtk.sh` |
 | Icons | Papirus packages and the Papirus-Dark selection from modules 04 and 07 |
-| Xcursor | Future Black during theme setup; Bibata values in the Hyprland environment |
+| Xcursor | Future Black during theme setup, with Bibata values in the Hyprland environment |
 | Hyprcursor | Bibata Modern Classic, set at every session start by `startup-apps.lua` |
 | First-boot overrides | `~/.config/hypr/initial-boot.sh` |
 
@@ -60,9 +60,9 @@ However, Qt5ct and Qt6ct both select `Fusion`, and HyprFlux does not set `QT_STY
 
 | Setting | Installer and modules | First Hyprland boot | Result |
 |---|---|---|---|
-| GTK theme | `HyprFlux-Compact` | `Material-DeepOcean-BL` through gsettings | Gsettings-aware apps receive Material; GTK settings files still name HyprFlux-Compact |
+| GTK theme | `HyprFlux-Compact` | `Material-DeepOcean-BL` through gsettings | Gsettings-aware apps receive Material. GTK settings files still name HyprFlux-Compact |
 | Icons | `Papirus-Dark` | `Papirus-Dark` | Consistent |
-| GTK cursor | `Future-black Cursors` | `Moga-Cursor` | Conflicting; Moga is not installed by this source |
+| GTK cursor | `Future-black Cursors` | `Moga-Cursor` | Conflicting. Moga is not installed by this source |
 | Hyprcursor | `Bibata-Modern-Classic`, size 24 | `hyprctl setcursor` reapplies it | Installed and selected for Hyprland-native cursors |
 | Xcursor | Environment names Bibata | Unchanged | No legacy Bibata `cursors/` payload is installed, so legacy clients may fall back |
 | GTK font | Adwaita Sans 11 | Unchanged | Remains the intended GTK font |

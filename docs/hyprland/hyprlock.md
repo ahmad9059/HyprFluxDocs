@@ -27,10 +27,10 @@ Use the lock-specific variables such as `$lock_border`, `$lock_text`, `$lock_box
 
 The default file applies its widgets to every monitor and contains:
 
-- a bundled Mario background with blur and color adjustments;
-- a circular profile image;
-- date and 12-hour clock labels;
-- a user label and a password input field;
+- a bundled Mario background with blur and color adjustments
+- a circular profile image
+- date and 12-hour clock labels
+- a user label and a password input field
 - a current-song label refreshed through `playerctl`.
 
 Widgets use native blocks such as `background`, `image`, `shape`, `label`, and `input-field`. Dynamic labels use `cmd[update:<milliseconds>]` and run repeatedly, so keep those commands fast.

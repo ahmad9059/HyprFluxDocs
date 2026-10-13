@@ -58,7 +58,7 @@ Open the menu with `CTRL+ALT+P`. The Waybar power control and the SwayNC power b
 ~/.config/hypr/scripts/Wlogout.sh
 ```
 
-The script closes Wlogout if it is already open. At logical heights of 720 px or more, it reads the focused monitor's height and scale, calculates top and bottom margins, and launches Wlogout through layer shell. It uses three buttons per row from 720 through 1079 logical pixels and six at larger sizes. Below 720 logical pixels it falls back to plain `wlogout`.
+The script closes Wlogout if it is already open. At logical heights of 720 px or more, it reads the focused monitor's height and scale. It then calculates top and bottom margins and launches Wlogout through layer shell. It uses three buttons per row from 720 through 1079 logical pixels and six at larger sizes. Below 720 logical pixels it falls back to plain `wlogout`.
 
 Launching `wlogout` directly still reads the layout and actions, but bypasses the adaptive margins.
 

@@ -103,7 +103,7 @@ ls -l ~/.config/rofi/.current_wallpaper
 ls -la ~/.cache/awww
 ```
 
-**Fix:** If the daemon is not running, start it with `awww-daemon --format xrgb`. Use the wallpaper selector with an image first. Automatic rotation and persistent video have known defects in the current source, and `RefreshNoWaybar.sh` still calls the removed `WallpaperSwww.sh`, so do not use that helper as a recovery command. See [Wallpapers](/features/wallpapers) for the supported boundaries.
+**Fix:** If the daemon is not running, start it with `awww-daemon --format xrgb`. Use the wallpaper selector with an image first. Automatic rotation and persistent video have known defects in the current source. `RefreshNoWaybar.sh` still calls the removed `WallpaperSwww.sh`, so do not use that helper as a recovery command. See [Wallpapers](/features/wallpapers) for the supported boundaries.
 
 ## GPU environment looks wrong
 

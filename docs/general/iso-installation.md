@@ -16,7 +16,7 @@ The HyprFlux ISO installs an Arch Linux base and provisions the complete HyprFlu
 ## Prerequisites
 
 - An x86_64 computer.
-- At least 4 GB of RAM; 8 GB or more is recommended.
+- At least 4 GB of RAM, though 8 GB or more is recommended.
 - At least 20 GB of target storage. The disk selector recommends about 25 GiB or more.
 - A USB drive large enough for the ISO.
 - An internet connection that allows the installer's connectivity check and its package downloads.
@@ -112,7 +112,7 @@ Choose a hostname, then create a lowercase username and a password. The installe
 
 ![Automatic and manual disk options](./assets/img-9.webp)
 
-**Automatic mode** creates a GPT/ext4 installation and erases the entire selected disk. UEFI systems get an EFI System Partition; BIOS systems get a BIOS Boot partition. Swap is optional.
+**Automatic mode** creates a GPT/ext4 installation and erases the entire selected disk. UEFI systems get an EFI System Partition, and BIOS systems get a BIOS Boot partition. Swap is optional.
 
 Before erasing anything, the installer shows the selected device and requires you to type the exact lowercase word `yes`. Destruction starts immediately after that confirmation, when it clears the partition table and filesystem signatures.
 
@@ -126,7 +126,7 @@ Manual mode is an expert workflow. The installer checks only that the required m
 
 ### 6. Install and configure Arch Linux
 
-The installer selects mirrors, runs `pacstrap`, writes a UUID-based `fstab`, and configures timezone, locale, keyboard, hostname, users, sudo, pacman, NetworkManager, initramfs, and GRUB inside the target system. Package and mirror operations may be retried automatically.
+The installer selects mirrors and runs `pacstrap`. It then writes a UUID-based `fstab` and configures timezone, locale, keyboard, hostname, users, sudo, pacman, NetworkManager, initramfs, and GRUB inside the target system. Package and mirror operations may be retried automatically.
 
 ### 7. Provision HyprFlux in the chroot
 
@@ -144,9 +144,9 @@ Full HyprFlux provisioning finishes before this reboot. Current releases do not 
 
 Boot the installed system and sign in through SDDM with the account you created during installation. At the first desktop login, a small fixup:
 
-- applies GTK, icon, cursor, font, and dark-mode settings;
-- applies `nwg-look` settings;
-- enables the PipeWire and WirePlumber user services;
+- applies GTK, icon, cursor, font, and dark-mode settings
+- applies `nwg-look` settings
+- enables the PipeWire and WirePlumber user services
 - retries any AUR packages that were recorded as missing.
 
 If packages are still unavailable, that retry runs again on a later login. The installer does not configure automatic login.

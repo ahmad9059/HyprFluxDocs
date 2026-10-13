@@ -52,7 +52,7 @@ hl.on("hyprland.start", function()
 end)
 ```
 
-Prefer one callback per coherent startup sequence. If one command depends on another being ready, express that dependency in one script or a systemd user unit rather than assuming asynchronous commands finish in declaration order.
+Prefer one callback per coherent startup sequence. If one command depends on another being ready, express that dependency in one script or a systemd user unit. Do not assume asynchronous commands finish in declaration order.
 
 System services and persistent user daemons generally belong in systemd. Use this module for applications tied directly to the Hyprland session.
 

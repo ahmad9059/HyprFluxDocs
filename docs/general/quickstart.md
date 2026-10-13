@@ -68,7 +68,7 @@ The installer walks through several screens:
 2. **Welcome and confirmation.** Review the requirements and confirm that you want to continue. Nothing is erased yet.
 3. **Regional settings.** Pick your timezone, locale, and keyboard layout.
 4. **Hostname and user.** Choose a hostname, a lowercase username, and a password. The password is used for your account and the root account.
-5. **Disk method.** Choose **Automatic**. It partitions the whole selected disk (GPT with ext4, plus the correct boot partition for your firmware) and asks you to type `yes` before it erases anything.
+5. **Disk method.** Choose **Automatic**. It partitions the whole selected disk with GPT and ext4, plus the correct boot partition for your firmware. It asks you to type `yes` before it erases anything.
 
    ![Automatic and manual disk options](./assets/img-9.webp)
 
@@ -86,11 +86,11 @@ When the installer finishes, remove the USB drive and press Enter. It syncs data
 
 ## Step 6: Sign in
 
-After the reboot, sign in through SDDM with the username and password you created. On this first login, HyprFlux finishes a few setup steps in the background: it applies your GTK, icon, cursor, and font settings and starts the audio services. Give it a moment before everything feels settled.
+After the reboot, sign in through SDDM with the username and password you created. On this first login, HyprFlux finishes a few setup steps in the background. It applies your GTK, icon, cursor, and font settings, and starts the audio services. Give it a moment before everything feels settled.
 
 ## You are done
 
-You now have a working HyprFlux desktop: Hyprland as the window manager, plus Waybar, Rofi, SwayNC, and the rest of the default stack, configured and running.
+You now have a working HyprFlux desktop. Hyprland is the window manager, and Waybar, Rofi, SwayNC, and the rest of the default stack are configured and running.
 
 ## Next steps
 
@@ -100,4 +100,4 @@ You now have a working HyprFlux desktop: Hyprland as the window manager, plus Wa
 - [Troubleshooting](/general/troubleshooting). Use this if something does not work as described here.
 - [Existing-Arch installation](/general/installation). The guide to use next time, if you install HyprFlux on a system that already runs Arch Linux.
 
-If you hit a problem this tutorial does not cover, open a [GitHub issue](https://github.com/ahmad9059/HyprFlux/issues) and include the step you were on and the relevant files from `~/HyprFlux/logs/`.
+If you hit a problem this tutorial does not cover, open a [GitHub issue](https://github.com/ahmad9059/HyprFlux/issues). Include the step you were on and the relevant files from `~/HyprFlux/logs/`.

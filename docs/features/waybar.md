@@ -64,11 +64,11 @@ Do not hand-edit `hyprflux-colors.css` in a source contribution. CI verifies the
 
 | Control | Action |
 |---|---|
-| Rofi button | Closes an existing Rofi instance; otherwise opens `drun`, run, file-browser, and window modes |
-| Wallpaper button | Middle-click opens the selector; images use AWWW and videos use mpvpaper |
+| Rofi button | Closes an existing Rofi instance, or opens `drun`, run, file-browser, and window modes |
+| Wallpaper button | Middle-click opens the selector. Images use AWWW and videos use mpvpaper |
 | Terminal button | Resolves the terminal from `user-defaults.lua` and opens Kitty by default |
-| SwayNC button | Left click toggles the panel; right click toggles do-not-disturb |
-| Player | Previous and play/pause on the mouse buttons; the wheel adjusts volume |
+| SwayNC button | Left click toggles the panel. Right click toggles do-not-disturb |
+| Player | Previous and play/pause on the mouse buttons. The wheel adjusts volume |
 | Hardware controls | Open tools such as `btop`, `nvtop`, or `gnome-system-monitor` |
 | Power control | Opens the adaptive Wlogout launcher |
 | Lock control | Calls the HyprFlux lock bridge |
@@ -97,7 +97,7 @@ waybar -l debug
 ```
 
 ::: warning Current source limitations
-The shipped tooltip describes the wallpaper click incorrectly, the updater's visibility guard treats zero as visible, and the inactive vertical power group references an undefined module. The selected horizontal layout stays usable. These are defects in the HyprFlux source, not something you can fix through the configuration files.
+The shipped tooltip describes the wallpaper click incorrectly. The updater's visibility guard treats zero as visible, and the inactive vertical power group references an undefined module. The selected horizontal layout stays usable. These are defects in the HyprFlux source, not something you can fix through the configuration files.
 :::
 
 ## Related pages

@@ -7,7 +7,7 @@ description: The complete procedure for provisioning HyprFlux on a system that a
 
 **Goal:** provision the complete HyprFlux desktop on a system that already has Arch Linux installed. This updates the system, installs packages and services, deploys configuration, and applies themes.
 
-Use this path when Arch Linux is already installed. The HyprFlux installer performs full desktop provisioning, not a configuration-only copy. For a new machine where the installer should create the Arch system and partition the target disk, use the [ISO installation guide](/general/iso-installation) or follow the [guided tutorial](/general/quickstart).
+Use this path when Arch Linux is already installed. The HyprFlux installer performs full desktop provisioning, not a configuration-only copy. For a new machine, use the [ISO installation guide](/general/iso-installation) or the [guided tutorial](/general/quickstart). The ISO installer creates the Arch system and partitions the target disk.
 
 ::: warning This is not a configuration-only install
 HyprFlux makes system-wide changes to packages, services, the login manager, the boot theme, the shell, and user configuration. Read the safety notes and keep an independent backup before you run it on a system you care about.
@@ -27,9 +27,9 @@ The installer performs a full `pacman -Syu`. Resolve any existing package or key
 
 Copy important files somewhere outside `~/.config` and outside `~/dotfiles_backup`. During installation:
 
-- the previous `~/dotfiles_backup` directory is deleted;
-- the current `~/.config`, `.zshrc`, and `.tmux.conf` are copied into a new `~/dotfiles_backup`;
-- each configuration directory managed by HyprFlux is then removed and replaced from the checkout;
+- the previous `~/dotfiles_backup` directory is deleted
+- the current `~/.config`, `.zshrc`, and `.tmux.conf` are copied into a new `~/dotfiles_backup`
+- each configuration directory managed by HyprFlux is then removed and replaced from the checkout
 - Neovim, Tmuxifier, wallpapers, monitor profiles, and some theme directories are refreshed by their own modules.
 
 On a rerun, the backup represents the state immediately before that rerun. It is not necessarily your original pre-HyprFlux setup.
@@ -60,7 +60,7 @@ bash install.sh
 2. **Privilege setup.** The installer validates sudo once and keeps the credential active while it runs.
 3. **System preparation.** It initializes the Arch keyring and performs a full system update, ensuring Git and Vim are installed.
 4. **Base desktop.** The merged base installer provisions the Hyprland package set, PipeWire, fonts, SDDM, Bluetooth, Thunar, XDG portals, Zsh, and hardware-dependent actions. Yay is bootstrapped automatically when no supported AUR helper is present.
-5. **HyprFlux modules.** `dotsSetup.sh` runs the numbered modules in order for backup, configuration deployment, Neovim, themes, Waybar, SDDM, GTK, boot theming, tmux, Zsh, wallpapers, web apps, cursor, monitors, and hardware detection.
+5. **HyprFlux modules.** `dotsSetup.sh` runs the numbered modules in order. They cover backup, configuration deployment, Neovim, themes, Waybar, SDDM, GTK, boot theming, tmux, Zsh, wallpapers, web apps, cursor, monitors, and hardware detection.
 6. **Reboot handoff.** Outside ISO mode, the installer asks whether to reboot. Pressing Enter alone selects No, so you can inspect the logs first.
 
 There is no AUR-helper picker, component picker, or optional package menu in the current installer.

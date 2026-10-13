@@ -47,12 +47,12 @@ The verified revision contains:
 
 The configuration selects:
 
-- Tokyo Night colors;
-- transparent editor surfaces;
-- a custom dashboard;
-- minimal rounded statusline styling;
-- borderless Telescope;
-- relative line numbers;
+- Tokyo Night colors
+- transparent editor surfaces
+- a custom dashboard
+- minimal rounded statusline styling
+- borderless Telescope
+- relative line numbers
 - rounded borders for floating windows.
 
 ## Custom mappings
@@ -80,17 +80,17 @@ Use the pinned [`lua/mappings.lua`](https://github.com/ahmad9059/nvim/blob/d1195
 
 The custom plugin specification includes:
 
-- Conform for formatting;
-- native `nvim-lspconfig` integration;
-- lazydev for Lua development;
-- LazyGit integration;
-- blink.cmp completion overrides;
-- Treesitter and automatic HTML/JSX tag handling;
-- Telescope UI Select;
-- render-markdown;
-- Kulala for HTTP workflows;
-- vim-tmux-navigator;
-- which-key;
+- Conform for formatting
+- native `nvim-lspconfig` integration
+- lazydev for Lua development
+- LazyGit integration
+- blink.cmp completion overrides
+- Treesitter and automatic HTML/JSX tag handling
+- Telescope UI Select
+- render-markdown
+- Kulala for HTTP workflows
+- vim-tmux-navigator
+- which-key
 - template-string helpers.
 
 `noice.nvim`, `nvim-notify`, and `mini.surround` are not active custom plugins at the verified revision.
@@ -99,10 +99,10 @@ The custom plugin specification includes:
 
 The external config explicitly enables servers for:
 
-- HTML, CSS, Tailwind CSS, Emmet, and TypeScript;
-- JSON, YAML, GraphQL, ESLint, and Prisma;
-- Bash and Markdown;
-- C and C++ through clangd;
+- HTML, CSS, Tailwind CSS, Emmet, and TypeScript
+- JSON, YAML, GraphQL, ESLint, and Prisma
+- Bash and Markdown
+- C and C++ through clangd
 - Docker and Docker Compose.
 
 Lua LSP is configured through the NvChad path. Python, Rust, and Go servers are not enabled in the custom server list.

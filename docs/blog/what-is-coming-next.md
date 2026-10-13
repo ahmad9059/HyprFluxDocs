@@ -19,15 +19,15 @@ Now that the project is public, the next phase is about refinement. The goal is 
 
 The next updates were expected to focus on:
 
-- improving installer clarity and reliability;
-- expanding documentation for customization;
-- refining theme consistency across components;
-- making the configuration modules easier to understand;
+- improving installer clarity and reliability
+- expanding documentation for customization
+- refining theme consistency across components
+- making the configuration modules easier to understand
 - polishing the small workflow details that matter every day.
 
 ## Documentation as part of the product
 
-The docs are part of the product. They should help new users get started quickly, and they should help existing users understand how the setup is structured and how to change it without breaking the design. That means future work keeps improving both the desktop and the writing around it.
+The docs are part of the product. They should help new users get started quickly. They should also help existing users understand how the setup is structured, and how to change it without breaking the design. That means future work keeps improving both the desktop and the writing around it.
 
 ## Building in public
 

@@ -25,9 +25,9 @@ A later binding does not replace an earlier one automatically. Each of these com
 
 | Keys | Registered actions | Result |
 |---|---|---|
-| `SUPER+K` | Master-layout `cycleprev`; launch Kdenlive | Kdenlive launches on every press. The layout action also runs on a Master workspace. |
-| `SUPER+O` | Dwindle `togglesplit`; launch Obsidian | Obsidian launches on every press. The layout action also runs on a Dwindle workspace. |
-| `SUPER+SHIFT+W` | Wallpaper selector; wallpaper effects | Both scripts run, in declaration order. This is a source defect, not an intentional menu sequence. |
+| `SUPER+K` | Master-layout `cycleprev` and launch Kdenlive | Kdenlive launches on every press. The layout action also runs on a Master workspace. |
+| `SUPER+O` | Dwindle `togglesplit` and launch Obsidian | Obsidian launches on every press. The layout action also runs on a Dwindle workspace. |
+| `SUPER+SHIFT+W` | Wallpaper selector and wallpaper effects | Both scripts run, in declaration order. This is a source defect, not an intentional menu sequence. |
 
 ## Session and menus
 
@@ -47,9 +47,9 @@ A later binding does not replace an earlier one automatically. Each of these com
 |---|---|---|
 | `SUPER+CTRL+D` | Remove a window from Master | Master layout only |
 | `SUPER+I` | Add a window to Master | Master layout only |
-| `SUPER+K` | Cycle backward | Master layout only; also launches Kdenlive |
+| `SUPER+K` | Cycle backward | Master layout only. Also launches Kdenlive |
 | `SUPER+CTRL+Return` | Swap with Master | Master layout only |
-| `SUPER+O` | Toggle the split direction | Dwindle only; also launches Obsidian |
+| `SUPER+O` | Toggle the split direction | Dwindle only. Also launches Obsidian |
 | `SUPER+SHIFT+I` | Rotate the split | Dwindle only |
 | `SUPER+P` | Toggle pseudotiling | Dwindle |
 | `SUPER+J` | Cycle to the next window | Any layout |
@@ -110,7 +110,7 @@ The number-row shortcuts use keycodes, so they keep their physical positions on 
 | `SUPER+M` | Free Download Manager | `fdm` |
 | `SUPER+E` | Tmuxifier project menu | Maintainer-oriented `UserScripts` workflow |
 | `SUPER+G` | GitHub repository clone menu | GitHub CLI login and a chosen clone directory |
-| `SUPER+ALT+E` | Emoji menu; copy the selection | Rofi and `wl-copy` |
+| `SUPER+ALT+E` | Open the emoji menu and copy the selection | Rofi and `wl-copy` |
 | `SUPER+CTRL+C` | Calculator menu | Rofi and Qalculate |
 | `SUPER+SHIFT+K` | Search live bindings | Rofi, Python, and a running Hyprland session |
 | `SUPER+SHIFT+H` | Open the curated cheat sheet | Yad |
@@ -167,8 +167,8 @@ The laptop module loads on every machine, so the generic keys stay registered. T
 
 | Key | Action | Condition |
 |---|---|---|
-| `XF86KbdBrightnessDown` / `XF86KbdBrightnessUp` | Decrease / increase keyboard backlight by 30% | A matching `*::kbd_backlight` device; repeat |
-| `XF86MonBrightnessDown` / `XF86MonBrightnessUp` | Decrease / increase display backlight by 10%, clamped to 5% to 95% | `brightnessctl`; repeat |
+| `XF86KbdBrightnessDown` / `XF86KbdBrightnessUp` | Decrease / increase keyboard backlight by 30% | A matching `*::kbd_backlight` device. Repeats while held |
+| `XF86MonBrightnessDown` / `XF86MonBrightnessUp` | Decrease / increase display backlight by 10%, clamped to 5% to 95% | `brightnessctl`. Repeats while held |
 | `XF86TouchpadToggle` | Toggle the configured touchpad | The device name must match both `laptops.lua` and `TouchPad.sh` |
 | `XF86Launch1` | Open ROG Control Center | Registered only if `rog-control-center` exists |
 | `XF86Launch3` | Select the next ASUS keyboard RGB mode | Registered only if `asusctl` exists |

@@ -15,7 +15,7 @@ This page preserves the v1.0.0 announcement. For current installation behavior, 
   <img src="https://raw.githubusercontent.com/ahmad9059/HyprFlux/main/review/HyprFlux.svg" alt="HyprFlux" width="600" />
 </p>
 
-HyprFlux ISO v1.0.0 is the first public release of the HyprFlux installation image for Arch Linux. It delivers a bootable ISO with a branded text-based installer, support for UEFI and legacy BIOS systems, and an installation flow designed to provision a HyprFlux-based Hyprland environment on real hardware or virtual machines.
+HyprFlux ISO v1.0.0 is the first public release of the HyprFlux installation image for Arch Linux. It delivers a bootable ISO with a branded text-based installer and support for UEFI and legacy BIOS systems. The installer provisions a HyprFlux-based Hyprland environment on real hardware or a virtual machine.
 
 ## Highlights
 

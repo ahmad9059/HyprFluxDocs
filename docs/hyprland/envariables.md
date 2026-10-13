@@ -29,14 +29,14 @@ hl.env("HYPRSHOT_DIR", Home .. "/Pictures/Screenshots")
 
 | Group | Current configuration |
 |---|---|
-| Toolkit backends | GTK and Qt prefer Wayland with fallbacks; Clutter is forced to Wayland |
+| Toolkit backends | GTK and Qt prefer Wayland with fallbacks. Clutter is forced to Wayland |
 | Session identity | `XDG_CURRENT_DESKTOP`, `XDG_SESSION_DESKTOP`, and `XDG_SESSION_TYPE` identify Hyprland and Wayland |
 | Qt | Automatic scaling, client decorations, Qt platform theme, and the Hyprland Qt/QML style |
 | Scaling | GTK and Qt scale factors default to `1` |
 | Cursor | Hyprcursor and XCursor use Bibata Modern Classic at size 24 |
-| Browsers and Electron | Firefox Wayland is enabled; Electron chooses its platform automatically |
+| Browsers and Electron | Firefox Wayland is enabled. Electron chooses its platform automatically |
 
-`QT_QPA_PLATFORMTHEME` is assigned first to `qt5ct` and then to `qt6ct`. These lines do not set two values at once; the later assignment is the effective one.
+`QT_QPA_PLATFORMTHEME` is assigned first to `qt5ct` and then to `qt6ct`. These lines do not set two values at once. The later assignment is the effective one.
 
 ## Scaling
 
