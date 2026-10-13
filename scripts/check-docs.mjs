@@ -71,7 +71,7 @@ for (const asset of ["fav.webp", "favicon.ico", "logo.webp"]) {
 }
 
 const contentRules = [
-  ["general/installation.md", /https:\/\/hyprflux\.dev\/install/, "current install endpoint"],
+  ["general/installation.md", /https:\/\/www\.hyprflux\.dev\/install/, "current install endpoint"],
   ["general/download.md", /HyprFlux\/releases\/latest/, "canonical release channel"],
   ["hyprland/index.md", /hyprland\.lua/, "Lua compositor entrypoint"],
   ["features/wallpapers.md", /AWWW/, "current wallpaper engine"],

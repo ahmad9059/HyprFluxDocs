@@ -6,7 +6,7 @@ description: Write, edit, or review documentation in the HyprFluxDocs repository
 # HyprFlux Docs
 
 This repository is the source for the public documentation site at
-[hyprflux.dev](https://hyprflux.dev). It is built with VitePress and Tailwind
+[www.hyprflux.dev](https://www.hyprflux.dev). It is built with VitePress and Tailwind
 CSS, and it also hosts the Vercel functions that serve the one-line installer.
 The readers are Arch Linux users who are comfortable in a terminal, from
 Hyprland newcomers to experienced users.

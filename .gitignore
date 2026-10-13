@@ -1,7 +1,9 @@
 # Node modules
 node_modules/
 
-references/
+# Root-level references folder only. A bare "references/" would also ignore
+# skill files such as .opencode/skills/*/references/.
+/references/
 # Build output / cache
 dist/
 .vite-temp/

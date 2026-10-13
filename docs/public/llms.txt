@@ -6,47 +6,47 @@
 
 - HyprFlux release documented: 1.5.0
 - Source revision: 0f62647d95178eefa7cf8cd1b66760e93a260ef7
-- Canonical website: https://hyprflux.dev
+- Canonical website: https://www.hyprflux.dev
 - Source repository: https://github.com/ahmad9059/HyprFlux
 - Canonical releases: https://github.com/ahmad9059/HyprFlux/releases/latest
-- v1.5.0 release note: https://hyprflux.dev/blog/release-v1.5.0
+- v1.5.0 release note: https://www.hyprflux.dev/blog/release-v1.5.0
 
 ## Installation Paths
 
-- Choose a path: https://hyprflux.dev/general/quickstart
-- Download and verify the ISO: https://hyprflux.dev/general/download
-- Install from the ISO: https://hyprflux.dev/general/iso-installation
-- Provision an existing Arch system: https://hyprflux.dev/general/installation
+- Choose a path: https://www.hyprflux.dev/general/quickstart
+- Download and verify the ISO: https://www.hyprflux.dev/general/download
+- Install from the ISO: https://www.hyprflux.dev/general/iso-installation
+- Provision an existing Arch system: https://www.hyprflux.dev/general/installation
 
 The existing-Arch path performs full provisioning. It is not a configuration-only dotfiles copy.
 
 ## Operations
 
-- Hardware and generated state: https://hyprflux.dev/general/hardware
-- Troubleshooting: https://hyprflux.dev/general/troubleshooting
-- Hyprland shortcuts: https://hyprflux.dev/keybindings/hyprland
-- Managed scripts and utilities: https://hyprflux.dev/hyprland/scripts
+- Hardware and generated state: https://www.hyprflux.dev/general/hardware
+- Troubleshooting: https://www.hyprflux.dev/general/troubleshooting
+- Hyprland shortcuts: https://www.hyprflux.dev/keybindings/hyprland
+- Managed scripts and utilities: https://www.hyprflux.dev/hyprland/scripts
 
 ## Configuration And Components
 
-- Hyprland Lua architecture: https://hyprflux.dev/hyprland/
-- Hyprland user experience: https://hyprflux.dev/features/hyprland
-- Waybar: https://hyprflux.dev/features/waybar
-- Rofi: https://hyprflux.dev/features/rofi
-- SwayNC: https://hyprflux.dev/features/swaync
-- Hyprlock: https://hyprflux.dev/features/hyprlock
-- Wallpapers and AWWW: https://hyprflux.dev/features/wallpapers
-- Kitty: https://hyprflux.dev/features/kitty
-- Neovim: https://hyprflux.dev/features/nvim
+- Hyprland Lua architecture: https://www.hyprflux.dev/hyprland/
+- Hyprland user experience: https://www.hyprflux.dev/features/hyprland
+- Waybar: https://www.hyprflux.dev/features/waybar
+- Rofi: https://www.hyprflux.dev/features/rofi
+- SwayNC: https://www.hyprflux.dev/features/swaync
+- Hyprlock: https://www.hyprflux.dev/features/hyprlock
+- Wallpapers and AWWW: https://www.hyprflux.dev/features/wallpapers
+- Kitty: https://www.hyprflux.dev/features/kitty
+- Neovim: https://www.hyprflux.dev/features/nvim
 
 Hyprland 0.55+ configuration is Lua-only in current HyprFlux. Hyprlock, Hypridle, and application-style configuration legitimately remain in their native `.conf` formats.
 
 ## Historical Content
 
-Pages under https://hyprflux.dev/blog/ are dated archive records. Use the current guides above for installation, downloads, and configuration.
+Pages under https://www.hyprflux.dev/blog/ are dated archive records. Use the current guides above for installation, downloads, and configuration.
 
 ## Sitemap And Support
 
-- Sitemap: https://hyprflux.dev/sitemap.xml
+- Sitemap: https://www.hyprflux.dev/sitemap.xml
 - Issues: https://github.com/ahmad9059/HyprFlux/issues
 - License: MIT

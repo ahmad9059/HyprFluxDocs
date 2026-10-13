@@ -39,7 +39,7 @@ On a rerun, the backup represents the state immediately before that rerun. It is
 ### One-line install
 
 ```bash
-sh <(curl -fsSL https://hyprflux.dev/install)
+sh <(curl -fsSL https://www.hyprflux.dev/install)
 ```
 
 The endpoint serves the current `install.sh` from the main [HyprFlux repository](https://github.com/ahmad9059/HyprFlux).

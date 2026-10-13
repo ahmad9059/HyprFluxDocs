@@ -1,6 +1,6 @@
 # HyprFlux Docs
 
-Source for the public documentation site at [hyprflux.dev](https://hyprflux.dev). The site is built with VitePress and Tailwind CSS. This repository also contains the Vercel functions that serve the one-line installer used by the [HyprFlux](https://github.com/ahmad9059/HyprFlux) project.
+Source for the public documentation site at [www.hyprflux.dev](https://www.hyprflux.dev). The site is built with VitePress and Tailwind CSS. This repository also contains the Vercel functions that serve the one-line installer used by the [HyprFlux](https://github.com/ahmad9059/HyprFlux) project.
 
 ## What is HyprFlux
 
@@ -12,7 +12,7 @@ HyprFlux is an opinionated Arch Linux desktop built on the [Hyprland](https://hy
 On an existing Arch system, install with:
 
 ```bash
-sh <(curl -fsSL https://hyprflux.dev/install)
+sh <(curl -fsSL https://www.hyprflux.dev/install)
 ```
 
 The endpoint streams the current `install.sh` from the main repository. The script clones HyprFlux to `~/HyprFlux`, updates the system, runs the base installer, deploys the configuration through `dotsSetup.sh`, and then offers a reboot.
@@ -72,4 +72,4 @@ The canonical configuration source in HyprFlux is the `.config/` tree. `base-dot
 - Update the documented release version and the pinned source revision together.
 - Verify the `HyprFlux/releases/latest` page, its release assets, and the checksum instructions.
 - Review the download mirrors, homepage copy, structured data, and `docs/public/llms.txt`.
-- Confirm canonical URLs use `https://hyprflux.dev`, then run `pnpm docs:check`.
+- Confirm canonical URLs use `https://www.hyprflux.dev`, then run `pnpm docs:check`.

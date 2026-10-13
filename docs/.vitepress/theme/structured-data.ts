@@ -1,4 +1,4 @@
-const canonicalOrigin = "https://hyprflux.dev";
+const canonicalOrigin = "https://www.hyprflux.dev";
 
 // Structured Data for SEO - JSON-LD Schemas
 

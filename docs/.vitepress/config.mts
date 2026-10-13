@@ -6,7 +6,7 @@ import {
 } from "vitepress-plugin-group-icons";
 import tailwindcss from "@tailwindcss/vite";
 
-const canonicalOrigin = "https://hyprflux.dev";
+const canonicalOrigin = "https://www.hyprflux.dev";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
