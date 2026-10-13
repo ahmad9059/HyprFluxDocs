@@ -1,20 +1,13 @@
 ---
-title: Troubleshooting - HyprFlux
-description: Safe, symptom-led diagnostics for HyprFlux installation, sessions, Lua configuration, displays, desktop components, wallpapers, and hardware.
+title: Troubleshooting
+description: Symptom-led diagnostics for HyprFlux installation, sessions, Lua configuration, displays, desktop components, wallpapers, and hardware.
 ---
 
 # Troubleshooting
 
-Find the section below that matches what you're seeing, then work through it
-in order: **Diagnose** first, then **Fix**. Use inspection before correction -
-the commands below do not delete configuration, recursively change
-permissions, or rerun disk provisioning. Collect command output and relevant
-logs before escalating an issue.
+Find the section that matches what you are seeing, then work through it in order. Start with **Diagnose**, then apply **Fix**. The commands inspect state, so they do not delete configuration, change permissions recursively, or rerun disk provisioning. Collect the output and the relevant logs before you ask for help.
 
-## Installer Stops Or A Package Fails
-
-**Likely scope:** network, package database, AUR helper, sudo, or one
-installer module.
+## Installer stops or a package fails
 
 **Diagnose:**
 
@@ -25,21 +18,13 @@ less ~/HyprFlux/logs/install.log
 less ~/HyprFlux/logs/dotsSetup.log
 ```
 
-Look for the first failed command rather than the final summary.
-Package-specific logs are under `logs/installer/`; copied-file diagnostics
-are under `logs/copy/`.
+Look for the first failed command, not the final summary. Package-specific logs are under `logs/installer/`, and copied-file diagnostics are under `logs/copy/`.
 
-**Fix:** Resolve the reported package or network error, then rerun the
-documented installer path. Do not rerun partitioning or remove all dotfiles
-as a blanket fix.
+**Fix:** Resolve the reported package or network error, then rerun the installer. Do not rerun partitioning, and do not delete all dotfiles as a blanket fix.
 
-**If you still need help:** include the HyprFlux commit, installation route,
-GPU, the failing command, and the relevant log excerpt.
+When you ask for help, include the HyprFlux commit, the installation route, your GPU, the failing command, and the relevant log excerpt.
 
-## SDDM Or The Hyprland Session Does Not Start
-
-**Likely scope:** display manager state, session registration, compositor
-configuration, or graphics driver initialization.
+## SDDM or the Hyprland session does not start
 
 **Diagnose:**
 
@@ -51,19 +36,13 @@ Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 lspci -k | less
 ```
 
-A healthy check shows an active SDDM service, a Hyprland session entry, and
-no config verification errors.
+A healthy check shows an active SDDM service, a Hyprland session entry, and no config verification errors.
 
-**Fix:** Correct the specific service/config error, then restart SDDM or
-reboot after driver/initramfs changes.
+**Fix:** Correct the specific service or config error, then restart SDDM. Reboot after driver or initramfs changes.
 
-**If you still need help:** include the current boot journal and
-`~/HyprFlux/logs/installer/` driver logs.
+When you ask for help, include the current boot journal and the driver logs under `~/HyprFlux/logs/installer/`.
 
-## Lua Configuration Errors
-
-**Likely scope:** Lua syntax, a missing required module, or a rejected
-Hyprland API value.
+## Lua configuration errors
 
 **Diagnose:**
 
@@ -73,18 +52,11 @@ Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 hyprctl configerrors
 ```
 
-Run `luac -p` on the named module when the verifier identifies one. A
-successful syntax check prints nothing; a successful Hyprland verification
-reports no errors.
+Run `luac -p` on the named module when the verifier identifies one. A successful syntax check prints nothing, and a successful Hyprland verification reports no errors.
 
-**Fix:** Revert only your most recent edit or restore that one file from
-your backup, then run `hyprctl reload` after validation. Do not replace the
-entire configuration to fix one module.
+**Fix:** Revert only your most recent edit, or restore that one file from your backup. Then run `hyprctl reload`. Do not replace the whole configuration to fix one module.
 
-## Black Screen, Wrong Output, Or Wrong Workspace
-
-**Likely scope:** generated `monitors.lua`, output names/modes, workspace
-rules, or the generated GPU environment block.
+## Black screen, wrong output, or wrong workspace
 
 **Diagnose:**
 
@@ -96,20 +68,13 @@ sed -n '1,220p' ~/.config/hypr/workspaces.lua
 Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 ```
 
-Connected output names from `hyprctl` should match explicit monitor and
-workspace rules.
+The output names from `hyprctl` should match the explicit monitor and workspace rules.
 
-**Fix:** Use `nwg-displays` to regenerate normal monitor state. Keep in mind
-that `MonitorProfiles.sh` copies a profile but does not reliably live-reload
-it; run `hyprctl reload` after validating the file.
+**Fix:** Use `nwg-displays` to regenerate normal monitor state. `MonitorProfiles.sh` copies a profile but does not reliably reload it, so run `hyprctl reload` after you validate the file.
 
-**If you still need help:** for a black screen, also collect `lspci -k`,
-`/dev/dri` listings, and the generated GPU marker block.
+For a black screen, also collect `lspci -k`, the `/dev/dri` listing, and the generated GPU marker block.
 
-## Waybar, Rofi, Or SwayNC Does Not Start
-
-**Likely scope:** a process crash, malformed component config, missing
-helper, or a stale click handler.
+## Waybar, Rofi, or SwayNC does not start
 
 **Diagnose:**
 
@@ -121,21 +86,13 @@ waybar -l debug
 swaync-client --reload-config
 ```
 
-Run the failing component from a terminal to expose parser and
-missing-command errors.
+Run the failing component from a terminal to expose parser and missing-command errors.
 
-**Fix:** `SUPER+SHIFT+R` runs `Refresh.sh`, which restarts Waybar and SwayNC
-and closes Rofi; it does not validate or reload Hyprland. Quick Settings also
-contains displayed choices without handlers, so a no-op selection is not
-proof that Rofi itself failed.
+**Fix:** `SUPER+SHIFT+R` runs `Refresh.sh`, which restarts Waybar and SwayNC and closes Rofi. It does not validate or reload Hyprland. Quick Settings also contains displayed entries without handlers, so a selection that does nothing is not proof that Rofi itself failed.
 
-**If you still need help:** include terminal output, the component config
-path, and the result of `command -v` for the missing helper.
+When you ask for help, include the terminal output, the component config path, and the result of `command -v` for the missing helper.
 
-## Wallpaper Selection Or AWWW Fails
-
-**Likely scope:** AWWW daemon state, missing wallpaper path, Rofi selection,
-optional video dependencies, or one of the known stale refresh paths.
+## Wallpaper selection or AWWW fails
 
 **Diagnose:**
 
@@ -146,17 +103,9 @@ ls -l ~/.config/rofi/.current_wallpaper
 ls -la ~/.cache/awww
 ```
 
-**Fix:** Start `awww-daemon --format xrgb` if it is not running, then use
-the wallpaper selector with an image first. Automatic rotation and
-persistent video have known source defects, and `RefreshNoWaybar.sh` still
-calls removed `WallpaperSwww.sh`; do not use that helper as a recovery
-command. See [Wallpapers](/features/wallpapers) for the supported
-boundaries.
+**Fix:** If the daemon is not running, start it with `awww-daemon --format xrgb`. Use the wallpaper selector with an image first. Automatic rotation and persistent video have known defects in the current source, and `RefreshNoWaybar.sh` still calls the removed `WallpaperSwww.sh`, so do not use that helper as a recovery command. See [Wallpapers](/features/wallpapers) for the supported boundaries.
 
-## GPU Environment Looks Wrong
-
-**Likely scope:** PCI detection, driver selection, DRM-node order, or the
-installer-managed environment block.
+## GPU environment looks wrong
 
 **Diagnose:**
 
@@ -167,19 +116,13 @@ sed -n '/GPU_CONFIG_START/,/GPU_CONFIG_END/p' ~/.config/hypr/UserConfigs/env-var
 Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 ```
 
-The block should contain only generated `hl.env(...)` calls or comments. Do
-not edit inside its markers.
+The block should contain only generated `hl.env(...)` calls or comments. Do not edit inside its markers.
 
-**Fix:** Correct the driver/install issue first; place deliberate manual
-overrides outside the markers.
+**Fix:** Correct the driver or install issue first. Put deliberate manual overrides outside the markers.
 
-**If you still need help:** for NVIDIA, include the NVIDIA installer log and
-bootloader type.
+For NVIDIA, include the NVIDIA installer log and your bootloader type when you ask for help.
 
-## Brightness Or Touchpad Keys Do Nothing
-
-**Likely scope:** absent backlight hardware, a different key symbol, or the
-maintainer-specific touchpad name.
+## Brightness or touchpad keys do nothing
 
 **Diagnose:**
 
@@ -190,17 +133,11 @@ hyprctl binds
 wev
 ```
 
-`wev` should report the key sent by the keyboard.
+`wev` should report the key your keyboard sends.
 
-**Fix:** Update both `Touchpad_Device` in `laptops.lua` and
-`TOUCHPAD_DEVICE` in `TouchPad.sh` when adapting the touchpad toggle. For
-keyboard backlight failures, verify that `*::kbd_backlight` matches an entry
-from `brightnessctl -l`.
+**Fix:** Update both `Touchpad_Device` in `laptops.lua` and `TOUCHPAD_DEVICE` in `TouchPad.sh` when you adapt the touchpad toggle. For keyboard backlight failures, verify that `*::kbd_backlight` matches an entry from `brightnessctl -l`.
 
-## Battery Status Is Empty
-
-**Likely scope:** battery sysfs naming. The helper checks only `BAT0`
-through `BAT3`.
+## Battery status is empty
 
 **Diagnose:**
 
@@ -209,16 +146,11 @@ ls /sys/class/power_supply
 ~/.config/hypr/scripts/Battery.sh
 ```
 
-**Fix:** If the battery uses another name, adapt the helper or Waybar
-module locally.
+**Fix:** The helper checks only `BAT0` through `BAT3`. If your battery uses another name, adapt the helper or the Waybar module locally.
 
-**If you still need help:** include the power-supply directory names and
-`upower -e` output when asking for hardware-specific help.
+For hardware-specific help, include the power-supply directory names and the `upower -e` output.
 
-## Audio Controls Fail
-
-**Likely scope:** PipeWire/WirePlumber service state, missing default sink
-or source, or the `pamixer` helper.
+## Audio controls fail
 
 **Diagnose:**
 
@@ -229,16 +161,9 @@ pamixer --get-volume
 playerctl status
 ```
 
-**Fix:** Restart only the failed user service after reading its status.
-Media keys need an MPRIS player visible to `playerctl`; volume keys need a
-default PipeWire Pulse sink. The current `Volume.sh --mic-dec` path has a
-known typo when the microphone is muted, so unmute it before testing
-microphone decrement.
+**Fix:** Read the service status, then restart only the failed user service. Media keys need an MPRIS player that `playerctl` can see, and volume keys need a default PipeWire Pulse sink. The current `Volume.sh --mic-dec` path has a known typo when the microphone is muted, so unmute it before you test microphone decrement.
 
-## Bluetooth Is Unavailable
-
-**Likely scope:** BlueZ service, radio block, adapter, or optional Blueman
-UI.
+## Bluetooth is unavailable
 
 **Diagnose:**
 
@@ -248,21 +173,17 @@ rfkill list bluetooth
 bluetoothctl show
 ```
 
-**Fix:** Unblock only the Bluetooth radio if it is soft-blocked, then start
-or enable `bluetooth.service` if its status says it is inactive. The
-HyprFlux airplane-mode key changes Wi-Fi only.
+**Fix:** If the Bluetooth radio is soft-blocked, unblock only that radio. If `bluetooth.service` is inactive, start or enable it. The HyprFlux airplane-mode key changes Wi-Fi only.
 
-**If you still need help:** include service status, `rfkill` output, and
-the Bluetooth installer log.
+When you ask for help, include the service status, the `rfkill` output, and the Bluetooth installer log.
 
-## What To Include In A Report
+## What to include in a report
 
-Whatever the symptom, gather this information before opening an issue:
+Whatever the symptom, gather this information before you open an issue:
 
-- HyprFlux revision: `git -C ~/HyprFlux rev-parse HEAD`
-- Installation route and the first failing command
-- Relevant files from `~/HyprFlux/logs/`
-- `Hyprland --version` and config verification output
-- GPU from `lspci -k`, output names from `hyprctl monitors all`, and relevant
-  service status
-- Any local edits to the owning configuration or script
+- The HyprFlux revision: `git -C ~/HyprFlux rev-parse HEAD`.
+- The installation route and the first failing command.
+- The relevant files from `~/HyprFlux/logs/`.
+- `Hyprland --version` and the config verification output.
+- Your GPU from `lspci -k`, the output names from `hyprctl monitors all`, and the relevant service status.
+- Any local edits to the owning configuration or script.

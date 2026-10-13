@@ -1,24 +1,23 @@
+---
+title: Wlogout
+description: The HyprFlux power menu, its actions, and the adaptive launcher.
+---
+
 # Wlogout
 
-## What It Is
+Wlogout is the HyprFlux power menu. Its layout file owns the six actions, and the HyprFlux launcher script handles toggling and monitor-aware geometry.
 
-Wlogout is the HyprFlux power menu. Its layout file owns the six actions, while
-the HyprFlux launcher script handles toggling and monitor-aware geometry.
+## Files
 
-> Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
-
-## Configuration
-
-### Ownership
-
-| Concern | Owner |
+| Concern | File |
 |---|---|
-| Package | [`wlogout` in the main package batch](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/base-installer/install-scripts/01-hypr-pkgs.sh#L14-L53) |
-| Actions and keyboard letters | [`~/.config/wlogout/layout`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/wlogout/layout) |
-| Appearance | [`~/.config/wlogout/style.css`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/wlogout/style.css) and bundled PNG assets |
-| Adaptive launcher | [`~/.config/hypr/scripts/Wlogout.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/scripts/Wlogout.sh) |
+| Actions and keyboard letters | `~/.config/wlogout/layout` |
+| Appearance | `~/.config/wlogout/style.css` and the bundled PNG assets |
+| Adaptive launcher | `~/.config/hypr/scripts/Wlogout.sh` |
 
-### Shipped actions
+The repository's `.config/wlogout/` directory is canonical, and `base-dots/config/wlogout/` is a parity mirror.
+
+## Shipped actions
 
 | Button | Command |
 |---|---|
@@ -29,12 +28,11 @@ the HyprFlux launcher script handles toggling and monitor-aware geometry.
 | Suspend | `systemctl suspend` |
 | Hibernate | `systemctl hibernate` |
 
-The `layout` file is authoritative for actions. `Wlogout.sh` does not issue the
-power commands itself.
+The `layout` file is authoritative for the actions. `Wlogout.sh` does not issue the power commands itself.
 
-### Lock action chain
+## Lock action chain
 
-The Lock button deliberately does not execute `hyprlock` directly:
+The Lock button deliberately does not run `hyprlock` directly:
 
 ```text
 Wlogout layout
@@ -44,49 +42,35 @@ Wlogout layout
 -> Hypridle starts Hyprlock if it is not already running
 ```
 
-If Hypridle has been stopped, this mediated path no longer starts the visual
-locker. See [Hyprlock](./hyprlock.md) for the direct fallback and idle behavior.
+If you stopped Hypridle, this mediated path no longer starts the visual locker. See [Hyprlock](./hyprlock.md) for the direct fallback and the idle behavior.
 
-### Appearance
+## Appearance
 
-The shipped CSS uses Fira Code Medium at 16 pt, rounded transparent buttons,
-and image assets for each action. Suspend, reboot, and shutdown use the
-`sleep`, `restart`, and `power` asset names respectively.
+The shipped CSS uses Fira Code Medium at 16 pt, rounded transparent buttons, and image assets for each action. Suspend, reboot, and shutdown use the `sleep`, `restart`, and `power` asset names.
 
-The `@logout-*` color declarations are generated from the central static
-HyprFlux palette. Wallpaper changes do not recolor Wlogout.
+The `@logout-*` color declarations are generated from the central static HyprFlux palette. Wallpaper changes do not recolor Wlogout.
 
-## Common Tasks
+## Launch paths
 
-### Launch paths
-
-Open the menu with `CTRL+ALT+P`. The Waybar power control and SwayNC power
-button call the same launcher:
+Open the menu with `CTRL+ALT+P`. The Waybar power control and the SwayNC power button call the same launcher:
 
 ```bash
 ~/.config/hypr/scripts/Wlogout.sh
 ```
 
-The script closes Wlogout if it is already open. At logical heights of 720 px or
-greater, it reads the focused monitor's height and scale, calculates top and
-bottom margins, and launches Wlogout through layer shell. It uses three buttons
-per row from 720 through 1079 logical pixels and six at larger sizes. Below 720
-logical pixels it falls back to plain `wlogout`.
+The script closes Wlogout if it is already open. At logical heights of 720 px or more, it reads the focused monitor's height and scale, calculates top and bottom margins, and launches Wlogout through layer shell. It uses three buttons per row from 720 through 1079 logical pixels and six at larger sizes. Below 720 logical pixels it falls back to plain `wlogout`.
 
-Launching `wlogout` directly still reads the layout and actions, but bypasses
-HyprFlux's adaptive margins.
+Launching `wlogout` directly still reads the layout and actions, but bypasses the adaptive margins.
 
-### Troubleshooting
+## Troubleshooting
 
-Run the adaptive launcher in a terminal to see monitor-query or arithmetic
-errors:
+Run the adaptive launcher in a terminal to see monitor-query or arithmetic errors:
 
 ```bash
 bash ~/.config/hypr/scripts/Wlogout.sh
 ```
 
-The script assumes `hyprctl`, `jq`, and a focused monitor are available. Use
-the direct command only to isolate launcher geometry from Wlogout itself:
+The script assumes `hyprctl`, `jq`, and a focused monitor are available. Use the direct command only to isolate the launcher geometry from Wlogout itself:
 
 ```bash
 wlogout --protocol layer-shell

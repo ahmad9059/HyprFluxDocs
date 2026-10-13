@@ -1,16 +1,17 @@
+---
+title: Workspace Rules and Generated State
+description: How HyprFlux handles workspace-to-monitor assignments and workspace rules.
+---
+
 # Workspace Rules and Generated State
 
 Active generated path: `~/.config/hypr/workspaces.lua`
 
 Guide module: `~/.config/hypr/UserConfigs/workspace-rules.lua`
 
-[View the pinned generated-file template](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/workspaces.lua).
+`workspaces.lua` is the active nwg-displays output for workspace-to-monitor assignments. The repository version contains commented examples and registers no workspace rules by default.
 
-`workspaces.lua` is the active nwg-displays output for workspace-to-monitor
-assignments. The repository version contains commented examples and registers
-no workspace rules by default.
-
-## Rule Syntax
+## Rule syntax
 
 ```lua
 hl.workspace_rule({
@@ -31,7 +32,7 @@ Current Lua field names use underscores:
 | Remove rounding | `no_rounding` |
 | Remove border | `no_border` |
 | Set border size | `border_size` |
-| Inner/outer gaps | `gaps_in`, `gaps_out` |
+| Inner and outer gaps | `gaps_in`, `gaps_out` |
 | Start an application on creation | `on_created_empty` |
 
 For example:
@@ -43,23 +44,17 @@ hl.workspace_rule({
 })
 ```
 
-## Which File Should You Edit?
+## Which file to edit
 
-Prefer nwg-displays when the rule assigns workspaces to physical outputs. It
-writes `workspaces.lua` and may overwrite manual changes on the next apply.
+Prefer `nwg-displays` when the rule assigns workspaces to physical outputs. It writes `workspaces.lua` and can overwrite manual changes on the next apply.
 
-`UserConfigs/workspace-rules.lua` is also required by `hyprland.lua`, despite a
-stale header claiming otherwise. It currently contains only comments, so it has
-no runtime effect. If you place active rules there, keep them distinct from
-nwg-displays-generated assignments to avoid competing rules.
+`UserConfigs/workspace-rules.lua` is also required by `hyprland.lua`, despite a stale header that says otherwise. It currently contains only comments, so it has no runtime effect. If you put active rules there, keep them distinct from the nwg-displays assignments to avoid competing rules.
 
 ## Autoreload
 
-nwg-displays expects configuration autoreload to remain available. If you
-disable autoreload, run `hyprctl reload` yourself after applying display or
-workspace changes.
+`nwg-displays` expects configuration autoreload to stay available. If you disable autoreload, run `hyprctl reload` yourself after you apply display or workspace changes.
 
-## Inspect and Validate
+## Inspect and validate
 
 ```bash
 hyprctl monitors -j
@@ -68,6 +63,4 @@ luac -p ~/.config/hypr/workspaces.lua
 Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 ```
 
-Application placement belongs in
-[`window-rules.lua`](/hyprland/windowrules). Output mode and position belong in
-[`monitors.lua`](/hyprland/monitors).
+Application placement belongs in [`window-rules.lua`](/hyprland/windowrules). Output mode and position belong in [`monitors.lua`](/hyprland/monitors).

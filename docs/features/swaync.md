@@ -1,26 +1,24 @@
+---
+title: SwayNC
+description: The HyprFlux notification popups and notification center.
+---
+
 # SwayNC
 
-## What It Is
+SwayNC provides the notification popups and the HyprFlux notification center. Its JSON configuration is separate from the Rofi-based HyprFlux Quick Settings menu.
 
-SwayNC provides notification popups and the HyprFlux notification center. Its
-own JSON configuration is separate from the Rofi-based HyprFlux Quick Settings
-menu.
+## Files
 
-> Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
-
-## Configuration
-
-### Ownership
-
-| Concern | Owner |
+| Concern | File |
 |---|---|
-| Package | [`swaync` in the main package batch](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/base-installer/install-scripts/01-hypr-pkgs.sh#L14-L53) |
-| Behavior | [`~/.config/swaync/config.json`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/swaync/config.json) |
-| Styling | [`~/.config/swaync/style.css`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/swaync/style.css) |
-| Startup | [`startup-apps.lua`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/UserConfigs/startup-apps.lua#L34-L40) |
-| Panel binding | `SUPER+N` in [`configs/keybinds.lua`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/configs/keybinds.lua#L16-L23) |
+| Behavior | `~/.config/swaync/config.json` |
+| Styling | `~/.config/swaync/style.css` |
+| Startup | `~/.config/hypr/UserConfigs/startup-apps.lua` |
+| Panel binding | `SUPER+N` in `~/.config/hypr/configs/keybinds.lua` |
 
-### Shipped layout
+The repository's `.config/swaync/` directory is canonical, and `base-dots/config/swaync/` is a parity mirror.
+
+## Shipped layout
 
 | Setting | Value |
 |---|---|
@@ -40,12 +38,11 @@ The active widget order is:
 4. Notifications title and Clear control
 5. Notification list
 
-Volume and backlight labels are present in `widget-config`, but their widgets
-are not included in the active list.
+Volume and backlight labels are present in `widget-config`, but their widgets are not in the active list.
 
-### Button grid
+## Button grid
 
-| Button | Command owner |
+| Button | Command |
 |---|---|
 | Power | Opens `Wlogout.sh` |
 | Lock | Calls `LockScreen.sh` |
@@ -53,49 +50,36 @@ are not included in the active list.
 | Airplane mode | Calls `AirplaneMode.sh` |
 | Mute | Toggles the default PulseAudio sink with `pactl` |
 
-There are no active Wi-Fi, Bluetooth, terminal, browser, file-manager, volume
-slider, or backlight slider buttons in the shipped SwayNC grid.
+There are no active Wi-Fi, Bluetooth, terminal, browser, file-manager, volume-slider, or backlight-slider buttons in the shipped grid.
 
 ::: warning Exit button
-The shipped Exit button still uses `hyprctl dispatch exit`, while HyprFlux's
-Lua migration requires the native Lua dispatcher. Treat this button as a known
-source defect; use `CTRL+ALT+Delete` for the configured exit path.
+The shipped Exit button still runs `hyprctl dispatch exit`, but the Lua configuration needs the native Lua dispatcher. Treat this button as a known source defect and use `CTRL+ALT+Delete` for the configured exit path.
 :::
 
-### Styling and colors
+## Styling
 
-The CSS styles notification rows, actions, inline replies, MPRIS, DND, title,
-and the button grid. Its scrollbar is transparent and zero-width while wheel
-scrolling remains available.
+The CSS styles notification rows, actions, inline replies, MPRIS, DND, the title, and the button grid. Its scrollbar is transparent and zero-width while wheel scrolling stays available.
 
-The leading color block is generated from the central static palette by
-[`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L199-L244).
-It is injected inline because GTK color definitions do not reliably propagate
-through imports. Wallpaper changes do not recolor SwayNC.
+The leading color block is generated from the central static palette by `utilities/sync-colors.sh`. It is injected inline because GTK color definitions do not reliably propagate through imports. Wallpaper changes do not recolor SwayNC.
 
-## Common Tasks
+## Integration
 
-### Integration
-
-SwayNC starts directly from Hyprland, not from a shipped systemd user service.
-Use:
+SwayNC starts directly from Hyprland, not from a shipped systemd user service. Toggle the panel with:
 
 ```bash
 swaync-client -t -sw
 ```
 
-or press `SUPER+N` to toggle the panel. The Waybar notification control owns
-these mouse actions:
+Or press `SUPER+N`. The Waybar notification control owns these mouse actions:
 
-- Left click: toggle the panel.
-- Right click: toggle do-not-disturb.
+- Left click toggles the panel.
+- Right click toggles do-not-disturb.
 
-`SUPER+SHIFT+E` opens the separate Rofi-based HyprFlux Quick Settings menu. It
-is not a SwayNC widget.
+`SUPER+SHIFT+E` opens the separate Rofi-based HyprFlux Quick Settings menu. That is not a SwayNC widget.
 
-### Refresh and troubleshooting
+## Refresh and troubleshoot
 
-Reload CSS and configuration:
+Reload the CSS and configuration:
 
 ```bash
 swaync-client --reload-css
@@ -109,9 +93,7 @@ swaync-client --get-dnd
 swaync-client --toggle-dnd
 ```
 
-For startup failures, stop the current process and launch `swaync` in a
-terminal. Do not use `journalctl -u swaync` unless you created your own user
-service.
+If SwayNC does not start, stop the current process and launch `swaync` in a terminal. Do not use `journalctl -u swaync` unless you created your own user service.
 
 ## Related pages
 

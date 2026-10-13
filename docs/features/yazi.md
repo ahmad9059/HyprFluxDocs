@@ -1,25 +1,13 @@
+---
+title: Yazi
+description: The shipped terminal file manager, its configuration, keys, and optional command dependencies.
+---
+
 # Yazi
 
-## What It Is
+Yazi is the shipped terminal file manager. It is available from shells and a tmuxifier layout. Thunar remains HyprFlux's default graphical file manager.
 
-Yazi is the shipped terminal file manager. It is available from shells and a
-tmuxifier layout, but Thunar remains HyprFlux's default graphical file manager.
-
-> Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
-
-## Configuration
-
-### Ownership
-
-| Concern | Owner |
-|---|---|
-| Package | [`yazi` in the second main package batch](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/base-installer/install-scripts/01-hypr-pkgs.sh#L55-L86) |
-| Configuration | [`~/.config/yazi/`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591/.config/yazi) |
-| Deployment | [`modules/02-dotfiles.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/02-dotfiles.sh#L9-L45) |
-| Shell entry | `alias y='yazi'` in the shipped `.zshrc` |
-| Desktop file manager | Thunar from `user-defaults.lua`, not Yazi |
-
-### Configuration Files
+## Configuration files
 
 ```text
 ~/.config/yazi/
@@ -29,8 +17,7 @@ tmuxifier layout, but Thunar remains HyprFlux's default graphical file manager.
 `- flavors/tokyo-night.yazi/flavor.toml
 ```
 
-No plugins directory or `init.lua` is shipped. The active manager settings use
-the current `[mgr]` section:
+No plugins directory or `init.lua` is shipped. The active manager settings are:
 
 | Setting | Value |
 |---|---|
@@ -44,7 +31,9 @@ the current `[mgr]` section:
 | Media opener | VLC |
 | Theme | Bundled Tokyo Night flavor |
 
-### Shipped keys
+The repository's `.config/yazi/` directory is canonical, and `base-dots/config/yazi/` is a parity mirror.
+
+## Shipped keys
 
 | Key | Action |
 |---|---|
@@ -60,13 +49,9 @@ the current `[mgr]` section:
 | `gc` | Go to config |
 | `gd` | Go to Downloads |
 
-Review the complete pinned
-[`keymap.toml`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/yazi/keymap.toml)
-before replacing existing mappings.
+Review the complete [`keymap.toml`](https://github.com/ahmad9059/HyprFlux/blob/0f62647d95178eefa7cf8cd1b66760e93a260ef7/.config/yazi/keymap.toml) before you replace existing mappings.
 
-## Common Tasks
-
-### Launching Yazi
+## Launching Yazi
 
 Run either command in a terminal:
 
@@ -75,33 +60,27 @@ yazi
 y
 ```
 
-The shipped `web-dev` tmuxifier layout also opens Yazi in one window. There is
-no default Hyprland keybinding or Waybar button for Yazi; `SUPER+F` and the
-Waybar file-manager control open Thunar.
+The shipped `web-dev` tmuxifier layout also opens Yazi in one window. There is no default Hyprland keybinding or Waybar button for Yazi. `SUPER+F` and the Waybar file-manager control open Thunar.
 
-### Optional command gaps
+## Optional command gaps
 
-The configuration invokes `fd`, `rg`, `exiftool`, and `mediainfo`, but the
-pinned HyprFlux package inventory does not explicitly install them. If a search
-or metadata preview reports a missing command, install the corresponding Arch
-package rather than changing Yazi syntax:
+The configuration calls `fd`, `rg`, `exiftool`, and `mediainfo`, but the HyprFlux package inventory does not explicitly install them. If a search or metadata preview reports a missing command, install the matching Arch package instead of changing Yazi syntax:
 
 ```bash
 sudo pacman -S fd ripgrep perl-image-exiftool mediainfo
 ```
 
-`fzf` and `zoxide` are explicitly provisioned by HyprFlux.
+`fzf` and `zoxide` are provisioned by HyprFlux.
 
-### Validate changes
+## Validate changes
 
-Start Yazi from a terminal after editing so configuration errors remain visible:
+Start Yazi from a terminal after you edit it, so configuration errors stay visible:
 
 ```bash
 yazi
 ```
 
-Keep local changes in the four shipped configuration areas unless you also
-intend to install and maintain external plugins.
+Keep local changes within the four shipped configuration areas unless you also intend to install and maintain external plugins.
 
 ## Related pages
 

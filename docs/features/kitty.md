@@ -1,25 +1,13 @@
+---
+title: Kitty
+description: The default HyprFlux terminal, its settings, colors, and launch paths.
+---
+
 # Kitty
 
-## What It Is
+Kitty is the default HyprFlux terminal. Its main configuration is user-editable, and its active color include is generated from the central static palette.
 
-Kitty is the default HyprFlux terminal. Its main configuration is user-editable,
-while its active color include is generated from the central static palette.
-
-> Source snapshot: [HyprFlux `f421b6bd`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591)
-
-## Configuration
-
-### Ownership
-
-| Concern | Owner |
-|---|---|
-| Package | [`kitty` in the main package batch](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/base-installer/install-scripts/01-hypr-pkgs.sh#L14-L53) |
-| Configuration | [`~/.config/kitty/kitty.conf`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/kitty/kitty.conf) |
-| Generated palette | [`~/.config/kitty/kitty-colors.conf`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/kitty/kitty-colors.conf) |
-| Default selection | [`user-defaults.lua`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/UserConfigs/user-defaults.lua#L10-L20) |
-| Deployment | [`modules/02-dotfiles.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/modules/02-dotfiles.sh#L9-L45) |
-
-### Shipped settings
+## Settings
 
 | Setting | Value |
 |---|---|
@@ -31,12 +19,9 @@ while its active color include is generated from the central static palette.
 | Background opacity | 0.80 |
 | Colors | Included from `kitty-colors.conf` |
 
-The repository also carries a legacy-named file under `kitty-themes/`, but the
-active include is `kitty-colors.conf`. Wallpaper changes do not regenerate it.
+The repository also carries a legacy-named file under `kitty-themes/`, but the active include is `kitty-colors.conf`. Wallpaper changes do not regenerate it.
 
-## Common Tasks
-
-### Launch paths
+## Launch paths
 
 | Entry point | Behavior |
 |---|---|
@@ -52,42 +37,31 @@ Launch it directly with:
 kitty
 ```
 
-Changing `term` in `~/.config/hypr/UserConfigs/user-defaults.lua` changes the
-normal and dropdown bindings, Waybar terminal path, and the terminal used when
-Quick Settings opens the selected editor. Scripts that explicitly require
-Kitty can still use it.
+Changing `term` in `~/.config/hypr/UserConfigs/user-defaults.lua` changes the normal and dropdown bindings, the Waybar terminal path, and the terminal used when Quick Settings opens the selected editor. Scripts that explicitly require Kitty still use it.
 
-### Colors
+## Colors
 
-`kitty-colors.conf` is generated from HyprFlux's central palette by
-[`utilities/sync-colors.sh`](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/utilities/sync-colors.sh#L157-L173).
-For source contributions, edit the central palette and regenerate tracked
-outputs:
+`kitty-colors.conf` is generated from the central HyprFlux palette by `utilities/sync-colors.sh`. For source contributions, edit the central palette and regenerate the tracked outputs:
 
 ```bash
 ./utilities/sync-colors.sh
 ```
 
-For local one-off customization, add overrides after the color include in
-`kitty.conf`. A later declaration wins.
+For a local one-off change, add overrides after the color include in `kitty.conf`. A later declaration wins.
 
 ::: warning Theme selector
-HyprFlux Quick Settings displays `Choose Kitty Terminal Theme`, but the pinned
-script has no matching handler and no Kitty theme-switching script. Edit the
-configuration directly until that source workflow is implemented.
+HyprFlux Quick Settings shows a **Choose Kitty Terminal Theme** entry, but the script has no matching handler and there is no Kitty theme-switching script. Edit the configuration directly until that workflow exists.
 :::
 
-### Validate changes
+## Validate changes
 
-Open a separate terminal, then launch a test window with the installed config.
-Kitty reports parse errors to the invoking terminal:
+Open a separate terminal and launch a test window with the installed config. Kitty reports parse errors to the invoking terminal:
 
 ```bash
 kitty --config ~/.config/kitty/kitty.conf
 ```
 
-Start a new Kitty window to confirm font and color changes without closing your
-working shell.
+Start a new Kitty window to confirm font and color changes without closing your working shell.
 
 ## Related pages
 

@@ -5,7 +5,7 @@
 ## Current Documentation Baseline
 
 - HyprFlux release documented: 1.5.0
-- Source revision: f421b6bd108214079b56c435331ddbbfdfb89591
+- Source revision: 0f62647d95178eefa7cf8cd1b66760e93a260ef7
 - Canonical website: https://hyprflux.dev
 - Source repository: https://github.com/ahmad9059/HyprFlux
 - Canonical releases: https://github.com/ahmad9059/HyprFlux/releases/latest

@@ -1,13 +1,17 @@
+---
+title: user-defaults.lua
+description: The HyprFlux module that centralizes default application choices.
+---
+
 # `user-defaults.lua`
 
 Path: `~/.config/hypr/UserConfigs/user-defaults.lua`
 
-[View the pinned v1.5.0 source](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/UserConfigs/user-defaults.lua).
+[View the source](https://github.com/ahmad9059/HyprFlux/blob/0f62647d95178eefa7cf8cd1b66760e93a260ef7/.config/hypr/UserConfigs/user-defaults.lua).
 
-This module centralizes application choices and returns them as a Lua table.
-It replaces the old global variables from `01-UserDefaults.conf`.
+This module centralizes application choices and returns them as a Lua table. It replaces the old global variables from `01-UserDefaults.conf`.
 
-## Current Fields
+## Current fields
 
 ```lua
 local defaults = {
@@ -20,17 +24,16 @@ local defaults = {
 return defaults
 ```
 
-| Field | Current purpose |
+| Field | Purpose |
 |---|---|
 | `edit` | Preferred editor, using `$EDITOR` when set |
 | `term` | Terminal command used by user bindings |
 | `files` | File-manager command used by user bindings |
 | `search_engine` | Search URL template reserved by the configuration |
 
-`search_engine` currently has no active consumer in the shipped `.config`
-tree. Treat it as a declared default, not proof that a search binding uses it.
+`search_engine` currently has no active consumer in the shipped `.config` tree. Treat it as a declared default, not as proof that a search binding uses it.
 
-## Import the Module
+## Import the module
 
 Other Lua modules access the returned table explicitly:
 
@@ -41,12 +44,11 @@ hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(defaults.term))
 hl.bind("SUPER + F", hl.dsp.exec_cmd(defaults.files))
 ```
 
-The values are module-scoped. Shell commands such as `echo $term` cannot read
-them, and Lua strings do not perform shell variable expansion.
+The values are module-scoped. Shell commands such as `echo $term` cannot read them, and Lua strings do not perform shell variable expansion.
 
-## Safe Customization
+## Safe customization
 
-Use command names that can be executed directly:
+Use command names that can be run directly:
 
 ```lua
 local defaults = {
@@ -57,9 +59,7 @@ local defaults = {
 }
 ```
 
-The HyprFlux Quick Settings script parses some fields using text tools. Keep
-the simple `name = "value"` layout and avoid embedding shell pipelines or
-commands with complex quoting unless you also update that consumer.
+The HyprFlux Quick Settings script parses some fields with text tools. Keep the simple `name = "value"` layout and avoid embedding shell pipelines or commands with complex quoting unless you also update that consumer.
 
 Validate after editing:
 

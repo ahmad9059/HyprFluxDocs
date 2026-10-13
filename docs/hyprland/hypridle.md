@@ -1,13 +1,17 @@
+---
+title: hypridle.conf
+description: The native Hypridle configuration, its listeners, and the correct Lua dispatcher syntax for DPMS commands.
+---
+
 # `hypridle.conf`
 
 Path: `~/.config/hypr/hypridle.conf`
 
-[View the pinned v1.5.0 source](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/hypridle.conf).
+[View the source](https://github.com/ahmad9059/HyprFlux/blob/0f62647d95178eefa7cf8cd1b66760e93a260ef7/.config/hypr/hypridle.conf).
 
-Hypridle is a separate daemon and keeps its native `.conf` format. HyprFlux
-starts it from `UserConfigs/startup-apps.lua`.
+Hypridle is a separate daemon and keeps its native `.conf` format. HyprFlux starts it from `UserConfigs/startup-apps.lua`.
 
-## General Behavior
+## General behavior
 
 ```ini
 general {
@@ -21,11 +25,9 @@ general {
 - The session locks before suspend.
 - D-Bus idle inhibitors from applications are honored.
 
-The shipped `after_sleep_cmd` attempts to restore DPMS, but its current Lua
-dispatcher argument is not shell-quoted and is therefore invalid shell syntax.
-Use a validated form when correcting it in your local configuration.
+The shipped `after_sleep_cmd` tries to restore DPMS, but its Lua dispatcher argument is not shell-quoted, so it is invalid shell syntax. Use a validated form when you correct it locally.
 
-## Active Listeners
+## Active listeners
 
 The current file registers two listeners:
 
@@ -34,12 +36,11 @@ The current file registers two listeners:
 | 540 seconds | Show an idle warning; show a return notification on activity |
 | 600 seconds | Run `loginctl lock-session`, which triggers `lock_cmd` |
 
-Screen-off and suspend listeners are present only as disabled examples.
+The screen-off and suspend listeners are present only as disabled examples.
 
-## DPMS Commands in Lua Mode
+## DPMS commands in Lua mode
 
-When enabling a DPMS listener, pass the complete Lua dispatcher expression as
-one quoted shell argument:
+When you enable a DPMS listener, pass the complete Lua dispatcher expression as one quoted shell argument:
 
 ```ini
 listener {
@@ -49,36 +50,27 @@ listener {
 }
 ```
 
-Test the command independently before relying on it for wake behavior. The
-unquoted `on`/`off` examples in the v1.5.0 file should not be copied.
+Test the command on its own before you rely on it for wake behavior. Do not copy the unquoted `on` and `off` examples from the v1.5.0 file.
 
-## Manual Lock Flow
+## Manual lock flow
 
-The base `CTRL+ALT+L` binding runs `LockScreen.sh`, which requests
-`loginctl lock-session`. Hypridle receives the request and runs its guarded
-`lock_cmd`. Waybar also exposes controls for Hypridle and locking.
+The base `CTRL+ALT+L` binding runs `LockScreen.sh`, which requests `loginctl lock-session`. Hypridle receives the request and runs its guarded `lock_cmd`. Waybar also exposes controls for Hypridle and locking.
 
 ```text
 loginctl lock-session -> running Hypridle -> guarded Hyprlock process
 ```
 
-Stopping Hypridle disables the warning/lock timers and removes HyprFlux's
-configured consumer for the normal session-lock request. The usual shortcut,
-Wlogout Lock, SwayNC Lock, and Waybar's normal lock button can then request a
-lock without launching the visual locker. Waybar's direct-lock mouse action is
-the exception because it invokes `hyprlock` itself.
+Stopping Hypridle disables the warning and lock timers, and it removes HyprFlux's configured consumer for the normal session-lock request. The usual shortcut, Wlogout Lock, SwayNC Lock, and Waybar's normal lock button can then request a lock without starting the visual locker. Waybar's direct-lock mouse action is the exception, because it runs `hyprlock` itself.
 
-The shipped `Hypridle.sh toggle` starts Hypridle in the foreground of the
-invoking command when it turns the daemon back on.
+The shipped `Hypridle.sh toggle` starts Hypridle in the foreground of the invoking command when it turns the daemon back on.
 
 ## Validation
 
-Hypridle does not provide a parser-only mode. From a non-graphical shell:
+Hypridle has no parser-only mode. From a non-graphical shell:
 
 ```bash
 WAYLAND_DISPLAY=__invalid__ hypridle \
   --config ~/.config/hypr/hypridle.conf --verbose
 ```
 
-Confirm that the intended listeners register before the expected Wayland
-connection failure. Validate every embedded shell command separately.
+Confirm that the intended listeners register before the expected Wayland connection failure. Validate every embedded shell command separately.

@@ -8,7 +8,7 @@ aside: false
 
 <div class="download-hero">
   <h1>Download HyprFlux</h1>
-  <p class="download-subtitle">Download the bootable ISO for a new installation, or use the installer guide for an existing Arch system</p>
+  <p class="download-subtitle">Download the bootable ISO for a new installation, or use the installer guide for an existing Arch system.</p>
 </div>
 
 <div class="slider-container">
@@ -72,10 +72,6 @@ aside: false
   </div>
 </div>
 
-## Goal
-
-Get a verified HyprFlux ISO file, ready to write to a USB drive.
-
 ## Download
 
 <div class="download-cards">
@@ -91,7 +87,7 @@ Get a verified HyprFlux ISO file, ready to write to a USB drive.
   <div class="download-card">
     <span class="download-card-label">Mirror</span>
     <h3>Google Drive</h3>
-    <p>Mirror folder for alternative access</p>
+    <p>Mirror folder, for when GitHub is slow or unavailable</p>
     <a href="https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing" target="_blank" rel="noreferrer" class="download-btn">
       Open mirror folder
     </a>
@@ -107,32 +103,26 @@ Get a verified HyprFlux ISO file, ready to write to a USB drive.
   </div>
 </div>
 
-::: warning Important
-The HyprFlux ISO is an **online installer**. An active internet connection is required during installation to download packages and configurations.
+::: warning Online installer
+The HyprFlux ISO is an online installer. It needs a working internet connection throughout the installation to download packages and configurations.
 :::
 
-## Verify the Checksum
+## Verify the checksum
 
-Download the `.iso` and its matching `.sha256` file from the **same release
-channel**, place them in the same directory, and run:
+Download the `.iso` and its matching `.sha256` file from the same release channel, put them in the same directory, and run:
 
 ```bash
 sha256sum -c hyprflux-*.iso.sha256
 ```
 
-Continue only when the command reports `OK`. A checksum from a different
-release or mirror does not verify your ISO.
+Continue only when the command reports `OK`. A checksum from a different release or mirror does not verify your ISO.
 
-## Installing on Existing Arch Instead?
+## Installing on existing Arch instead?
 
-You do not need the ISO. Follow the
-[existing Arch installation guide](/general/installation) to run the full
-HyprFlux provisioner on an installed Arch Linux system.
+You do not need the ISO. Follow the [existing Arch installation guide](/general/installation) to run the full HyprFlux provisioner on an installed Arch Linux system.
 
-## Next Step
+## Next step
 
-- New to HyprFlux? Follow the [guided tutorial](/general/quickstart) for a
-  full first-time walkthrough.
-- Done this before? Go straight to the
-  [complete ISO installation guide](/general/iso-installation).
+- New to HyprFlux? Follow the [guided tutorial](/general/quickstart) for a full first-time walkthrough.
+- Done this before? Go straight to the [complete ISO installation guide](/general/iso-installation).
 - Need help? Visit [GitHub Issues](https://github.com/ahmad9059/HyprFlux/issues).

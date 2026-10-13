@@ -1,14 +1,17 @@
+---
+title: hyprland.lua Entrypoint
+description: The HyprFlux compositor entrypoint, its load order, and how to validate the full configuration.
+---
+
 # `hyprland.lua` Entrypoint
 
 Path: `~/.config/hypr/hyprland.lua`
 
-[View the pinned v1.5.0 source](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/hyprland.lua).
+[View the source](https://github.com/ahmad9059/HyprFlux/blob/0f62647d95178eefa7cf8cd1b66760e93a260ef7/.config/hypr/hyprland.lua).
 
-`hyprland.lua` is the only supported compositor entrypoint for Hyprland 0.55+
-in HyprFlux. Its job is orchestration: it loads modules in dependency order and
-registers the initial-boot callback.
+`hyprland.lua` is the only supported compositor entrypoint for Hyprland 0.55 and newer in HyprFlux. Its job is orchestration: it loads modules in dependency order and registers the initial-boot callback.
 
-## Entrypoint Shape
+## Entrypoint shape
 
 ```lua
 local Home = os.getenv("HOME")
@@ -22,19 +25,15 @@ require("UserConfigs.user-decorations")
 require("UserConfigs.user-animations")
 ```
 
-The source assigns the first two returned tables to locals, but other modules
-import those dependencies independently where needed. Required modules share
-the global `hl` API; ordinary Lua locals remain module-scoped.
+The source assigns the first two returned tables to locals, but other modules import those dependencies themselves where needed. Required modules share the global `hl` API. Ordinary Lua locals stay module-scoped.
 
-## Why Environment Loads First
+## Why the environment module loads first
 
-`env-variables.lua` must make the first real `hl.*` calls. Keep it before
-settings, decorations, bindings, rules, events, monitors, and workspaces.
-Defaults and colors can load first because they only return Lua tables.
+`env-variables.lua` must make the first real `hl.*` calls. Keep it before settings, decorations, bindings, rules, events, monitors, and workspaces. Defaults and colors can load before it because they only return Lua tables.
 
-## Bindings and Rules
+## Bindings and rules
 
-The entrypoint then loads bindings in this order:
+The entrypoint then loads the bindings in this order:
 
 ```lua
 require("configs.keybinds")
@@ -42,26 +41,20 @@ require("UserConfigs.user-keybinds")
 require("UserConfigs.laptops")
 ```
 
-That order controls registration order, not replacement semantics. If two
-modules register the same key combination, both may run. Use `hyprctl binds`
-and the canonical [keybinding table](/keybindings/hyprland) when checking a new
-combination.
+That order controls registration order, not replacement. If two modules register the same key combination, both may run. Use `hyprctl binds` and the [keybinding table](/keybindings/hyprland) when you check a new combination.
 
-Window and workspace rule modules follow:
+The window and workspace rule modules follow:
 
 ```lua
 require("UserConfigs.window-rules")
 require("UserConfigs.workspace-rules")
 ```
 
-`workspace-rules.lua` currently contains commented examples only. Its header
-says it is not sourced, but the entrypoint does load it; runtime behavior wins
-over that stale comment.
+`workspace-rules.lua` currently contains commented examples only. Its header says it is not loaded, but the entrypoint does load it. Runtime behavior wins over that stale comment.
 
-## Startup and Generated State
+## Startup and generated state
 
-The entrypoint registers `initial-boot.sh`, then loads the session startup
-module and generated display state:
+The entrypoint registers `initial-boot.sh`, then loads the session startup module and the generated display state:
 
 ```lua
 hl.on("hyprland.start", function()
@@ -74,11 +67,9 @@ require("workspaces")
 require("UserConfigs.LaptopDisplay")
 ```
 
-Do not rely on process-level readiness between independently registered
-startup callbacks. Put dependent shell steps in one script or use an
-appropriate systemd user service.
+Do not rely on readiness between independently registered startup callbacks. Put dependent shell steps in one script, or use a systemd user service.
 
-## Module Names
+## Module names
 
 Dots in a module name represent nested paths. For example:
 
@@ -86,11 +77,9 @@ Dots in a module name represent nested paths. For example:
 require("UserConfigs.user-settings")
 ```
 
-loads `UserConfigs/user-settings.lua` relative to the Hyprland configuration
-root. A failed required module is a configuration error; there is no automatic
-fallback to an old `.conf` file.
+loads `UserConfigs/user-settings.lua` relative to the Hyprland configuration root. A failed required module is a configuration error. There is no fallback to an old `.conf` file.
 
-## Complete Load Order
+## Complete load order
 
 The entrypoint requires these modules in exactly this order:
 
@@ -111,20 +100,18 @@ The entrypoint requires these modules in exactly this order:
 15. `workspaces`
 16. `UserConfigs.LaptopDisplay`
 
-This is a reference summary of the sections above, not a substitute for
-reading them - each numbered step is explained in more detail earlier on
-this page.
+This list summarizes the sections above. The sections explain each step in more detail.
 
 ## Validation
 
-Validate individual Lua files while editing:
+Validate individual Lua files while you edit them:
 
 ```bash
 luac -p ~/.config/hypr/hyprland.lua
 luac -p ~/.config/hypr/UserConfigs/user-settings.lua
 ```
 
-Then validate the complete graph:
+Then validate the full graph:
 
 ```bash
 Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
@@ -137,5 +124,4 @@ hyprctl reload
 hyprctl configerrors
 ```
 
-Partial snippets on these pages may depend on the `hl` global and are not
-standalone programs. Always validate the complete installed configuration.
+Partial snippets on these pages depend on the `hl` global and are not standalone programs. Always validate the complete installed configuration.

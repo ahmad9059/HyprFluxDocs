@@ -9,7 +9,7 @@ const docs = path.join(root, "docs");
 const source = process.env.HYPRFLUX_SOURCE
   ? path.resolve(root, process.env.HYPRFLUX_SOURCE)
   : path.resolve(root, "../HyprFlux");
-const sourceRevision = "f421b6bd108214079b56c435331ddbbfdfb89591";
+const sourceRevision = "0f62647d95178eefa7cf8cd1b66760e93a260ef7";
 const errors = [];
 
 const expectedRoutes = [

@@ -1,25 +1,15 @@
 ---
 title: Hyprland Configuration Architecture
-description: Understand how HyprFlux organizes Hyprland's Lua configuration - which files you own, which are generated, why load order works the way it does, and how old .conf names map to the current layout.
+description: How HyprFlux organizes Hyprland's Lua configuration, which files you own and which are generated, and how the old .conf names map to the current layout.
 ---
 
 # Hyprland Configuration Architecture
 
-HyprFlux configures Hyprland 0.55+ through
-`~/.config/hypr/hyprland.lua`. Lua is the only supported compositor format in
-the current release. Supporting tools such as Hyprlock and Hypridle still use
-their own `.conf` formats.
+HyprFlux configures Hyprland 0.55 and newer through `~/.config/hypr/hyprland.lua`. Lua is the only supported compositor format in the current release. Supporting tools such as Hyprlock and Hypridle still use their own `.conf` formats.
 
-Source baseline: [HyprFlux v1.5.0 at `f421b6b`](https://github.com/ahmad9059/HyprFlux/tree/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr).
+This page explains how the pieces fit together. For the syntax, fields, and defaults of any single file, follow the link on its own reference page.
 
-This page explains how the pieces fit together conceptually. For the exact
-syntax, fields, and defaults of any one file, follow the links below to its
-own reference page.
-
-## The Shape of the Tree
-
-Before the ownership rules below make sense, it helps to see the whole tree
-at once:
+## The configuration tree
 
 ```text
 ~/.config/hypr/
@@ -27,6 +17,7 @@ at once:
 ├── hyprflux-colors.lua          # generated Lua palette
 ├── monitors.lua                 # generated output rules
 ├── workspaces.lua               # generated workspace assignments
+├── initial-boot.sh              # first-login fixup
 ├── configs/
 │   └── keybinds.lua             # HyprFlux base bindings
 ├── UserConfigs/
@@ -44,76 +35,42 @@ at once:
 ├── animations/                  # selectable Lua presets
 ├── Monitor_Profiles/            # HyprFlux profile assets
 ├── scripts/                     # maintained desktop helpers
+├── UserScripts/                 # user-owned helper scripts
+├── hyprflux-colors/             # native .conf palette for Hyprlock and Hypridle
 ├── hyprlock.conf                # Hyprlock native configuration
 ├── hyprlock-1080p.conf          # optional low-resolution variant
 ├── hypridle.conf                # Hypridle native configuration
 └── application-style.conf       # Hyprland Qt/QML application style
 ```
 
-This is a map for orientation, not a lookup table - each file's own reference
-page documents its exact fields and defaults.
+This tree is a map for orientation. Each file's own reference page documents its exact fields and defaults.
 
-## Four Kinds of Files, Four Editing Rules
+## Which files you can edit
 
-Every file in that tree falls into one of four categories, and knowing which
-category a file belongs to tells you whether you should ever hand-edit it.
+Every file in that tree falls into one of four groups.
 
-**The entrypoint** - `hyprland.lua` itself. It doesn't hold your settings; it
-orchestrates everything else by requiring modules in a specific order. You
-edit it only to add, remove, or reorder a `require(...)` line, not to change
-a setting directly. See the [entrypoint reference](/hyprland/hyprland) for
-its exact contents.
+**The entrypoint.** `hyprland.lua` does not hold your settings. It orchestrates the other modules by requiring them in a specific order. Edit it only to add, remove, or reorder a `require(...)` line. See the [entrypoint reference](/hyprland/hyprland) for its exact contents.
 
-**User-owned modules** - most of what's under `UserConfigs/`. These are your
-customization surface: terminal and editor choice, input and layout
-behavior, decorations, animations, personal keybindings, window rules, and
-startup applications. Edit these freely; each has its own reference page.
+**User-owned modules.** Most of `UserConfigs/` is your customization surface: terminal and editor choice, input and layout behavior, decorations, animations, personal keybindings, window rules, and startup applications. Edit these freely.
 
-**Generated files** - `monitors.lua`, `workspaces.lua`, and
-`hyprflux-colors.lua`. A tool owns each of these, not you directly:
-`nwg-displays` writes monitor and workspace Lua output, installer hardware
-modules can regenerate monitor output and profiles, and
-`utilities/sync-colors.sh` generates the Lua palette from the central color
-source. Hand-editing one of these is a temporary experiment at best - the
-owning tool can overwrite it the next time it runs.
+**Generated files.** `monitors.lua`, `workspaces.lua`, and `hyprflux-colors.lua` are owned by tools, not by you. `nwg-displays` writes the monitor and workspace output, the installer hardware modules can regenerate monitor output, and `utilities/sync-colors.sh` generates the Lua palette. Hand-editing one of these is at best a temporary experiment, because the owning tool can overwrite it.
 
-**Distribution defaults** - `configs/keybinds.lua`. This is the HyprFlux base
-binding layer, shipped and maintained by the project. Add your own bindings
-in `UserConfigs/user-keybinds.lua` instead of editing this file directly, so
-your changes survive an update.
+**Distribution defaults.** `configs/keybinds.lua` is the HyprFlux base binding layer, shipped and maintained by the project. Add your own bindings in `UserConfigs/user-keybinds.lua` instead, so your changes survive an update.
 
-Even "user-owned" isn't always absolute: the GPU marker block inside
-`env-variables.lua`, for example, is regenerated by the installer even
-though the rest of that file is yours to edit. Read a file's own comments
-before assuming it's entirely yours.
+Even a user-owned file is not always entirely yours. The GPU marker block inside `env-variables.lua`, for example, is regenerated by the installer even though the rest of the file is editable. Read a file's own comments before you assume it is entirely yours.
 
-## Why Load Order Is a Dependency Chain, Not a Priority List
+## Why load order matters
 
-It's tempting to read `hyprland.lua`'s module list top-to-bottom as "later
-wins," the way some configuration systems work. HyprFlux's Lua modules don't
-work that way: requiring a module runs it once, in order, and nothing it
-registers is automatically replaced by anything that loads after it.
+It is tempting to read the module list in `hyprland.lua` top to bottom as "later wins", the way some configuration systems work. HyprFlux's Lua modules do not work that way. Requiring a module runs it once, in order, and nothing it registers is automatically replaced by anything that loads after it.
 
-That single rule explains two things that otherwise look like inconsistencies:
+That single rule explains two things that otherwise look inconsistent:
 
-- **Why the environment module loads first.** `env-variables.lua` must run
-  before any other module that calls an `hl.*` function, because those calls
-  can depend on environment state already being set. Defaults and the color
-  palette can load before it only because they just return Lua tables - they
-  don't call anything yet. See the
-  [entrypoint reference](/hyprland/hyprland#complete-load-order) for the
-  complete ordered list.
-- **Why some keybindings collide.** Because a later `hl.bind` doesn't remove
-  an earlier one, HyprFlux's own source currently registers more than one
-  action on `SUPER+K`, `SUPER+O`, and `SUPER+SHIFT+W` - both actions run on
-  every press. This isn't a menu or a fallback; it's what "additive, not
-  overriding" means in practice. See the full list in the
-  [Hyprland keybindings reference](/keybindings/hyprland#known-collisions).
+- **Why the environment module loads first.** `env-variables.lua` must run before any other module that calls an `hl.*` function, because those calls can depend on environment state already being set. Defaults and the color palette can load before it only because they return Lua tables. See the [entrypoint reference](/hyprland/hyprland#complete-load-order) for the full order.
+- **Why some keybindings collide.** Because a later `hl.bind` does not remove an earlier one, the shipped source registers more than one action on `SUPER+K`, `SUPER+O`, and `SUPER+SHIFT+W`. Both actions run on every press. This is what "additive, not overriding" means in practice. See the full list in the [Hyprland keybindings reference](/keybindings/hyprland#known-collisions).
 
-## Coming from the Old `.conf` Layout
+## Coming from the old .conf layout
 
-If you're used to an older HyprFlux install, or a tutorial written before
-the Lua migration, the filenames changed along with the format:
+If you used an older HyprFlux install, or a tutorial written before the Lua migration, the filenames changed along with the format:
 
 | Previous name | Current owner |
 |---|---|
@@ -133,11 +90,8 @@ the Lua migration, the filenames changed along with the format:
 | `monitors.conf` compositor input | generated `monitors.lua` |
 | `workspaces.conf` compositor input | generated `workspaces.lua` |
 
-Treat this table as a translation aid, not as valid current syntax - don't
-write new configuration in the removed format.
+Treat this table as a translation aid. Do not write new configuration in the removed format.
 
-## For Contributors
+## For contributors
 
-In the source repository, `.config/` is canonical and `base-dots/config/` is
-a byte-identical parity mirror enforced by HyprFlux CI. A configuration
-change proposed upstream needs both trees to agree.
+In the source repository, `.config/` is canonical and `base-dots/config/` is a byte-identical parity mirror enforced by HyprFlux CI. A configuration change proposed upstream needs both trees to agree.

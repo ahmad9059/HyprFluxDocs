@@ -76,6 +76,8 @@ export default defineConfig({
     hostname: canonicalOrigin,
   },
   cleanUrls: true,
+  // Internal planning records are kept in the repo but are not published.
+  srcExclude: ["plans/**"],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/favicon.ico",
@@ -98,7 +100,7 @@ export default defineConfig({
         text: "Getting Started",
         collapsed: false,
         items: [
-          { text: "Quick Start (Tutorial)", link: "/general/quickstart.md" },
+          { text: "Quick Start", link: "/general/quickstart.md" },
           { text: "Download ISO", link: "/general/download.md" },
           { text: "Showcase", link: "/general/showcase.md" },
         ],
@@ -108,7 +110,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           {
-            text: "ISO Installation Guide",
+            text: "ISO installation",
             link: "/general/iso-installation.md",
           },
         ],
@@ -118,7 +120,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           {
-            text: "Install on Existing Arch",
+            text: "Install on existing Arch",
             link: "/general/installation.md",
           },
           {
@@ -136,7 +138,7 @@ export default defineConfig({
         ],
       },
       {
-        text: "Keybindings (Reference)",
+        text: "Keybindings",
         collapsed: false,
         items: [
           {
@@ -148,11 +150,11 @@ export default defineConfig({
         ],
       },
       {
-        text: "Features (Component Guides)",
+        text: "Components",
         collapsed: false,
         items: [
           {
-            text: "Hyprland (Explanation)",
+            text: "Hyprland overview",
             link: "/features/hyprland.md",
           },
           { text: "Hyprlock", link: "/features/hyprlock.md" },
@@ -169,11 +171,11 @@ export default defineConfig({
         ],
       },
       {
-        text: ".config/hypr (Reference)",
+        text: "Hyprland config reference",
         collapsed: false,
         items: [
           {
-            text: "Configuration Architecture (Explanation)",
+            text: "Configuration architecture",
             link: "/hyprland/index.md",
           },
           {

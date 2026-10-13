@@ -1,6 +1,6 @@
 ---
-title: Inside the HyprFlux Desktop - HyprFlux
-description: A deep dive into the tools, structure, and design decisions that shape the HyprFlux desktop experience. Learn about Hyprland, Waybar, Rofi, and more.
+title: Inside the HyprFlux Desktop
+description: A look at the tools, structure, and design decisions behind the HyprFlux desktop, including Hyprland, Waybar, Rofi, and the modular configuration.
 ---
 
 # Inside the HyprFlux Desktop
@@ -8,34 +8,30 @@ description: A deep dive into the tools, structure, and design decisions that sh
 _Published: March 12, 2026_
 
 ::: info Archived article
-This article reflects the project at its publication date. See the [current
-desktop overview](/features/hyprland) and [Lua configuration
-reference](/hyprland/) for maintained guidance.
+This article reflects the project at its publication date. See the [current desktop overview](/features/hyprland) and the [Lua configuration reference](/hyprland/) for maintained guidance.
 :::
 
-HyprFlux is built as a complete desktop experience, not just a theme pack.
+HyprFlux is built as a complete desktop, not just a theme pack.
 
-The idea is simple: every part of the system should feel connected. Hyprland handles the window management, but the overall experience depends just as much on the bar, launcher, notifications, lock screen, terminal, editor, and small helper scripts that tie everything together.
+The idea is simple: every part of the system should feel connected. Hyprland handles window management, but the overall experience depends just as much on the bar, launcher, notifications, lock screen, terminal, editor, and the small helper scripts that tie everything together.
 
 ## What shapes the desktop
 
-The current setup is centered around a practical stack:
+The setup centers on a practical stack:
 
-- Hyprland for tiling and motion
-- Waybar for workspace and system status
-- Rofi for launchers and menus
-- Hyprlock and Hypridle for screen locking and idle behavior
-- SwayNC for notifications
-- Kitty and Neovim for the daily workflow
+- Hyprland for tiling and motion;
+- Waybar for workspace and system status;
+- Rofi for launchers and menus;
+- Hyprlock and Hypridle for locking and idle behavior;
+- SwayNC for notifications;
+- Kitty and Neovim for the daily workflow.
 
-What matters most is consistency. Colors, spacing, shortcuts, and layout choices are meant to feel like they belong to one system.
+Consistency is the point. Colors, spacing, shortcuts, and layout choices are meant to feel like they belong to one system.
 
 ## Why modular configs matter
 
-HyprFlux is split into smaller configuration pieces so users can understand it more easily and change only what they need. That is why the docs also include references for individual Hyprland includes instead of hiding everything inside one large file.
-
-This makes the project easier to maintain and easier to customize.
+HyprFlux splits its configuration into smaller pieces so users can understand it and change only what they need. That is why the docs cover individual Hyprland includes instead of hiding everything inside one large file. It makes the project easier to maintain and easier to customize.
 
 ## The goal going forward
 
-The desktop will keep evolving, but the direction stays the same: clean defaults, good usability, and enough structure that users can actually live in the setup instead of constantly repairing it.
+The desktop keeps evolving, but the direction stays the same: sensible defaults, good usability, and enough structure that you can live in the setup instead of constantly repairing it.

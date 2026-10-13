@@ -1,15 +1,17 @@
+---
+title: window-rules.lua
+description: The HyprFlux module for matching windows and applying placement and effect rules.
+---
+
 # `window-rules.lua`
 
 Path: `~/.config/hypr/UserConfigs/window-rules.lua`
 
-[View the pinned v1.5.0 source](https://github.com/ahmad9059/HyprFlux/blob/f421b6bd108214079b56c435331ddbbfdfb89591/.config/hypr/UserConfigs/window-rules.lua).
+[View the source](https://github.com/ahmad9059/HyprFlux/blob/0f62647d95178eefa7cf8cd1b66760e93a260ef7/.config/hypr/UserConfigs/window-rules.lua).
 
-This module classifies windows with tags, places applications on workspaces,
-and applies effects such as floating, sizing, opacity, pinning, and idle
-inhibition. It replaces the old `windowrule`, `windowrulev2`, and `layerrule`
-lines.
+This module classifies windows with tags, places applications on workspaces, and applies effects such as floating, sizing, opacity, pinning, and idle inhibition. It replaces the old `windowrule`, `windowrulev2`, and `layerrule` lines.
 
-## Named Window Rule
+## Named window rule
 
 ```lua
 hl.window_rule({
@@ -31,12 +33,11 @@ hl.window_rule({
 })
 ```
 
-All properties inside `match` must match the same window. Regular expressions
-are strings; anchor a class or title when you intend an exact match.
+All properties inside `match` must match the same window. Regular expressions are strings, so anchor a class or title when you want an exact match.
 
-## Structured Effects
+## Structured effects
 
-Values containing compositor expressions remain strings or arrays of strings:
+Values that contain compositor expressions stay as strings or arrays of strings:
 
 ```lua
 hl.window_rule({
@@ -50,10 +51,9 @@ hl.window_rule({
 })
 ```
 
-Other current effects include `center`, `tile`, `fullscreen`, `no_blur`,
-`opacity`, `idle_inhibit`, and `workspace`.
+Other current effects include `center`, `tile`, `fullscreen`, `no_blur`, `opacity`, `idle_inhibit`, and `workspace`.
 
-## Layer Rules
+## Layer rules
 
 Layer-shell surfaces use `hl.layer_rule` and match a namespace:
 
@@ -67,16 +67,11 @@ hl.layer_rule({
 
 ## Ordering
 
-Rules evaluate from top to bottom. For a given effect, the last matching rule
-wins. Named rules and anonymous rules have different precedence, so preserve
-the source's named-rule pattern and place broad defaults before narrow
-exceptions.
+Rules evaluate from top to bottom. For a given effect, the last matching rule wins. Named and anonymous rules have different precedence, so keep the source's named-rule pattern and place broad defaults before narrow exceptions.
 
-Static effects such as workspace placement, float, move, and size do not
-automatically re-evaluate every time a window title changes. Use an event
-handler only when live title-driven behavior is required.
+Static effects such as workspace placement, float, move, and size do not re-evaluate every time a window title changes. Use an event handler only when you need live title-driven behavior.
 
-## Discover Window Properties
+## Discover window properties
 
 Use runtime state instead of guessing class and title strings:
 
@@ -93,6 +88,3 @@ Hyprland --config ~/.config/hypr/hyprland.lua --verify-config
 hyprctl reload
 hyprctl configerrors
 ```
-
-The source header's rule counts are stale. Follow active declarations and
-behavior rather than copying a reported total into downstream documentation.
