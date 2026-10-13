@@ -87,7 +87,7 @@ aside: false
   <div class="download-card">
     <span class="download-card-label">Mirror</span>
     <h3>Google Drive</h3>
-    <p>Mirror folder, for when GitHub is slow or unavailable</p>
+    <p>Mirror folder for alternative access</p>
     <a href="https://drive.google.com/drive/folders/1ptOUoY4H7l4jT0jFcKoX9yxOKdc43m-_?usp=sharing" target="_blank" rel="noreferrer" class="download-btn">
       Open mirror folder
     </a>
